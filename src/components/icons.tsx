@@ -32,6 +32,7 @@ import {
   IconLayoutKanban,
   IconBrandGithub
 } from '@tabler/icons-react';
+import { PiCowDuotone } from 'react-icons/pi';
 
 export type Icon = React.ComponentType<IconProps>;
 
@@ -43,6 +44,7 @@ export const Icons = {
   product: IconShoppingBag,
   spinner: IconLoader2,
   kanban: IconLayoutKanban,
+  cattle: PiCowDuotone,
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
   trash: IconTrash,

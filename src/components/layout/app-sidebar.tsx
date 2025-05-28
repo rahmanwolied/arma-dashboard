@@ -47,16 +47,19 @@ import { usePathname, useRouter } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
 import { OrgSwitcher } from '../org-switcher';
+
 export const company = {
-  name: 'Acme Inc',
+  name: 'ARMA',
   logo: IconPhotoUp,
   plan: 'Enterprise'
 };
 
 const tenants = [
-  { id: '1', name: 'Acme Inc' },
-  { id: '2', name: 'Beta Corp' },
-  { id: '3', name: 'Gamma Ltd' }
+  { id: '1', name: 'Accounts' },
+  { id: '2', name: 'Directors' },
+  { id: '3', name: 'Shareholders' },
+  { id: '4', name: 'Admin' },
+  { id: '5', name: 'Payment' }
 ];
 
 export default function AppSidebar() {

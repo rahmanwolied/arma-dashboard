@@ -1,0 +1,141 @@
+enum CattleClass {
+  GOLD
+  SILVER
+  PLATINUM
+
+  @@map("CattleClass")
+}
+
+enum HealthStatus {
+  HEALTHY
+  SICK
+  DEAD
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model Cattle {
+  id           String  @id @default(cuid())
+  cattleNumber Int
+  name         String?
+
+  // Gender
+  gender Gender @default(FEMALE)
+
+  // Purchase Details
+  liveWeight         Int // kg
+  meatPercentage     Decimal @db.Decimal(5, 2) // %
+  fatPercentage      Decimal @db.Decimal(5, 2) // %
+  purchasePricePerKg Int
+
+  cattleClass CattleClass @default(SILVER)
+
+  imageUrl String?
+
+  // Status
+  isSold        Boolean @default(false)
+  isQuarantined Boolean @default(false)
+
+  // For cows
+  isPregnant    Boolean @default(false) // for cows
+  isLactating   Boolean @default(false) // for cows
+  isInseminated Boolean @default(false) // for cows
+
+  // Health
+  healthStatus HealthStatus @default(HEALTHY)
+  healthNotes  String?
+  isVaccinated Boolean      @default(false) // for cows
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  transactionItems TransactionItem[]
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions Transaction[]
+}
+
+model Transaction {
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  customerId String
+
+  // Transaction-level details
+  serialNumber Int?
+  remarks      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  customer         Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  transactionItems TransactionItem[]
+
+  @@map("transactions")
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  PARTIALLY_PAID
+}
+
+enum PaymentMethod {
+  CASH
+  BANK_TRANSFER
+  MOBILE_MONEY
+}
+
+model TransactionItem {
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  transactionId String
+  cattleId      String
+
+  // Sale Details (per cow)
+  estimatedSalePrice Int
+  actualSalePrice    Int
+  totalPrice         Int
+
+  paymentStatus PaymentStatus  @default(PENDING)
+  paymentDate   DateTime?
+  paymentMethod PaymentMethod?
+  paidAmount    Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  cattle      Cattle      @relation(fields: [cattleId], references: [id], onDelete: Cascade)
+
+  // Ensure one cattle per transaction (prevent duplicates)
+  @@unique([transactionId, cattleId])
+  @@map("transaction_items")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output          = "generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("NEON_DB_URL")
+  directUrl = env("NEON_DB_URL_DIRECT")
+}

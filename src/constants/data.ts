@@ -22,9 +22,17 @@ export const navItems: NavItem[] = [
     items: [] // Empty array as there are no child items for Dashboard
   },
   {
-    title: 'Product',
-    url: '/dashboard/product',
-    icon: 'product',
+    title: 'Customers',
+    url: '/dashboard/customers',
+    icon: 'user',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
+    title: 'Cattle',
+    url: '/dashboard/cattle',
+    icon: 'cattle',
     shortcut: ['p', 'p'],
     isActive: false,
     items: [] // No child items
@@ -49,15 +57,15 @@ export const navItems: NavItem[] = [
         icon: 'login'
       }
     ]
-  },
-  {
-    title: 'Kanban',
-    url: '/dashboard/kanban',
-    icon: 'kanban',
-    shortcut: ['k', 'k'],
-    isActive: false,
-    items: [] // No child items
   }
+  // {
+  //   title: 'Kanban',
+  //   url: '/dashboard/kanban',
+  //   icon: 'kanban',
+  //   shortcut: ['k', 'k'],
+  //   isActive: false,
+  //   items: [] // No child items
+  // }
 ];
 
 export interface SaleUser {
