@@ -1,6 +1,5 @@
 'use client';
 
-import { FileUploader } from '@/components/file-uploader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -12,61 +11,31 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { Product } from '@/constants/mock-api';
+import { Customer } from '@/prisma/generated/prisma';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import { createCustomer } from './actions';
 
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = [
-  'image/jpeg',
-  'image/jpg',
-  'image/png',
-  'image/webp'
-];
-
-const formSchema = z.object({
-  image: z
-    .any()
-    .refine((files) => files?.length == 1, 'Image is required.')
-    .refine(
-      (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-      `Max file size is 5MB.`
-    )
-    .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-      '.jpg, .jpeg, .png and .webp files are accepted.'
-    ),
+export const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Product name must be at least 2 characters.'
+    message: 'Customer name must be at least 2 characters.'
   }),
-  category: z.string(),
-  price: z.number(),
-  description: z.string().min(10, {
-    message: 'Description must be at least 10 characters.'
-  })
+  address: z.string(),
+  phone: z.string()
 });
 
 export default function CowForm({
   initialData,
   pageTitle
 }: {
-  initialData: Product | null;
+  initialData: Customer | null;
   pageTitle: string;
 }) {
   const defaultValues = {
     name: initialData?.name || '',
-    category: initialData?.category || '',
-    price: initialData?.price || 0,
-    description: initialData?.description || ''
+    address: initialData?.address || '',
+    phone: initialData?.phone || ''
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -75,7 +44,7 @@ export default function CowForm({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Form submission logic would be implemented here
+    createCustomer(values);
   }
 
   return (
@@ -88,41 +57,15 @@ export default function CowForm({
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-            <FormField
-              control={form.control}
-              name='image'
-              render={({ field }) => (
-                <div className='space-y-6'>
-                  <FormItem className='w-full'>
-                    <FormLabel>Images</FormLabel>
-                    <FormControl>
-                      <FileUploader
-                        value={field.value}
-                        onValueChange={field.onChange}
-                        maxFiles={4}
-                        maxSize={4 * 1024 * 1024}
-                        // disabled={loading}
-                        // progresses={progresses}
-                        // pass the onUpload function here for direct upload
-                        // onUpload={uploadFiles}
-                        // disabled={isUploading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                </div>
-              )}
-            />
-
             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
               <FormField
                 control={form.control}
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Product Name</FormLabel>
+                    <FormLabel>Customer Name</FormLabel>
                     <FormControl>
-                      <Input placeholder='Enter product name' {...field} />
+                      <Input placeholder='Enter customer name' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -130,70 +73,32 @@ export default function CowForm({
               />
               <FormField
                 control={form.control}
-                name='category'
+                name='address'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category</FormLabel>
-                    <Select
-                      onValueChange={(value) => field.onChange(value)}
-                      value={field.value[field.value.length - 1]}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder='Select categories' />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value='beauty'>Beauty Products</SelectItem>
-                        <SelectItem value='electronics'>Electronics</SelectItem>
-                        <SelectItem value='clothing'>Clothing</SelectItem>
-                        <SelectItem value='home'>Home & Garden</SelectItem>
-                        <SelectItem value='sports'>
-                          Sports & Outdoors
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <FormLabel>Address</FormLabel>
+                    <FormControl>
+                      <Input placeholder='Enter address' {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='price'
+                name='phone'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price</FormLabel>
+                    <FormLabel>Phone</FormLabel>
                     <FormControl>
-                      <Input
-                        type='number'
-                        step='0.01'
-                        placeholder='Enter price'
-                        {...field}
-                      />
+                      <Input placeholder='Enter phone' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name='description'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder='Enter product description'
-                      className='resize-none'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type='submit'>Add Cow</Button>
+            <Button type='submit'>Add Customer</Button>
           </form>
         </Form>
       </CardContent>

@@ -1,23 +1,31 @@
 import { fakeProducts, Product } from '@/constants/mock-api';
 import { notFound } from 'next/navigation';
-import CowForm from './customer-form';
+import CustomerForm from './customer-form';
+import prisma from '@/prisma';
+import { Customer } from '@/prisma/generated/prisma';
 
 type TProductViewPageProps = {
-  cowId: string;
+  customerId: string;
 };
 
-export default async function CowViewPage({ cowId }: TProductViewPageProps) {
-  let cow = null;
-  let pageTitle = 'Add New Cow';
+export default async function CustomerViewPage({
+  customerId
+}: TProductViewPageProps) {
+  let customer = null;
+  let pageTitle = 'Add New Customer';
 
-  if (cowId !== 'new') {
-    const data = await fakeProducts.getProductById(Number(cowId));
-    cow = data.product as Product;
-    if (!cow) {
+  if (customerId !== 'new') {
+    const data = await prisma.customer.findUnique({
+      where: {
+        id: customerId
+      }
+    });
+    customer = data as Customer;
+    if (!customer) {
       notFound();
     }
-    pageTitle = `Edit Cow`;
+    pageTitle = `Edit Customer`;
   }
 
-  return <CowForm initialData={cow} pageTitle={pageTitle} />;
+  return <CustomerForm initialData={customer} pageTitle={pageTitle} />;
 }

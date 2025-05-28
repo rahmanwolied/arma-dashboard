@@ -1,33 +1,37 @@
-import { Product } from '@/constants/data';
-import { fakeProducts } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
-import { ProductTable } from './customer-tables';
 import { columns } from './customer-tables/columns';
+import { Customer } from '@/prisma/generated/prisma';
+import { CustomerTable } from './customer-tables';
 
-type ProductListingPage = {};
+type CustomerListingPage = {
+  customers: Customer[];
+};
 
-export default async function ProductListingPage({}: ProductListingPage) {
+export default async function CustomerListingPage({
+  customers
+}: CustomerListingPage) {
   // Showcasing the use of search params cache in nested RSCs
-  const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('name');
-  const pageLimit = searchParamsCache.get('perPage');
-  const categories = searchParamsCache.get('category');
+  const status = searchParamsCache.get('status');
 
-  const filters = {
-    page,
-    limit: pageLimit,
-    ...(search && { search }),
-    ...(categories && { categories: categories })
-  };
+  const filteredCustomers = customers.filter((customer) => {
+    const nameMatch =
+      !search || customer.name.toLowerCase().includes(search.toLowerCase());
+    const statusMatch =
+      !status ||
+      (status === 'old'
+        ? customer.name.length % 2 === 0
+        : customer.name.length % 2 !== 0) ||
+      status === 'old,new' ||
+      status === 'new,old';
 
-  const data = await fakeProducts.getProducts(filters);
-  const totalProducts = data.total_products;
-  const products: Product[] = data.products;
+    return nameMatch && statusMatch;
+  });
 
   return (
-    <ProductTable
-      data={products}
-      totalItems={totalProducts}
+    <CustomerTable
+      data={filteredCustomers}
+      totalItems={filteredCustomers.length}
       columns={columns}
     />
   );
