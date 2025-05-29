@@ -24,3 +24,13 @@ export function formatBytes(
       : (sizes[i] ?? 'Bytes')
   }`;
 }
+
+export function formatCurrency(amount: number) {
+  return amount.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'BDT',
+    currencyDisplay: 'narrowSymbol',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+}

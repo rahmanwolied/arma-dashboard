@@ -6,6 +6,10 @@ import { z } from 'zod';
 import { matchSorter } from 'match-sorter'; // For filtering
 import { Customer } from '@/prisma/generated/prisma';
 
+export async function getCustomers() {
+  return await prisma.customer.findMany();
+}
+
 export async function createCustomer(formData: z.infer<typeof formSchema>) {
   const { name, address, phone } = formData;
 

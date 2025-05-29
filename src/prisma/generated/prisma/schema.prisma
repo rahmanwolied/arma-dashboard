@@ -107,9 +107,9 @@ model TransactionItem {
   cattleId      String
 
   // Sale Details (per cow)
-  estimatedSalePrice Int
-  actualSalePrice    Int
-  totalPrice         Int
+  estimatedSalePriceKg Int
+  actualSalePriceKg    Int
+  totalPrice           Int
 
   paymentStatus PaymentStatus  @default(PENDING)
   paymentDate   DateTime?

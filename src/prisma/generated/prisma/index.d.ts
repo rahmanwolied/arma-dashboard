@@ -5735,15 +5735,15 @@ export namespace Prisma {
   };
 
   export type TransactionItemAvgAggregateOutputType = {
-    estimatedSalePrice: number | null;
-    actualSalePrice: number | null;
+    estimatedSalePriceKg: number | null;
+    actualSalePriceKg: number | null;
     totalPrice: number | null;
     paidAmount: number | null;
   };
 
   export type TransactionItemSumAggregateOutputType = {
-    estimatedSalePrice: number | null;
-    actualSalePrice: number | null;
+    estimatedSalePriceKg: number | null;
+    actualSalePriceKg: number | null;
     totalPrice: number | null;
     paidAmount: number | null;
   };
@@ -5752,8 +5752,8 @@ export namespace Prisma {
     id: string | null;
     transactionId: string | null;
     cattleId: string | null;
-    estimatedSalePrice: number | null;
-    actualSalePrice: number | null;
+    estimatedSalePriceKg: number | null;
+    actualSalePriceKg: number | null;
     totalPrice: number | null;
     paymentStatus: $Enums.PaymentStatus | null;
     paymentDate: Date | null;
@@ -5767,8 +5767,8 @@ export namespace Prisma {
     id: string | null;
     transactionId: string | null;
     cattleId: string | null;
-    estimatedSalePrice: number | null;
-    actualSalePrice: number | null;
+    estimatedSalePriceKg: number | null;
+    actualSalePriceKg: number | null;
     totalPrice: number | null;
     paymentStatus: $Enums.PaymentStatus | null;
     paymentDate: Date | null;
@@ -5782,8 +5782,8 @@ export namespace Prisma {
     id: number;
     transactionId: number;
     cattleId: number;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus: number;
     paymentDate: number;
@@ -5795,15 +5795,15 @@ export namespace Prisma {
   };
 
   export type TransactionItemAvgAggregateInputType = {
-    estimatedSalePrice?: true;
-    actualSalePrice?: true;
+    estimatedSalePriceKg?: true;
+    actualSalePriceKg?: true;
     totalPrice?: true;
     paidAmount?: true;
   };
 
   export type TransactionItemSumAggregateInputType = {
-    estimatedSalePrice?: true;
-    actualSalePrice?: true;
+    estimatedSalePriceKg?: true;
+    actualSalePriceKg?: true;
     totalPrice?: true;
     paidAmount?: true;
   };
@@ -5812,8 +5812,8 @@ export namespace Prisma {
     id?: true;
     transactionId?: true;
     cattleId?: true;
-    estimatedSalePrice?: true;
-    actualSalePrice?: true;
+    estimatedSalePriceKg?: true;
+    actualSalePriceKg?: true;
     totalPrice?: true;
     paymentStatus?: true;
     paymentDate?: true;
@@ -5827,8 +5827,8 @@ export namespace Prisma {
     id?: true;
     transactionId?: true;
     cattleId?: true;
-    estimatedSalePrice?: true;
-    actualSalePrice?: true;
+    estimatedSalePriceKg?: true;
+    actualSalePriceKg?: true;
     totalPrice?: true;
     paymentStatus?: true;
     paymentDate?: true;
@@ -5842,8 +5842,8 @@ export namespace Prisma {
     id?: true;
     transactionId?: true;
     cattleId?: true;
-    estimatedSalePrice?: true;
-    actualSalePrice?: true;
+    estimatedSalePriceKg?: true;
+    actualSalePriceKg?: true;
     totalPrice?: true;
     paymentStatus?: true;
     paymentDate?: true;
@@ -5953,8 +5953,8 @@ export namespace Prisma {
     id: string;
     transactionId: string;
     cattleId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus: $Enums.PaymentStatus;
     paymentDate: Date | null;
@@ -5990,8 +5990,8 @@ export namespace Prisma {
       id?: boolean;
       transactionId?: boolean;
       cattleId?: boolean;
-      estimatedSalePrice?: boolean;
-      actualSalePrice?: boolean;
+      estimatedSalePriceKg?: boolean;
+      actualSalePriceKg?: boolean;
       totalPrice?: boolean;
       paymentStatus?: boolean;
       paymentDate?: boolean;
@@ -6012,8 +6012,8 @@ export namespace Prisma {
       id?: boolean;
       transactionId?: boolean;
       cattleId?: boolean;
-      estimatedSalePrice?: boolean;
-      actualSalePrice?: boolean;
+      estimatedSalePriceKg?: boolean;
+      actualSalePriceKg?: boolean;
       totalPrice?: boolean;
       paymentStatus?: boolean;
       paymentDate?: boolean;
@@ -6034,8 +6034,8 @@ export namespace Prisma {
       id?: boolean;
       transactionId?: boolean;
       cattleId?: boolean;
-      estimatedSalePrice?: boolean;
-      actualSalePrice?: boolean;
+      estimatedSalePriceKg?: boolean;
+      actualSalePriceKg?: boolean;
       totalPrice?: boolean;
       paymentStatus?: boolean;
       paymentDate?: boolean;
@@ -6053,8 +6053,8 @@ export namespace Prisma {
     id?: boolean;
     transactionId?: boolean;
     cattleId?: boolean;
-    estimatedSalePrice?: boolean;
-    actualSalePrice?: boolean;
+    estimatedSalePriceKg?: boolean;
+    actualSalePriceKg?: boolean;
     totalPrice?: boolean;
     paymentStatus?: boolean;
     paymentDate?: boolean;
@@ -6070,8 +6070,8 @@ export namespace Prisma {
     | 'id'
     | 'transactionId'
     | 'cattleId'
-    | 'estimatedSalePrice'
-    | 'actualSalePrice'
+    | 'estimatedSalePriceKg'
+    | 'actualSalePriceKg'
     | 'totalPrice'
     | 'paymentStatus'
     | 'paymentDate'
@@ -6113,8 +6113,8 @@ export namespace Prisma {
         id: string;
         transactionId: string;
         cattleId: string;
-        estimatedSalePrice: number;
-        actualSalePrice: number;
+        estimatedSalePriceKg: number;
+        actualSalePriceKg: number;
         totalPrice: number;
         paymentStatus: $Enums.PaymentStatus;
         paymentDate: Date | null;
@@ -6743,8 +6743,8 @@ export namespace Prisma {
     readonly id: FieldRef<'TransactionItem', 'String'>;
     readonly transactionId: FieldRef<'TransactionItem', 'String'>;
     readonly cattleId: FieldRef<'TransactionItem', 'String'>;
-    readonly estimatedSalePrice: FieldRef<'TransactionItem', 'Int'>;
-    readonly actualSalePrice: FieldRef<'TransactionItem', 'Int'>;
+    readonly estimatedSalePriceKg: FieldRef<'TransactionItem', 'Int'>;
+    readonly actualSalePriceKg: FieldRef<'TransactionItem', 'Int'>;
     readonly totalPrice: FieldRef<'TransactionItem', 'Int'>;
     readonly paymentStatus: FieldRef<'TransactionItem', 'PaymentStatus'>;
     readonly paymentDate: FieldRef<'TransactionItem', 'DateTime'>;
@@ -7286,8 +7286,8 @@ export namespace Prisma {
     id: 'id';
     transactionId: 'transactionId';
     cattleId: 'cattleId';
-    estimatedSalePrice: 'estimatedSalePrice';
-    actualSalePrice: 'actualSalePrice';
+    estimatedSalePriceKg: 'estimatedSalePriceKg';
+    actualSalePriceKg: 'actualSalePriceKg';
     totalPrice: 'totalPrice';
     paymentStatus: 'paymentStatus';
     paymentDate: 'paymentDate';
@@ -7765,8 +7765,8 @@ export namespace Prisma {
     id?: StringFilter<'TransactionItem'> | string;
     transactionId?: StringFilter<'TransactionItem'> | string;
     cattleId?: StringFilter<'TransactionItem'> | string;
-    estimatedSalePrice?: IntFilter<'TransactionItem'> | number;
-    actualSalePrice?: IntFilter<'TransactionItem'> | number;
+    estimatedSalePriceKg?: IntFilter<'TransactionItem'> | number;
+    actualSalePriceKg?: IntFilter<'TransactionItem'> | number;
     totalPrice?: IntFilter<'TransactionItem'> | number;
     paymentStatus?:
       | EnumPaymentStatusFilter<'TransactionItem'>
@@ -7791,8 +7791,8 @@ export namespace Prisma {
     id?: SortOrder;
     transactionId?: SortOrder;
     cattleId?: SortOrder;
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paymentStatus?: SortOrder;
     paymentDate?: SortOrderInput | SortOrder;
@@ -7813,8 +7813,8 @@ export namespace Prisma {
       NOT?: TransactionItemWhereInput | TransactionItemWhereInput[];
       transactionId?: StringFilter<'TransactionItem'> | string;
       cattleId?: StringFilter<'TransactionItem'> | string;
-      estimatedSalePrice?: IntFilter<'TransactionItem'> | number;
-      actualSalePrice?: IntFilter<'TransactionItem'> | number;
+      estimatedSalePriceKg?: IntFilter<'TransactionItem'> | number;
+      actualSalePriceKg?: IntFilter<'TransactionItem'> | number;
       totalPrice?: IntFilter<'TransactionItem'> | number;
       paymentStatus?:
         | EnumPaymentStatusFilter<'TransactionItem'>
@@ -7841,8 +7841,8 @@ export namespace Prisma {
     id?: SortOrder;
     transactionId?: SortOrder;
     cattleId?: SortOrder;
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paymentStatus?: SortOrder;
     paymentDate?: SortOrderInput | SortOrder;
@@ -7868,8 +7868,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<'TransactionItem'> | string;
     transactionId?: StringWithAggregatesFilter<'TransactionItem'> | string;
     cattleId?: StringWithAggregatesFilter<'TransactionItem'> | string;
-    estimatedSalePrice?: IntWithAggregatesFilter<'TransactionItem'> | number;
-    actualSalePrice?: IntWithAggregatesFilter<'TransactionItem'> | number;
+    estimatedSalePriceKg?: IntWithAggregatesFilter<'TransactionItem'> | number;
+    actualSalePriceKg?: IntWithAggregatesFilter<'TransactionItem'> | number;
     totalPrice?: IntWithAggregatesFilter<'TransactionItem'> | number;
     paymentStatus?:
       | EnumPaymentStatusWithAggregatesFilter<'TransactionItem'>
@@ -8207,8 +8207,8 @@ export namespace Prisma {
 
   export type TransactionItemCreateInput = {
     id?: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -8224,8 +8224,8 @@ export namespace Prisma {
     id?: string;
     transactionId: string;
     cattleId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -8237,8 +8237,8 @@ export namespace Prisma {
 
   export type TransactionItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -8263,8 +8263,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string;
     transactionId?: StringFieldUpdateOperationsInput | string;
     cattleId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -8287,8 +8287,8 @@ export namespace Prisma {
     id?: string;
     transactionId: string;
     cattleId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -8300,8 +8300,8 @@ export namespace Prisma {
 
   export type TransactionItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -8324,8 +8324,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string;
     transactionId?: StringFieldUpdateOperationsInput | string;
     cattleId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -8811,8 +8811,8 @@ export namespace Prisma {
     id?: SortOrder;
     transactionId?: SortOrder;
     cattleId?: SortOrder;
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paymentStatus?: SortOrder;
     paymentDate?: SortOrder;
@@ -8823,8 +8823,8 @@ export namespace Prisma {
   };
 
   export type TransactionItemAvgOrderByAggregateInput = {
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paidAmount?: SortOrder;
   };
@@ -8833,8 +8833,8 @@ export namespace Prisma {
     id?: SortOrder;
     transactionId?: SortOrder;
     cattleId?: SortOrder;
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paymentStatus?: SortOrder;
     paymentDate?: SortOrder;
@@ -8848,8 +8848,8 @@ export namespace Prisma {
     id?: SortOrder;
     transactionId?: SortOrder;
     cattleId?: SortOrder;
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paymentStatus?: SortOrder;
     paymentDate?: SortOrder;
@@ -8860,8 +8860,8 @@ export namespace Prisma {
   };
 
   export type TransactionItemSumOrderByAggregateInput = {
-    estimatedSalePrice?: SortOrder;
-    actualSalePrice?: SortOrder;
+    estimatedSalePriceKg?: SortOrder;
+    actualSalePriceKg?: SortOrder;
     totalPrice?: SortOrder;
     paidAmount?: SortOrder;
   };
@@ -9724,8 +9724,8 @@ export namespace Prisma {
 
   export type TransactionItemCreateWithoutCattleInput = {
     id?: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -9739,8 +9739,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedCreateWithoutCattleInput = {
     id?: string;
     transactionId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -9800,8 +9800,8 @@ export namespace Prisma {
     id?: StringFilter<'TransactionItem'> | string;
     transactionId?: StringFilter<'TransactionItem'> | string;
     cattleId?: StringFilter<'TransactionItem'> | string;
-    estimatedSalePrice?: IntFilter<'TransactionItem'> | number;
-    actualSalePrice?: IntFilter<'TransactionItem'> | number;
+    estimatedSalePriceKg?: IntFilter<'TransactionItem'> | number;
+    actualSalePriceKg?: IntFilter<'TransactionItem'> | number;
     totalPrice?: IntFilter<'TransactionItem'> | number;
     paymentStatus?:
       | EnumPaymentStatusFilter<'TransactionItem'>
@@ -9921,8 +9921,8 @@ export namespace Prisma {
 
   export type TransactionItemCreateWithoutTransactionInput = {
     id?: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -9936,8 +9936,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedCreateWithoutTransactionInput = {
     id?: string;
     cattleId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -10223,8 +10223,8 @@ export namespace Prisma {
   export type TransactionItemCreateManyCattleInput = {
     id?: string;
     transactionId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -10236,8 +10236,8 @@ export namespace Prisma {
 
   export type TransactionItemUpdateWithoutCattleInput = {
     id?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -10260,8 +10260,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedUpdateWithoutCattleInput = {
     id?: StringFieldUpdateOperationsInput | string;
     transactionId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -10283,8 +10283,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedUpdateManyWithoutCattleInput = {
     id?: StringFieldUpdateOperationsInput | string;
     transactionId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -10340,8 +10340,8 @@ export namespace Prisma {
   export type TransactionItemCreateManyTransactionInput = {
     id?: string;
     cattleId: string;
-    estimatedSalePrice: number;
-    actualSalePrice: number;
+    estimatedSalePriceKg: number;
+    actualSalePriceKg: number;
     totalPrice: number;
     paymentStatus?: $Enums.PaymentStatus;
     paymentDate?: Date | string | null;
@@ -10353,8 +10353,8 @@ export namespace Prisma {
 
   export type TransactionItemUpdateWithoutTransactionInput = {
     id?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -10377,8 +10377,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedUpdateWithoutTransactionInput = {
     id?: StringFieldUpdateOperationsInput | string;
     cattleId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput
@@ -10400,8 +10400,8 @@ export namespace Prisma {
   export type TransactionItemUncheckedUpdateManyWithoutTransactionInput = {
     id?: StringFieldUpdateOperationsInput | string;
     cattleId?: StringFieldUpdateOperationsInput | string;
-    estimatedSalePrice?: IntFieldUpdateOperationsInput | number;
-    actualSalePrice?: IntFieldUpdateOperationsInput | number;
+    estimatedSalePriceKg?: IntFieldUpdateOperationsInput | number;
+    actualSalePriceKg?: IntFieldUpdateOperationsInput | number;
     totalPrice?: IntFieldUpdateOperationsInput | number;
     paymentStatus?:
       | EnumPaymentStatusFieldUpdateOperationsInput

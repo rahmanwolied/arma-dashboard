@@ -60,6 +60,7 @@ export const Icons = {
   cattle: PiCowDuotone,
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
+  transaction: IconCreditCard,
   trash: IconTrash,
   employee: IconUserX,
   post: IconFileText,

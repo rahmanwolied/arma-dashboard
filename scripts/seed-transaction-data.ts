@@ -307,20 +307,29 @@ async function seedTransactionData() {
 
       console.log(`Creating cattle and transaction for Cow #${row.cowNo}...`);
 
+      const gender = Math.random() < 0.5 ? 'MALE' : 'FEMALE';
+      const isPregnant = gender === 'FEMALE' && Math.random() < 0.5;
+      const isLactating = gender === 'FEMALE' && Math.random() < 0.5;
+      const isQuarantined = false;
+      const isVaccinated = true;
+
       // Create cattle record
       const cattle = await prisma.cattle.create({
         data: {
           cattleNumber: parseInt(row.cowNo),
           name: `Cow #${row.cowNo}`,
-          gender: Math.random() < 0.5 ? 'MALE' : 'FEMALE',
+          gender,
           liveWeight: cowWeight,
           meatPercentage,
           fatPercentage,
           purchasePricePerKg: generatePurchasePricePerKg(estimatedPricePerKg),
           cattleClass: determineCattleClass(cowWeight, meatPercentage),
-          isSold: true, // These are already sold
+          isSold: true,
           healthStatus: 'HEALTHY',
-          isVaccinated: true
+          isVaccinated,
+          isPregnant,
+          isLactating,
+          isQuarantined
         }
       });
 
@@ -332,18 +341,33 @@ async function seedTransactionData() {
           remarks: row.remarks || null
         }
       });
+      const paymentStatus = (['PAID', 'PENDING', 'PARTIALLY_PAID'] as const)[
+        Math.floor(Math.random() * 3)
+      ];
+
+      const paymentMethodsPool = [
+        'CASH', // Higher chance for CASH
+        'CASH',
+        'CASH',
+        'BANK_TRANSFER',
+        'MOBILE_MONEY'
+      ] as const;
+      const paymentMethod =
+        paymentMethodsPool[
+          Math.floor(Math.random() * paymentMethodsPool.length)
+        ];
 
       // Create transaction item
       await prisma.transactionItem.create({
         data: {
           transactionId: transaction.id,
           cattleId: cattle.id,
-          estimatedSalePrice: Math.round(estimatedPricePerKg),
-          actualSalePrice: Math.round(actualPricePerKg),
+          estimatedSalePriceKg: Math.round(estimatedPricePerKg),
+          actualSalePriceKg: Math.round(actualPricePerKg),
           totalPrice: Math.round(totalPrice),
-          paymentStatus: 'PAID', // Assuming all are paid
+          paymentStatus,
           paymentDate: new Date(),
-          paymentMethod: 'CASH', // Default to cash
+          paymentMethod,
           paidAmount: Math.round(totalPrice)
         }
       });
