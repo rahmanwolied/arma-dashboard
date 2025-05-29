@@ -1,4 +1,4 @@
-import { fakeProducts, Product } from '@/constants/mock-api';
+import prisma from '@/prisma';
 import { notFound } from 'next/navigation';
 import CattleForm from './cattle-form';
 
@@ -13,8 +13,12 @@ export default async function CattleViewPage({
   let pageTitle = 'Add New Cattle';
 
   if (cattleId !== 'new') {
-    const data = await fakeProducts.getProductById(Number(cattleId));
-    cattle = data.product as Product;
+    const data = await prisma.cattle.findUnique({
+      where: {
+        id: cattleId
+      }
+    });
+    cattle = data;
     if (!cattle) {
       notFound();
     }

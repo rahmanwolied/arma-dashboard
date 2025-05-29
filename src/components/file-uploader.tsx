@@ -1,6 +1,6 @@
 'use client';
 
-import { IconX, IconUpload } from '@tabler/icons-react';
+import { IconX, IconUpload, IconPhoto, IconLock } from '@tabler/icons-react';
 import Image from 'next/image';
 import * as React from 'react';
 import Dropzone, {
@@ -210,10 +210,14 @@ export function FileUploader(props: FileUploaderProps) {
             {isDragActive ? (
               <div className='flex flex-col items-center justify-center gap-4 sm:px-5'>
                 <div className='rounded-full border border-dashed p-3'>
-                  <IconUpload
-                    className='text-muted-foreground size-7'
-                    aria-hidden='true'
-                  />
+                  {isDisabled ? (
+                    <IconLock className='text-muted-foreground size-7' />
+                  ) : (
+                    <IconUpload
+                      className='text-muted-foreground size-7'
+                      aria-hidden='true'
+                    />
+                  )}
                 </div>
                 <p className='text-muted-foreground font-medium'>
                   Drop the files here
@@ -222,10 +226,14 @@ export function FileUploader(props: FileUploaderProps) {
             ) : (
               <div className='flex flex-col items-center justify-center gap-4 sm:px-5'>
                 <div className='rounded-full border border-dashed p-3'>
-                  <IconUpload
-                    className='text-muted-foreground size-7'
-                    aria-hidden='true'
-                  />
+                  {isDisabled ? (
+                    <IconLock className='text-muted-foreground size-7' />
+                  ) : (
+                    <IconUpload
+                      className='text-muted-foreground size-7'
+                      aria-hidden='true'
+                    />
+                  )}
                 </div>
                 <div className='space-y-px'>
                   <p className='text-muted-foreground font-medium'>

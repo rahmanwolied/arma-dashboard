@@ -9,12 +9,14 @@ import { priceColumn } from './price-column';
 import { fatPercentageColumn } from './fat-percentage-column';
 import { healthStatusColumn } from './health-status-column';
 import { actionsColumn } from './actions-column';
+import { totalPriceColumn } from './total-price-column';
 
 export const columns: ColumnDef<Cattle>[] = [
   cattleNumberColumn,
   imageColumn,
   weightClassColumn,
   priceColumn,
+  totalPriceColumn,
   fatPercentageColumn,
   healthStatusColumn,
   actionsColumn

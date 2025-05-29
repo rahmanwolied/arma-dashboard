@@ -2,7 +2,9 @@
 
 import { matchSorter } from 'match-sorter'; // For filtering
 import prisma from '@/prisma';
-import { Cattle, CattleClass } from '@/prisma/generated/prisma';
+import { Cattle, CattleClass, Gender } from '@/prisma/generated/prisma';
+import { formSchema } from './components/cattle-form';
+import { z } from 'zod';
 
 interface CattleFilters {
   cattleClass?: string;
@@ -293,3 +295,34 @@ export async function initializeCattleActions() {
   await cattleActions.initialize();
   return cattleActions;
 }
+
+export const createCattle = async (values: z.infer<typeof formSchema>) => {
+  const { cattleNumber } = (await prisma.cattle.findFirst({
+    orderBy: {
+      cattleNumber: 'desc'
+    },
+    select: {
+      cattleNumber: true
+    }
+  })) || { cattleNumber: 0 };
+
+  const newCattle = await prisma.cattle.create({
+    data: {
+      cattleNumber: cattleNumber + 1,
+      gender: values.gender as Gender,
+      purchasePricePerKg: Number(values.purchasePricePerKg),
+      liveWeight: Number(values.liveWeight),
+      fatPercentage: Number(values.fatPercentage),
+      meatPercentage: Number(values.meatPercentage),
+      cattleClass: values.cattleClass as CattleClass,
+      name: values.name,
+      isSold: values.isSold,
+      isVaccinated: values.isVaccinated,
+      isPregnant: values.isPregnant,
+      isLactating: values.isLactating,
+      isQuarantined: values.isQuarantined
+    }
+  });
+
+  return newCattle;
+};

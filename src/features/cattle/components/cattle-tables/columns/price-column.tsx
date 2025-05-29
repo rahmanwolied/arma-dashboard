@@ -12,7 +12,19 @@ export const priceColumn: ColumnDef<Cattle> = {
   ),
   cell: ({ cell }) => {
     const price = cell.getValue<Cattle['purchasePricePerKg']>();
-    return <div className='text-lg font-semibold'>{price}</div>;
+    return (
+      <div className='font-medium'>
+        {price.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'BDT',
+          currencyDisplay: 'narrowSymbol',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+          currencySign: 'accounting',
+          notation: 'compact'
+        })}
+      </div>
+    );
   },
   enableSorting: true,
   enableColumnFilter: true,
