@@ -10,10 +10,9 @@ import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
-import prisma from '@/prisma/index';
 
 export const metadata = {
-  title: 'Dashboard: Products'
+  title: 'Dashboard: Cattle'
 };
 
 type pageProps = {
@@ -35,7 +34,7 @@ export default async function Page(props: pageProps) {
         <div className='flex items-start justify-between'>
           <Heading title='Cattle' description='Manage cattle' />
           <Link
-            href='/dashboard/cows/new'
+            href='/dashboard/cattle/new'
             className={cn(buttonVariants(), 'text-xs md:text-sm')}
           >
             <IconPlus className='mr-2 h-4 w-4' /> Add New

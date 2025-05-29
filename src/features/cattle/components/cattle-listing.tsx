@@ -1,7 +1,7 @@
 import { fakeProducts } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { CattleTable } from './cattle-tables';
-import { columns } from './cattle-tables/columns';
+import { columns } from './cattle-tables/columns/index';
 import { Cattle, CattleClass } from '@/prisma/generated/prisma';
 import { initializeCattleActions } from '../actions';
 

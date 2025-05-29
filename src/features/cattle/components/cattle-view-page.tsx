@@ -1,23 +1,25 @@
 import { fakeProducts, Product } from '@/constants/mock-api';
 import { notFound } from 'next/navigation';
-import CowForm from './cattle-form';
+import CattleForm from './cattle-form';
 
 type TProductViewPageProps = {
-  cowId: string;
+  cattleId: string;
 };
 
-export default async function CowViewPage({ cowId }: TProductViewPageProps) {
-  let cow = null;
-  let pageTitle = 'Add New Cow';
+export default async function CattleViewPage({
+  cattleId
+}: TProductViewPageProps) {
+  let cattle = null;
+  let pageTitle = 'Add New Cattle';
 
-  if (cowId !== 'new') {
-    const data = await fakeProducts.getProductById(Number(cowId));
-    cow = data.product as Product;
-    if (!cow) {
+  if (cattleId !== 'new') {
+    const data = await fakeProducts.getProductById(Number(cattleId));
+    cattle = data.product as Product;
+    if (!cattle) {
       notFound();
     }
-    pageTitle = `Edit Cow`;
+    pageTitle = `Edit Cattle`;
   }
 
-  return <CowForm initialData={cow} pageTitle={pageTitle} />;
+  return <CattleForm initialData={cattle} pageTitle={pageTitle} />;
 }

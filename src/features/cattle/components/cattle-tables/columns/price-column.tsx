@@ -1,0 +1,24 @@
+'use client';
+import { DataTableColumnHeader } from '@/components/ui/table/data-table-column-header';
+import { Column, ColumnDef } from '@tanstack/react-table';
+import { DollarSign } from 'lucide-react';
+import type { Cattle } from '@/prisma/generated/prisma';
+
+export const priceColumn: ColumnDef<Cattle> = {
+  id: 'purchasePricePerKg',
+  accessorKey: 'purchasePricePerKg',
+  header: ({ column }: { column: Column<Cattle, unknown> }) => (
+    <DataTableColumnHeader column={column} title='Purchase Price (KG)' />
+  ),
+  cell: ({ cell }) => {
+    const price = cell.getValue<Cattle['purchasePricePerKg']>();
+    return <div className='text-lg font-semibold'>{price}</div>;
+  },
+  enableSorting: true,
+  enableColumnFilter: true,
+  meta: {
+    label: 'Purchase Price (KG)',
+    variant: 'range',
+    icon: DollarSign
+  }
+};

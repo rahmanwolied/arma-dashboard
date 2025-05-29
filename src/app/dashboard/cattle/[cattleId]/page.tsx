@@ -1,13 +1,13 @@
 import FormCardSkeleton from '@/components/form-card-skeleton';
 import PageContainer from '@/components/layout/page-container';
 import { Suspense } from 'react';
-import CowViewPage from '@/features/cattle/components/cattle-view-page';
+import CattleViewPage from '@/features/cattle/components/cattle-view-page';
 
 export const metadata = {
-  title: 'Dashboard : Product View'
+  title: 'Dashboard : Cattle View'
 };
 
-type PageProps = { params: Promise<{ cowId: string }> };
+type PageProps = { params: Promise<{ cattleId: string }> };
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
@@ -15,7 +15,7 @@ export default async function Page(props: PageProps) {
     <PageContainer scrollable>
       <div className='flex-1 space-y-4'>
         <Suspense fallback={<FormCardSkeleton />}>
-          <CowViewPage cowId={params.cowId} />
+          <CattleViewPage cattleId={params.cattleId} />
         </Suspense>
       </div>
     </PageContainer>
