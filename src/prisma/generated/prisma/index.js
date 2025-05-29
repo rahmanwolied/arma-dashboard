@@ -216,6 +216,10 @@ const config = {
         fromEnvVar: null,
         value: 'darwin-arm64',
         native: true
+      },
+      {
+        fromEnvVar: null,
+        value: 'rhel-openssl-3.0.x'
       }
     ],
     previewFeatures: ['driverAdapters'],
@@ -242,9 +246,9 @@ const config = {
     }
   },
   inlineSchema:
-    'enum CattleClass {\n  GOLD\n  SILVER\n  PLATINUM\n\n  @@map("CattleClass")\n}\n\nenum HealthStatus {\n  HEALTHY\n  SICK\n  DEAD\n}\n\nenum Gender {\n  MALE\n  FEMALE\n}\n\nmodel Cattle {\n  id           String  @id @default(cuid())\n  cattleNumber Int\n  name         String?\n\n  // Gender\n  gender Gender @default(FEMALE)\n\n  // Purchase Details\n  liveWeight         Int // kg\n  meatPercentage     Int // %\n  fatPercentage      Int // %\n  purchasePricePerKg Int\n\n  cattleClass CattleClass @default(SILVER)\n\n  imageUrl String?\n\n  // Status\n  isSold        Boolean @default(false)\n  isQuarantined Boolean @default(false)\n\n  // For cows\n  isPregnant    Boolean @default(false) // for cows\n  isLactating   Boolean @default(false) // for cows\n  isInseminated Boolean @default(false) // for cows\n\n  // Health\n  healthStatus HealthStatus @default(HEALTHY)\n  healthNotes  String?\n  isVaccinated Boolean      @default(false) // for cows\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  transactionItems TransactionItem[]\n}\n\nmodel Customer {\n  id        String   @id @default(cuid())\n  name      String\n  address   String\n  phone     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  transactions Transaction[]\n}\n\nmodel Transaction {\n  id String @id @default(cuid())\n\n  // Foreign Keys\n  customerId String\n\n  // Transaction-level details\n  serialNumber Int?\n  remarks      String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  customer         Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)\n  transactionItems TransactionItem[]\n\n  @@map("transactions")\n}\n\nenum PaymentStatus {\n  PENDING\n  PAID\n  PARTIALLY_PAID\n}\n\nenum PaymentMethod {\n  CASH\n  BANK_TRANSFER\n  MOBILE_MONEY\n}\n\nmodel TransactionItem {\n  id String @id @default(cuid())\n\n  // Foreign Keys\n  transactionId String\n  cattleId      String\n\n  // Sale Details (per cow)\n  estimatedSalePriceKg Int\n  actualSalePriceKg    Int\n  totalPrice           Int\n\n  paymentStatus PaymentStatus  @default(PENDING)\n  paymentDate   DateTime?\n  paymentMethod PaymentMethod?\n  paidAmount    Int?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)\n  cattle      Cattle      @relation(fields: [cattleId], references: [id], onDelete: Cascade)\n\n  // Ensure one cattle per transaction (prevent duplicates)\n  @@unique([transactionId, cattleId])\n  @@map("transaction_items")\n}\n\ngenerator client {\n  provider        = "prisma-client-js"\n  previewFeatures = ["driverAdapters"]\n  output          = "generated/prisma"\n}\n\ndatasource db {\n  provider  = "postgresql"\n  url       = env("NEON_DB_URL")\n  directUrl = env("NEON_DB_URL_DIRECT")\n}\n',
+    'enum CattleClass {\n  GOLD\n  SILVER\n  PLATINUM\n\n  @@map("CattleClass")\n}\n\nenum HealthStatus {\n  HEALTHY\n  SICK\n  DEAD\n}\n\nenum Gender {\n  MALE\n  FEMALE\n}\n\nmodel Cattle {\n  id           String  @id @default(cuid())\n  cattleNumber Int\n  name         String?\n\n  // Gender\n  gender Gender @default(FEMALE)\n\n  // Purchase Details\n  liveWeight         Int // kg\n  meatPercentage     Int // %\n  fatPercentage      Int // %\n  purchasePricePerKg Int\n\n  cattleClass CattleClass @default(SILVER)\n\n  imageUrl String?\n\n  // Status\n  isSold        Boolean @default(false)\n  isQuarantined Boolean @default(false)\n\n  // For cows\n  isPregnant    Boolean @default(false) // for cows\n  isLactating   Boolean @default(false) // for cows\n  isInseminated Boolean @default(false) // for cows\n\n  // Health\n  healthStatus HealthStatus @default(HEALTHY)\n  healthNotes  String?\n  isVaccinated Boolean      @default(false) // for cows\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  transactionItems TransactionItem[]\n}\n\nmodel Customer {\n  id        String   @id @default(cuid())\n  name      String\n  address   String\n  phone     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  transactions Transaction[]\n}\n\nmodel Transaction {\n  id String @id @default(cuid())\n\n  // Foreign Keys\n  customerId String\n\n  // Transaction-level details\n  serialNumber Int?\n  remarks      String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  customer         Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)\n  transactionItems TransactionItem[]\n\n  @@map("transactions")\n}\n\nenum PaymentStatus {\n  PENDING\n  PAID\n  PARTIALLY_PAID\n}\n\nenum PaymentMethod {\n  CASH\n  BANK_TRANSFER\n  MOBILE_MONEY\n}\n\nmodel TransactionItem {\n  id String @id @default(cuid())\n\n  // Foreign Keys\n  transactionId String\n  cattleId      String\n\n  // Sale Details (per cow)\n  estimatedSalePriceKg Int\n  actualSalePriceKg    Int\n  totalPrice           Int\n\n  paymentStatus PaymentStatus  @default(PENDING)\n  paymentDate   DateTime?\n  paymentMethod PaymentMethod?\n  paidAmount    Int?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relationships\n  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)\n  cattle      Cattle      @relation(fields: [cattleId], references: [id], onDelete: Cascade)\n\n  // Ensure one cattle per transaction (prevent duplicates)\n  @@unique([transactionId, cattleId])\n  @@map("transaction_items")\n}\n\ngenerator client {\n  provider        = "prisma-client-js"\n  previewFeatures = ["driverAdapters"]\n  output          = "generated/prisma"\n  binaryTargets   = ["native", "rhel-openssl-3.0.x"]\n}\n\ndatasource db {\n  provider  = "postgresql"\n  url       = env("NEON_DB_URL")\n  directUrl = env("NEON_DB_URL_DIRECT")\n}\n',
   inlineSchemaHash:
-    '893bf635b3a5ef0237accd93a6e6239a683531d1c84e2e99d2814b6da6496ad9',
+    '73c2c26a3af16786ce0a178c5d6d1ad4b0265a7dd37cabd1c7f847c0a26d5257',
   copyEngine: true
 };
 
@@ -293,6 +297,13 @@ path.join(__dirname, 'libquery_engine-darwin-arm64.dylib.node');
 path.join(
   process.cwd(),
   'src/prisma/generated/prisma/libquery_engine-darwin-arm64.dylib.node'
+);
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, 'libquery_engine-rhel-openssl-3.0.x.so.node');
+path.join(
+  process.cwd(),
+  'src/prisma/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node'
 );
 // file annotations for bundling tools to include these files
 path.join(__dirname, 'schema.prisma');
