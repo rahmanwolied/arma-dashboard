@@ -1,11 +1,14 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "extends": "next/core-web-vitals",
   "plugins": ["@typescript-eslint"],
+  "ignorePatterns": ["src/prisma/generated/**/*"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",
     "import/no-unresolved": "off",
     "import/named": "off",
     "no-console": "warn",
     "react-hooks/exhaustive-deps": "warn"
+    
   }
 }
