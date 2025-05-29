@@ -21,7 +21,8 @@
     "db:studio": "rm -rf ./src/prisma/generated && prisma studio --schema ./src/prisma",
     "db:generate": "rm -rf ./src/prisma/generated && prisma generate --schema ./src/prisma",
     "db:seed-transactions": "tsx scripts/seed-transaction-data.ts",
-    "db:seed-cows": "tsx scripts/seed-cows.ts"
+    "db:seed-cows": "tsx scripts/seed-cows.ts",
+    "tsc:check": "tsc --noEmit"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,css,less,scss,sass}": [

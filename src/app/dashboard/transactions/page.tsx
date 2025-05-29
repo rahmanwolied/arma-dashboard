@@ -22,7 +22,6 @@ type pageProps = {
 
 export default async function Page(props: pageProps) {
   const searchParams = await props.searchParams;
-  const transactions = await prisma.transaction.findMany();
   // Allow nested RSCs to access the search params (in a type-safe way)
   searchParamsCache.parse(searchParams);
 
@@ -48,7 +47,7 @@ export default async function Page(props: pageProps) {
             <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
           }
         >
-          <TransactionListingPage transactions={transactions} />
+          <TransactionListingPage />
         </Suspense>
       </div>
     </PageContainer>
