@@ -1424,16 +1424,16 @@ export namespace Prisma {
   export type CattleAvgAggregateOutputType = {
     cattleNumber: number | null;
     liveWeight: number | null;
-    meatPercentage: Decimal | null;
-    fatPercentage: Decimal | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
     purchasePricePerKg: number | null;
   };
 
   export type CattleSumAggregateOutputType = {
     cattleNumber: number | null;
     liveWeight: number | null;
-    meatPercentage: Decimal | null;
-    fatPercentage: Decimal | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
     purchasePricePerKg: number | null;
   };
 
@@ -1443,8 +1443,8 @@ export namespace Prisma {
     name: string | null;
     gender: $Enums.Gender | null;
     liveWeight: number | null;
-    meatPercentage: Decimal | null;
-    fatPercentage: Decimal | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
     purchasePricePerKg: number | null;
     cattleClass: $Enums.CattleClass | null;
     imageUrl: string | null;
@@ -1466,8 +1466,8 @@ export namespace Prisma {
     name: string | null;
     gender: $Enums.Gender | null;
     liveWeight: number | null;
-    meatPercentage: Decimal | null;
-    fatPercentage: Decimal | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
     purchasePricePerKg: number | null;
     cattleClass: $Enums.CattleClass | null;
     imageUrl: string | null;
@@ -1688,8 +1688,8 @@ export namespace Prisma {
     name: string | null;
     gender: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal;
-    fatPercentage: Decimal;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass: $Enums.CattleClass;
     imageUrl: string | null;
@@ -1884,8 +1884,8 @@ export namespace Prisma {
         name: string | null;
         gender: $Enums.Gender;
         liveWeight: number;
-        meatPercentage: Prisma.Decimal;
-        fatPercentage: Prisma.Decimal;
+        meatPercentage: number;
+        fatPercentage: number;
         purchasePricePerKg: number;
         cattleClass: $Enums.CattleClass;
         imageUrl: string | null;
@@ -2501,8 +2501,8 @@ export namespace Prisma {
     readonly name: FieldRef<'Cattle', 'String'>;
     readonly gender: FieldRef<'Cattle', 'Gender'>;
     readonly liveWeight: FieldRef<'Cattle', 'Int'>;
-    readonly meatPercentage: FieldRef<'Cattle', 'Decimal'>;
-    readonly fatPercentage: FieldRef<'Cattle', 'Decimal'>;
+    readonly meatPercentage: FieldRef<'Cattle', 'Int'>;
+    readonly fatPercentage: FieldRef<'Cattle', 'Int'>;
     readonly purchasePricePerKg: FieldRef<'Cattle', 'Int'>;
     readonly cattleClass: FieldRef<'Cattle', 'CattleClass'>;
     readonly imageUrl: FieldRef<'Cattle', 'String'>;
@@ -7374,22 +7374,6 @@ export namespace Prisma {
   >;
 
   /**
-   * Reference to a field of type 'Decimal'
-   */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Decimal'
-  >;
-
-  /**
-   * Reference to a field of type 'Decimal[]'
-   */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Decimal[]'
-  >;
-
-  /**
    * Reference to a field of type 'CattleClass'
    */
   export type EnumCattleClassFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -7498,18 +7482,8 @@ export namespace Prisma {
     name?: StringNullableFilter<'Cattle'> | string | null;
     gender?: EnumGenderFilter<'Cattle'> | $Enums.Gender;
     liveWeight?: IntFilter<'Cattle'> | number;
-    meatPercentage?:
-      | DecimalFilter<'Cattle'>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFilter<'Cattle'>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFilter<'Cattle'> | number;
+    fatPercentage?: IntFilter<'Cattle'> | number;
     purchasePricePerKg?: IntFilter<'Cattle'> | number;
     cattleClass?: EnumCattleClassFilter<'Cattle'> | $Enums.CattleClass;
     imageUrl?: StringNullableFilter<'Cattle'> | string | null;
@@ -7560,18 +7534,8 @@ export namespace Prisma {
       name?: StringNullableFilter<'Cattle'> | string | null;
       gender?: EnumGenderFilter<'Cattle'> | $Enums.Gender;
       liveWeight?: IntFilter<'Cattle'> | number;
-      meatPercentage?:
-        | DecimalFilter<'Cattle'>
-        | Decimal
-        | DecimalJsLike
-        | number
-        | string;
-      fatPercentage?:
-        | DecimalFilter<'Cattle'>
-        | Decimal
-        | DecimalJsLike
-        | number
-        | string;
+      meatPercentage?: IntFilter<'Cattle'> | number;
+      fatPercentage?: IntFilter<'Cattle'> | number;
       purchasePricePerKg?: IntFilter<'Cattle'> | number;
       cattleClass?: EnumCattleClassFilter<'Cattle'> | $Enums.CattleClass;
       imageUrl?: StringNullableFilter<'Cattle'> | string | null;
@@ -7631,18 +7595,8 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<'Cattle'> | string | null;
     gender?: EnumGenderWithAggregatesFilter<'Cattle'> | $Enums.Gender;
     liveWeight?: IntWithAggregatesFilter<'Cattle'> | number;
-    meatPercentage?:
-      | DecimalWithAggregatesFilter<'Cattle'>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalWithAggregatesFilter<'Cattle'>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntWithAggregatesFilter<'Cattle'> | number;
+    fatPercentage?: IntWithAggregatesFilter<'Cattle'> | number;
     purchasePricePerKg?: IntWithAggregatesFilter<'Cattle'> | number;
     cattleClass?:
       | EnumCattleClassWithAggregatesFilter<'Cattle'>
@@ -7943,8 +7897,8 @@ export namespace Prisma {
     name?: string | null;
     gender?: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal | DecimalJsLike | number | string;
-    fatPercentage: Decimal | DecimalJsLike | number | string;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
@@ -7967,8 +7921,8 @@ export namespace Prisma {
     name?: string | null;
     gender?: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal | DecimalJsLike | number | string;
-    fatPercentage: Decimal | DecimalJsLike | number | string;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
@@ -7991,18 +7945,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
@@ -8029,18 +7973,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
@@ -8067,8 +8001,8 @@ export namespace Prisma {
     name?: string | null;
     gender?: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal | DecimalJsLike | number | string;
-    fatPercentage: Decimal | DecimalJsLike | number | string;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
@@ -8090,18 +8024,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
@@ -8127,18 +8051,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
@@ -8478,57 +8392,6 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender;
   };
 
-  export type DecimalFilter<$PrismaModel = never> = {
-    equals?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    in?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    notIn?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    lt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    lte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    not?:
-      | NestedDecimalFilter<$PrismaModel>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-  };
-
   export type EnumCattleClassFilter<$PrismaModel = never> = {
     equals?: $Enums.CattleClass | EnumCattleClassFieldRefInput<$PrismaModel>;
     in?: $Enums.CattleClass[] | ListEnumCattleClassFieldRefInput<$PrismaModel>;
@@ -8728,62 +8591,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>;
     _min?: NestedEnumGenderFilter<$PrismaModel>;
     _max?: NestedEnumGenderFilter<$PrismaModel>;
-  };
-
-  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    in?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    notIn?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    lt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    lte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    not?:
-      | NestedDecimalWithAggregatesFilter<$PrismaModel>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _avg?: NestedDecimalFilter<$PrismaModel>;
-    _sum?: NestedDecimalFilter<$PrismaModel>;
-    _min?: NestedDecimalFilter<$PrismaModel>;
-    _max?: NestedDecimalFilter<$PrismaModel>;
   };
 
   export type EnumCattleClassWithAggregatesFilter<$PrismaModel = never> = {
@@ -9171,14 +8978,6 @@ export namespace Prisma {
 
   export type EnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender;
-  };
-
-  export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string;
-    increment?: Decimal | DecimalJsLike | number | string;
-    decrement?: Decimal | DecimalJsLike | number | string;
-    multiply?: Decimal | DecimalJsLike | number | string;
-    divide?: Decimal | DecimalJsLike | number | string;
   };
 
   export type EnumCattleClassFieldUpdateOperationsInput = {
@@ -9607,57 +9406,6 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender;
   };
 
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    in?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    notIn?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    lt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    lte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    not?:
-      | NestedDecimalFilter<$PrismaModel>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-  };
-
   export type NestedEnumCattleClassFilter<$PrismaModel = never> = {
     equals?: $Enums.CattleClass | EnumCattleClassFieldRefInput<$PrismaModel>;
     in?: $Enums.CattleClass[] | ListEnumCattleClassFieldRefInput<$PrismaModel>;
@@ -9777,62 +9525,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>;
     _min?: NestedEnumGenderFilter<$PrismaModel>;
     _max?: NestedEnumGenderFilter<$PrismaModel>;
-  };
-
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    in?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    notIn?:
-      | Decimal[]
-      | DecimalJsLike[]
-      | number[]
-      | string[]
-      | ListDecimalFieldRefInput<$PrismaModel>;
-    lt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    lte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gt?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    gte?:
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string
-      | DecimalFieldRefInput<$PrismaModel>;
-    not?:
-      | NestedDecimalWithAggregatesFilter<$PrismaModel>
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _avg?: NestedDecimalFilter<$PrismaModel>;
-    _sum?: NestedDecimalFilter<$PrismaModel>;
-    _min?: NestedDecimalFilter<$PrismaModel>;
-    _max?: NestedDecimalFilter<$PrismaModel>;
   };
 
   export type NestedEnumCattleClassWithAggregatesFilter<$PrismaModel = never> =
@@ -10368,8 +10060,8 @@ export namespace Prisma {
     name?: string | null;
     gender?: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal | DecimalJsLike | number | string;
-    fatPercentage: Decimal | DecimalJsLike | number | string;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
@@ -10391,8 +10083,8 @@ export namespace Prisma {
     name?: string | null;
     gender?: $Enums.Gender;
     liveWeight: number;
-    meatPercentage: Decimal | DecimalJsLike | number | string;
-    fatPercentage: Decimal | DecimalJsLike | number | string;
+    meatPercentage: number;
+    fatPercentage: number;
     purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
@@ -10480,18 +10172,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
@@ -10517,18 +10199,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
     liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
-    fatPercentage?:
-      | DecimalFieldUpdateOperationsInput
-      | Decimal
-      | DecimalJsLike
-      | number
-      | string;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
     purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput

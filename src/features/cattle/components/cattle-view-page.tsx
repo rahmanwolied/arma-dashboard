@@ -1,6 +1,6 @@
 import { fakeProducts, Product } from '@/constants/mock-api';
 import { notFound } from 'next/navigation';
-import CowForm from './cow-form';
+import CowForm from './cattle-form';
 
 type TProductViewPageProps = {
   cowId: string;

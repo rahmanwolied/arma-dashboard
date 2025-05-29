@@ -27,8 +27,8 @@ model Cattle {
 
   // Purchase Details
   liveWeight         Int // kg
-  meatPercentage     Decimal @db.Decimal(5, 2) // %
-  fatPercentage      Decimal @db.Decimal(5, 2) // %
+  meatPercentage     Int // %
+  fatPercentage      Int // %
   purchasePricePerKg Int
 
   cattleClass CattleClass @default(SILVER)

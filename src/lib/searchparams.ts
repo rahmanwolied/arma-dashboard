@@ -12,7 +12,15 @@ export const searchParams = {
   gender: parseAsString,
   category: parseAsString,
   phone: parseAsString,
-  status: parseAsString
+  status: parseAsString,
+  sort: parseAsString,
+  healthStatus: parseAsString,
+  purchasePricePerKg: parseAsString,
+  fatPercentage: parseAsString,
+  cattleClass: parseAsString,
+  cattleNumber: parseAsString,
+  purchaseDate: parseAsString,
+  purchasePrice: parseAsString
   // advanced filter
   // filters: getFiltersStateParser().withDefault([]),
   // joinOperator: parseAsStringEnum(['and', 'or']).withDefault('and')

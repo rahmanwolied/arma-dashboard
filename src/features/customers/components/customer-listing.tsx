@@ -1,7 +1,8 @@
 import { searchParamsCache } from '@/lib/searchparams';
 import { columns } from './customer-tables/columns';
-import { Customer } from '@/prisma/generated/prisma';
+import { CattleClass, Customer } from '@/prisma/generated/prisma';
 import { CustomerTable } from './customer-tables';
+import { initializeCustomerActions } from '../actions';
 
 type CustomerListingPage = {
   customers: Customer[];
@@ -13,25 +14,24 @@ export default async function CustomerListingPage({
   // Showcasing the use of search params cache in nested RSCs
   const search = searchParamsCache.get('name');
   const status = searchParamsCache.get('status');
+  const page = searchParamsCache.get('page');
+  const pageLimit = searchParamsCache.get('perPage');
 
-  const filteredCustomers = customers.filter((customer) => {
-    const nameMatch =
-      !search || customer.name.toLowerCase().includes(search.toLowerCase());
-    const statusMatch =
-      !status ||
-      (status === 'old'
-        ? customer.name.length % 2 === 0
-        : customer.name.length % 2 !== 0) ||
-      status === 'old,new' ||
-      status === 'new,old';
+  const filters = {
+    page,
+    limit: pageLimit,
+    ...(search && { search }),
+    ...(status && { status })
+  };
 
-    return nameMatch && statusMatch;
-  });
+  const customerActions = await initializeCustomerActions();
+
+  const result = await customerActions.getCustomers(filters);
 
   return (
     <CustomerTable
-      data={filteredCustomers}
-      totalItems={filteredCustomers.length}
+      data={result.customers}
+      totalItems={result.total_customers}
       columns={columns}
     />
   );

@@ -30,7 +30,17 @@ import {
   IconUserX,
   IconX,
   IconLayoutKanban,
-  IconBrandGithub
+  IconBrandGithub,
+  IconAlertCircle,
+  IconCircleCheck,
+  IconCircleX,
+  IconShield,
+  IconShieldCheck,
+  IconCurrencyDollar,
+  IconDroplet,
+  IconHeart,
+  IconMedicalCross,
+  IconShieldExclamation
 } from '@tabler/icons-react';
 import { PiCowDuotone } from 'react-icons/pi';
 
@@ -44,6 +54,9 @@ export const Icons = {
   product: IconShoppingBag,
   spinner: IconLoader2,
   kanban: IconLayoutKanban,
+  checkCircle: IconCircleCheck,
+  alertCircle: IconAlertCircle,
+  xCircle: IconCircleX,
   cattle: PiCowDuotone,
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
@@ -68,5 +81,13 @@ export const Icons = {
   laptop: IconDeviceLaptop,
   github: IconBrandGithub,
   twitter: IconBrandTwitter,
-  check: IconCheck
+  check: IconCheck,
+
+  // Cattle status icons
+  isInseminated: IconMedicalCross, // Medical cross for artificial insemination
+  isLactating: IconDroplet, // Water droplet representing milk
+  isPregnant: IconHeart, // Heart representing pregnancy/new life
+  isQuarantined: IconShieldExclamation, // Shield with exclamation for quarantine
+  isSold: IconCurrencyDollar, // Dollar sign for sold status
+  isVaccinated: IconShieldCheck // Shield with check for vaccination protection
 };

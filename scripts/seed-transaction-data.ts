@@ -314,8 +314,8 @@ async function seedTransactionData() {
           name: `Cow #${row.cowNo}`,
           gender: Math.random() < 0.5 ? 'MALE' : 'FEMALE',
           liveWeight: cowWeight,
-          meatPercentage: new Decimal(meatPercentage),
-          fatPercentage: new Decimal(fatPercentage),
+          meatPercentage,
+          fatPercentage,
           purchasePricePerKg: generatePurchasePricePerKg(estimatedPricePerKg),
           cattleClass: determineCattleClass(cowWeight, meatPercentage),
           isSold: true, // These are already sold
