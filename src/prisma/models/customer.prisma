@@ -6,5 +6,8 @@ model Customer {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+    // Relationships
+    cattleSale CattleSale[]
+
     transactions Transaction[]
 }

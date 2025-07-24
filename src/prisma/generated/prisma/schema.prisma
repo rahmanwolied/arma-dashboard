@@ -26,34 +26,67 @@ model Cattle {
   gender Gender @default(FEMALE)
 
   // Purchase Details
-  liveWeight         Int // kg
-  meatPercentage     Int // %
-  fatPercentage      Int // %
-  purchasePricePerKg Int
+  cattlePurchase   CattlePurchase @relation(fields: [cattlePurchaseId], references: [id], onDelete: Cascade)
+  cattlePurchaseId String         @unique
+
+  // Sale Details
+  cattleSale   CattleSale? @relation(fields: [cattleSaleId], references: [id], onDelete: Cascade)
+  cattleSaleId String?     @unique
 
   cattleClass CattleClass @default(SILVER)
 
   imageUrl String?
 
   // Status
-  isSold        Boolean @default(false)
   isQuarantined Boolean @default(false)
 
-  // For cows
-  isPregnant    Boolean @default(false) // for cows
-  isLactating   Boolean @default(false) // for cows
-  isInseminated Boolean @default(false) // for cows
+  // For cattle
+  isPregnant    Boolean @default(false) // for cattle
+  isLactating   Boolean @default(false) // for cattle
+  isInseminated Boolean @default(false) // for cattle
 
   // Health
   healthStatus HealthStatus @default(HEALTHY)
   healthNotes  String?
-  isVaccinated Boolean      @default(false) // for cows
+  isVaccinated Boolean      @default(false) // for cattle
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relationships
   transactionItems TransactionItem[]
+}
+
+model CattlePurchase {
+  id String @id @default(cuid())
+
+  purchaseDate       DateTime @default(now())
+  purchasePricePerKg Int
+
+  liveWeight     Int // kg
+  meatPercentage Int // %
+  fatPercentage  Int // %
+
+  purchaseLocation String
+
+  createdAt DateTime @default(now())
+  Cattle    Cattle?
+}
+
+model CattleSale {
+  id String @id @default(cuid())
+
+  saleDate       DateTime @default(now())
+  salePricePerKg Int
+  liveWeight     Int // kg
+  meatPercentage Int // %
+  fatPercentage  Int // %
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  Cattle    Cattle[]
 }
 
 model Customer {
@@ -63,6 +96,9 @@ model Customer {
   phone     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Relationships
+  cattleSale CattleSale[]
 
   transactions Transaction[]
 }
@@ -106,7 +142,7 @@ model TransactionItem {
   transactionId String
   cattleId      String
 
-  // Sale Details (per cow)
+  // Sale Details (per cattle)
   estimatedSalePriceKg Int
   actualSalePriceKg    Int
   totalPrice           Int

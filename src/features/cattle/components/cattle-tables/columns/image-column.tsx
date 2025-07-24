@@ -1,11 +1,14 @@
 'use client';
-import { ColumnDef } from '@tanstack/react-table';
+import type { Column, ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
-import type { Cattle } from '@/prisma/generated/prisma';
+import type { FlattenedCattle } from '@/features/cattle/actions';
+import { DataTableColumnHeader } from '@/components/ui/table/data-table-column-header';
 
-export const imageColumn: ColumnDef<Cattle> = {
+export const imageColumn: ColumnDef<FlattenedCattle> = {
   accessorKey: 'imageUrl',
-  header: 'IMAGE',
+  header: ({ column }: { column: Column<FlattenedCattle, unknown> }) => (
+    <DataTableColumnHeader column={column} title='Image' />
+  ),
   cell: ({ row }) => {
     return (
       <Image
@@ -19,6 +22,7 @@ export const imageColumn: ColumnDef<Cattle> = {
   },
   enableColumnFilter: true,
   enableHiding: true,
+  enableSorting: false,
   meta: {
     label: 'Image'
   }

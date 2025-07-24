@@ -2,9 +2,17 @@
 
 import { matchSorter } from 'match-sorter'; // For filtering
 import prisma from '@/prisma';
-import { Cattle, CattleClass, Gender } from '@/prisma/generated/prisma';
-import { formSchema } from './components/cattle-form';
-import { z } from 'zod';
+import type {
+  Cattle,
+  CattleClass,
+  Gender,
+  CattlePurchase,
+  CattleSale
+} from '@/prisma/generated/prisma';
+import type { formSchema } from './components/cattle-form';
+import type { z } from 'zod';
+
+export type FlattenedCattle = Cattle & CattlePurchase & Partial<CattleSale>;
 
 interface CattleFilters {
   cattleClass?: string;
@@ -24,13 +32,20 @@ interface PaginatedCattleFilters extends CattleFilters {
 }
 
 const cattleActions = {
-  records: [] as Cattle[], // Holds the list of product objects
+  records: [] as (Cattle & {
+    cattlePurchase: CattlePurchase;
+    cattleSale: CattleSale | null;
+  })[],
 
   // Initialize with sample data
   async initialize() {
     this.records = await prisma.cattle.findMany({
       orderBy: {
         cattleNumber: 'asc'
+      },
+      include: {
+        cattlePurchase: true,
+        cattleSale: true
       }
     });
   },
@@ -68,22 +83,22 @@ const cattleActions = {
         isBool: status.startsWith('is')
       }));
       if (healthStatuses.length > 0) {
-        healthStatuses.forEach((status) => {
+        for (const status of healthStatuses) {
           cattle = cattle.filter((c) => {
             if (status.isBool) return c[status.value as keyof Cattle];
 
             return c.healthStatus === status.value;
           });
-        });
+        }
       }
     }
 
     // Filter by purchase price per kg
     if (purchasePricePerKg) {
       const [min, max] = purchasePricePerKg.split(',').map(Number);
-      if (!isNaN(min) && !isNaN(max)) {
+      if (!Number.isNaN(min) && !Number.isNaN(max)) {
         cattle = cattle.filter((cattle) => {
-          const pricePerKg = cattle.purchasePricePerKg;
+          const pricePerKg = cattle.cattlePurchase.purchasePricePerKg;
           return pricePerKg >= min && pricePerKg <= max;
         });
       }
@@ -102,9 +117,11 @@ const cattleActions = {
     // Filter by purchase date (using createdAt as proxy for purchase date)
     if (purchaseDate) {
       const filterDate = new Date(purchaseDate);
-      if (!isNaN(filterDate.getTime())) {
+      if (!Number.isNaN(filterDate.getTime())) {
         cattle = cattle.filter((cattle) => {
-          const cattlePurchaseDate = new Date(cattle.createdAt);
+          const cattlePurchaseDate = new Date(
+            cattle.cattlePurchase.purchaseDate
+          );
           return cattlePurchaseDate >= filterDate;
         });
       }
@@ -112,10 +129,12 @@ const cattleActions = {
 
     // Filter by purchase price (calculated from purchasePricePerKg * liveWeight)
     if (purchasePrice) {
-      const price = parseFloat(purchasePrice);
-      if (!isNaN(price)) {
+      const price = Number.parseFloat(purchasePrice);
+      if (!Number.isNaN(price)) {
         cattle = cattle.filter((cattle) => {
-          const totalPrice = cattle.purchasePricePerKg * cattle.liveWeight;
+          const totalPrice =
+            cattle.cattlePurchase.purchasePricePerKg *
+            cattle.cattlePurchase.liveWeight;
           return totalPrice >= price;
         });
       }
@@ -132,7 +151,13 @@ const cattleActions = {
   },
 
   // Sort cattle based on the sort parameter
-  sortCattle(cattle: Cattle[], sort?: string) {
+  sortCattle(
+    cattle: (Cattle & {
+      cattlePurchase: CattlePurchase;
+      cattleSale: CattleSale | null;
+    })[],
+    sort?: string
+  ) {
     if (!sort) {
       return cattle;
     }
@@ -141,30 +166,20 @@ const cattleActions = {
     try {
       sortCriteria = JSON.parse(sort);
     } catch (error) {
-      console.error('Failed to parse sort parameter JSON:', sort, error);
-      return cattle; // Return unsorted if JSON is invalid
+      console.error('Failed to parse sort criteria:', error);
+      return cattle; // Return unsorted if sort is invalid
     }
 
-    if (
-      !Array.isArray(sortCriteria) ||
-      sortCriteria.length === 0 ||
-      !sortCriteria[0] ||
-      typeof sortCriteria[0].id !== 'string' ||
-      typeof sortCriteria[0].desc !== 'boolean'
-    ) {
-      console.warn('Invalid or empty sort criteria:', sortCriteria);
-      return cattle; // Return unsorted if criteria are not in the expected format
+    if (!Array.isArray(sortCriteria) || sortCriteria.length === 0) {
+      return cattle;
     }
 
-    // Assuming single sort criterion based on the new format example and previous logic.
-    // If multiple sort criteria were to be handled, this would need to iterate
-    // or use a more complex comparison logic.
     const { id: field, desc } = sortCriteria[0];
     const isAsc = !desc;
 
     return cattle.sort((a, b) => {
-      let aValue: any;
-      let bValue: any;
+      let aValue: number | string;
+      let bValue: number | string;
 
       switch (field) {
         case 'cattleNumber':
@@ -176,24 +191,24 @@ const cattleActions = {
           bValue = b.name || '';
           break;
         case 'liveWeight':
-          aValue = a.liveWeight || 0;
-          bValue = b.liveWeight || 0;
+          aValue = a.cattlePurchase.liveWeight || 0;
+          bValue = b.cattlePurchase.liveWeight || 0;
           break;
         case 'purchasePricePerKg':
-          aValue = a.purchasePricePerKg || 0;
-          bValue = b.purchasePricePerKg || 0;
+          aValue = a.cattlePurchase.purchasePricePerKg || 0;
+          bValue = b.cattlePurchase.purchasePricePerKg || 0;
           break;
-        case 'createdAt': // Assuming this refers to purchaseDate or a similar timestamp
-          aValue = new Date(a.createdAt).getTime();
-          bValue = new Date(b.createdAt).getTime();
+        case 'createdAt':
+          aValue = new Date(a.cattlePurchase.purchaseDate).getTime();
+          bValue = new Date(b.cattlePurchase.purchaseDate).getTime();
           break;
         case 'fatPercentage':
-          aValue = a.fatPercentage || 0;
-          bValue = b.fatPercentage || 0;
+          aValue = a.cattlePurchase.fatPercentage || 0;
+          bValue = b.cattlePurchase.fatPercentage || 0;
           break;
         case 'meatPercentage':
-          aValue = a.meatPercentage || 0;
-          bValue = b.meatPercentage || 0;
+          aValue = a.cattlePurchase.meatPercentage || 0;
+          bValue = b.cattlePurchase.meatPercentage || 0;
           break;
         case 'healthStatus':
           aValue = a.healthStatus || '';
@@ -211,7 +226,6 @@ const cattleActions = {
           return 0;
       }
 
-      // Comparison logic
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         return isAsc
           ? aValue.localeCompare(bValue)
@@ -224,8 +238,7 @@ const cattleActions = {
     });
   },
 
-  // Get paginated results with comprehensive filtering and sorting
-  async getProducts({
+  async getCattle({
     page = 1,
     limit = 10,
     cattleClass,
@@ -249,19 +262,22 @@ const cattleActions = {
       purchasePrice
     });
 
-    // Apply sorting
     const sortedCattle = this.sortCattle(allCattle, sort);
 
     const totalCattle = sortedCattle.length;
 
-    // Pagination logic
     const offset = (page - 1) * limit;
     const paginatedCattle = sortedCattle.slice(offset, offset + limit);
-
-    // Mock current time
     const currentTime = new Date().toISOString();
 
-    // Return paginated response
+    const flattenedCattle: FlattenedCattle[] = paginatedCattle.map(
+      (cattle) => ({
+        ...cattle,
+        ...cattle.cattlePurchase,
+        ...cattle.cattleSale
+      })
+    );
+
     return {
       success: true,
       time: currentTime,
@@ -269,7 +285,7 @@ const cattleActions = {
       total_cattle: totalCattle,
       offset,
       limit,
-      cattle: paginatedCattle
+      cattle: flattenedCattle
     };
   },
 
@@ -297,30 +313,36 @@ export async function initializeCattleActions() {
 }
 
 export const createCattle = async (values: z.infer<typeof formSchema>) => {
-  const { cattleNumber } = (await prisma.cattle.findFirst({
-    orderBy: {
-      cattleNumber: 'desc'
-    },
-    select: {
-      cattleNumber: true
-    }
-  })) || { cattleNumber: 0 };
+  const latestCattle = await prisma.cattle.findFirst({
+    orderBy: { cattleNumber: 'desc' },
+    select: { cattleNumber: true }
+  });
+
+  const newCattleNumber = (latestCattle?.cattleNumber || 0) + 1;
 
   const newCattle = await prisma.cattle.create({
     data: {
-      cattleNumber: cattleNumber + 1,
+      cattleNumber: newCattleNumber,
       gender: values.gender as Gender,
-      purchasePricePerKg: Number(values.purchasePricePerKg),
-      liveWeight: Number(values.liveWeight),
-      fatPercentage: Number(values.fatPercentage),
-      meatPercentage: Number(values.meatPercentage),
       cattleClass: values.cattleClass as CattleClass,
       name: values.name,
-      isSold: values.isSold,
       isVaccinated: values.isVaccinated,
       isPregnant: values.isPregnant,
       isLactating: values.isLactating,
-      isQuarantined: values.isQuarantined
+      isQuarantined: values.isQuarantined,
+      cattlePurchase: {
+        create: {
+          purchaseDate: new Date(),
+          purchasePricePerKg: Number(values.purchasePricePerKg),
+          liveWeight: Number(values.liveWeight),
+          fatPercentage: Number(values.fatPercentage),
+          meatPercentage: Number(values.meatPercentage),
+          purchaseLocation: 'Default Location' // Or get from form
+        }
+      }
+    },
+    include: {
+      cattlePurchase: true
     }
   });
 

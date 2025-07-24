@@ -37,7 +37,7 @@ model TransactionItem {
     transactionId String
     cattleId      String
 
-    // Sale Details (per cow)
+    // Sale Details (per cattle)
     estimatedSalePriceKg Int
     actualSalePriceKg    Int
     totalPrice           Int

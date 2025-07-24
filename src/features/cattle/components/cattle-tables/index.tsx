@@ -5,19 +5,17 @@ import { DataTableToolbar } from '@/components/ui/table/data-table-toolbar';
 
 import { useDataTable } from '@/hooks/use-data-table';
 
-import { ColumnDef } from '@tanstack/react-table';
+import type { ColumnDef } from '@tanstack/react-table';
 import { parseAsInteger, useQueryState } from 'nuqs';
+import type { FlattenedCattle } from '../../actions';
 
-interface CattleTableParams<TData, TValue> {
-  data: TData[];
+interface CattleTableParams {
+  data: FlattenedCattle[];
   totalItems: number;
-  columns: ColumnDef<TData, TValue>[];
+  columns: ColumnDef<FlattenedCattle>[];
 }
-export function CattleTable<TData, TValue>({
-  data,
-  totalItems,
-  columns
-}: CattleTableParams<TData, TValue>) {
+
+export function CattleTable({ data, totalItems, columns }: CattleTableParams) {
   const [pageSize] = useQueryState('perPage', parseAsInteger.withDefault(10));
 
   const pageCount = Math.ceil(totalItems / pageSize);
@@ -29,7 +27,7 @@ export function CattleTable<TData, TValue>({
     shallow: false, //Setting to false triggers a network request with the updated querystring.
     debounceMs: 500
   });
-  console.log(data);
+
   return (
     <DataTable table={table}>
       <DataTableToolbar table={table} />

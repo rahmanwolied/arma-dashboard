@@ -17,6 +17,17 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>;
  */
 export type Cattle = $Result.DefaultSelection<Prisma.$CattlePayload>;
 /**
+ * Model CattlePurchase
+ *
+ */
+export type CattlePurchase =
+  $Result.DefaultSelection<Prisma.$CattlePurchasePayload>;
+/**
+ * Model CattleSale
+ *
+ */
+export type CattleSale = $Result.DefaultSelection<Prisma.$CattleSalePayload>;
+/**
  * Model Customer
  *
  */
@@ -274,6 +285,26 @@ export class PrismaClient<
    * ```
    */
   get cattle(): Prisma.CattleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cattlePurchase`: Exposes CRUD operations for the **CattlePurchase** model.
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more CattlePurchases
+   * const cattlePurchases = await prisma.cattlePurchase.findMany()
+   * ```
+   */
+  get cattlePurchase(): Prisma.CattlePurchaseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cattleSale`: Exposes CRUD operations for the **CattleSale** model.
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more CattleSales
+   * const cattleSales = await prisma.cattleSale.findMany()
+   * ```
+   */
+  get cattleSale(): Prisma.CattleSaleDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.customer`: Exposes CRUD operations for the **Customer** model.
@@ -763,6 +794,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Cattle: 'Cattle';
+    CattlePurchase: 'CattlePurchase';
+    CattleSale: 'CattleSale';
     Customer: 'Customer';
     Transaction: 'Transaction';
     TransactionItem: 'TransactionItem';
@@ -793,7 +826,13 @@ export namespace Prisma {
       omit: GlobalOmitOptions;
     };
     meta: {
-      modelProps: 'cattle' | 'customer' | 'transaction' | 'transactionItem';
+      modelProps:
+        | 'cattle'
+        | 'cattlePurchase'
+        | 'cattleSale'
+        | 'customer'
+        | 'transaction'
+        | 'transactionItem';
       txIsolationLevel: Prisma.TransactionIsolationLevel;
     };
     model: {
@@ -868,6 +907,158 @@ export namespace Prisma {
           count: {
             args: Prisma.CattleCountArgs<ExtArgs>;
             result: $Utils.Optional<CattleCountAggregateOutputType> | number;
+          };
+        };
+      };
+      CattlePurchase: {
+        payload: Prisma.$CattlePurchasePayload<ExtArgs>;
+        fields: Prisma.CattlePurchaseFieldRefs;
+        operations: {
+          findUnique: {
+            args: Prisma.CattlePurchaseFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload> | null;
+          };
+          findUniqueOrThrow: {
+            args: Prisma.CattlePurchaseFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          findFirst: {
+            args: Prisma.CattlePurchaseFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload> | null;
+          };
+          findFirstOrThrow: {
+            args: Prisma.CattlePurchaseFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          findMany: {
+            args: Prisma.CattlePurchaseFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>[];
+          };
+          create: {
+            args: Prisma.CattlePurchaseCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          createMany: {
+            args: Prisma.CattlePurchaseCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          createManyAndReturn: {
+            args: Prisma.CattlePurchaseCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>[];
+          };
+          delete: {
+            args: Prisma.CattlePurchaseDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          update: {
+            args: Prisma.CattlePurchaseUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          deleteMany: {
+            args: Prisma.CattlePurchaseDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateMany: {
+            args: Prisma.CattlePurchaseUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateManyAndReturn: {
+            args: Prisma.CattlePurchaseUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>[];
+          };
+          upsert: {
+            args: Prisma.CattlePurchaseUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattlePurchasePayload>;
+          };
+          aggregate: {
+            args: Prisma.CattlePurchaseAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateCattlePurchase>;
+          };
+          groupBy: {
+            args: Prisma.CattlePurchaseGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<CattlePurchaseGroupByOutputType>[];
+          };
+          count: {
+            args: Prisma.CattlePurchaseCountArgs<ExtArgs>;
+            result:
+              | $Utils.Optional<CattlePurchaseCountAggregateOutputType>
+              | number;
+          };
+        };
+      };
+      CattleSale: {
+        payload: Prisma.$CattleSalePayload<ExtArgs>;
+        fields: Prisma.CattleSaleFieldRefs;
+        operations: {
+          findUnique: {
+            args: Prisma.CattleSaleFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload> | null;
+          };
+          findUniqueOrThrow: {
+            args: Prisma.CattleSaleFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          findFirst: {
+            args: Prisma.CattleSaleFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload> | null;
+          };
+          findFirstOrThrow: {
+            args: Prisma.CattleSaleFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          findMany: {
+            args: Prisma.CattleSaleFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>[];
+          };
+          create: {
+            args: Prisma.CattleSaleCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          createMany: {
+            args: Prisma.CattleSaleCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          createManyAndReturn: {
+            args: Prisma.CattleSaleCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>[];
+          };
+          delete: {
+            args: Prisma.CattleSaleDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          update: {
+            args: Prisma.CattleSaleUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          deleteMany: {
+            args: Prisma.CattleSaleDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateMany: {
+            args: Prisma.CattleSaleUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateManyAndReturn: {
+            args: Prisma.CattleSaleUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>[];
+          };
+          upsert: {
+            args: Prisma.CattleSaleUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CattleSalePayload>;
+          };
+          aggregate: {
+            args: Prisma.CattleSaleAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateCattleSale>;
+          };
+          groupBy: {
+            args: Prisma.CattleSaleGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<CattleSaleGroupByOutputType>[];
+          };
+          count: {
+            args: Prisma.CattleSaleCountArgs<ExtArgs>;
+            result:
+              | $Utils.Optional<CattleSaleCountAggregateOutputType>
+              | number;
           };
         };
       };
@@ -1190,6 +1381,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     cattle?: CattleOmit;
+    cattlePurchase?: CattlePurchaseOmit;
+    cattleSale?: CattleSaleOmit;
     customer?: CustomerOmit;
     transaction?: TransactionOmit;
     transactionItem?: TransactionItemOmit;
@@ -1332,16 +1525,54 @@ export namespace Prisma {
   };
 
   /**
+   * Count Type CattleSaleCountOutputType
+   */
+
+  export type CattleSaleCountOutputType = {
+    Cattle: number;
+  };
+
+  export type CattleSaleCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    Cattle?: boolean | CattleSaleCountOutputTypeCountCattleArgs;
+  };
+
+  // Custom InputTypes
+  /**
+   * CattleSaleCountOutputType without action
+   */
+  export type CattleSaleCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSaleCountOutputType
+     */
+    select?: CattleSaleCountOutputTypeSelect<ExtArgs> | null;
+  };
+
+  /**
+   * CattleSaleCountOutputType without action
+   */
+  export type CattleSaleCountOutputTypeCountCattleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    where?: CattleWhereInput;
+  };
+
+  /**
    * Count Type CustomerCountOutputType
    */
 
   export type CustomerCountOutputType = {
+    cattleSale: number;
     transactions: number;
   };
 
   export type CustomerCountOutputTypeSelect<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
   > = {
+    cattleSale?: boolean | CustomerCountOutputTypeCountCattleSaleArgs;
     transactions?: boolean | CustomerCountOutputTypeCountTransactionsArgs;
   };
 
@@ -1356,6 +1587,15 @@ export namespace Prisma {
      * Select specific fields to fetch from the CustomerCountOutputType
      */
     select?: CustomerCountOutputTypeSelect<ExtArgs> | null;
+  };
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountCattleSaleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    where?: CattleSaleWhereInput;
   };
 
   /**
@@ -1423,18 +1663,10 @@ export namespace Prisma {
 
   export type CattleAvgAggregateOutputType = {
     cattleNumber: number | null;
-    liveWeight: number | null;
-    meatPercentage: number | null;
-    fatPercentage: number | null;
-    purchasePricePerKg: number | null;
   };
 
   export type CattleSumAggregateOutputType = {
     cattleNumber: number | null;
-    liveWeight: number | null;
-    meatPercentage: number | null;
-    fatPercentage: number | null;
-    purchasePricePerKg: number | null;
   };
 
   export type CattleMinAggregateOutputType = {
@@ -1442,13 +1674,10 @@ export namespace Prisma {
     cattleNumber: number | null;
     name: string | null;
     gender: $Enums.Gender | null;
-    liveWeight: number | null;
-    meatPercentage: number | null;
-    fatPercentage: number | null;
-    purchasePricePerKg: number | null;
+    cattlePurchaseId: string | null;
+    cattleSaleId: string | null;
     cattleClass: $Enums.CattleClass | null;
     imageUrl: string | null;
-    isSold: boolean | null;
     isQuarantined: boolean | null;
     isPregnant: boolean | null;
     isLactating: boolean | null;
@@ -1465,13 +1694,10 @@ export namespace Prisma {
     cattleNumber: number | null;
     name: string | null;
     gender: $Enums.Gender | null;
-    liveWeight: number | null;
-    meatPercentage: number | null;
-    fatPercentage: number | null;
-    purchasePricePerKg: number | null;
+    cattlePurchaseId: string | null;
+    cattleSaleId: string | null;
     cattleClass: $Enums.CattleClass | null;
     imageUrl: string | null;
-    isSold: boolean | null;
     isQuarantined: boolean | null;
     isPregnant: boolean | null;
     isLactating: boolean | null;
@@ -1488,13 +1714,10 @@ export namespace Prisma {
     cattleNumber: number;
     name: number;
     gender: number;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
+    cattlePurchaseId: number;
+    cattleSaleId: number;
     cattleClass: number;
     imageUrl: number;
-    isSold: number;
     isQuarantined: number;
     isPregnant: number;
     isLactating: number;
@@ -1509,18 +1732,10 @@ export namespace Prisma {
 
   export type CattleAvgAggregateInputType = {
     cattleNumber?: true;
-    liveWeight?: true;
-    meatPercentage?: true;
-    fatPercentage?: true;
-    purchasePricePerKg?: true;
   };
 
   export type CattleSumAggregateInputType = {
     cattleNumber?: true;
-    liveWeight?: true;
-    meatPercentage?: true;
-    fatPercentage?: true;
-    purchasePricePerKg?: true;
   };
 
   export type CattleMinAggregateInputType = {
@@ -1528,13 +1743,10 @@ export namespace Prisma {
     cattleNumber?: true;
     name?: true;
     gender?: true;
-    liveWeight?: true;
-    meatPercentage?: true;
-    fatPercentage?: true;
-    purchasePricePerKg?: true;
+    cattlePurchaseId?: true;
+    cattleSaleId?: true;
     cattleClass?: true;
     imageUrl?: true;
-    isSold?: true;
     isQuarantined?: true;
     isPregnant?: true;
     isLactating?: true;
@@ -1551,13 +1763,10 @@ export namespace Prisma {
     cattleNumber?: true;
     name?: true;
     gender?: true;
-    liveWeight?: true;
-    meatPercentage?: true;
-    fatPercentage?: true;
-    purchasePricePerKg?: true;
+    cattlePurchaseId?: true;
+    cattleSaleId?: true;
     cattleClass?: true;
     imageUrl?: true;
-    isSold?: true;
     isQuarantined?: true;
     isPregnant?: true;
     isLactating?: true;
@@ -1574,13 +1783,10 @@ export namespace Prisma {
     cattleNumber?: true;
     name?: true;
     gender?: true;
-    liveWeight?: true;
-    meatPercentage?: true;
-    fatPercentage?: true;
-    purchasePricePerKg?: true;
+    cattlePurchaseId?: true;
+    cattleSaleId?: true;
     cattleClass?: true;
     imageUrl?: true;
-    isSold?: true;
     isQuarantined?: true;
     isPregnant?: true;
     isLactating?: true;
@@ -1687,13 +1893,10 @@ export namespace Prisma {
     cattleNumber: number;
     name: string | null;
     gender: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
+    cattlePurchaseId: string;
+    cattleSaleId: string | null;
     cattleClass: $Enums.CattleClass;
     imageUrl: string | null;
-    isSold: boolean;
     isQuarantined: boolean;
     isPregnant: boolean;
     isLactating: boolean;
@@ -1731,13 +1934,10 @@ export namespace Prisma {
       cattleNumber?: boolean;
       name?: boolean;
       gender?: boolean;
-      liveWeight?: boolean;
-      meatPercentage?: boolean;
-      fatPercentage?: boolean;
-      purchasePricePerKg?: boolean;
+      cattlePurchaseId?: boolean;
+      cattleSaleId?: boolean;
       cattleClass?: boolean;
       imageUrl?: boolean;
-      isSold?: boolean;
       isQuarantined?: boolean;
       isPregnant?: boolean;
       isLactating?: boolean;
@@ -1747,6 +1947,8 @@ export namespace Prisma {
       isVaccinated?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+      cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
       transactionItems?: boolean | Cattle$transactionItemsArgs<ExtArgs>;
       _count?: boolean | CattleCountOutputTypeDefaultArgs<ExtArgs>;
     },
@@ -1761,13 +1963,10 @@ export namespace Prisma {
       cattleNumber?: boolean;
       name?: boolean;
       gender?: boolean;
-      liveWeight?: boolean;
-      meatPercentage?: boolean;
-      fatPercentage?: boolean;
-      purchasePricePerKg?: boolean;
+      cattlePurchaseId?: boolean;
+      cattleSaleId?: boolean;
       cattleClass?: boolean;
       imageUrl?: boolean;
-      isSold?: boolean;
       isQuarantined?: boolean;
       isPregnant?: boolean;
       isLactating?: boolean;
@@ -1777,6 +1976,8 @@ export namespace Prisma {
       isVaccinated?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+      cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
     },
     ExtArgs['result']['cattle']
   >;
@@ -1789,13 +1990,10 @@ export namespace Prisma {
       cattleNumber?: boolean;
       name?: boolean;
       gender?: boolean;
-      liveWeight?: boolean;
-      meatPercentage?: boolean;
-      fatPercentage?: boolean;
-      purchasePricePerKg?: boolean;
+      cattlePurchaseId?: boolean;
+      cattleSaleId?: boolean;
       cattleClass?: boolean;
       imageUrl?: boolean;
-      isSold?: boolean;
       isQuarantined?: boolean;
       isPregnant?: boolean;
       isLactating?: boolean;
@@ -1805,6 +2003,8 @@ export namespace Prisma {
       isVaccinated?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+      cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
     },
     ExtArgs['result']['cattle']
   >;
@@ -1814,13 +2014,10 @@ export namespace Prisma {
     cattleNumber?: boolean;
     name?: boolean;
     gender?: boolean;
-    liveWeight?: boolean;
-    meatPercentage?: boolean;
-    fatPercentage?: boolean;
-    purchasePricePerKg?: boolean;
+    cattlePurchaseId?: boolean;
+    cattleSaleId?: boolean;
     cattleClass?: boolean;
     imageUrl?: boolean;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -1839,13 +2036,10 @@ export namespace Prisma {
     | 'cattleNumber'
     | 'name'
     | 'gender'
-    | 'liveWeight'
-    | 'meatPercentage'
-    | 'fatPercentage'
-    | 'purchasePricePerKg'
+    | 'cattlePurchaseId'
+    | 'cattleSaleId'
     | 'cattleClass'
     | 'imageUrl'
-    | 'isSold'
     | 'isQuarantined'
     | 'isPregnant'
     | 'isLactating'
@@ -1860,21 +2054,31 @@ export namespace Prisma {
   export type CattleInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
   > = {
+    cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+    cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
     transactionItems?: boolean | Cattle$transactionItemsArgs<ExtArgs>;
     _count?: boolean | CattleCountOutputTypeDefaultArgs<ExtArgs>;
   };
   export type CattleIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
-  > = {};
+  > = {
+    cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+    cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
+  };
   export type CattleIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
-  > = {};
+  > = {
+    cattlePurchase?: boolean | CattlePurchaseDefaultArgs<ExtArgs>;
+    cattleSale?: boolean | Cattle$cattleSaleArgs<ExtArgs>;
+  };
 
   export type $CattlePayload<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
   > = {
     name: 'Cattle';
     objects: {
+      cattlePurchase: Prisma.$CattlePurchasePayload<ExtArgs>;
+      cattleSale: Prisma.$CattleSalePayload<ExtArgs> | null;
       transactionItems: Prisma.$TransactionItemPayload<ExtArgs>[];
     };
     scalars: $Extensions.GetPayloadResult<
@@ -1883,13 +2087,10 @@ export namespace Prisma {
         cattleNumber: number;
         name: string | null;
         gender: $Enums.Gender;
-        liveWeight: number;
-        meatPercentage: number;
-        fatPercentage: number;
-        purchasePricePerKg: number;
+        cattlePurchaseId: string;
+        cattleSaleId: string | null;
         cattleClass: $Enums.CattleClass;
         imageUrl: string | null;
-        isSold: boolean;
         isQuarantined: boolean;
         isPregnant: boolean;
         isLactating: boolean;
@@ -2445,6 +2646,33 @@ export namespace Prisma {
     GlobalOmitOptions = {}
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
+    cattlePurchase<T extends CattlePurchaseDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CattlePurchaseDefaultArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      | $Result.GetResult<
+          Prisma.$CattlePurchasePayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    cattleSale<T extends Cattle$cattleSaleArgs<ExtArgs> = {}>(
+      args?: Subset<T, Cattle$cattleSaleArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     transactionItems<T extends Cattle$transactionItemsArgs<ExtArgs> = {}>(
       args?: Subset<T, Cattle$transactionItemsArgs<ExtArgs>>
     ): Prisma.PrismaPromise<
@@ -2500,13 +2728,10 @@ export namespace Prisma {
     readonly cattleNumber: FieldRef<'Cattle', 'Int'>;
     readonly name: FieldRef<'Cattle', 'String'>;
     readonly gender: FieldRef<'Cattle', 'Gender'>;
-    readonly liveWeight: FieldRef<'Cattle', 'Int'>;
-    readonly meatPercentage: FieldRef<'Cattle', 'Int'>;
-    readonly fatPercentage: FieldRef<'Cattle', 'Int'>;
-    readonly purchasePricePerKg: FieldRef<'Cattle', 'Int'>;
+    readonly cattlePurchaseId: FieldRef<'Cattle', 'String'>;
+    readonly cattleSaleId: FieldRef<'Cattle', 'String'>;
     readonly cattleClass: FieldRef<'Cattle', 'CattleClass'>;
     readonly imageUrl: FieldRef<'Cattle', 'String'>;
-    readonly isSold: FieldRef<'Cattle', 'Boolean'>;
     readonly isQuarantined: FieldRef<'Cattle', 'Boolean'>;
     readonly isPregnant: FieldRef<'Cattle', 'Boolean'>;
     readonly isLactating: FieldRef<'Cattle', 'Boolean'>;
@@ -2780,6 +3005,10 @@ export namespace Prisma {
      */
     data: CattleCreateManyInput | CattleCreateManyInput[];
     skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleIncludeCreateManyAndReturn<ExtArgs> | null;
   };
 
   /**
@@ -2856,6 +3085,10 @@ export namespace Prisma {
      * Limit how many Cattles to update.
      */
     limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleIncludeUpdateManyAndReturn<ExtArgs> | null;
   };
 
   /**
@@ -2931,6 +3164,27 @@ export namespace Prisma {
   };
 
   /**
+   * Cattle.cattleSale
+   */
+  export type Cattle$cattleSaleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    where?: CattleSaleWhereInput;
+  };
+
+  /**
    * Cattle.transactionItems
    */
   export type Cattle$transactionItemsArgs<
@@ -2978,6 +3232,2861 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CattleInclude<ExtArgs> | null;
+  };
+
+  /**
+   * Model CattlePurchase
+   */
+
+  export type AggregateCattlePurchase = {
+    _count: CattlePurchaseCountAggregateOutputType | null;
+    _avg: CattlePurchaseAvgAggregateOutputType | null;
+    _sum: CattlePurchaseSumAggregateOutputType | null;
+    _min: CattlePurchaseMinAggregateOutputType | null;
+    _max: CattlePurchaseMaxAggregateOutputType | null;
+  };
+
+  export type CattlePurchaseAvgAggregateOutputType = {
+    purchasePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+  };
+
+  export type CattlePurchaseSumAggregateOutputType = {
+    purchasePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+  };
+
+  export type CattlePurchaseMinAggregateOutputType = {
+    id: string | null;
+    purchaseDate: Date | null;
+    purchasePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+    purchaseLocation: string | null;
+    createdAt: Date | null;
+  };
+
+  export type CattlePurchaseMaxAggregateOutputType = {
+    id: string | null;
+    purchaseDate: Date | null;
+    purchasePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+    purchaseLocation: string | null;
+    createdAt: Date | null;
+  };
+
+  export type CattlePurchaseCountAggregateOutputType = {
+    id: number;
+    purchaseDate: number;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: number;
+    createdAt: number;
+    _all: number;
+  };
+
+  export type CattlePurchaseAvgAggregateInputType = {
+    purchasePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+  };
+
+  export type CattlePurchaseSumAggregateInputType = {
+    purchasePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+  };
+
+  export type CattlePurchaseMinAggregateInputType = {
+    id?: true;
+    purchaseDate?: true;
+    purchasePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    purchaseLocation?: true;
+    createdAt?: true;
+  };
+
+  export type CattlePurchaseMaxAggregateInputType = {
+    id?: true;
+    purchaseDate?: true;
+    purchasePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    purchaseLocation?: true;
+    createdAt?: true;
+  };
+
+  export type CattlePurchaseCountAggregateInputType = {
+    id?: true;
+    purchaseDate?: true;
+    purchasePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    purchaseLocation?: true;
+    createdAt?: true;
+    _all?: true;
+  };
+
+  export type CattlePurchaseAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Filter which CattlePurchase to aggregate.
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattlePurchases to fetch.
+     */
+    orderBy?:
+      | CattlePurchaseOrderByWithRelationInput
+      | CattlePurchaseOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: CattlePurchaseWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattlePurchases from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattlePurchases.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned CattlePurchases
+     **/
+    _count?: true | CattlePurchaseCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+     **/
+    _avg?: CattlePurchaseAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+     **/
+    _sum?: CattlePurchaseSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+     **/
+    _min?: CattlePurchaseMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+     **/
+    _max?: CattlePurchaseMaxAggregateInputType;
+  };
+
+  export type GetCattlePurchaseAggregateType<
+    T extends CattlePurchaseAggregateArgs
+  > = {
+    [P in keyof T & keyof AggregateCattlePurchase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCattlePurchase[P]>
+      : GetScalarType<T[P], AggregateCattlePurchase[P]>;
+  };
+
+  export type CattlePurchaseGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    where?: CattlePurchaseWhereInput;
+    orderBy?:
+      | CattlePurchaseOrderByWithAggregationInput
+      | CattlePurchaseOrderByWithAggregationInput[];
+    by: CattlePurchaseScalarFieldEnum[] | CattlePurchaseScalarFieldEnum;
+    having?: CattlePurchaseScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: CattlePurchaseCountAggregateInputType | true;
+    _avg?: CattlePurchaseAvgAggregateInputType;
+    _sum?: CattlePurchaseSumAggregateInputType;
+    _min?: CattlePurchaseMinAggregateInputType;
+    _max?: CattlePurchaseMaxAggregateInputType;
+  };
+
+  export type CattlePurchaseGroupByOutputType = {
+    id: string;
+    purchaseDate: Date;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt: Date;
+    _count: CattlePurchaseCountAggregateOutputType | null;
+    _avg: CattlePurchaseAvgAggregateOutputType | null;
+    _sum: CattlePurchaseSumAggregateOutputType | null;
+    _min: CattlePurchaseMinAggregateOutputType | null;
+    _max: CattlePurchaseMaxAggregateOutputType | null;
+  };
+
+  type GetCattlePurchaseGroupByPayload<T extends CattlePurchaseGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<CattlePurchaseGroupByOutputType, T['by']> & {
+          [P in keyof T &
+            keyof CattlePurchaseGroupByOutputType]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CattlePurchaseGroupByOutputType[P]>
+            : GetScalarType<T[P], CattlePurchaseGroupByOutputType[P]>;
+        }
+      >
+    >;
+
+  export type CattlePurchaseSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      purchaseDate?: boolean;
+      purchasePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      purchaseLocation?: boolean;
+      createdAt?: boolean;
+      Cattle?: boolean | CattlePurchase$CattleArgs<ExtArgs>;
+    },
+    ExtArgs['result']['cattlePurchase']
+  >;
+
+  export type CattlePurchaseSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      purchaseDate?: boolean;
+      purchasePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      purchaseLocation?: boolean;
+      createdAt?: boolean;
+    },
+    ExtArgs['result']['cattlePurchase']
+  >;
+
+  export type CattlePurchaseSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      purchaseDate?: boolean;
+      purchasePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      purchaseLocation?: boolean;
+      createdAt?: boolean;
+    },
+    ExtArgs['result']['cattlePurchase']
+  >;
+
+  export type CattlePurchaseSelectScalar = {
+    id?: boolean;
+    purchaseDate?: boolean;
+    purchasePricePerKg?: boolean;
+    liveWeight?: boolean;
+    meatPercentage?: boolean;
+    fatPercentage?: boolean;
+    purchaseLocation?: boolean;
+    createdAt?: boolean;
+  };
+
+  export type CattlePurchaseOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'purchaseDate'
+    | 'purchasePricePerKg'
+    | 'liveWeight'
+    | 'meatPercentage'
+    | 'fatPercentage'
+    | 'purchaseLocation'
+    | 'createdAt',
+    ExtArgs['result']['cattlePurchase']
+  >;
+  export type CattlePurchaseInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    Cattle?: boolean | CattlePurchase$CattleArgs<ExtArgs>;
+  };
+  export type CattlePurchaseIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {};
+  export type CattlePurchaseIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {};
+
+  export type $CattlePurchasePayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    name: 'CattlePurchase';
+    objects: {
+      Cattle: Prisma.$CattlePayload<ExtArgs> | null;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        purchaseDate: Date;
+        purchasePricePerKg: number;
+        liveWeight: number;
+        meatPercentage: number;
+        fatPercentage: number;
+        purchaseLocation: string;
+        createdAt: Date;
+      },
+      ExtArgs['result']['cattlePurchase']
+    >;
+    composites: {};
+  };
+
+  type CattlePurchaseGetPayload<
+    S extends boolean | null | undefined | CattlePurchaseDefaultArgs
+  > = $Result.GetResult<Prisma.$CattlePurchasePayload, S>;
+
+  type CattlePurchaseCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = Omit<
+    CattlePurchaseFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: CattlePurchaseCountAggregateInputType | true;
+  };
+
+  export interface CattlePurchaseDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {}
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['CattlePurchase'];
+      meta: { name: 'CattlePurchase' };
+    };
+    /**
+     * Find zero or one CattlePurchase that matches the filter.
+     * @param {CattlePurchaseFindUniqueArgs} args - Arguments to find a CattlePurchase
+     * @example
+     * // Get one CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CattlePurchaseFindUniqueArgs>(
+      args: SelectSubset<T, CattlePurchaseFindUniqueArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find one CattlePurchase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CattlePurchaseFindUniqueOrThrowArgs} args - Arguments to find a CattlePurchase
+     * @example
+     * // Get one CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CattlePurchaseFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, CattlePurchaseFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first CattlePurchase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseFindFirstArgs} args - Arguments to find a CattlePurchase
+     * @example
+     * // Get one CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CattlePurchaseFindFirstArgs>(
+      args?: SelectSubset<T, CattlePurchaseFindFirstArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first CattlePurchase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseFindFirstOrThrowArgs} args - Arguments to find a CattlePurchase
+     * @example
+     * // Get one CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CattlePurchaseFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CattlePurchaseFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find zero or more CattlePurchases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CattlePurchases
+     * const cattlePurchases = await prisma.cattlePurchase.findMany()
+     *
+     * // Get first 10 CattlePurchases
+     * const cattlePurchases = await prisma.cattlePurchase.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const cattlePurchaseWithIdOnly = await prisma.cattlePurchase.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends CattlePurchaseFindManyArgs>(
+      args?: SelectSubset<T, CattlePurchaseFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create a CattlePurchase.
+     * @param {CattlePurchaseCreateArgs} args - Arguments to create a CattlePurchase.
+     * @example
+     * // Create one CattlePurchase
+     * const CattlePurchase = await prisma.cattlePurchase.create({
+     *   data: {
+     *     // ... data to create a CattlePurchase
+     *   }
+     * })
+     *
+     */
+    create<T extends CattlePurchaseCreateArgs>(
+      args: SelectSubset<T, CattlePurchaseCreateArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Create many CattlePurchases.
+     * @param {CattlePurchaseCreateManyArgs} args - Arguments to create many CattlePurchases.
+     * @example
+     * // Create many CattlePurchases
+     * const cattlePurchase = await prisma.cattlePurchase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends CattlePurchaseCreateManyArgs>(
+      args?: SelectSubset<T, CattlePurchaseCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Create many CattlePurchases and returns the data saved in the database.
+     * @param {CattlePurchaseCreateManyAndReturnArgs} args - Arguments to create many CattlePurchases.
+     * @example
+     * // Create many CattlePurchases
+     * const cattlePurchase = await prisma.cattlePurchase.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many CattlePurchases and only return the `id`
+     * const cattlePurchaseWithIdOnly = await prisma.cattlePurchase.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends CattlePurchaseCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, CattlePurchaseCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Delete a CattlePurchase.
+     * @param {CattlePurchaseDeleteArgs} args - Arguments to delete one CattlePurchase.
+     * @example
+     * // Delete one CattlePurchase
+     * const CattlePurchase = await prisma.cattlePurchase.delete({
+     *   where: {
+     *     // ... filter to delete one CattlePurchase
+     *   }
+     * })
+     *
+     */
+    delete<T extends CattlePurchaseDeleteArgs>(
+      args: SelectSubset<T, CattlePurchaseDeleteArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Update one CattlePurchase.
+     * @param {CattlePurchaseUpdateArgs} args - Arguments to update one CattlePurchase.
+     * @example
+     * // Update one CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends CattlePurchaseUpdateArgs>(
+      args: SelectSubset<T, CattlePurchaseUpdateArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Delete zero or more CattlePurchases.
+     * @param {CattlePurchaseDeleteManyArgs} args - Arguments to filter CattlePurchases to delete.
+     * @example
+     * // Delete a few CattlePurchases
+     * const { count } = await prisma.cattlePurchase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends CattlePurchaseDeleteManyArgs>(
+      args?: SelectSubset<T, CattlePurchaseDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more CattlePurchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CattlePurchases
+     * const cattlePurchase = await prisma.cattlePurchase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends CattlePurchaseUpdateManyArgs>(
+      args: SelectSubset<T, CattlePurchaseUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more CattlePurchases and returns the data updated in the database.
+     * @param {CattlePurchaseUpdateManyAndReturnArgs} args - Arguments to update many CattlePurchases.
+     * @example
+     * // Update many CattlePurchases
+     * const cattlePurchase = await prisma.cattlePurchase.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more CattlePurchases and only return the `id`
+     * const cattlePurchaseWithIdOnly = await prisma.cattlePurchase.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends CattlePurchaseUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, CattlePurchaseUpdateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create or update one CattlePurchase.
+     * @param {CattlePurchaseUpsertArgs} args - Arguments to update or create a CattlePurchase.
+     * @example
+     * // Update or create a CattlePurchase
+     * const cattlePurchase = await prisma.cattlePurchase.upsert({
+     *   create: {
+     *     // ... data to create a CattlePurchase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CattlePurchase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CattlePurchaseUpsertArgs>(
+      args: SelectSubset<T, CattlePurchaseUpsertArgs<ExtArgs>>
+    ): Prisma__CattlePurchaseClient<
+      $Result.GetResult<
+        Prisma.$CattlePurchasePayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Count the number of CattlePurchases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseCountArgs} args - Arguments to filter CattlePurchases to count.
+     * @example
+     * // Count the number of CattlePurchases
+     * const count = await prisma.cattlePurchase.count({
+     *   where: {
+     *     // ... the filter for the CattlePurchases we want to count
+     *   }
+     * })
+     **/
+    count<T extends CattlePurchaseCountArgs>(
+      args?: Subset<T, CattlePurchaseCountArgs>
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CattlePurchaseCountAggregateOutputType>
+        : number
+    >;
+
+    /**
+     * Allows you to perform aggregations operations on a CattlePurchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+     **/
+    aggregate<T extends CattlePurchaseAggregateArgs>(
+      args: Subset<T, CattlePurchaseAggregateArgs>
+    ): Prisma.PrismaPromise<GetCattlePurchaseAggregateType<T>>;
+
+    /**
+     * Group by CattlePurchase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattlePurchaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+     **/
+    groupBy<
+      T extends CattlePurchaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CattlePurchaseGroupByArgs['orderBy'] }
+        : { orderBy?: CattlePurchaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+    >(
+      args: SubsetIntersection<T, CattlePurchaseGroupByArgs, OrderByArg> &
+        InputErrors
+    ): {} extends InputErrors
+      ? GetCattlePurchaseGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the CattlePurchase model
+     */
+    readonly fields: CattlePurchaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CattlePurchase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CattlePurchaseClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {}
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    Cattle<T extends CattlePurchase$CattleArgs<ExtArgs> = {}>(
+      args?: Subset<T, CattlePurchase$CattleArgs<ExtArgs>>
+    ): Prisma__CattleClient<
+      $Result.GetResult<
+        Prisma.$CattlePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+  /**
+   * Fields of the CattlePurchase model
+   */
+  interface CattlePurchaseFieldRefs {
+    readonly id: FieldRef<'CattlePurchase', 'String'>;
+    readonly purchaseDate: FieldRef<'CattlePurchase', 'DateTime'>;
+    readonly purchasePricePerKg: FieldRef<'CattlePurchase', 'Int'>;
+    readonly liveWeight: FieldRef<'CattlePurchase', 'Int'>;
+    readonly meatPercentage: FieldRef<'CattlePurchase', 'Int'>;
+    readonly fatPercentage: FieldRef<'CattlePurchase', 'Int'>;
+    readonly purchaseLocation: FieldRef<'CattlePurchase', 'String'>;
+    readonly createdAt: FieldRef<'CattlePurchase', 'DateTime'>;
+  }
+
+  // Custom InputTypes
+  /**
+   * CattlePurchase findUnique
+   */
+  export type CattlePurchaseFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattlePurchase to fetch.
+     */
+    where: CattlePurchaseWhereUniqueInput;
+  };
+
+  /**
+   * CattlePurchase findUniqueOrThrow
+   */
+  export type CattlePurchaseFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattlePurchase to fetch.
+     */
+    where: CattlePurchaseWhereUniqueInput;
+  };
+
+  /**
+   * CattlePurchase findFirst
+   */
+  export type CattlePurchaseFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattlePurchase to fetch.
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattlePurchases to fetch.
+     */
+    orderBy?:
+      | CattlePurchaseOrderByWithRelationInput
+      | CattlePurchaseOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CattlePurchases.
+     */
+    cursor?: CattlePurchaseWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattlePurchases from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattlePurchases.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CattlePurchases.
+     */
+    distinct?: CattlePurchaseScalarFieldEnum | CattlePurchaseScalarFieldEnum[];
+  };
+
+  /**
+   * CattlePurchase findFirstOrThrow
+   */
+  export type CattlePurchaseFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattlePurchase to fetch.
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattlePurchases to fetch.
+     */
+    orderBy?:
+      | CattlePurchaseOrderByWithRelationInput
+      | CattlePurchaseOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CattlePurchases.
+     */
+    cursor?: CattlePurchaseWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattlePurchases from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattlePurchases.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CattlePurchases.
+     */
+    distinct?: CattlePurchaseScalarFieldEnum | CattlePurchaseScalarFieldEnum[];
+  };
+
+  /**
+   * CattlePurchase findMany
+   */
+  export type CattlePurchaseFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattlePurchases to fetch.
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattlePurchases to fetch.
+     */
+    orderBy?:
+      | CattlePurchaseOrderByWithRelationInput
+      | CattlePurchaseOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing CattlePurchases.
+     */
+    cursor?: CattlePurchaseWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattlePurchases from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattlePurchases.
+     */
+    skip?: number;
+    distinct?: CattlePurchaseScalarFieldEnum | CattlePurchaseScalarFieldEnum[];
+  };
+
+  /**
+   * CattlePurchase create
+   */
+  export type CattlePurchaseCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a CattlePurchase.
+     */
+    data: XOR<CattlePurchaseCreateInput, CattlePurchaseUncheckedCreateInput>;
+  };
+
+  /**
+   * CattlePurchase createMany
+   */
+  export type CattlePurchaseCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * The data used to create many CattlePurchases.
+     */
+    data: CattlePurchaseCreateManyInput | CattlePurchaseCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
+
+  /**
+   * CattlePurchase createManyAndReturn
+   */
+  export type CattlePurchaseCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * The data used to create many CattlePurchases.
+     */
+    data: CattlePurchaseCreateManyInput | CattlePurchaseCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
+
+  /**
+   * CattlePurchase update
+   */
+  export type CattlePurchaseUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a CattlePurchase.
+     */
+    data: XOR<CattlePurchaseUpdateInput, CattlePurchaseUncheckedUpdateInput>;
+    /**
+     * Choose, which CattlePurchase to update.
+     */
+    where: CattlePurchaseWhereUniqueInput;
+  };
+
+  /**
+   * CattlePurchase updateMany
+   */
+  export type CattlePurchaseUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * The data used to update CattlePurchases.
+     */
+    data: XOR<
+      CattlePurchaseUpdateManyMutationInput,
+      CattlePurchaseUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which CattlePurchases to update
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * Limit how many CattlePurchases to update.
+     */
+    limit?: number;
+  };
+
+  /**
+   * CattlePurchase updateManyAndReturn
+   */
+  export type CattlePurchaseUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * The data used to update CattlePurchases.
+     */
+    data: XOR<
+      CattlePurchaseUpdateManyMutationInput,
+      CattlePurchaseUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which CattlePurchases to update
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * Limit how many CattlePurchases to update.
+     */
+    limit?: number;
+  };
+
+  /**
+   * CattlePurchase upsert
+   */
+  export type CattlePurchaseUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the CattlePurchase to update in case it exists.
+     */
+    where: CattlePurchaseWhereUniqueInput;
+    /**
+     * In case the CattlePurchase found by the `where` argument doesn't exist, create a new CattlePurchase with this data.
+     */
+    create: XOR<CattlePurchaseCreateInput, CattlePurchaseUncheckedCreateInput>;
+    /**
+     * In case the CattlePurchase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CattlePurchaseUpdateInput, CattlePurchaseUncheckedUpdateInput>;
+  };
+
+  /**
+   * CattlePurchase delete
+   */
+  export type CattlePurchaseDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+    /**
+     * Filter which CattlePurchase to delete.
+     */
+    where: CattlePurchaseWhereUniqueInput;
+  };
+
+  /**
+   * CattlePurchase deleteMany
+   */
+  export type CattlePurchaseDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Filter which CattlePurchases to delete
+     */
+    where?: CattlePurchaseWhereInput;
+    /**
+     * Limit how many CattlePurchases to delete.
+     */
+    limit?: number;
+  };
+
+  /**
+   * CattlePurchase.Cattle
+   */
+  export type CattlePurchase$CattleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the Cattle
+     */
+    select?: CattleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Cattle
+     */
+    omit?: CattleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleInclude<ExtArgs> | null;
+    where?: CattleWhereInput;
+  };
+
+  /**
+   * CattlePurchase without action
+   */
+  export type CattlePurchaseDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattlePurchase
+     */
+    select?: CattlePurchaseSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattlePurchase
+     */
+    omit?: CattlePurchaseOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattlePurchaseInclude<ExtArgs> | null;
+  };
+
+  /**
+   * Model CattleSale
+   */
+
+  export type AggregateCattleSale = {
+    _count: CattleSaleCountAggregateOutputType | null;
+    _avg: CattleSaleAvgAggregateOutputType | null;
+    _sum: CattleSaleSumAggregateOutputType | null;
+    _min: CattleSaleMinAggregateOutputType | null;
+    _max: CattleSaleMaxAggregateOutputType | null;
+  };
+
+  export type CattleSaleAvgAggregateOutputType = {
+    salePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+  };
+
+  export type CattleSaleSumAggregateOutputType = {
+    salePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+  };
+
+  export type CattleSaleMinAggregateOutputType = {
+    id: string | null;
+    saleDate: Date | null;
+    salePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+    customerId: string | null;
+    createdAt: Date | null;
+  };
+
+  export type CattleSaleMaxAggregateOutputType = {
+    id: string | null;
+    saleDate: Date | null;
+    salePricePerKg: number | null;
+    liveWeight: number | null;
+    meatPercentage: number | null;
+    fatPercentage: number | null;
+    customerId: string | null;
+    createdAt: Date | null;
+  };
+
+  export type CattleSaleCountAggregateOutputType = {
+    id: number;
+    saleDate: number;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    customerId: number;
+    createdAt: number;
+    _all: number;
+  };
+
+  export type CattleSaleAvgAggregateInputType = {
+    salePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+  };
+
+  export type CattleSaleSumAggregateInputType = {
+    salePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+  };
+
+  export type CattleSaleMinAggregateInputType = {
+    id?: true;
+    saleDate?: true;
+    salePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    customerId?: true;
+    createdAt?: true;
+  };
+
+  export type CattleSaleMaxAggregateInputType = {
+    id?: true;
+    saleDate?: true;
+    salePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    customerId?: true;
+    createdAt?: true;
+  };
+
+  export type CattleSaleCountAggregateInputType = {
+    id?: true;
+    saleDate?: true;
+    salePricePerKg?: true;
+    liveWeight?: true;
+    meatPercentage?: true;
+    fatPercentage?: true;
+    customerId?: true;
+    createdAt?: true;
+    _all?: true;
+  };
+
+  export type CattleSaleAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Filter which CattleSale to aggregate.
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattleSales to fetch.
+     */
+    orderBy?:
+      | CattleSaleOrderByWithRelationInput
+      | CattleSaleOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: CattleSaleWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattleSales from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattleSales.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned CattleSales
+     **/
+    _count?: true | CattleSaleCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+     **/
+    _avg?: CattleSaleAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+     **/
+    _sum?: CattleSaleSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+     **/
+    _min?: CattleSaleMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+     **/
+    _max?: CattleSaleMaxAggregateInputType;
+  };
+
+  export type GetCattleSaleAggregateType<T extends CattleSaleAggregateArgs> = {
+    [P in keyof T & keyof AggregateCattleSale]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCattleSale[P]>
+      : GetScalarType<T[P], AggregateCattleSale[P]>;
+  };
+
+  export type CattleSaleGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    where?: CattleSaleWhereInput;
+    orderBy?:
+      | CattleSaleOrderByWithAggregationInput
+      | CattleSaleOrderByWithAggregationInput[];
+    by: CattleSaleScalarFieldEnum[] | CattleSaleScalarFieldEnum;
+    having?: CattleSaleScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: CattleSaleCountAggregateInputType | true;
+    _avg?: CattleSaleAvgAggregateInputType;
+    _sum?: CattleSaleSumAggregateInputType;
+    _min?: CattleSaleMinAggregateInputType;
+    _max?: CattleSaleMaxAggregateInputType;
+  };
+
+  export type CattleSaleGroupByOutputType = {
+    id: string;
+    saleDate: Date;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    customerId: string;
+    createdAt: Date;
+    _count: CattleSaleCountAggregateOutputType | null;
+    _avg: CattleSaleAvgAggregateOutputType | null;
+    _sum: CattleSaleSumAggregateOutputType | null;
+    _min: CattleSaleMinAggregateOutputType | null;
+    _max: CattleSaleMaxAggregateOutputType | null;
+  };
+
+  type GetCattleSaleGroupByPayload<T extends CattleSaleGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<CattleSaleGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof CattleSaleGroupByOutputType]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CattleSaleGroupByOutputType[P]>
+            : GetScalarType<T[P], CattleSaleGroupByOutputType[P]>;
+        }
+      >
+    >;
+
+  export type CattleSaleSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      saleDate?: boolean;
+      salePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      customerId?: boolean;
+      createdAt?: boolean;
+      customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+      Cattle?: boolean | CattleSale$CattleArgs<ExtArgs>;
+      _count?: boolean | CattleSaleCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['cattleSale']
+  >;
+
+  export type CattleSaleSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      saleDate?: boolean;
+      salePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      customerId?: boolean;
+      createdAt?: boolean;
+      customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['cattleSale']
+  >;
+
+  export type CattleSaleSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      saleDate?: boolean;
+      salePricePerKg?: boolean;
+      liveWeight?: boolean;
+      meatPercentage?: boolean;
+      fatPercentage?: boolean;
+      customerId?: boolean;
+      createdAt?: boolean;
+      customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['cattleSale']
+  >;
+
+  export type CattleSaleSelectScalar = {
+    id?: boolean;
+    saleDate?: boolean;
+    salePricePerKg?: boolean;
+    liveWeight?: boolean;
+    meatPercentage?: boolean;
+    fatPercentage?: boolean;
+    customerId?: boolean;
+    createdAt?: boolean;
+  };
+
+  export type CattleSaleOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'saleDate'
+    | 'salePricePerKg'
+    | 'liveWeight'
+    | 'meatPercentage'
+    | 'fatPercentage'
+    | 'customerId'
+    | 'createdAt',
+    ExtArgs['result']['cattleSale']
+  >;
+  export type CattleSaleInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+    Cattle?: boolean | CattleSale$CattleArgs<ExtArgs>;
+    _count?: boolean | CattleSaleCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type CattleSaleIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+  };
+  export type CattleSaleIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>;
+  };
+
+  export type $CattleSalePayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    name: 'CattleSale';
+    objects: {
+      customer: Prisma.$CustomerPayload<ExtArgs>;
+      Cattle: Prisma.$CattlePayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        saleDate: Date;
+        salePricePerKg: number;
+        liveWeight: number;
+        meatPercentage: number;
+        fatPercentage: number;
+        customerId: string;
+        createdAt: Date;
+      },
+      ExtArgs['result']['cattleSale']
+    >;
+    composites: {};
+  };
+
+  type CattleSaleGetPayload<
+    S extends boolean | null | undefined | CattleSaleDefaultArgs
+  > = $Result.GetResult<Prisma.$CattleSalePayload, S>;
+
+  type CattleSaleCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = Omit<
+    CattleSaleFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: CattleSaleCountAggregateInputType | true;
+  };
+
+  export interface CattleSaleDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {}
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['CattleSale'];
+      meta: { name: 'CattleSale' };
+    };
+    /**
+     * Find zero or one CattleSale that matches the filter.
+     * @param {CattleSaleFindUniqueArgs} args - Arguments to find a CattleSale
+     * @example
+     * // Get one CattleSale
+     * const cattleSale = await prisma.cattleSale.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CattleSaleFindUniqueArgs>(
+      args: SelectSubset<T, CattleSaleFindUniqueArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find one CattleSale that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CattleSaleFindUniqueOrThrowArgs} args - Arguments to find a CattleSale
+     * @example
+     * // Get one CattleSale
+     * const cattleSale = await prisma.cattleSale.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CattleSaleFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, CattleSaleFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first CattleSale that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleFindFirstArgs} args - Arguments to find a CattleSale
+     * @example
+     * // Get one CattleSale
+     * const cattleSale = await prisma.cattleSale.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CattleSaleFindFirstArgs>(
+      args?: SelectSubset<T, CattleSaleFindFirstArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first CattleSale that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleFindFirstOrThrowArgs} args - Arguments to find a CattleSale
+     * @example
+     * // Get one CattleSale
+     * const cattleSale = await prisma.cattleSale.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CattleSaleFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CattleSaleFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find zero or more CattleSales that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CattleSales
+     * const cattleSales = await prisma.cattleSale.findMany()
+     *
+     * // Get first 10 CattleSales
+     * const cattleSales = await prisma.cattleSale.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const cattleSaleWithIdOnly = await prisma.cattleSale.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends CattleSaleFindManyArgs>(
+      args?: SelectSubset<T, CattleSaleFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create a CattleSale.
+     * @param {CattleSaleCreateArgs} args - Arguments to create a CattleSale.
+     * @example
+     * // Create one CattleSale
+     * const CattleSale = await prisma.cattleSale.create({
+     *   data: {
+     *     // ... data to create a CattleSale
+     *   }
+     * })
+     *
+     */
+    create<T extends CattleSaleCreateArgs>(
+      args: SelectSubset<T, CattleSaleCreateArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Create many CattleSales.
+     * @param {CattleSaleCreateManyArgs} args - Arguments to create many CattleSales.
+     * @example
+     * // Create many CattleSales
+     * const cattleSale = await prisma.cattleSale.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends CattleSaleCreateManyArgs>(
+      args?: SelectSubset<T, CattleSaleCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Create many CattleSales and returns the data saved in the database.
+     * @param {CattleSaleCreateManyAndReturnArgs} args - Arguments to create many CattleSales.
+     * @example
+     * // Create many CattleSales
+     * const cattleSale = await prisma.cattleSale.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many CattleSales and only return the `id`
+     * const cattleSaleWithIdOnly = await prisma.cattleSale.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends CattleSaleCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, CattleSaleCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Delete a CattleSale.
+     * @param {CattleSaleDeleteArgs} args - Arguments to delete one CattleSale.
+     * @example
+     * // Delete one CattleSale
+     * const CattleSale = await prisma.cattleSale.delete({
+     *   where: {
+     *     // ... filter to delete one CattleSale
+     *   }
+     * })
+     *
+     */
+    delete<T extends CattleSaleDeleteArgs>(
+      args: SelectSubset<T, CattleSaleDeleteArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Update one CattleSale.
+     * @param {CattleSaleUpdateArgs} args - Arguments to update one CattleSale.
+     * @example
+     * // Update one CattleSale
+     * const cattleSale = await prisma.cattleSale.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends CattleSaleUpdateArgs>(
+      args: SelectSubset<T, CattleSaleUpdateArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Delete zero or more CattleSales.
+     * @param {CattleSaleDeleteManyArgs} args - Arguments to filter CattleSales to delete.
+     * @example
+     * // Delete a few CattleSales
+     * const { count } = await prisma.cattleSale.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends CattleSaleDeleteManyArgs>(
+      args?: SelectSubset<T, CattleSaleDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more CattleSales.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CattleSales
+     * const cattleSale = await prisma.cattleSale.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends CattleSaleUpdateManyArgs>(
+      args: SelectSubset<T, CattleSaleUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more CattleSales and returns the data updated in the database.
+     * @param {CattleSaleUpdateManyAndReturnArgs} args - Arguments to update many CattleSales.
+     * @example
+     * // Update many CattleSales
+     * const cattleSale = await prisma.cattleSale.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more CattleSales and only return the `id`
+     * const cattleSaleWithIdOnly = await prisma.cattleSale.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends CattleSaleUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, CattleSaleUpdateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create or update one CattleSale.
+     * @param {CattleSaleUpsertArgs} args - Arguments to update or create a CattleSale.
+     * @example
+     * // Update or create a CattleSale
+     * const cattleSale = await prisma.cattleSale.upsert({
+     *   create: {
+     *     // ... data to create a CattleSale
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CattleSale we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CattleSaleUpsertArgs>(
+      args: SelectSubset<T, CattleSaleUpsertArgs<ExtArgs>>
+    ): Prisma__CattleSaleClient<
+      $Result.GetResult<
+        Prisma.$CattleSalePayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Count the number of CattleSales.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleCountArgs} args - Arguments to filter CattleSales to count.
+     * @example
+     * // Count the number of CattleSales
+     * const count = await prisma.cattleSale.count({
+     *   where: {
+     *     // ... the filter for the CattleSales we want to count
+     *   }
+     * })
+     **/
+    count<T extends CattleSaleCountArgs>(
+      args?: Subset<T, CattleSaleCountArgs>
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CattleSaleCountAggregateOutputType>
+        : number
+    >;
+
+    /**
+     * Allows you to perform aggregations operations on a CattleSale.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+     **/
+    aggregate<T extends CattleSaleAggregateArgs>(
+      args: Subset<T, CattleSaleAggregateArgs>
+    ): Prisma.PrismaPromise<GetCattleSaleAggregateType<T>>;
+
+    /**
+     * Group by CattleSale.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CattleSaleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+     **/
+    groupBy<
+      T extends CattleSaleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CattleSaleGroupByArgs['orderBy'] }
+        : { orderBy?: CattleSaleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+    >(
+      args: SubsetIntersection<T, CattleSaleGroupByArgs, OrderByArg> &
+        InputErrors
+    ): {} extends InputErrors
+      ? GetCattleSaleGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the CattleSale model
+     */
+    readonly fields: CattleSaleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CattleSale.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CattleSaleClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {}
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CustomerDefaultArgs<ExtArgs>>
+    ): Prisma__CustomerClient<
+      | $Result.GetResult<
+          Prisma.$CustomerPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    Cattle<T extends CattleSale$CattleArgs<ExtArgs> = {}>(
+      args?: Subset<T, CattleSale$CattleArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$CattlePayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+  /**
+   * Fields of the CattleSale model
+   */
+  interface CattleSaleFieldRefs {
+    readonly id: FieldRef<'CattleSale', 'String'>;
+    readonly saleDate: FieldRef<'CattleSale', 'DateTime'>;
+    readonly salePricePerKg: FieldRef<'CattleSale', 'Int'>;
+    readonly liveWeight: FieldRef<'CattleSale', 'Int'>;
+    readonly meatPercentage: FieldRef<'CattleSale', 'Int'>;
+    readonly fatPercentage: FieldRef<'CattleSale', 'Int'>;
+    readonly customerId: FieldRef<'CattleSale', 'String'>;
+    readonly createdAt: FieldRef<'CattleSale', 'DateTime'>;
+  }
+
+  // Custom InputTypes
+  /**
+   * CattleSale findUnique
+   */
+  export type CattleSaleFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattleSale to fetch.
+     */
+    where: CattleSaleWhereUniqueInput;
+  };
+
+  /**
+   * CattleSale findUniqueOrThrow
+   */
+  export type CattleSaleFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattleSale to fetch.
+     */
+    where: CattleSaleWhereUniqueInput;
+  };
+
+  /**
+   * CattleSale findFirst
+   */
+  export type CattleSaleFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattleSale to fetch.
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattleSales to fetch.
+     */
+    orderBy?:
+      | CattleSaleOrderByWithRelationInput
+      | CattleSaleOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CattleSales.
+     */
+    cursor?: CattleSaleWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattleSales from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattleSales.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CattleSales.
+     */
+    distinct?: CattleSaleScalarFieldEnum | CattleSaleScalarFieldEnum[];
+  };
+
+  /**
+   * CattleSale findFirstOrThrow
+   */
+  export type CattleSaleFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattleSale to fetch.
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattleSales to fetch.
+     */
+    orderBy?:
+      | CattleSaleOrderByWithRelationInput
+      | CattleSaleOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CattleSales.
+     */
+    cursor?: CattleSaleWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattleSales from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattleSales.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CattleSales.
+     */
+    distinct?: CattleSaleScalarFieldEnum | CattleSaleScalarFieldEnum[];
+  };
+
+  /**
+   * CattleSale findMany
+   */
+  export type CattleSaleFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter, which CattleSales to fetch.
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CattleSales to fetch.
+     */
+    orderBy?:
+      | CattleSaleOrderByWithRelationInput
+      | CattleSaleOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing CattleSales.
+     */
+    cursor?: CattleSaleWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CattleSales from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CattleSales.
+     */
+    skip?: number;
+    distinct?: CattleSaleScalarFieldEnum | CattleSaleScalarFieldEnum[];
+  };
+
+  /**
+   * CattleSale create
+   */
+  export type CattleSaleCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a CattleSale.
+     */
+    data: XOR<CattleSaleCreateInput, CattleSaleUncheckedCreateInput>;
+  };
+
+  /**
+   * CattleSale createMany
+   */
+  export type CattleSaleCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * The data used to create many CattleSales.
+     */
+    data: CattleSaleCreateManyInput | CattleSaleCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
+
+  /**
+   * CattleSale createManyAndReturn
+   */
+  export type CattleSaleCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * The data used to create many CattleSales.
+     */
+    data: CattleSaleCreateManyInput | CattleSaleCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * CattleSale update
+   */
+  export type CattleSaleUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a CattleSale.
+     */
+    data: XOR<CattleSaleUpdateInput, CattleSaleUncheckedUpdateInput>;
+    /**
+     * Choose, which CattleSale to update.
+     */
+    where: CattleSaleWhereUniqueInput;
+  };
+
+  /**
+   * CattleSale updateMany
+   */
+  export type CattleSaleUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * The data used to update CattleSales.
+     */
+    data: XOR<
+      CattleSaleUpdateManyMutationInput,
+      CattleSaleUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which CattleSales to update
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * Limit how many CattleSales to update.
+     */
+    limit?: number;
+  };
+
+  /**
+   * CattleSale updateManyAndReturn
+   */
+  export type CattleSaleUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * The data used to update CattleSales.
+     */
+    data: XOR<
+      CattleSaleUpdateManyMutationInput,
+      CattleSaleUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which CattleSales to update
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * Limit how many CattleSales to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * CattleSale upsert
+   */
+  export type CattleSaleUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the CattleSale to update in case it exists.
+     */
+    where: CattleSaleWhereUniqueInput;
+    /**
+     * In case the CattleSale found by the `where` argument doesn't exist, create a new CattleSale with this data.
+     */
+    create: XOR<CattleSaleCreateInput, CattleSaleUncheckedCreateInput>;
+    /**
+     * In case the CattleSale was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CattleSaleUpdateInput, CattleSaleUncheckedUpdateInput>;
+  };
+
+  /**
+   * CattleSale delete
+   */
+  export type CattleSaleDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    /**
+     * Filter which CattleSale to delete.
+     */
+    where: CattleSaleWhereUniqueInput;
+  };
+
+  /**
+   * CattleSale deleteMany
+   */
+  export type CattleSaleDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Filter which CattleSales to delete
+     */
+    where?: CattleSaleWhereInput;
+    /**
+     * Limit how many CattleSales to delete.
+     */
+    limit?: number;
+  };
+
+  /**
+   * CattleSale.Cattle
+   */
+  export type CattleSale$CattleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the Cattle
+     */
+    select?: CattleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Cattle
+     */
+    omit?: CattleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleInclude<ExtArgs> | null;
+    where?: CattleWhereInput;
+    orderBy?: CattleOrderByWithRelationInput | CattleOrderByWithRelationInput[];
+    cursor?: CattleWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: CattleScalarFieldEnum | CattleScalarFieldEnum[];
+  };
+
+  /**
+   * CattleSale without action
+   */
+  export type CattleSaleDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
   };
 
   /**
@@ -3158,6 +6267,7 @@ export namespace Prisma {
       phone?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
+      cattleSale?: boolean | Customer$cattleSaleArgs<ExtArgs>;
       transactions?: boolean | Customer$transactionsArgs<ExtArgs>;
       _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>;
     },
@@ -3210,6 +6320,7 @@ export namespace Prisma {
   export type CustomerInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
   > = {
+    cattleSale?: boolean | Customer$cattleSaleArgs<ExtArgs>;
     transactions?: boolean | Customer$transactionsArgs<ExtArgs>;
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>;
   };
@@ -3225,6 +6336,7 @@ export namespace Prisma {
   > = {
     name: 'Customer';
     objects: {
+      cattleSale: Prisma.$CattleSalePayload<ExtArgs>[];
       transactions: Prisma.$TransactionPayload<ExtArgs>[];
     };
     scalars: $Extensions.GetPayloadResult<
@@ -3781,6 +6893,17 @@ export namespace Prisma {
     GlobalOmitOptions = {}
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
+    cattleSale<T extends Customer$cattleSaleArgs<ExtArgs> = {}>(
+      args?: Subset<T, Customer$cattleSaleArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$CattleSalePayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
     transactions<T extends Customer$transactionsArgs<ExtArgs> = {}>(
       args?: Subset<T, Customer$transactionsArgs<ExtArgs>>
     ): Prisma.PrismaPromise<
@@ -4262,6 +7385,34 @@ export namespace Prisma {
      * Limit how many Customers to delete.
      */
     limit?: number;
+  };
+
+  /**
+   * Customer.cattleSale
+   */
+  export type Customer$cattleSaleArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  > = {
+    /**
+     * Select specific fields to fetch from the CattleSale
+     */
+    select?: CattleSaleSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CattleSale
+     */
+    omit?: CattleSaleOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CattleSaleInclude<ExtArgs> | null;
+    where?: CattleSaleWhereInput;
+    orderBy?:
+      | CattleSaleOrderByWithRelationInput
+      | CattleSaleOrderByWithRelationInput[];
+    cursor?: CattleSaleWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: CattleSaleScalarFieldEnum | CattleSaleScalarFieldEnum[];
   };
 
   /**
@@ -7237,13 +10388,10 @@ export namespace Prisma {
     cattleNumber: 'cattleNumber';
     name: 'name';
     gender: 'gender';
-    liveWeight: 'liveWeight';
-    meatPercentage: 'meatPercentage';
-    fatPercentage: 'fatPercentage';
-    purchasePricePerKg: 'purchasePricePerKg';
+    cattlePurchaseId: 'cattlePurchaseId';
+    cattleSaleId: 'cattleSaleId';
     cattleClass: 'cattleClass';
     imageUrl: 'imageUrl';
-    isSold: 'isSold';
     isQuarantined: 'isQuarantined';
     isPregnant: 'isPregnant';
     isLactating: 'isLactating';
@@ -7257,6 +10405,34 @@ export namespace Prisma {
 
   export type CattleScalarFieldEnum =
     (typeof CattleScalarFieldEnum)[keyof typeof CattleScalarFieldEnum];
+
+  export const CattlePurchaseScalarFieldEnum: {
+    id: 'id';
+    purchaseDate: 'purchaseDate';
+    purchasePricePerKg: 'purchasePricePerKg';
+    liveWeight: 'liveWeight';
+    meatPercentage: 'meatPercentage';
+    fatPercentage: 'fatPercentage';
+    purchaseLocation: 'purchaseLocation';
+    createdAt: 'createdAt';
+  };
+
+  export type CattlePurchaseScalarFieldEnum =
+    (typeof CattlePurchaseScalarFieldEnum)[keyof typeof CattlePurchaseScalarFieldEnum];
+
+  export const CattleSaleScalarFieldEnum: {
+    id: 'id';
+    saleDate: 'saleDate';
+    salePricePerKg: 'salePricePerKg';
+    liveWeight: 'liveWeight';
+    meatPercentage: 'meatPercentage';
+    fatPercentage: 'fatPercentage';
+    customerId: 'customerId';
+    createdAt: 'createdAt';
+  };
+
+  export type CattleSaleScalarFieldEnum =
+    (typeof CattleSaleScalarFieldEnum)[keyof typeof CattleSaleScalarFieldEnum];
 
   export const CustomerScalarFieldEnum: {
     id: 'id';
@@ -7481,13 +10657,10 @@ export namespace Prisma {
     cattleNumber?: IntFilter<'Cattle'> | number;
     name?: StringNullableFilter<'Cattle'> | string | null;
     gender?: EnumGenderFilter<'Cattle'> | $Enums.Gender;
-    liveWeight?: IntFilter<'Cattle'> | number;
-    meatPercentage?: IntFilter<'Cattle'> | number;
-    fatPercentage?: IntFilter<'Cattle'> | number;
-    purchasePricePerKg?: IntFilter<'Cattle'> | number;
+    cattlePurchaseId?: StringFilter<'Cattle'> | string;
+    cattleSaleId?: StringNullableFilter<'Cattle'> | string | null;
     cattleClass?: EnumCattleClassFilter<'Cattle'> | $Enums.CattleClass;
     imageUrl?: StringNullableFilter<'Cattle'> | string | null;
-    isSold?: BoolFilter<'Cattle'> | boolean;
     isQuarantined?: BoolFilter<'Cattle'> | boolean;
     isPregnant?: BoolFilter<'Cattle'> | boolean;
     isLactating?: BoolFilter<'Cattle'> | boolean;
@@ -7497,6 +10670,14 @@ export namespace Prisma {
     isVaccinated?: BoolFilter<'Cattle'> | boolean;
     createdAt?: DateTimeFilter<'Cattle'> | Date | string;
     updatedAt?: DateTimeFilter<'Cattle'> | Date | string;
+    cattlePurchase?: XOR<
+      CattlePurchaseScalarRelationFilter,
+      CattlePurchaseWhereInput
+    >;
+    cattleSale?: XOR<
+      CattleSaleNullableScalarRelationFilter,
+      CattleSaleWhereInput
+    > | null;
     transactionItems?: TransactionItemListRelationFilter;
   };
 
@@ -7505,13 +10686,10 @@ export namespace Prisma {
     cattleNumber?: SortOrder;
     name?: SortOrderInput | SortOrder;
     gender?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
+    cattlePurchaseId?: SortOrder;
+    cattleSaleId?: SortOrderInput | SortOrder;
     cattleClass?: SortOrder;
     imageUrl?: SortOrderInput | SortOrder;
-    isSold?: SortOrder;
     isQuarantined?: SortOrder;
     isPregnant?: SortOrder;
     isLactating?: SortOrder;
@@ -7521,25 +10699,24 @@ export namespace Prisma {
     isVaccinated?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
+    cattlePurchase?: CattlePurchaseOrderByWithRelationInput;
+    cattleSale?: CattleSaleOrderByWithRelationInput;
     transactionItems?: TransactionItemOrderByRelationAggregateInput;
   };
 
   export type CattleWhereUniqueInput = Prisma.AtLeast<
     {
       id?: string;
+      cattlePurchaseId?: string;
+      cattleSaleId?: string;
       AND?: CattleWhereInput | CattleWhereInput[];
       OR?: CattleWhereInput[];
       NOT?: CattleWhereInput | CattleWhereInput[];
       cattleNumber?: IntFilter<'Cattle'> | number;
       name?: StringNullableFilter<'Cattle'> | string | null;
       gender?: EnumGenderFilter<'Cattle'> | $Enums.Gender;
-      liveWeight?: IntFilter<'Cattle'> | number;
-      meatPercentage?: IntFilter<'Cattle'> | number;
-      fatPercentage?: IntFilter<'Cattle'> | number;
-      purchasePricePerKg?: IntFilter<'Cattle'> | number;
       cattleClass?: EnumCattleClassFilter<'Cattle'> | $Enums.CattleClass;
       imageUrl?: StringNullableFilter<'Cattle'> | string | null;
-      isSold?: BoolFilter<'Cattle'> | boolean;
       isQuarantined?: BoolFilter<'Cattle'> | boolean;
       isPregnant?: BoolFilter<'Cattle'> | boolean;
       isLactating?: BoolFilter<'Cattle'> | boolean;
@@ -7549,9 +10726,17 @@ export namespace Prisma {
       isVaccinated?: BoolFilter<'Cattle'> | boolean;
       createdAt?: DateTimeFilter<'Cattle'> | Date | string;
       updatedAt?: DateTimeFilter<'Cattle'> | Date | string;
+      cattlePurchase?: XOR<
+        CattlePurchaseScalarRelationFilter,
+        CattlePurchaseWhereInput
+      >;
+      cattleSale?: XOR<
+        CattleSaleNullableScalarRelationFilter,
+        CattleSaleWhereInput
+      > | null;
       transactionItems?: TransactionItemListRelationFilter;
     },
-    'id'
+    'id' | 'cattlePurchaseId' | 'cattleSaleId'
   >;
 
   export type CattleOrderByWithAggregationInput = {
@@ -7559,13 +10744,10 @@ export namespace Prisma {
     cattleNumber?: SortOrder;
     name?: SortOrderInput | SortOrder;
     gender?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
+    cattlePurchaseId?: SortOrder;
+    cattleSaleId?: SortOrderInput | SortOrder;
     cattleClass?: SortOrder;
     imageUrl?: SortOrderInput | SortOrder;
-    isSold?: SortOrder;
     isQuarantined?: SortOrder;
     isPregnant?: SortOrder;
     isLactating?: SortOrder;
@@ -7594,15 +10776,12 @@ export namespace Prisma {
     cattleNumber?: IntWithAggregatesFilter<'Cattle'> | number;
     name?: StringNullableWithAggregatesFilter<'Cattle'> | string | null;
     gender?: EnumGenderWithAggregatesFilter<'Cattle'> | $Enums.Gender;
-    liveWeight?: IntWithAggregatesFilter<'Cattle'> | number;
-    meatPercentage?: IntWithAggregatesFilter<'Cattle'> | number;
-    fatPercentage?: IntWithAggregatesFilter<'Cattle'> | number;
-    purchasePricePerKg?: IntWithAggregatesFilter<'Cattle'> | number;
+    cattlePurchaseId?: StringWithAggregatesFilter<'Cattle'> | string;
+    cattleSaleId?: StringNullableWithAggregatesFilter<'Cattle'> | string | null;
     cattleClass?:
       | EnumCattleClassWithAggregatesFilter<'Cattle'>
       | $Enums.CattleClass;
     imageUrl?: StringNullableWithAggregatesFilter<'Cattle'> | string | null;
-    isSold?: BoolWithAggregatesFilter<'Cattle'> | boolean;
     isQuarantined?: BoolWithAggregatesFilter<'Cattle'> | boolean;
     isPregnant?: BoolWithAggregatesFilter<'Cattle'> | boolean;
     isLactating?: BoolWithAggregatesFilter<'Cattle'> | boolean;
@@ -7616,6 +10795,170 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<'Cattle'> | Date | string;
   };
 
+  export type CattlePurchaseWhereInput = {
+    AND?: CattlePurchaseWhereInput | CattlePurchaseWhereInput[];
+    OR?: CattlePurchaseWhereInput[];
+    NOT?: CattlePurchaseWhereInput | CattlePurchaseWhereInput[];
+    id?: StringFilter<'CattlePurchase'> | string;
+    purchaseDate?: DateTimeFilter<'CattlePurchase'> | Date | string;
+    purchasePricePerKg?: IntFilter<'CattlePurchase'> | number;
+    liveWeight?: IntFilter<'CattlePurchase'> | number;
+    meatPercentage?: IntFilter<'CattlePurchase'> | number;
+    fatPercentage?: IntFilter<'CattlePurchase'> | number;
+    purchaseLocation?: StringFilter<'CattlePurchase'> | string;
+    createdAt?: DateTimeFilter<'CattlePurchase'> | Date | string;
+    Cattle?: XOR<CattleNullableScalarRelationFilter, CattleWhereInput> | null;
+  };
+
+  export type CattlePurchaseOrderByWithRelationInput = {
+    id?: SortOrder;
+    purchaseDate?: SortOrder;
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    purchaseLocation?: SortOrder;
+    createdAt?: SortOrder;
+    Cattle?: CattleOrderByWithRelationInput;
+  };
+
+  export type CattlePurchaseWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: CattlePurchaseWhereInput | CattlePurchaseWhereInput[];
+      OR?: CattlePurchaseWhereInput[];
+      NOT?: CattlePurchaseWhereInput | CattlePurchaseWhereInput[];
+      purchaseDate?: DateTimeFilter<'CattlePurchase'> | Date | string;
+      purchasePricePerKg?: IntFilter<'CattlePurchase'> | number;
+      liveWeight?: IntFilter<'CattlePurchase'> | number;
+      meatPercentage?: IntFilter<'CattlePurchase'> | number;
+      fatPercentage?: IntFilter<'CattlePurchase'> | number;
+      purchaseLocation?: StringFilter<'CattlePurchase'> | string;
+      createdAt?: DateTimeFilter<'CattlePurchase'> | Date | string;
+      Cattle?: XOR<CattleNullableScalarRelationFilter, CattleWhereInput> | null;
+    },
+    'id'
+  >;
+
+  export type CattlePurchaseOrderByWithAggregationInput = {
+    id?: SortOrder;
+    purchaseDate?: SortOrder;
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    purchaseLocation?: SortOrder;
+    createdAt?: SortOrder;
+    _count?: CattlePurchaseCountOrderByAggregateInput;
+    _avg?: CattlePurchaseAvgOrderByAggregateInput;
+    _max?: CattlePurchaseMaxOrderByAggregateInput;
+    _min?: CattlePurchaseMinOrderByAggregateInput;
+    _sum?: CattlePurchaseSumOrderByAggregateInput;
+  };
+
+  export type CattlePurchaseScalarWhereWithAggregatesInput = {
+    AND?:
+      | CattlePurchaseScalarWhereWithAggregatesInput
+      | CattlePurchaseScalarWhereWithAggregatesInput[];
+    OR?: CattlePurchaseScalarWhereWithAggregatesInput[];
+    NOT?:
+      | CattlePurchaseScalarWhereWithAggregatesInput
+      | CattlePurchaseScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'CattlePurchase'> | string;
+    purchaseDate?:
+      | DateTimeWithAggregatesFilter<'CattlePurchase'>
+      | Date
+      | string;
+    purchasePricePerKg?: IntWithAggregatesFilter<'CattlePurchase'> | number;
+    liveWeight?: IntWithAggregatesFilter<'CattlePurchase'> | number;
+    meatPercentage?: IntWithAggregatesFilter<'CattlePurchase'> | number;
+    fatPercentage?: IntWithAggregatesFilter<'CattlePurchase'> | number;
+    purchaseLocation?: StringWithAggregatesFilter<'CattlePurchase'> | string;
+    createdAt?: DateTimeWithAggregatesFilter<'CattlePurchase'> | Date | string;
+  };
+
+  export type CattleSaleWhereInput = {
+    AND?: CattleSaleWhereInput | CattleSaleWhereInput[];
+    OR?: CattleSaleWhereInput[];
+    NOT?: CattleSaleWhereInput | CattleSaleWhereInput[];
+    id?: StringFilter<'CattleSale'> | string;
+    saleDate?: DateTimeFilter<'CattleSale'> | Date | string;
+    salePricePerKg?: IntFilter<'CattleSale'> | number;
+    liveWeight?: IntFilter<'CattleSale'> | number;
+    meatPercentage?: IntFilter<'CattleSale'> | number;
+    fatPercentage?: IntFilter<'CattleSale'> | number;
+    customerId?: StringFilter<'CattleSale'> | string;
+    createdAt?: DateTimeFilter<'CattleSale'> | Date | string;
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>;
+    Cattle?: CattleListRelationFilter;
+  };
+
+  export type CattleSaleOrderByWithRelationInput = {
+    id?: SortOrder;
+    saleDate?: SortOrder;
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    customerId?: SortOrder;
+    createdAt?: SortOrder;
+    customer?: CustomerOrderByWithRelationInput;
+    Cattle?: CattleOrderByRelationAggregateInput;
+  };
+
+  export type CattleSaleWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: CattleSaleWhereInput | CattleSaleWhereInput[];
+      OR?: CattleSaleWhereInput[];
+      NOT?: CattleSaleWhereInput | CattleSaleWhereInput[];
+      saleDate?: DateTimeFilter<'CattleSale'> | Date | string;
+      salePricePerKg?: IntFilter<'CattleSale'> | number;
+      liveWeight?: IntFilter<'CattleSale'> | number;
+      meatPercentage?: IntFilter<'CattleSale'> | number;
+      fatPercentage?: IntFilter<'CattleSale'> | number;
+      customerId?: StringFilter<'CattleSale'> | string;
+      createdAt?: DateTimeFilter<'CattleSale'> | Date | string;
+      customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>;
+      Cattle?: CattleListRelationFilter;
+    },
+    'id'
+  >;
+
+  export type CattleSaleOrderByWithAggregationInput = {
+    id?: SortOrder;
+    saleDate?: SortOrder;
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    customerId?: SortOrder;
+    createdAt?: SortOrder;
+    _count?: CattleSaleCountOrderByAggregateInput;
+    _avg?: CattleSaleAvgOrderByAggregateInput;
+    _max?: CattleSaleMaxOrderByAggregateInput;
+    _min?: CattleSaleMinOrderByAggregateInput;
+    _sum?: CattleSaleSumOrderByAggregateInput;
+  };
+
+  export type CattleSaleScalarWhereWithAggregatesInput = {
+    AND?:
+      | CattleSaleScalarWhereWithAggregatesInput
+      | CattleSaleScalarWhereWithAggregatesInput[];
+    OR?: CattleSaleScalarWhereWithAggregatesInput[];
+    NOT?:
+      | CattleSaleScalarWhereWithAggregatesInput
+      | CattleSaleScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'CattleSale'> | string;
+    saleDate?: DateTimeWithAggregatesFilter<'CattleSale'> | Date | string;
+    salePricePerKg?: IntWithAggregatesFilter<'CattleSale'> | number;
+    liveWeight?: IntWithAggregatesFilter<'CattleSale'> | number;
+    meatPercentage?: IntWithAggregatesFilter<'CattleSale'> | number;
+    fatPercentage?: IntWithAggregatesFilter<'CattleSale'> | number;
+    customerId?: StringWithAggregatesFilter<'CattleSale'> | string;
+    createdAt?: DateTimeWithAggregatesFilter<'CattleSale'> | Date | string;
+  };
+
   export type CustomerWhereInput = {
     AND?: CustomerWhereInput | CustomerWhereInput[];
     OR?: CustomerWhereInput[];
@@ -7626,6 +10969,7 @@ export namespace Prisma {
     phone?: StringFilter<'Customer'> | string;
     createdAt?: DateTimeFilter<'Customer'> | Date | string;
     updatedAt?: DateTimeFilter<'Customer'> | Date | string;
+    cattleSale?: CattleSaleListRelationFilter;
     transactions?: TransactionListRelationFilter;
   };
 
@@ -7636,6 +10980,7 @@ export namespace Prisma {
     phone?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
+    cattleSale?: CattleSaleOrderByRelationAggregateInput;
     transactions?: TransactionOrderByRelationAggregateInput;
   };
 
@@ -7650,6 +10995,7 @@ export namespace Prisma {
       phone?: StringFilter<'Customer'> | string;
       createdAt?: DateTimeFilter<'Customer'> | Date | string;
       updatedAt?: DateTimeFilter<'Customer'> | Date | string;
+      cattleSale?: CattleSaleListRelationFilter;
       transactions?: TransactionListRelationFilter;
     },
     'id'
@@ -7896,13 +11242,8 @@ export namespace Prisma {
     cattleNumber: number;
     name?: string | null;
     gender?: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -7912,6 +11253,8 @@ export namespace Prisma {
     isVaccinated?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattlePurchase: CattlePurchaseCreateNestedOneWithoutCattleInput;
+    cattleSale?: CattleSaleCreateNestedOneWithoutCattleInput;
     transactionItems?: TransactionItemCreateNestedManyWithoutCattleInput;
   };
 
@@ -7920,13 +11263,10 @@ export namespace Prisma {
     cattleNumber: number;
     name?: string | null;
     gender?: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
+    cattlePurchaseId: string;
+    cattleSaleId?: string | null;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -7944,15 +11284,10 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -7964,6 +11299,8 @@ export namespace Prisma {
     isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattlePurchase?: CattlePurchaseUpdateOneRequiredWithoutCattleNestedInput;
+    cattleSale?: CattleSaleUpdateOneWithoutCattleNestedInput;
     transactionItems?: TransactionItemUpdateManyWithoutCattleNestedInput;
   };
 
@@ -7972,15 +11309,12 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    cattlePurchaseId?: StringFieldUpdateOperationsInput | string;
+    cattleSaleId?: NullableStringFieldUpdateOperationsInput | string | null;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -8000,13 +11334,10 @@ export namespace Prisma {
     cattleNumber: number;
     name?: string | null;
     gender?: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
+    cattlePurchaseId: string;
+    cattleSaleId?: string | null;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -8023,15 +11354,10 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -8050,15 +11376,12 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    cattlePurchaseId?: StringFieldUpdateOperationsInput | string;
+    cattleSaleId?: NullableStringFieldUpdateOperationsInput | string | null;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -8072,6 +11395,167 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
+  export type CattlePurchaseCreateInput = {
+    id?: string;
+    purchaseDate?: Date | string;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt?: Date | string;
+    Cattle?: CattleCreateNestedOneWithoutCattlePurchaseInput;
+  };
+
+  export type CattlePurchaseUncheckedCreateInput = {
+    id?: string;
+    purchaseDate?: Date | string;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt?: Date | string;
+    Cattle?: CattleUncheckedCreateNestedOneWithoutCattlePurchaseInput;
+  };
+
+  export type CattlePurchaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Cattle?: CattleUpdateOneWithoutCattlePurchaseNestedInput;
+  };
+
+  export type CattlePurchaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Cattle?: CattleUncheckedUpdateOneWithoutCattlePurchaseNestedInput;
+  };
+
+  export type CattlePurchaseCreateManyInput = {
+    id?: string;
+    purchaseDate?: Date | string;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt?: Date | string;
+  };
+
+  export type CattlePurchaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattlePurchaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattleSaleCreateInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    createdAt?: Date | string;
+    customer: CustomerCreateNestedOneWithoutCattleSaleInput;
+    Cattle?: CattleCreateNestedManyWithoutCattleSaleInput;
+  };
+
+  export type CattleSaleUncheckedCreateInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    customerId: string;
+    createdAt?: Date | string;
+    Cattle?: CattleUncheckedCreateNestedManyWithoutCattleSaleInput;
+  };
+
+  export type CattleSaleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    customer?: CustomerUpdateOneRequiredWithoutCattleSaleNestedInput;
+    Cattle?: CattleUpdateManyWithoutCattleSaleNestedInput;
+  };
+
+  export type CattleSaleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    customerId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Cattle?: CattleUncheckedUpdateManyWithoutCattleSaleNestedInput;
+  };
+
+  export type CattleSaleCreateManyInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    customerId: string;
+    createdAt?: Date | string;
+  };
+
+  export type CattleSaleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattleSaleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    customerId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
   export type CustomerCreateInput = {
     id?: string;
     name: string;
@@ -8079,6 +11563,7 @@ export namespace Prisma {
     phone: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattleSale?: CattleSaleCreateNestedManyWithoutCustomerInput;
     transactions?: TransactionCreateNestedManyWithoutCustomerInput;
   };
 
@@ -8089,6 +11574,7 @@ export namespace Prisma {
     phone: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattleSale?: CattleSaleUncheckedCreateNestedManyWithoutCustomerInput;
     transactions?: TransactionUncheckedCreateNestedManyWithoutCustomerInput;
   };
 
@@ -8099,6 +11585,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattleSale?: CattleSaleUpdateManyWithoutCustomerNestedInput;
     transactions?: TransactionUpdateManyWithoutCustomerNestedInput;
   };
 
@@ -8109,6 +11596,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattleSale?: CattleSaleUncheckedUpdateManyWithoutCustomerNestedInput;
     transactions?: TransactionUncheckedUpdateManyWithoutCustomerNestedInput;
   };
 
@@ -8428,6 +11916,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
   };
 
+  export type CattlePurchaseScalarRelationFilter = {
+    is?: CattlePurchaseWhereInput;
+    isNot?: CattlePurchaseWhereInput;
+  };
+
+  export type CattleSaleNullableScalarRelationFilter = {
+    is?: CattleSaleWhereInput | null;
+    isNot?: CattleSaleWhereInput | null;
+  };
+
   export type TransactionItemListRelationFilter = {
     every?: TransactionItemWhereInput;
     some?: TransactionItemWhereInput;
@@ -8448,13 +11946,10 @@ export namespace Prisma {
     cattleNumber?: SortOrder;
     name?: SortOrder;
     gender?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
+    cattlePurchaseId?: SortOrder;
+    cattleSaleId?: SortOrder;
     cattleClass?: SortOrder;
     imageUrl?: SortOrder;
-    isSold?: SortOrder;
     isQuarantined?: SortOrder;
     isPregnant?: SortOrder;
     isLactating?: SortOrder;
@@ -8468,10 +11963,6 @@ export namespace Prisma {
 
   export type CattleAvgOrderByAggregateInput = {
     cattleNumber?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
   };
 
   export type CattleMaxOrderByAggregateInput = {
@@ -8479,13 +11970,10 @@ export namespace Prisma {
     cattleNumber?: SortOrder;
     name?: SortOrder;
     gender?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
+    cattlePurchaseId?: SortOrder;
+    cattleSaleId?: SortOrder;
     cattleClass?: SortOrder;
     imageUrl?: SortOrder;
-    isSold?: SortOrder;
     isQuarantined?: SortOrder;
     isPregnant?: SortOrder;
     isLactating?: SortOrder;
@@ -8502,13 +11990,10 @@ export namespace Prisma {
     cattleNumber?: SortOrder;
     name?: SortOrder;
     gender?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
+    cattlePurchaseId?: SortOrder;
+    cattleSaleId?: SortOrder;
     cattleClass?: SortOrder;
     imageUrl?: SortOrder;
-    isSold?: SortOrder;
     isQuarantined?: SortOrder;
     isPregnant?: SortOrder;
     isLactating?: SortOrder;
@@ -8522,10 +12007,6 @@ export namespace Prisma {
 
   export type CattleSumOrderByAggregateInput = {
     cattleNumber?: SortOrder;
-    liveWeight?: SortOrder;
-    meatPercentage?: SortOrder;
-    fatPercentage?: SortOrder;
-    purchasePricePerKg?: SortOrder;
   };
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8645,10 +12126,134 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>;
   };
 
+  export type CattleNullableScalarRelationFilter = {
+    is?: CattleWhereInput | null;
+    isNot?: CattleWhereInput | null;
+  };
+
+  export type CattlePurchaseCountOrderByAggregateInput = {
+    id?: SortOrder;
+    purchaseDate?: SortOrder;
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    purchaseLocation?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattlePurchaseAvgOrderByAggregateInput = {
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+  };
+
+  export type CattlePurchaseMaxOrderByAggregateInput = {
+    id?: SortOrder;
+    purchaseDate?: SortOrder;
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    purchaseLocation?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattlePurchaseMinOrderByAggregateInput = {
+    id?: SortOrder;
+    purchaseDate?: SortOrder;
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    purchaseLocation?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattlePurchaseSumOrderByAggregateInput = {
+    purchasePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+  };
+
+  export type CustomerScalarRelationFilter = {
+    is?: CustomerWhereInput;
+    isNot?: CustomerWhereInput;
+  };
+
+  export type CattleListRelationFilter = {
+    every?: CattleWhereInput;
+    some?: CattleWhereInput;
+    none?: CattleWhereInput;
+  };
+
+  export type CattleOrderByRelationAggregateInput = {
+    _count?: SortOrder;
+  };
+
+  export type CattleSaleCountOrderByAggregateInput = {
+    id?: SortOrder;
+    saleDate?: SortOrder;
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    customerId?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattleSaleAvgOrderByAggregateInput = {
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+  };
+
+  export type CattleSaleMaxOrderByAggregateInput = {
+    id?: SortOrder;
+    saleDate?: SortOrder;
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    customerId?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattleSaleMinOrderByAggregateInput = {
+    id?: SortOrder;
+    saleDate?: SortOrder;
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+    customerId?: SortOrder;
+    createdAt?: SortOrder;
+  };
+
+  export type CattleSaleSumOrderByAggregateInput = {
+    salePricePerKg?: SortOrder;
+    liveWeight?: SortOrder;
+    meatPercentage?: SortOrder;
+    fatPercentage?: SortOrder;
+  };
+
+  export type CattleSaleListRelationFilter = {
+    every?: CattleSaleWhereInput;
+    some?: CattleSaleWhereInput;
+    none?: CattleSaleWhereInput;
+  };
+
   export type TransactionListRelationFilter = {
     every?: TransactionWhereInput;
     some?: TransactionWhereInput;
     none?: TransactionWhereInput;
+  };
+
+  export type CattleSaleOrderByRelationAggregateInput = {
+    _count?: SortOrder;
   };
 
   export type TransactionOrderByRelationAggregateInput = {
@@ -8691,11 +12296,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>;
     gte?: number | IntFieldRefInput<$PrismaModel>;
     not?: NestedIntNullableFilter<$PrismaModel> | number | null;
-  };
-
-  export type CustomerScalarRelationFilter = {
-    is?: CustomerWhereInput;
-    isNot?: CustomerWhereInput;
   };
 
   export type TransactionCountOrderByAggregateInput = {
@@ -8926,6 +12526,24 @@ export namespace Prisma {
     _max?: NestedEnumPaymentMethodNullableFilter<$PrismaModel>;
   };
 
+  export type CattlePurchaseCreateNestedOneWithoutCattleInput = {
+    create?: XOR<
+      CattlePurchaseCreateWithoutCattleInput,
+      CattlePurchaseUncheckedCreateWithoutCattleInput
+    >;
+    connectOrCreate?: CattlePurchaseCreateOrConnectWithoutCattleInput;
+    connect?: CattlePurchaseWhereUniqueInput;
+  };
+
+  export type CattleSaleCreateNestedOneWithoutCattleInput = {
+    create?: XOR<
+      CattleSaleCreateWithoutCattleInput,
+      CattleSaleUncheckedCreateWithoutCattleInput
+    >;
+    connectOrCreate?: CattleSaleCreateOrConnectWithoutCattleInput;
+    connect?: CattleSaleWhereUniqueInput;
+  };
+
   export type TransactionItemCreateNestedManyWithoutCattleInput = {
     create?:
       | XOR<
@@ -8994,6 +12612,42 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string;
+  };
+
+  export type CattlePurchaseUpdateOneRequiredWithoutCattleNestedInput = {
+    create?: XOR<
+      CattlePurchaseCreateWithoutCattleInput,
+      CattlePurchaseUncheckedCreateWithoutCattleInput
+    >;
+    connectOrCreate?: CattlePurchaseCreateOrConnectWithoutCattleInput;
+    upsert?: CattlePurchaseUpsertWithoutCattleInput;
+    connect?: CattlePurchaseWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CattlePurchaseUpdateToOneWithWhereWithoutCattleInput,
+        CattlePurchaseUpdateWithoutCattleInput
+      >,
+      CattlePurchaseUncheckedUpdateWithoutCattleInput
+    >;
+  };
+
+  export type CattleSaleUpdateOneWithoutCattleNestedInput = {
+    create?: XOR<
+      CattleSaleCreateWithoutCattleInput,
+      CattleSaleUncheckedCreateWithoutCattleInput
+    >;
+    connectOrCreate?: CattleSaleCreateOrConnectWithoutCattleInput;
+    upsert?: CattleSaleUpsertWithoutCattleInput;
+    disconnect?: CattleSaleWhereInput | boolean;
+    delete?: CattleSaleWhereInput | boolean;
+    connect?: CattleSaleWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CattleSaleUpdateToOneWithWhereWithoutCattleInput,
+        CattleSaleUpdateWithoutCattleInput
+      >,
+      CattleSaleUncheckedUpdateWithoutCattleInput
+    >;
   };
 
   export type TransactionItemUpdateManyWithoutCattleNestedInput = {
@@ -9068,6 +12722,189 @@ export namespace Prisma {
       | TransactionItemScalarWhereInput[];
   };
 
+  export type CattleCreateNestedOneWithoutCattlePurchaseInput = {
+    create?: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+    connectOrCreate?: CattleCreateOrConnectWithoutCattlePurchaseInput;
+    connect?: CattleWhereUniqueInput;
+  };
+
+  export type CattleUncheckedCreateNestedOneWithoutCattlePurchaseInput = {
+    create?: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+    connectOrCreate?: CattleCreateOrConnectWithoutCattlePurchaseInput;
+    connect?: CattleWhereUniqueInput;
+  };
+
+  export type CattleUpdateOneWithoutCattlePurchaseNestedInput = {
+    create?: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+    connectOrCreate?: CattleCreateOrConnectWithoutCattlePurchaseInput;
+    upsert?: CattleUpsertWithoutCattlePurchaseInput;
+    disconnect?: CattleWhereInput | boolean;
+    delete?: CattleWhereInput | boolean;
+    connect?: CattleWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CattleUpdateToOneWithWhereWithoutCattlePurchaseInput,
+        CattleUpdateWithoutCattlePurchaseInput
+      >,
+      CattleUncheckedUpdateWithoutCattlePurchaseInput
+    >;
+  };
+
+  export type CattleUncheckedUpdateOneWithoutCattlePurchaseNestedInput = {
+    create?: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+    connectOrCreate?: CattleCreateOrConnectWithoutCattlePurchaseInput;
+    upsert?: CattleUpsertWithoutCattlePurchaseInput;
+    disconnect?: CattleWhereInput | boolean;
+    delete?: CattleWhereInput | boolean;
+    connect?: CattleWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CattleUpdateToOneWithWhereWithoutCattlePurchaseInput,
+        CattleUpdateWithoutCattlePurchaseInput
+      >,
+      CattleUncheckedUpdateWithoutCattlePurchaseInput
+    >;
+  };
+
+  export type CustomerCreateNestedOneWithoutCattleSaleInput = {
+    create?: XOR<
+      CustomerCreateWithoutCattleSaleInput,
+      CustomerUncheckedCreateWithoutCattleSaleInput
+    >;
+    connectOrCreate?: CustomerCreateOrConnectWithoutCattleSaleInput;
+    connect?: CustomerWhereUniqueInput;
+  };
+
+  export type CattleCreateNestedManyWithoutCattleSaleInput = {
+    create?:
+      | XOR<
+          CattleCreateWithoutCattleSaleInput,
+          CattleUncheckedCreateWithoutCattleSaleInput
+        >
+      | CattleCreateWithoutCattleSaleInput[]
+      | CattleUncheckedCreateWithoutCattleSaleInput[];
+    connectOrCreate?:
+      | CattleCreateOrConnectWithoutCattleSaleInput
+      | CattleCreateOrConnectWithoutCattleSaleInput[];
+    createMany?: CattleCreateManyCattleSaleInputEnvelope;
+    connect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+  };
+
+  export type CattleUncheckedCreateNestedManyWithoutCattleSaleInput = {
+    create?:
+      | XOR<
+          CattleCreateWithoutCattleSaleInput,
+          CattleUncheckedCreateWithoutCattleSaleInput
+        >
+      | CattleCreateWithoutCattleSaleInput[]
+      | CattleUncheckedCreateWithoutCattleSaleInput[];
+    connectOrCreate?:
+      | CattleCreateOrConnectWithoutCattleSaleInput
+      | CattleCreateOrConnectWithoutCattleSaleInput[];
+    createMany?: CattleCreateManyCattleSaleInputEnvelope;
+    connect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+  };
+
+  export type CustomerUpdateOneRequiredWithoutCattleSaleNestedInput = {
+    create?: XOR<
+      CustomerCreateWithoutCattleSaleInput,
+      CustomerUncheckedCreateWithoutCattleSaleInput
+    >;
+    connectOrCreate?: CustomerCreateOrConnectWithoutCattleSaleInput;
+    upsert?: CustomerUpsertWithoutCattleSaleInput;
+    connect?: CustomerWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CustomerUpdateToOneWithWhereWithoutCattleSaleInput,
+        CustomerUpdateWithoutCattleSaleInput
+      >,
+      CustomerUncheckedUpdateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleUpdateManyWithoutCattleSaleNestedInput = {
+    create?:
+      | XOR<
+          CattleCreateWithoutCattleSaleInput,
+          CattleUncheckedCreateWithoutCattleSaleInput
+        >
+      | CattleCreateWithoutCattleSaleInput[]
+      | CattleUncheckedCreateWithoutCattleSaleInput[];
+    connectOrCreate?:
+      | CattleCreateOrConnectWithoutCattleSaleInput
+      | CattleCreateOrConnectWithoutCattleSaleInput[];
+    upsert?:
+      | CattleUpsertWithWhereUniqueWithoutCattleSaleInput
+      | CattleUpsertWithWhereUniqueWithoutCattleSaleInput[];
+    createMany?: CattleCreateManyCattleSaleInputEnvelope;
+    set?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    disconnect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    delete?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    connect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    update?:
+      | CattleUpdateWithWhereUniqueWithoutCattleSaleInput
+      | CattleUpdateWithWhereUniqueWithoutCattleSaleInput[];
+    updateMany?:
+      | CattleUpdateManyWithWhereWithoutCattleSaleInput
+      | CattleUpdateManyWithWhereWithoutCattleSaleInput[];
+    deleteMany?: CattleScalarWhereInput | CattleScalarWhereInput[];
+  };
+
+  export type CattleUncheckedUpdateManyWithoutCattleSaleNestedInput = {
+    create?:
+      | XOR<
+          CattleCreateWithoutCattleSaleInput,
+          CattleUncheckedCreateWithoutCattleSaleInput
+        >
+      | CattleCreateWithoutCattleSaleInput[]
+      | CattleUncheckedCreateWithoutCattleSaleInput[];
+    connectOrCreate?:
+      | CattleCreateOrConnectWithoutCattleSaleInput
+      | CattleCreateOrConnectWithoutCattleSaleInput[];
+    upsert?:
+      | CattleUpsertWithWhereUniqueWithoutCattleSaleInput
+      | CattleUpsertWithWhereUniqueWithoutCattleSaleInput[];
+    createMany?: CattleCreateManyCattleSaleInputEnvelope;
+    set?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    disconnect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    delete?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    connect?: CattleWhereUniqueInput | CattleWhereUniqueInput[];
+    update?:
+      | CattleUpdateWithWhereUniqueWithoutCattleSaleInput
+      | CattleUpdateWithWhereUniqueWithoutCattleSaleInput[];
+    updateMany?:
+      | CattleUpdateManyWithWhereWithoutCattleSaleInput
+      | CattleUpdateManyWithWhereWithoutCattleSaleInput[];
+    deleteMany?: CattleScalarWhereInput | CattleScalarWhereInput[];
+  };
+
+  export type CattleSaleCreateNestedManyWithoutCustomerInput = {
+    create?:
+      | XOR<
+          CattleSaleCreateWithoutCustomerInput,
+          CattleSaleUncheckedCreateWithoutCustomerInput
+        >
+      | CattleSaleCreateWithoutCustomerInput[]
+      | CattleSaleUncheckedCreateWithoutCustomerInput[];
+    connectOrCreate?:
+      | CattleSaleCreateOrConnectWithoutCustomerInput
+      | CattleSaleCreateOrConnectWithoutCustomerInput[];
+    createMany?: CattleSaleCreateManyCustomerInputEnvelope;
+    connect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+  };
+
   export type TransactionCreateNestedManyWithoutCustomerInput = {
     create?:
       | XOR<
@@ -9083,6 +12920,21 @@ export namespace Prisma {
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[];
   };
 
+  export type CattleSaleUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?:
+      | XOR<
+          CattleSaleCreateWithoutCustomerInput,
+          CattleSaleUncheckedCreateWithoutCustomerInput
+        >
+      | CattleSaleCreateWithoutCustomerInput[]
+      | CattleSaleUncheckedCreateWithoutCustomerInput[];
+    connectOrCreate?:
+      | CattleSaleCreateOrConnectWithoutCustomerInput
+      | CattleSaleCreateOrConnectWithoutCustomerInput[];
+    createMany?: CattleSaleCreateManyCustomerInputEnvelope;
+    connect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+  };
+
   export type TransactionUncheckedCreateNestedManyWithoutCustomerInput = {
     create?:
       | XOR<
@@ -9096,6 +12948,34 @@ export namespace Prisma {
       | TransactionCreateOrConnectWithoutCustomerInput[];
     createMany?: TransactionCreateManyCustomerInputEnvelope;
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[];
+  };
+
+  export type CattleSaleUpdateManyWithoutCustomerNestedInput = {
+    create?:
+      | XOR<
+          CattleSaleCreateWithoutCustomerInput,
+          CattleSaleUncheckedCreateWithoutCustomerInput
+        >
+      | CattleSaleCreateWithoutCustomerInput[]
+      | CattleSaleUncheckedCreateWithoutCustomerInput[];
+    connectOrCreate?:
+      | CattleSaleCreateOrConnectWithoutCustomerInput
+      | CattleSaleCreateOrConnectWithoutCustomerInput[];
+    upsert?:
+      | CattleSaleUpsertWithWhereUniqueWithoutCustomerInput
+      | CattleSaleUpsertWithWhereUniqueWithoutCustomerInput[];
+    createMany?: CattleSaleCreateManyCustomerInputEnvelope;
+    set?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    disconnect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    delete?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    connect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    update?:
+      | CattleSaleUpdateWithWhereUniqueWithoutCustomerInput
+      | CattleSaleUpdateWithWhereUniqueWithoutCustomerInput[];
+    updateMany?:
+      | CattleSaleUpdateManyWithWhereWithoutCustomerInput
+      | CattleSaleUpdateManyWithWhereWithoutCustomerInput[];
+    deleteMany?: CattleSaleScalarWhereInput | CattleSaleScalarWhereInput[];
   };
 
   export type TransactionUpdateManyWithoutCustomerNestedInput = {
@@ -9124,6 +13004,34 @@ export namespace Prisma {
       | TransactionUpdateManyWithWhereWithoutCustomerInput
       | TransactionUpdateManyWithWhereWithoutCustomerInput[];
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[];
+  };
+
+  export type CattleSaleUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?:
+      | XOR<
+          CattleSaleCreateWithoutCustomerInput,
+          CattleSaleUncheckedCreateWithoutCustomerInput
+        >
+      | CattleSaleCreateWithoutCustomerInput[]
+      | CattleSaleUncheckedCreateWithoutCustomerInput[];
+    connectOrCreate?:
+      | CattleSaleCreateOrConnectWithoutCustomerInput
+      | CattleSaleCreateOrConnectWithoutCustomerInput[];
+    upsert?:
+      | CattleSaleUpsertWithWhereUniqueWithoutCustomerInput
+      | CattleSaleUpsertWithWhereUniqueWithoutCustomerInput[];
+    createMany?: CattleSaleCreateManyCustomerInputEnvelope;
+    set?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    disconnect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    delete?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    connect?: CattleSaleWhereUniqueInput | CattleSaleWhereUniqueInput[];
+    update?:
+      | CattleSaleUpdateWithWhereUniqueWithoutCustomerInput
+      | CattleSaleUpdateWithWhereUniqueWithoutCustomerInput[];
+    updateMany?:
+      | CattleSaleUpdateManyWithWhereWithoutCustomerInput
+      | CattleSaleUpdateManyWithWhereWithoutCustomerInput[];
+    deleteMany?: CattleSaleScalarWhereInput | CattleSaleScalarWhereInput[];
   };
 
   export type TransactionUncheckedUpdateManyWithoutCustomerNestedInput = {
@@ -9722,6 +13630,66 @@ export namespace Prisma {
     _max?: NestedEnumPaymentMethodNullableFilter<$PrismaModel>;
   };
 
+  export type CattlePurchaseCreateWithoutCattleInput = {
+    id?: string;
+    purchaseDate?: Date | string;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt?: Date | string;
+  };
+
+  export type CattlePurchaseUncheckedCreateWithoutCattleInput = {
+    id?: string;
+    purchaseDate?: Date | string;
+    purchasePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    purchaseLocation: string;
+    createdAt?: Date | string;
+  };
+
+  export type CattlePurchaseCreateOrConnectWithoutCattleInput = {
+    where: CattlePurchaseWhereUniqueInput;
+    create: XOR<
+      CattlePurchaseCreateWithoutCattleInput,
+      CattlePurchaseUncheckedCreateWithoutCattleInput
+    >;
+  };
+
+  export type CattleSaleCreateWithoutCattleInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    createdAt?: Date | string;
+    customer: CustomerCreateNestedOneWithoutCattleSaleInput;
+  };
+
+  export type CattleSaleUncheckedCreateWithoutCattleInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    customerId: string;
+    createdAt?: Date | string;
+  };
+
+  export type CattleSaleCreateOrConnectWithoutCattleInput = {
+    where: CattleSaleWhereUniqueInput;
+    create: XOR<
+      CattleSaleCreateWithoutCattleInput,
+      CattleSaleUncheckedCreateWithoutCattleInput
+    >;
+  };
+
   export type TransactionItemCreateWithoutCattleInput = {
     id?: string;
     estimatedSalePriceKg: number;
@@ -9763,6 +13731,90 @@ export namespace Prisma {
       | TransactionItemCreateManyCattleInput
       | TransactionItemCreateManyCattleInput[];
     skipDuplicates?: boolean;
+  };
+
+  export type CattlePurchaseUpsertWithoutCattleInput = {
+    update: XOR<
+      CattlePurchaseUpdateWithoutCattleInput,
+      CattlePurchaseUncheckedUpdateWithoutCattleInput
+    >;
+    create: XOR<
+      CattlePurchaseCreateWithoutCattleInput,
+      CattlePurchaseUncheckedCreateWithoutCattleInput
+    >;
+    where?: CattlePurchaseWhereInput;
+  };
+
+  export type CattlePurchaseUpdateToOneWithWhereWithoutCattleInput = {
+    where?: CattlePurchaseWhereInput;
+    data: XOR<
+      CattlePurchaseUpdateWithoutCattleInput,
+      CattlePurchaseUncheckedUpdateWithoutCattleInput
+    >;
+  };
+
+  export type CattlePurchaseUpdateWithoutCattleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattlePurchaseUncheckedUpdateWithoutCattleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    purchaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    purchaseLocation?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattleSaleUpsertWithoutCattleInput = {
+    update: XOR<
+      CattleSaleUpdateWithoutCattleInput,
+      CattleSaleUncheckedUpdateWithoutCattleInput
+    >;
+    create: XOR<
+      CattleSaleCreateWithoutCattleInput,
+      CattleSaleUncheckedCreateWithoutCattleInput
+    >;
+    where?: CattleSaleWhereInput;
+  };
+
+  export type CattleSaleUpdateToOneWithWhereWithoutCattleInput = {
+    where?: CattleSaleWhereInput;
+    data: XOR<
+      CattleSaleUpdateWithoutCattleInput,
+      CattleSaleUncheckedUpdateWithoutCattleInput
+    >;
+  };
+
+  export type CattleSaleUpdateWithoutCattleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    customer?: CustomerUpdateOneRequiredWithoutCattleSaleNestedInput;
+  };
+
+  export type CattleSaleUncheckedUpdateWithoutCattleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    customerId?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
   export type TransactionItemUpsertWithWhereUniqueWithoutCattleInput = {
@@ -9820,6 +13872,331 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<'TransactionItem'> | Date | string;
   };
 
+  export type CattleCreateWithoutCattlePurchaseInput = {
+    id?: string;
+    cattleNumber: number;
+    name?: string | null;
+    gender?: $Enums.Gender;
+    cattleClass?: $Enums.CattleClass;
+    imageUrl?: string | null;
+    isQuarantined?: boolean;
+    isPregnant?: boolean;
+    isLactating?: boolean;
+    isInseminated?: boolean;
+    healthStatus?: $Enums.HealthStatus;
+    healthNotes?: string | null;
+    isVaccinated?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    cattleSale?: CattleSaleCreateNestedOneWithoutCattleInput;
+    transactionItems?: TransactionItemCreateNestedManyWithoutCattleInput;
+  };
+
+  export type CattleUncheckedCreateWithoutCattlePurchaseInput = {
+    id?: string;
+    cattleNumber: number;
+    name?: string | null;
+    gender?: $Enums.Gender;
+    cattleSaleId?: string | null;
+    cattleClass?: $Enums.CattleClass;
+    imageUrl?: string | null;
+    isQuarantined?: boolean;
+    isPregnant?: boolean;
+    isLactating?: boolean;
+    isInseminated?: boolean;
+    healthStatus?: $Enums.HealthStatus;
+    healthNotes?: string | null;
+    isVaccinated?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    transactionItems?: TransactionItemUncheckedCreateNestedManyWithoutCattleInput;
+  };
+
+  export type CattleCreateOrConnectWithoutCattlePurchaseInput = {
+    where: CattleWhereUniqueInput;
+    create: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+  };
+
+  export type CattleUpsertWithoutCattlePurchaseInput = {
+    update: XOR<
+      CattleUpdateWithoutCattlePurchaseInput,
+      CattleUncheckedUpdateWithoutCattlePurchaseInput
+    >;
+    create: XOR<
+      CattleCreateWithoutCattlePurchaseInput,
+      CattleUncheckedCreateWithoutCattlePurchaseInput
+    >;
+    where?: CattleWhereInput;
+  };
+
+  export type CattleUpdateToOneWithWhereWithoutCattlePurchaseInput = {
+    where?: CattleWhereInput;
+    data: XOR<
+      CattleUpdateWithoutCattlePurchaseInput,
+      CattleUncheckedUpdateWithoutCattlePurchaseInput
+    >;
+  };
+
+  export type CattleUpdateWithoutCattlePurchaseInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    cattleNumber?: IntFieldUpdateOperationsInput | number;
+    name?: NullableStringFieldUpdateOperationsInput | string | null;
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
+    cattleClass?:
+      | EnumCattleClassFieldUpdateOperationsInput
+      | $Enums.CattleClass;
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
+    isPregnant?: BoolFieldUpdateOperationsInput | boolean;
+    isLactating?: BoolFieldUpdateOperationsInput | boolean;
+    isInseminated?: BoolFieldUpdateOperationsInput | boolean;
+    healthStatus?:
+      | EnumHealthStatusFieldUpdateOperationsInput
+      | $Enums.HealthStatus;
+    healthNotes?: NullableStringFieldUpdateOperationsInput | string | null;
+    isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattleSale?: CattleSaleUpdateOneWithoutCattleNestedInput;
+    transactionItems?: TransactionItemUpdateManyWithoutCattleNestedInput;
+  };
+
+  export type CattleUncheckedUpdateWithoutCattlePurchaseInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    cattleNumber?: IntFieldUpdateOperationsInput | number;
+    name?: NullableStringFieldUpdateOperationsInput | string | null;
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
+    cattleSaleId?: NullableStringFieldUpdateOperationsInput | string | null;
+    cattleClass?:
+      | EnumCattleClassFieldUpdateOperationsInput
+      | $Enums.CattleClass;
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
+    isPregnant?: BoolFieldUpdateOperationsInput | boolean;
+    isLactating?: BoolFieldUpdateOperationsInput | boolean;
+    isInseminated?: BoolFieldUpdateOperationsInput | boolean;
+    healthStatus?:
+      | EnumHealthStatusFieldUpdateOperationsInput
+      | $Enums.HealthStatus;
+    healthNotes?: NullableStringFieldUpdateOperationsInput | string | null;
+    isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    transactionItems?: TransactionItemUncheckedUpdateManyWithoutCattleNestedInput;
+  };
+
+  export type CustomerCreateWithoutCattleSaleInput = {
+    id?: string;
+    name: string;
+    address: string;
+    phone: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    transactions?: TransactionCreateNestedManyWithoutCustomerInput;
+  };
+
+  export type CustomerUncheckedCreateWithoutCattleSaleInput = {
+    id?: string;
+    name: string;
+    address: string;
+    phone: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCustomerInput;
+  };
+
+  export type CustomerCreateOrConnectWithoutCattleSaleInput = {
+    where: CustomerWhereUniqueInput;
+    create: XOR<
+      CustomerCreateWithoutCattleSaleInput,
+      CustomerUncheckedCreateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleCreateWithoutCattleSaleInput = {
+    id?: string;
+    cattleNumber: number;
+    name?: string | null;
+    gender?: $Enums.Gender;
+    cattleClass?: $Enums.CattleClass;
+    imageUrl?: string | null;
+    isQuarantined?: boolean;
+    isPregnant?: boolean;
+    isLactating?: boolean;
+    isInseminated?: boolean;
+    healthStatus?: $Enums.HealthStatus;
+    healthNotes?: string | null;
+    isVaccinated?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    cattlePurchase: CattlePurchaseCreateNestedOneWithoutCattleInput;
+    transactionItems?: TransactionItemCreateNestedManyWithoutCattleInput;
+  };
+
+  export type CattleUncheckedCreateWithoutCattleSaleInput = {
+    id?: string;
+    cattleNumber: number;
+    name?: string | null;
+    gender?: $Enums.Gender;
+    cattlePurchaseId: string;
+    cattleClass?: $Enums.CattleClass;
+    imageUrl?: string | null;
+    isQuarantined?: boolean;
+    isPregnant?: boolean;
+    isLactating?: boolean;
+    isInseminated?: boolean;
+    healthStatus?: $Enums.HealthStatus;
+    healthNotes?: string | null;
+    isVaccinated?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    transactionItems?: TransactionItemUncheckedCreateNestedManyWithoutCattleInput;
+  };
+
+  export type CattleCreateOrConnectWithoutCattleSaleInput = {
+    where: CattleWhereUniqueInput;
+    create: XOR<
+      CattleCreateWithoutCattleSaleInput,
+      CattleUncheckedCreateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleCreateManyCattleSaleInputEnvelope = {
+    data: CattleCreateManyCattleSaleInput | CattleCreateManyCattleSaleInput[];
+    skipDuplicates?: boolean;
+  };
+
+  export type CustomerUpsertWithoutCattleSaleInput = {
+    update: XOR<
+      CustomerUpdateWithoutCattleSaleInput,
+      CustomerUncheckedUpdateWithoutCattleSaleInput
+    >;
+    create: XOR<
+      CustomerCreateWithoutCattleSaleInput,
+      CustomerUncheckedCreateWithoutCattleSaleInput
+    >;
+    where?: CustomerWhereInput;
+  };
+
+  export type CustomerUpdateToOneWithWhereWithoutCattleSaleInput = {
+    where?: CustomerWhereInput;
+    data: XOR<
+      CustomerUpdateWithoutCattleSaleInput,
+      CustomerUncheckedUpdateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CustomerUpdateWithoutCattleSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    address?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    transactions?: TransactionUpdateManyWithoutCustomerNestedInput;
+  };
+
+  export type CustomerUncheckedUpdateWithoutCattleSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    address?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    transactions?: TransactionUncheckedUpdateManyWithoutCustomerNestedInput;
+  };
+
+  export type CattleUpsertWithWhereUniqueWithoutCattleSaleInput = {
+    where: CattleWhereUniqueInput;
+    update: XOR<
+      CattleUpdateWithoutCattleSaleInput,
+      CattleUncheckedUpdateWithoutCattleSaleInput
+    >;
+    create: XOR<
+      CattleCreateWithoutCattleSaleInput,
+      CattleUncheckedCreateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleUpdateWithWhereUniqueWithoutCattleSaleInput = {
+    where: CattleWhereUniqueInput;
+    data: XOR<
+      CattleUpdateWithoutCattleSaleInput,
+      CattleUncheckedUpdateWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleUpdateManyWithWhereWithoutCattleSaleInput = {
+    where: CattleScalarWhereInput;
+    data: XOR<
+      CattleUpdateManyMutationInput,
+      CattleUncheckedUpdateManyWithoutCattleSaleInput
+    >;
+  };
+
+  export type CattleScalarWhereInput = {
+    AND?: CattleScalarWhereInput | CattleScalarWhereInput[];
+    OR?: CattleScalarWhereInput[];
+    NOT?: CattleScalarWhereInput | CattleScalarWhereInput[];
+    id?: StringFilter<'Cattle'> | string;
+    cattleNumber?: IntFilter<'Cattle'> | number;
+    name?: StringNullableFilter<'Cattle'> | string | null;
+    gender?: EnumGenderFilter<'Cattle'> | $Enums.Gender;
+    cattlePurchaseId?: StringFilter<'Cattle'> | string;
+    cattleSaleId?: StringNullableFilter<'Cattle'> | string | null;
+    cattleClass?: EnumCattleClassFilter<'Cattle'> | $Enums.CattleClass;
+    imageUrl?: StringNullableFilter<'Cattle'> | string | null;
+    isQuarantined?: BoolFilter<'Cattle'> | boolean;
+    isPregnant?: BoolFilter<'Cattle'> | boolean;
+    isLactating?: BoolFilter<'Cattle'> | boolean;
+    isInseminated?: BoolFilter<'Cattle'> | boolean;
+    healthStatus?: EnumHealthStatusFilter<'Cattle'> | $Enums.HealthStatus;
+    healthNotes?: StringNullableFilter<'Cattle'> | string | null;
+    isVaccinated?: BoolFilter<'Cattle'> | boolean;
+    createdAt?: DateTimeFilter<'Cattle'> | Date | string;
+    updatedAt?: DateTimeFilter<'Cattle'> | Date | string;
+  };
+
+  export type CattleSaleCreateWithoutCustomerInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    createdAt?: Date | string;
+    Cattle?: CattleCreateNestedManyWithoutCattleSaleInput;
+  };
+
+  export type CattleSaleUncheckedCreateWithoutCustomerInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    createdAt?: Date | string;
+    Cattle?: CattleUncheckedCreateNestedManyWithoutCattleSaleInput;
+  };
+
+  export type CattleSaleCreateOrConnectWithoutCustomerInput = {
+    where: CattleSaleWhereUniqueInput;
+    create: XOR<
+      CattleSaleCreateWithoutCustomerInput,
+      CattleSaleUncheckedCreateWithoutCustomerInput
+    >;
+  };
+
+  export type CattleSaleCreateManyCustomerInputEnvelope = {
+    data:
+      | CattleSaleCreateManyCustomerInput
+      | CattleSaleCreateManyCustomerInput[];
+    skipDuplicates?: boolean;
+  };
+
   export type TransactionCreateWithoutCustomerInput = {
     id?: string;
     serialNumber?: number | null;
@@ -9851,6 +14228,48 @@ export namespace Prisma {
       | TransactionCreateManyCustomerInput
       | TransactionCreateManyCustomerInput[];
     skipDuplicates?: boolean;
+  };
+
+  export type CattleSaleUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: CattleSaleWhereUniqueInput;
+    update: XOR<
+      CattleSaleUpdateWithoutCustomerInput,
+      CattleSaleUncheckedUpdateWithoutCustomerInput
+    >;
+    create: XOR<
+      CattleSaleCreateWithoutCustomerInput,
+      CattleSaleUncheckedCreateWithoutCustomerInput
+    >;
+  };
+
+  export type CattleSaleUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: CattleSaleWhereUniqueInput;
+    data: XOR<
+      CattleSaleUpdateWithoutCustomerInput,
+      CattleSaleUncheckedUpdateWithoutCustomerInput
+    >;
+  };
+
+  export type CattleSaleUpdateManyWithWhereWithoutCustomerInput = {
+    where: CattleSaleScalarWhereInput;
+    data: XOR<
+      CattleSaleUpdateManyMutationInput,
+      CattleSaleUncheckedUpdateManyWithoutCustomerInput
+    >;
+  };
+
+  export type CattleSaleScalarWhereInput = {
+    AND?: CattleSaleScalarWhereInput | CattleSaleScalarWhereInput[];
+    OR?: CattleSaleScalarWhereInput[];
+    NOT?: CattleSaleScalarWhereInput | CattleSaleScalarWhereInput[];
+    id?: StringFilter<'CattleSale'> | string;
+    saleDate?: DateTimeFilter<'CattleSale'> | Date | string;
+    salePricePerKg?: IntFilter<'CattleSale'> | number;
+    liveWeight?: IntFilter<'CattleSale'> | number;
+    meatPercentage?: IntFilter<'CattleSale'> | number;
+    fatPercentage?: IntFilter<'CattleSale'> | number;
+    customerId?: StringFilter<'CattleSale'> | string;
+    createdAt?: DateTimeFilter<'CattleSale'> | Date | string;
   };
 
   export type TransactionUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -9900,6 +14319,7 @@ export namespace Prisma {
     phone: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattleSale?: CattleSaleCreateNestedManyWithoutCustomerInput;
   };
 
   export type CustomerUncheckedCreateWithoutTransactionsInput = {
@@ -9909,6 +14329,7 @@ export namespace Prisma {
     phone: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattleSale?: CattleSaleUncheckedCreateNestedManyWithoutCustomerInput;
   };
 
   export type CustomerCreateOrConnectWithoutTransactionsInput = {
@@ -9989,6 +14410,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattleSale?: CattleSaleUpdateManyWithoutCustomerNestedInput;
   };
 
   export type CustomerUncheckedUpdateWithoutTransactionsInput = {
@@ -9998,6 +14420,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattleSale?: CattleSaleUncheckedUpdateManyWithoutCustomerNestedInput;
   };
 
   export type TransactionItemUpsertWithWhereUniqueWithoutTransactionInput = {
@@ -10059,13 +14482,8 @@ export namespace Prisma {
     cattleNumber: number;
     name?: string | null;
     gender?: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -10075,6 +14493,8 @@ export namespace Prisma {
     isVaccinated?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    cattlePurchase: CattlePurchaseCreateNestedOneWithoutCattleInput;
+    cattleSale?: CattleSaleCreateNestedOneWithoutCattleInput;
   };
 
   export type CattleUncheckedCreateWithoutTransactionItemsInput = {
@@ -10082,13 +14502,10 @@ export namespace Prisma {
     cattleNumber: number;
     name?: string | null;
     gender?: $Enums.Gender;
-    liveWeight: number;
-    meatPercentage: number;
-    fatPercentage: number;
-    purchasePricePerKg: number;
+    cattlePurchaseId: string;
+    cattleSaleId?: string | null;
     cattleClass?: $Enums.CattleClass;
     imageUrl?: string | null;
-    isSold?: boolean;
     isQuarantined?: boolean;
     isPregnant?: boolean;
     isLactating?: boolean;
@@ -10171,15 +14588,10 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -10191,6 +14603,8 @@ export namespace Prisma {
     isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattlePurchase?: CattlePurchaseUpdateOneRequiredWithoutCattleNestedInput;
+    cattleSale?: CattleSaleUpdateOneWithoutCattleNestedInput;
   };
 
   export type CattleUncheckedUpdateWithoutTransactionItemsInput = {
@@ -10198,15 +14612,12 @@ export namespace Prisma {
     cattleNumber?: IntFieldUpdateOperationsInput | number;
     name?: NullableStringFieldUpdateOperationsInput | string | null;
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
-    liveWeight?: IntFieldUpdateOperationsInput | number;
-    meatPercentage?: IntFieldUpdateOperationsInput | number;
-    fatPercentage?: IntFieldUpdateOperationsInput | number;
-    purchasePricePerKg?: IntFieldUpdateOperationsInput | number;
+    cattlePurchaseId?: StringFieldUpdateOperationsInput | string;
+    cattleSaleId?: NullableStringFieldUpdateOperationsInput | string | null;
     cattleClass?:
       | EnumCattleClassFieldUpdateOperationsInput
       | $Enums.CattleClass;
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
-    isSold?: BoolFieldUpdateOperationsInput | boolean;
     isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
     isPregnant?: BoolFieldUpdateOperationsInput | boolean;
     isLactating?: BoolFieldUpdateOperationsInput | boolean;
@@ -10303,12 +14714,144 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
+  export type CattleCreateManyCattleSaleInput = {
+    id?: string;
+    cattleNumber: number;
+    name?: string | null;
+    gender?: $Enums.Gender;
+    cattlePurchaseId: string;
+    cattleClass?: $Enums.CattleClass;
+    imageUrl?: string | null;
+    isQuarantined?: boolean;
+    isPregnant?: boolean;
+    isLactating?: boolean;
+    isInseminated?: boolean;
+    healthStatus?: $Enums.HealthStatus;
+    healthNotes?: string | null;
+    isVaccinated?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type CattleUpdateWithoutCattleSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    cattleNumber?: IntFieldUpdateOperationsInput | number;
+    name?: NullableStringFieldUpdateOperationsInput | string | null;
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
+    cattleClass?:
+      | EnumCattleClassFieldUpdateOperationsInput
+      | $Enums.CattleClass;
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
+    isPregnant?: BoolFieldUpdateOperationsInput | boolean;
+    isLactating?: BoolFieldUpdateOperationsInput | boolean;
+    isInseminated?: BoolFieldUpdateOperationsInput | boolean;
+    healthStatus?:
+      | EnumHealthStatusFieldUpdateOperationsInput
+      | $Enums.HealthStatus;
+    healthNotes?: NullableStringFieldUpdateOperationsInput | string | null;
+    isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    cattlePurchase?: CattlePurchaseUpdateOneRequiredWithoutCattleNestedInput;
+    transactionItems?: TransactionItemUpdateManyWithoutCattleNestedInput;
+  };
+
+  export type CattleUncheckedUpdateWithoutCattleSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    cattleNumber?: IntFieldUpdateOperationsInput | number;
+    name?: NullableStringFieldUpdateOperationsInput | string | null;
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
+    cattlePurchaseId?: StringFieldUpdateOperationsInput | string;
+    cattleClass?:
+      | EnumCattleClassFieldUpdateOperationsInput
+      | $Enums.CattleClass;
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
+    isPregnant?: BoolFieldUpdateOperationsInput | boolean;
+    isLactating?: BoolFieldUpdateOperationsInput | boolean;
+    isInseminated?: BoolFieldUpdateOperationsInput | boolean;
+    healthStatus?:
+      | EnumHealthStatusFieldUpdateOperationsInput
+      | $Enums.HealthStatus;
+    healthNotes?: NullableStringFieldUpdateOperationsInput | string | null;
+    isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    transactionItems?: TransactionItemUncheckedUpdateManyWithoutCattleNestedInput;
+  };
+
+  export type CattleUncheckedUpdateManyWithoutCattleSaleInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    cattleNumber?: IntFieldUpdateOperationsInput | number;
+    name?: NullableStringFieldUpdateOperationsInput | string | null;
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender;
+    cattlePurchaseId?: StringFieldUpdateOperationsInput | string;
+    cattleClass?:
+      | EnumCattleClassFieldUpdateOperationsInput
+      | $Enums.CattleClass;
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    isQuarantined?: BoolFieldUpdateOperationsInput | boolean;
+    isPregnant?: BoolFieldUpdateOperationsInput | boolean;
+    isLactating?: BoolFieldUpdateOperationsInput | boolean;
+    isInseminated?: BoolFieldUpdateOperationsInput | boolean;
+    healthStatus?:
+      | EnumHealthStatusFieldUpdateOperationsInput
+      | $Enums.HealthStatus;
+    healthNotes?: NullableStringFieldUpdateOperationsInput | string | null;
+    isVaccinated?: BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CattleSaleCreateManyCustomerInput = {
+    id?: string;
+    saleDate?: Date | string;
+    salePricePerKg: number;
+    liveWeight: number;
+    meatPercentage: number;
+    fatPercentage: number;
+    createdAt?: Date | string;
+  };
+
   export type TransactionCreateManyCustomerInput = {
     id?: string;
     serialNumber?: number | null;
     remarks?: string | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+  };
+
+  export type CattleSaleUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Cattle?: CattleUpdateManyWithoutCattleSaleNestedInput;
+  };
+
+  export type CattleSaleUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    Cattle?: CattleUncheckedUpdateManyWithoutCattleSaleNestedInput;
+  };
+
+  export type CattleSaleUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string;
+    salePricePerKg?: IntFieldUpdateOperationsInput | number;
+    liveWeight?: IntFieldUpdateOperationsInput | number;
+    meatPercentage?: IntFieldUpdateOperationsInput | number;
+    fatPercentage?: IntFieldUpdateOperationsInput | number;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
   export type TransactionUpdateWithoutCustomerInput = {

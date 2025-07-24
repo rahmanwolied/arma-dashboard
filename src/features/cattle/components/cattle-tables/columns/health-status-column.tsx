@@ -1,7 +1,7 @@
 'use client';
 import { Badge } from '@/components/ui/badge';
 import { DataTableColumnHeader } from '@/components/ui/table/data-table-column-header';
-import { Column, ColumnDef } from '@tanstack/react-table';
+import type { Column, ColumnDef } from '@tanstack/react-table';
 import {
   Tooltip,
   TooltipContent,
@@ -9,14 +9,14 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
-import type { Cattle } from '@/prisma/generated/prisma';
 import { Icons } from '@/components/icons';
 import { HEALTH_STATUS_OPTIONS } from '../options';
+import type { FlattenedCattle } from '@/features/cattle/actions';
 
-export const healthStatusColumn: ColumnDef<Cattle> = {
+export const healthStatusColumn: ColumnDef<FlattenedCattle> = {
   id: 'healthStatus',
   accessorKey: 'healthStatus',
-  header: ({ column }: { column: Column<Cattle, unknown> }) => (
+  header: ({ column }: { column: Column<FlattenedCattle, unknown> }) => (
     <DataTableColumnHeader column={column} title='Health Status' />
   ),
   enableHiding: true,
@@ -27,10 +27,12 @@ export const healthStatusColumn: ColumnDef<Cattle> = {
       isLactating,
       isPregnant,
       isQuarantined,
-      isSold,
       isVaccinated,
-      healthStatus
+      healthStatus,
+      cattleSaleId
     } = cell.row.original;
+
+    const isSold = cattleSaleId !== null;
 
     return (
       <TooltipProvider>

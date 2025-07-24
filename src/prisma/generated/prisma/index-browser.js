@@ -121,13 +121,10 @@ exports.Prisma.CattleScalarFieldEnum = {
   cattleNumber: 'cattleNumber',
   name: 'name',
   gender: 'gender',
-  liveWeight: 'liveWeight',
-  meatPercentage: 'meatPercentage',
-  fatPercentage: 'fatPercentage',
-  purchasePricePerKg: 'purchasePricePerKg',
+  cattlePurchaseId: 'cattlePurchaseId',
+  cattleSaleId: 'cattleSaleId',
   cattleClass: 'cattleClass',
   imageUrl: 'imageUrl',
-  isSold: 'isSold',
   isQuarantined: 'isQuarantined',
   isPregnant: 'isPregnant',
   isLactating: 'isLactating',
@@ -137,6 +134,28 @@ exports.Prisma.CattleScalarFieldEnum = {
   isVaccinated: 'isVaccinated',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CattlePurchaseScalarFieldEnum = {
+  id: 'id',
+  purchaseDate: 'purchaseDate',
+  purchasePricePerKg: 'purchasePricePerKg',
+  liveWeight: 'liveWeight',
+  meatPercentage: 'meatPercentage',
+  fatPercentage: 'fatPercentage',
+  purchaseLocation: 'purchaseLocation',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CattleSaleScalarFieldEnum = {
+  id: 'id',
+  saleDate: 'saleDate',
+  salePricePerKg: 'salePricePerKg',
+  liveWeight: 'liveWeight',
+  meatPercentage: 'meatPercentage',
+  fatPercentage: 'fatPercentage',
+  customerId: 'customerId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -217,6 +236,8 @@ exports.PaymentMethod = exports.$Enums.PaymentMethod = {
 
 exports.Prisma.ModelName = {
   Cattle: 'Cattle',
+  CattlePurchase: 'CattlePurchase',
+  CattleSale: 'CattleSale',
   Customer: 'Customer',
   Transaction: 'Transaction',
   TransactionItem: 'TransactionItem'

@@ -1,8 +1,6 @@
-import { fakeProducts } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { CattleTable } from './cattle-tables';
 import { columns } from './cattle-tables/columns/index';
-import { Cattle, CattleClass } from '@/prisma/generated/prisma';
 import { initializeCattleActions } from '../actions';
 
 export default async function CattleListingPage() {
@@ -17,8 +15,8 @@ export default async function CattleListingPage() {
   const cattleClass = searchParamsCache.get('cattleClass');
   const cattleNumber = searchParamsCache.get('cattleNumber');
   const purchaseDate = searchParamsCache.get('purchaseDate');
-  const purchasePrice = searchParamsCache.get('purchasePrice');
 
+  const purchasePrice = searchParamsCache.get('purchasePrice');
   const filters = {
     page,
     limit: pageLimit,
@@ -29,12 +27,13 @@ export default async function CattleListingPage() {
     ...(cattleClass && { cattleClass }),
     ...(cattleNumber && { cattleNumber }),
     ...(purchaseDate && { purchaseDate }),
-    ...(purchasePrice && { purchasePrice })
+    ...(purchasePrice && { purchasePrice }),
+    ...(sort && { sort })
   };
 
   const cattleActions = await initializeCattleActions();
 
-  const result = await cattleActions.getProducts(filters);
+  const result = await cattleActions.getCattle(filters);
 
   return (
     <CattleTable

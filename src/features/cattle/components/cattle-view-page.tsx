@@ -22,7 +22,7 @@ export default async function CattleViewPage({
     if (!cattle) {
       notFound();
     }
-    pageTitle = `Edit Cattle`;
+    pageTitle = 'Edit Cattle';
   }
 
   return <CattleForm initialData={cattle} pageTitle={pageTitle} />;
