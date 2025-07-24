@@ -2,13 +2,14 @@
 
 import prisma from '@/prisma';
 import { matchSorter } from 'match-sorter'; // For filtering
-import {
+import type {
   Cattle,
   Customer,
   Transaction,
   TransactionItem
 } from '@/prisma/generated/prisma';
-import { TTransactionSchema } from './components/transaction-schema';
+import type { TTransactionSchema } from './components/transaction-schema';
+import type { FlattenedCattle } from '../cattle/actions';
 
 export async function createTransaction(formData: TTransactionSchema) {
   try {
@@ -32,16 +33,15 @@ export async function createTransaction(formData: TTransactionSchema) {
               cattleNumber: Number(formData.cattleNumber)
             },
             {
-              isSold: false
+              cattleSaleId: null
             }
           ]
         },
         select: {
           id: true,
           cattleNumber: true,
-          isSold: true,
-          liveWeight: true,
-          purchasePricePerKg: true
+          cattleSale: true,
+          cattlePurchase: true
         }
       });
 
@@ -67,7 +67,8 @@ export async function createTransaction(formData: TTransactionSchema) {
         }
       });
 
-      const totalPrice = cattle.liveWeight * formData.salePriceKg;
+      const totalPrice =
+        cattle.cattlePurchase.liveWeight * formData.salePriceKg;
 
       const paymentStatus =
         formData.paidAmount === totalPrice
@@ -80,7 +81,7 @@ export async function createTransaction(formData: TTransactionSchema) {
         data: {
           transactionId: transaction.id,
           cattleId: cattle.id,
-          estimatedSalePriceKg: cattle.purchasePricePerKg,
+          estimatedSalePriceKg: cattle.cattlePurchase.purchasePricePerKg,
           actualSalePriceKg: formData.salePriceKg,
           paymentStatus,
           paymentMethod: formData.paymentMethod,
@@ -91,7 +92,7 @@ export async function createTransaction(formData: TTransactionSchema) {
 
       await tx.cattle.update({
         where: { id: cattle.id },
-        data: { isSold: true }
+        data: { cattleSaleId: transactionItem.id }
       });
 
       return transaction;
@@ -116,7 +117,7 @@ const transactionActions = {
   records: [] as (Transaction & {
     customer: Customer;
     transactionItem: TransactionItem;
-    cattle: Cattle;
+    cattle: FlattenedCattle;
   })[], // Holds the list of product objects
 
   // Initialize with sample data
@@ -126,7 +127,11 @@ const transactionActions = {
         customer: true,
         transactionItems: {
           include: {
-            cattle: true
+            cattle: {
+              include: {
+                cattlePurchase: true
+              }
+            }
           }
         }
       }
@@ -140,7 +145,10 @@ const transactionActions = {
       updatedAt: transaction.updatedAt,
       customer: transaction.customer,
       transactionItem: transaction.transactionItems[0],
-      cattle: transaction.transactionItems[0].cattle
+      cattle: {
+        ...transaction.transactionItems[0].cattle,
+        ...transaction.transactionItems[0].cattle.cattlePurchase
+      }
     }));
   },
 
@@ -194,7 +202,13 @@ const transactionActions = {
 
     // Mock current time
     const currentTime = new Date().toISOString();
-    console.log(paginatedTransactions);
+
+    const flattenedTransactions = paginatedTransactions.map((transaction) => ({
+      ...transaction,
+      ...transaction.transactionItem,
+      ...transaction.cattle
+    }));
+
     // Return paginated response
     return {
       success: true,

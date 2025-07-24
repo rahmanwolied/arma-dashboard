@@ -1,6 +1,8 @@
 import { searchParamsCache } from '@/lib/searchparams';
-import { columns, TransactionWithCustomer } from './transaction-tables/columns';
-import { Transaction } from '@/prisma/generated/prisma';
+import {
+  columns,
+  type TransactionWithCustomer
+} from './transaction-tables/columns';
 import { TransactionTable } from './transaction-tables';
 import { initializeTransactionActions } from '../actions';
 
@@ -25,7 +27,7 @@ export default async function TransactionListingPage() {
   const transactionActions = await initializeTransactionActions();
 
   const result = await transactionActions.getTransactions(filters);
-  console.log(result);
+
   return (
     <TransactionTable
       data={result.transactions}

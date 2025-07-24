@@ -249,7 +249,7 @@ const csvData = [
 // Helper function to parse percentage strings
 function parsePercentage(percentageStr: string): number {
   if (!percentageStr || percentageStr === '') return 1; // Default to 1%
-  return parseFloat(percentageStr.replace('%', ''));
+  return Number.parseFloat(percentageStr.replace('%', ''));
 }
 
 // Helper function to generate purchase price per kg (using estimated price as base)
@@ -297,13 +297,19 @@ async function seedTransactionData() {
 
     // Create cattle records and transactions
     for (const row of csvData) {
-      const customerId = customerMap.get(row.customerName)!;
-      const cowWeight = parseInt(row.cowWeight);
+      const customerId = customerMap.get(row.customerName);
+      if (!customerId) {
+        console.error(`Customer not found for ${row.customerName}`);
+        continue;
+      }
+      const cowWeight = Number.parseInt(row.cowWeight);
       const meatPercentage = parsePercentage(row.meatPercentage);
       const fatPercentage = parsePercentage(row.fatPercentage);
-      const estimatedPricePerKg = parseFloat(row.estimatedSalePricePerKg);
-      const actualPricePerKg = parseFloat(row.actualSalePricePerKg);
-      const totalPrice = parseFloat(row.totalPrice);
+      const estimatedPricePerKg = Number.parseFloat(
+        row.estimatedSalePricePerKg
+      );
+      const actualPricePerKg = Number.parseFloat(row.actualSalePricePerKg);
+      const totalPrice = Number.parseFloat(row.totalPrice);
 
       console.log(`Creating cattle and transaction for Cow #${row.cowNo}...`);
 
@@ -313,23 +319,30 @@ async function seedTransactionData() {
       const isQuarantined = false;
       const isVaccinated = true;
 
+      const cattlePurchase = await prisma.cattlePurchase.create({
+        data: {
+          fatPercentage,
+          meatPercentage,
+          purchasePricePerKg: generatePurchasePricePerKg(estimatedPricePerKg),
+          liveWeight: cowWeight,
+          purchaseLocation: 'Munshiganj',
+          purchaseDate: new Date()
+        }
+      });
+
       // Create cattle record
       const cattle = await prisma.cattle.create({
         data: {
-          cattleNumber: parseInt(row.cowNo),
+          cattleNumber: Number.parseInt(row.cowNo),
           name: `Cow #${row.cowNo}`,
           gender,
-          liveWeight: cowWeight,
-          meatPercentage,
-          fatPercentage,
-          purchasePricePerKg: generatePurchasePricePerKg(estimatedPricePerKg),
           cattleClass: determineCattleClass(cowWeight, meatPercentage),
-          isSold: true,
           healthStatus: 'HEALTHY',
           isVaccinated,
           isPregnant,
           isLactating,
-          isQuarantined
+          isQuarantined,
+          cattlePurchaseId: cattlePurchase.id
         }
       });
 
@@ -337,7 +350,7 @@ async function seedTransactionData() {
       const transaction = await prisma.transaction.create({
         data: {
           customerId: customerId,
-          serialNumber: parseInt(row.slNo),
+          serialNumber: Number.parseInt(row.slNo),
           remarks: row.remarks || null
         }
       });

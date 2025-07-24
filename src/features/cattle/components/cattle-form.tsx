@@ -25,12 +25,10 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
-import { Cattle } from '@/prisma/generated/prisma';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { createCattle } from '../actions';
+import { createCattle, type FlattenedCattle } from '../actions';
 import { Icons } from '@/components/icons';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
@@ -61,11 +59,11 @@ export const formSchema = z.object({
 
   liveWeight: z.string().refine((value) => {
     const num = Number(value);
-    return !isNaN(num) && num >= 0;
+    return !Number.isNaN(num) && num >= 0;
   }, 'Live weight must be a positive number.'),
   purchasePricePerKg: z.string().refine((value) => {
     const num = Number(value);
-    return !isNaN(num) && num >= 0;
+    return !Number.isNaN(num) && num >= 0;
   }, 'Purchase price per kg must be a positive number.'),
   cattleClass: z.string(),
   gender: z.string(),
@@ -83,7 +81,7 @@ export default function CowForm({
   initialData,
   pageTitle
 }: {
-  initialData: Cattle | null;
+  initialData: FlattenedCattle | null;
   pageTitle: string;
 }) {
   const defaultValues = {
@@ -96,7 +94,6 @@ export default function CowForm({
     isPregnant: initialData?.isPregnant || false,
     isLactating: initialData?.isLactating || false,
     isQuarantined: initialData?.isQuarantined || false,
-    isSold: initialData?.isSold || false,
     gender: initialData?.gender || '',
     fatPercentage: initialData?.fatPercentage?.toString() || '',
     meatPercentage: initialData?.meatPercentage?.toString() || ''
@@ -319,6 +316,7 @@ export default function CowForm({
                             : 'dark:bg-muted border-gray-200 bg-gray-50 dark:border-gray-500'
                         }`}
                         onClick={() => field.onChange(!field.value)}
+                        onKeyUp={() => field.onChange(!field.value)}
                       >
                         <Icons.isVaccinated
                           className={`h-6 w-6 ${
@@ -349,6 +347,7 @@ export default function CowForm({
                                 : 'dark:bg-muted border-gray-200 bg-gray-50 dark:border-gray-500'
                             }`}
                             onClick={() => field.onChange(!field.value)}
+                            onKeyUp={() => field.onChange(!field.value)}
                           >
                             <Icons.isPregnant
                               className={`h-6 w-6 ${
@@ -377,6 +376,7 @@ export default function CowForm({
                                 : 'dark:bg-muted border-gray-200 bg-gray-50 dark:border-gray-500'
                             }`}
                             onClick={() => field.onChange(!field.value)}
+                            onKeyUp={() => field.onChange(!field.value)}
                           >
                             <Icons.isLactating
                               className={`h-6 w-6 ${
@@ -407,6 +407,7 @@ export default function CowForm({
                             : 'dark:bg-muted border-gray-200 bg-gray-50 dark:border-gray-500'
                         }`}
                         onClick={() => field.onChange(!field.value)}
+                        onKeyUp={() => field.onChange(!field.value)}
                       >
                         <Icons.isQuarantined
                           className={`h-6 w-6 ${
@@ -435,6 +436,7 @@ export default function CowForm({
                             : 'dark:bg-muted border-gray-200 bg-gray-50 dark:border-gray-500'
                         }`}
                         onClick={() => field.onChange(!field.value)}
+                        onKeyUp={() => field.onChange(!field.value)}
                       >
                         <Icons.isSold
                           className={`h-6 w-6 ${

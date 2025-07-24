@@ -1,14 +1,13 @@
 'use client';
 import { Badge } from '@/components/ui/badge';
 import { DataTableColumnHeader } from '@/components/ui/table/data-table-column-header';
-import {
+import type {
   Customer,
-  Cattle,
   Transaction,
   TransactionItem
 } from '@/prisma/generated/prisma';
-import { Column, ColumnDef } from '@tanstack/react-table';
-import { CheckCircle2, Phone, Text, XCircle } from 'lucide-react';
+import type { Column, ColumnDef } from '@tanstack/react-table';
+import { Text } from 'lucide-react';
 import { CellAction } from './cell-action';
 import {
   Tooltip,
@@ -22,11 +21,12 @@ import {
   HEALTH_STATUS_OPTIONS
 } from '@/features/cattle/components/cattle-tables/options';
 import { Icons } from '@/components/icons';
+import type { FlattenedCattle } from '@/features/cattle/actions';
 
 export type TransactionWithCustomer = Transaction & {
   customer: Customer;
   transactionItem: TransactionItem;
-  cattle: Cattle;
+  cattle: FlattenedCattle;
 };
 
 export const columns: ColumnDef<TransactionWithCustomer>[] = [
@@ -253,9 +253,9 @@ export const columns: ColumnDef<TransactionWithCustomer>[] = [
         isLactating,
         isPregnant,
         isQuarantined,
-        isSold,
         isVaccinated,
-        healthStatus
+        healthStatus,
+        cattleSaleId
       } = cell.row.original.cattle;
 
       return (
@@ -311,7 +311,7 @@ export const columns: ColumnDef<TransactionWithCustomer>[] = [
                 </TooltipContent>
               </Tooltip>
             )}
-            {isSold && (
+            {cattleSaleId !== null && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className='bg-accent rounded-lg p-2'>
