@@ -36,15 +36,15 @@ export const healthStatusColumn: ColumnDef<FlattenedCattle> = {
 
     return (
       <TooltipProvider>
-        <div className='flex flex-wrap items-center gap-2'>
+        <div className='flex w-full items-center gap-2'>
           <Badge
             className={cn(
               'text-xs font-medium',
               healthStatus === 'DEAD'
-                ? 'border-red-200 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                ? 'border-red-200 bg-red-100 text-red-800 dark:border-red-700 dark:bg-red-800 dark:text-red-200'
                 : healthStatus === 'SICK'
-                  ? 'border-yellow-200 bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                  : 'border-green-200 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  ? 'border-yellow-200 bg-yellow-100 text-yellow-800 dark:border-yellow-700 dark:bg-yellow-800 dark:text-yellow-100'
+                  : 'border-green-200 bg-green-100 text-green-800 dark:border-green-700 dark:bg-green-800 dark:text-green-200'
             )}
             variant='outline'
           >

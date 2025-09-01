@@ -15,8 +15,8 @@ export default async function CattleListingPage() {
   const cattleClass = searchParamsCache.get('cattleClass');
   const cattleNumber = searchParamsCache.get('cattleNumber');
   const purchaseDate = searchParamsCache.get('purchaseDate');
-
   const purchasePrice = searchParamsCache.get('purchasePrice');
+
   const filters = {
     page,
     limit: pageLimit,
@@ -31,15 +31,19 @@ export default async function CattleListingPage() {
     ...(sort && { sort })
   };
 
-  const cattleActions = await initializeCattleActions();
+  try {
+    const cattleActions = await initializeCattleActions();
 
-  const result = await cattleActions.getCattle(filters);
+    const result = await cattleActions.getCattle(filters);
 
-  return (
-    <CattleTable
-      data={result.cattle}
-      totalItems={result.total_cattle}
-      columns={columns}
-    />
-  );
+    return (
+      <CattleTable
+        data={result.cattle}
+        totalItems={result.total_cattle}
+        columns={columns}
+      />
+    );
+  } catch (error) {
+    return <div>Error: {(error as Error).message}</div>;
+  }
 }

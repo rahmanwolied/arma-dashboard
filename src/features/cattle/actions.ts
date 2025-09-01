@@ -1,5 +1,6 @@
 'use server';
 
+import { auth } from '@clerk/nextjs/server';
 import { matchSorter } from 'match-sorter'; // For filtering
 import prisma from '@/prisma';
 import type {
@@ -11,6 +12,7 @@ import type {
 } from '@/prisma/generated/prisma';
 import type { formSchema } from './components/cattle-form';
 import type { z } from 'zod';
+import { hasPermission } from '@/permissions';
 
 export type FlattenedCattle = Cattle & CattlePurchase & Partial<CattleSale>;
 
@@ -29,6 +31,7 @@ interface PaginatedCattleFilters extends CattleFilters {
   page?: number;
   limit?: number;
   sort?: string;
+  forDownload?: boolean;
 }
 
 const cattleActions = {
@@ -39,6 +42,18 @@ const cattleActions = {
 
   // Initialize with sample data
   async initialize() {
+    const { userId, sessionClaims } = await auth();
+
+    console.log('sessionClaims, userId', sessionClaims, userId);
+
+    if (!userId) {
+      throw new Error('Unauthorized');
+    }
+
+    if (!hasPermission(sessionClaims?.role, 'read:cattle')) {
+      throw new Error('Unauthorized');
+    }
+
     this.records = await prisma.cattle.findMany({
       orderBy: {
         cattleNumber: 'asc'
@@ -116,13 +131,19 @@ const cattleActions = {
 
     // Filter by purchase date (using createdAt as proxy for purchase date)
     if (purchaseDate) {
-      const filterDate = new Date(purchaseDate);
+      const [filterDate, filterDateEnd] = purchaseDate
+        .split(',')
+        .map((date) => new Date(Number(date)));
+
       if (!Number.isNaN(filterDate.getTime())) {
         cattle = cattle.filter((cattle) => {
           const cattlePurchaseDate = new Date(
             cattle.cattlePurchase.purchaseDate
           );
-          return cattlePurchaseDate >= filterDate;
+          return (
+            cattlePurchaseDate >= filterDate &&
+            cattlePurchaseDate <= filterDateEnd
+          );
         });
       }
     }
@@ -156,10 +177,12 @@ const cattleActions = {
       cattlePurchase: CattlePurchase;
       cattleSale: CattleSale | null;
     })[],
-    sort?: string
+    _sort?: string
   ) {
+    let sort = _sort;
     if (!sort) {
-      return cattle;
+      // return cattle;
+      sort = '[{"id":"purchaseDate","desc":true}]';
     }
 
     let sortCriteria: Array<{ id: string; desc: boolean }>;
@@ -182,6 +205,10 @@ const cattleActions = {
       let bValue: number | string;
 
       switch (field) {
+        case 'purchaseDate':
+          aValue = new Date(a.cattlePurchase.purchaseDate).getTime();
+          bValue = new Date(b.cattlePurchase.purchaseDate).getTime();
+          break;
         case 'cattleNumber':
           aValue = a.cattleNumber;
           bValue = b.cattleNumber;
@@ -238,19 +265,22 @@ const cattleActions = {
     });
   },
 
-  async getCattle({
-    page = 1,
-    limit = 10,
-    cattleClass,
-    search,
-    sort,
-    healthStatus,
-    purchasePricePerKg,
-    fatPercentage,
-    cattleNumber,
-    purchaseDate,
-    purchasePrice
-  }: PaginatedCattleFilters) {
+  async getCattle(
+    {
+      page = 1,
+      limit = 10,
+      cattleClass,
+      search,
+      sort,
+      healthStatus,
+      purchasePricePerKg,
+      fatPercentage,
+      cattleNumber,
+      purchaseDate,
+      purchasePrice
+    }: PaginatedCattleFilters,
+    forDownload = false
+  ) {
     const allCattle = await this.getAll({
       cattleClass,
       search,
@@ -267,16 +297,20 @@ const cattleActions = {
     const totalCattle = sortedCattle.length;
 
     const offset = (page - 1) * limit;
-    const paginatedCattle = sortedCattle.slice(offset, offset + limit);
+    const paginatedCattle = forDownload
+      ? sortedCattle
+      : sortedCattle.slice(offset, offset + limit);
     const currentTime = new Date().toISOString();
 
-    const flattenedCattle: FlattenedCattle[] = paginatedCattle.map(
-      (cattle) => ({
-        ...cattle,
-        ...cattle.cattlePurchase,
-        ...cattle.cattleSale
-      })
-    );
+    const flattenedCattle: FlattenedCattle[] = paginatedCattle.map((cattle) => {
+      const { cattlePurchase, cattleSale, ...plainCattle } = cattle;
+
+      return {
+        ...plainCattle,
+        ...cattlePurchase,
+        ...cattleSale
+      };
+    });
 
     return {
       success: true,
@@ -306,6 +340,47 @@ const cattleActions = {
     };
   }
 };
+
+export async function deleteCattle(id: string) {
+  const { userId, sessionClaims } = await auth();
+
+  if (!userId) {
+    throw new Error('Unauthorized');
+  }
+
+  if (!hasPermission(sessionClaims?.role, 'delete:cattle')) {
+    throw new Error('Unauthorized');
+  }
+
+  await prisma.cattle.delete({
+    where: { id }
+  });
+
+  return {
+    success: true,
+    message: `Cattle with ID ${id} deleted`
+  };
+}
+
+interface DownloadFilters {
+  search?: string;
+  sort?: string;
+  healthStatus?: string;
+  purchasePricePerKg?: string;
+  fatPercentage?: string;
+  cattleClass?: string;
+  cattleNumber?: string;
+  purchaseDate?: string;
+  purchasePrice?: string;
+}
+
+export async function downloadCattleData(
+  filters: DownloadFilters
+): Promise<FlattenedCattle[]> {
+  const cattleActions = await initializeCattleActions();
+  const result = await cattleActions.getCattle(filters, true);
+  return result.cattle;
+}
 
 export async function initializeCattleActions() {
   await cattleActions.initialize();

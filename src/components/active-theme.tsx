@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  ReactNode,
+  type ReactNode,
   createContext,
   useContext,
   useEffect,
@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 const COOKIE_NAME = 'active_theme';
-const DEFAULT_THEME = 'default';
+const DEFAULT_THEME = 'green';
 
 function setThemeCookie(theme: string) {
   if (typeof window === 'undefined') return;
@@ -38,6 +38,7 @@ export function ActiveThemeProvider({
   useEffect(() => {
     setThemeCookie(activeTheme);
 
+    // biome-ignore lint/complexity/noForEach: <explanation>
     Array.from(document.body.classList)
       .filter((className) => className.startsWith('theme-'))
       .forEach((className) => {

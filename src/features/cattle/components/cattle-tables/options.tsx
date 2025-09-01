@@ -1,4 +1,4 @@
-import { Cattle } from '@/prisma/generated/prisma';
+import type { Cattle } from '@/prisma/generated/prisma';
 
 export const CATTLE_CLASS_OPTIONS = [
   { value: 'GOLD', label: 'Gold' },

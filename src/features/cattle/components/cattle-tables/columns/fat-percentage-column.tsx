@@ -11,7 +11,7 @@ export const fatPercentageColumn: ColumnDef<FlattenedCattle> = {
   ),
   cell: ({ cell }) => {
     const fatPercentage = cell.getValue<FlattenedCattle['fatPercentage']>();
-    return <div className='text-lg font-semibold'>{fatPercentage}%</div>;
+    return <div className='font-medium'>{fatPercentage}%</div>;
   },
   enableColumnFilter: true,
   enableSorting: true,

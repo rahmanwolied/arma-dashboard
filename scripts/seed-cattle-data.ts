@@ -735,6 +735,7 @@ const allPurchaseData: PurchaseEvent[] = [
     ]
   }
 ];
+
 async function createCattleInBatches(event: PurchaseEvent, batchSize = 5) {
   const batches = [];
   for (let i = 0; i < event.cattle.length; i += batchSize) {

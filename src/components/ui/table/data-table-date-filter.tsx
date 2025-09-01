@@ -63,6 +63,11 @@ export function DataTableDateFilter<TData>({
 }: DataTableDateFilterProps<TData>) {
   const columnFilterValue = column.getFilterValue();
 
+  // Add local state to track temporary date selection
+  const [tempDateRange, setTempDateRange] = React.useState<
+    DateRange | undefined
+  >(undefined);
+
   const selectedDates = React.useMemo<DateSelection>(() => {
     if (!columnFilterValue) {
       return multiple ? { from: undefined, to: undefined } : [];
@@ -70,6 +75,7 @@ export function DataTableDateFilter<TData>({
 
     if (multiple) {
       const timestamps = parseColumnFilterValue(columnFilterValue);
+
       return {
         from: parseAsDate(timestamps[0]),
         to: parseAsDate(timestamps[1])
@@ -85,15 +91,24 @@ export function DataTableDateFilter<TData>({
     (date: Date | DateRange | undefined) => {
       if (!date) {
         column.setFilterValue(undefined);
+        setTempDateRange(undefined);
         return;
       }
 
       if (multiple && !('getTime' in date)) {
-        const from = date.from?.getTime();
-        const to = date.to?.getTime();
-        column.setFilterValue(from || to ? [from, to] : undefined);
+        // Store the temporary selection
+        setTempDateRange(date);
+
+        // Only update the filter if both dates are selected
+        if (date.from && date.to) {
+          const from = date.from.getTime();
+          const to = date.to.getTime();
+          column.setFilterValue([from, to]);
+        }
+        // Don't update filter if only one date is selected
       } else if (!multiple && 'getTime' in date) {
         column.setFilterValue(date.getTime());
+        setTempDateRange(undefined);
       }
     },
     [column, multiple]
@@ -103,6 +118,7 @@ export function DataTableDateFilter<TData>({
     (event: React.MouseEvent) => {
       event.stopPropagation();
       column.setFilterValue(undefined);
+      setTempDateRange(undefined);
     },
     [column]
   );
@@ -110,7 +126,7 @@ export function DataTableDateFilter<TData>({
   const hasValue = React.useMemo(() => {
     if (multiple) {
       if (!getIsDateRange(selectedDates)) return false;
-      return selectedDates.from || selectedDates.to;
+      return selectedDates.from && selectedDates.to; // Only show as having value when both dates are selected
     }
     if (!Array.isArray(selectedDates)) return false;
     return selectedDates.length > 0;
@@ -126,11 +142,16 @@ export function DataTableDateFilter<TData>({
 
   const label = React.useMemo(() => {
     if (multiple) {
-      if (!getIsDateRange(selectedDates)) return null;
+      // Use tempDateRange for display if it exists, otherwise use selectedDates
+      const displayRange =
+        tempDateRange ||
+        (getIsDateRange(selectedDates)
+          ? selectedDates
+          : { from: undefined, to: undefined });
 
-      const hasSelectedDates = selectedDates.from || selectedDates.to;
+      const hasSelectedDates = displayRange.from || displayRange.to;
       const dateText = hasSelectedDates
-        ? formatDateRange(selectedDates)
+        ? formatDateRange(displayRange)
         : 'Select date range';
 
       return (
@@ -170,7 +191,7 @@ export function DataTableDateFilter<TData>({
         )}
       </span>
     );
-  }, [selectedDates, multiple, formatDateRange, title]);
+  }, [selectedDates, multiple, formatDateRange, title, tempDateRange]);
 
   return (
     <Popover>
@@ -198,11 +219,14 @@ export function DataTableDateFilter<TData>({
             initialFocus
             mode='range'
             selected={
-              getIsDateRange(selectedDates)
+              tempDateRange ||
+              (getIsDateRange(selectedDates)
                 ? selectedDates
-                : { from: undefined, to: undefined }
+                : { from: undefined, to: undefined })
             }
             onSelect={onSelect}
+            fromYear={2019}
+            toYear={new Date().getFullYear()}
           />
         ) : (
           <Calendar
@@ -212,6 +236,8 @@ export function DataTableDateFilter<TData>({
               !getIsDateRange(selectedDates) ? selectedDates[0] : undefined
             }
             onSelect={onSelect}
+            fromYear={2019}
+            toYear={new Date().getFullYear()}
           />
         )}
       </PopoverContent>

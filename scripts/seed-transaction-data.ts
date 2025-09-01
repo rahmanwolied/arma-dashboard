@@ -331,13 +331,15 @@ async function seedTransactionData() {
       });
 
       // Create cattle record
+      const healthOptions = ['HEALTHY', 'SICK', 'DEAD'] as const;
+
       const cattle = await prisma.cattle.create({
         data: {
           cattleNumber: Number.parseInt(row.cowNo),
           name: `Cow #${row.cowNo}`,
           gender,
           cattleClass: determineCattleClass(cowWeight, meatPercentage),
-          healthStatus: 'HEALTHY',
+          healthStatus: healthOptions[Math.floor(Math.random() * 3)],
           isVaccinated,
           isPregnant,
           isLactating,

@@ -8,6 +8,10 @@ import { useDataTable } from '@/hooks/use-data-table';
 import type { ColumnDef } from '@tanstack/react-table';
 import { parseAsInteger, useQueryState } from 'nuqs';
 import type { FlattenedCattle } from '../../actions';
+import { Button } from '@/components/ui/button';
+import { IconDownload } from '@tabler/icons-react';
+import { useDownload } from '@/hooks/use-download';
+import { Loader } from 'lucide-react';
 
 interface CattleTableParams {
   data: FlattenedCattle[];
@@ -28,9 +32,25 @@ export function CattleTable({ data, totalItems, columns }: CattleTableParams) {
     debounceMs: 500
   });
 
+  const { downloadCattleCSV, isDownloading } = useDownload();
+
   return (
     <DataTable table={table}>
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table}>
+        <Button
+          variant='outline'
+          size='sm'
+          onClick={downloadCattleCSV}
+          disabled={isDownloading}
+        >
+          {isDownloading ? (
+            <Loader className='animate-spin' />
+          ) : (
+            <IconDownload />
+          )}
+          Download
+        </Button>
+      </DataTableToolbar>
     </DataTable>
   );
 }

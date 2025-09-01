@@ -20,12 +20,12 @@ import './theme.css';
 
 const META_THEME_COLORS = {
   light: '#ffffff',
-  dark: '#09090b'
+  dark: '#121212'
 };
 
 export const metadata: Metadata = {
-  title: 'Next Shadcn',
-  description: 'Basic dashboard with Next.js and Shadcn'
+  title: 'ARMA Dashboard',
+  description: 'ARMA Agro Dashboard'
 };
 
 export const viewport: Viewport = {
@@ -45,6 +45,7 @@ export default async function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <head>
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{
             __html: `
               try {

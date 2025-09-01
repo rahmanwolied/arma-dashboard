@@ -70,8 +70,7 @@ model CattlePurchase {
     purchaseLocation String
 
     createdAt DateTime @default(now())
-    Cattle    Cattle
-    cattleId String
+    Cattle    Cattle?
 }
 
 model CattleSale {

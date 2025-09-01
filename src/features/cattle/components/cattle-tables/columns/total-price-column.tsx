@@ -10,7 +10,7 @@ export const totalPriceColumn: ColumnDef<FlattenedCattle> = {
   ),
   cell: ({ row }) => {
     return (
-      <span className='text-right font-medium'>
+      <div className='mr-7 text-right font-medium'>
         {(
           row.original.purchasePricePerKg * row.original.liveWeight
         ).toLocaleString('en-US', {
@@ -21,7 +21,7 @@ export const totalPriceColumn: ColumnDef<FlattenedCattle> = {
           maximumFractionDigits: 0,
           currencySign: 'accounting'
         })}
-      </span>
+      </div>
     );
   },
   meta: {
