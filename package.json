@@ -30,11 +30,7 @@
 		"db:get-locations": "tsx scripts/get-locations.ts",
 		"tsc:check": "tsc --noEmit"
 	},
-	"lint-staged": {
-		"**/*.{js,jsx,tsx,ts,css,less,scss,sass}": [
-			"prettier --write --no-error-on-unmatched-pattern"
-		]
-	},
+
 	"dependencies": {
 		"@clerk/nextjs": "^6.12.12",
 		"@clerk/themes": "^2.2.26",
