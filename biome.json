@@ -1,0 +1,50 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"a11y": {
+				"noSvgWithoutTitle": "off",
+				"useButtonType": "off",
+				"useAltText": "off",
+				"useKeyWithClickEvents": "off",
+				"useSemanticElements": "off",
+				"noLabelWithoutControl": "off"
+			},
+			"correctness": {
+				"noUnusedVariables": "warn",
+				"useExhaustiveDependencies": "warn",
+				"useHookAtTopLevel": "warn"
+			},
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"style": {
+				"useImportType": "warn",
+				"useSelfClosingElements": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			},
+			"suspicious": {
+				"noAssignInExpressions": "off",
+				"noArrayIndexKey": "off"
+			},
+			"nursery": {
+				"useSortedClasses": {
+					"level": "warn",
+					"options": {
+						"attributes": ["classList"],
+						"functions": ["clsx", "cva", "tw"]
+					}
+				}
+			}
+		}
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	}
+}

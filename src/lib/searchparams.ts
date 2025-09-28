@@ -1,30 +1,32 @@
 import {
   createSearchParamsCache,
-  createSerializer,
+  parseAsArrayOf,
   parseAsInteger,
-  parseAsString
-} from 'nuqs/server';
+  parseAsString,
+  parseAsStringEnum,
+} from "nuqs/server";
+import { z } from "zod";
 
-export const searchParams = {
+import { getFiltersStateParser, getSortingStateParser } from "@/lib/parsers";
+import type { Cattle } from "@/db/schema/tables/animals";
+import { healthStatusEnum } from "@/db/schema/enums";
+
+export const cattleSearchParams = {
   page: parseAsInteger.withDefault(1),
   perPage: parseAsInteger.withDefault(10),
-  name: parseAsString,
-  gender: parseAsString,
-  category: parseAsString,
-  phone: parseAsString,
-  status: parseAsString,
-  sort: parseAsString,
-  healthStatus: parseAsString,
-  purchasePricePerKg: parseAsString,
-  fatPercentage: parseAsString,
-  cattleClass: parseAsString,
-  cattleNumber: parseAsString,
-  purchaseDate: parseAsString,
-  purchasePrice: parseAsString
+  sort: getSortingStateParser<Cattle>().withDefault([
+    { id: "createdAt", desc: true },
+  ]),
+  purchasePrice: parseAsString.withDefault(""),
+  healthStatus: parseAsArrayOf(z.enum(healthStatusEnum.enumValues)).withDefault(
+    [],
+  ),
+
   // advanced filter
-  // filters: getFiltersStateParser().withDefault([]),
-  // joinOperator: parseAsStringEnum(['and', 'or']).withDefault('and')
+  filters: getFiltersStateParser().withDefault([]),
+  joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and"),
 };
 
-export const searchParamsCache = createSearchParamsCache(searchParams);
-export const serialize = createSerializer(searchParams);
+export const cattleSearchParamsCache = createSearchParamsCache(
+  cattleSearchParams,
+);

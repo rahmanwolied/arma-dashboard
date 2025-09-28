@@ -1,88 +1,81 @@
-import Providers from '@/components/layout/providers';
-import { Toaster } from '@/components/ui/sonner';
-import { fontVariables } from '@/lib/font';
-import ThemeProvider from '@/components/layout/ThemeToggle/theme-provider';
-import { cn } from '@/lib/utils';
-import type { Metadata, Viewport } from 'next';
-import { cookies } from 'next/headers';
-import NextTopLoader from 'nextjs-toploader';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs';
-import './globals.css';
-import './theme.css';
+import Providers from "@/components/layout/providers";
+import { Toaster } from "@/components/ui/sonner";
+import { fontVariables } from "@/lib/font";
+import ThemeProvider from "@/components/layout/ThemeToggle/theme-provider";
+import { cn } from "@/lib/utils";
+import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
+import NextTopLoader from "nextjs-toploader";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ClerkProvider } from "@clerk/nextjs";
+import "./globals.css";
+import "./theme.css";
 
 const META_THEME_COLORS = {
-  light: '#ffffff',
-  dark: '#121212'
+	light: "#ffffff",
+	dark: "#121212",
 };
 
 export const metadata: Metadata = {
-  title: 'ARMA Dashboard',
-  description: 'ARMA Agro Dashboard'
+	title: "ARMA Dashboard",
+	description: "ARMA Agro Dashboard",
 };
 
 export const viewport: Viewport = {
-  themeColor: META_THEME_COLORS.light
+	themeColor: META_THEME_COLORS.light,
 };
 
 export default async function RootLayout({
-  children
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const activeThemeValue = cookieStore.get('active_theme')?.value;
-  const isScaled = activeThemeValue?.endsWith('-scaled');
+	const cookieStore = await cookies();
+	const activeThemeValue = cookieStore.get("active_theme")?.value;
+	const isScaled = activeThemeValue?.endsWith("-scaled");
 
-  return (
-    <html lang='en' suppressHydrationWarning>
-      <head>
-        <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-          dangerouslySetInnerHTML={{
-            __html: `
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+					dangerouslySetInnerHTML={{
+						__html: `
               try {
                 if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
                 }
               } catch (_) {}
-            `
-          }}
-        />
-      </head>
-      <ClerkProvider>
-        <body
-          className={cn(
-            'bg-background overflow-hidden overscroll-none font-sans antialiased',
-            activeThemeValue ? `theme-${activeThemeValue}` : '',
-            isScaled ? 'theme-scaled' : '',
-            fontVariables
-          )}
-        >
-          <NextTopLoader showSpinner={false} />
-          <NuqsAdapter>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='system'
-              enableSystem
-              disableTransitionOnChange
-              enableColorScheme
-            >
-              <Providers activeThemeValue={activeThemeValue as string}>
-                <Toaster />
-                {children}
-              </Providers>
-            </ThemeProvider>
-          </NuqsAdapter>
-        </body>
-      </ClerkProvider>
-    </html>
-  );
+            `,
+					}}
+				/>
+			</head>
+			<ClerkProvider>
+				<body
+					className={cn(
+						"bg-background font-sans antialiased",
+						activeThemeValue ? `theme-${activeThemeValue}` : "",
+						isScaled ? "theme-scaled" : "",
+						fontVariables,
+					)}
+				>
+					<NextTopLoader showSpinner={false} />
+					<NuqsAdapter>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem
+							disableTransitionOnChange
+							enableColorScheme
+						>
+							<Providers activeThemeValue={activeThemeValue as string}>
+								<Toaster />
+								{children}
+							</Providers>
+						</ThemeProvider>
+					</NuqsAdapter>
+				</body>
+			</ClerkProvider>
+		</html>
+	);
 }

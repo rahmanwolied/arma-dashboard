@@ -1,0 +1,6360 @@
+[
+  {
+    "id": "R80300576",
+    "name": "Dhaka - North",
+    "zones": [
+      {
+        "id": "R80314576",
+        "name": "Bashundhara R/A"
+      },
+      {
+        "id": "RBD30",
+        "name": "Abur Tek Road"
+      },
+      {
+        "id": "R80301317",
+        "name": "Adabor"
+      },
+      {
+        "id": "RBD269",
+        "name": "Adam Ali Market"
+      },
+      {
+        "id": "R80314545",
+        "name": "Adarsha Bag"
+      },
+      {
+        "id": "R80314543",
+        "name": "Aftab nagar"
+      },
+      {
+        "id": "R80301291",
+        "name": "Agargaon"
+      },
+      {
+        "id": "R80314546",
+        "name": "Ahmed Nagar"
+      },
+      {
+        "id": "RBD285",
+        "name": "Akij Foundation"
+      },
+      {
+        "id": "R80314548",
+        "name": "Ananda Nagar"
+      },
+      {
+        "id": "R80314549",
+        "name": "Apollo Hospital"
+      },
+      {
+        "id": "RBD597",
+        "name": "APS Garments (Ati Para)"
+      },
+      {
+        "id": "R80314550",
+        "name": "Arjat Para"
+      },
+      {
+        "id": "R80314742",
+        "name": "Armanitola"
+      },
+      {
+        "id": "R80314551",
+        "name": "Army Stadium"
+      },
+      {
+        "id": "R80301328",
+        "name": "Asad Gate"
+      },
+      {
+        "id": "R80314552",
+        "name": "Ashalota"
+      },
+      {
+        "id": "R80314553",
+        "name": "Ashkona"
+      },
+      {
+        "id": "RBD45",
+        "name": "Ashkona Al Huda Mosjid"
+      },
+      {
+        "id": "RBD588",
+        "name": "Ashkona Boro Mosjid"
+      },
+      {
+        "id": "RBD671",
+        "name": "Ashkona City Complex Road"
+      },
+      {
+        "id": "RBD354",
+        "name": "Ashkona Dilder Bari"
+      },
+      {
+        "id": "RBD84",
+        "name": "Ashkona Mosjid Road"
+      },
+      {
+        "id": "RBD569",
+        "name": "Ashkona Panir Pamp"
+      },
+      {
+        "id": "RBD501",
+        "name": "Askona Noddapara Club Mor"
+      },
+      {
+        "id": "RBD332",
+        "name": "Askona Noddapara Mosjid Road"
+      },
+      {
+        "id": "RBD416",
+        "name": "Askona Rupali Garden"
+      },
+      {
+        "id": "RBD473",
+        "name": "Askona Rupali Tower"
+      },
+      {
+        "id": "R80301322",
+        "name": "Badda"
+      },
+      {
+        "id": "R80314554",
+        "name": "Badda Hossain Market"
+      },
+      {
+        "id": "R80314555",
+        "name": "Bagbari"
+      },
+      {
+        "id": "R80314556",
+        "name": "Baily Road"
+      },
+      {
+        "id": "RBD267",
+        "name": "Balughat"
+      },
+      {
+        "id": "R80314557",
+        "name": "Banani Bus Stand"
+      },
+      {
+        "id": "R80306245",
+        "name": "Banani DOHS"
+      },
+      {
+        "id": "R80314558",
+        "name": "Banani Graveyard"
+      },
+      {
+        "id": "R80314559",
+        "name": "Banani Naval Head Quarter"
+      },
+      {
+        "id": "R80301315",
+        "name": "Banani Road No. 1 - 11"
+      },
+      {
+        "id": "R80301316",
+        "name": "Banani Road No. 12 - 19"
+      },
+      {
+        "id": "R80301333",
+        "name": "Banani Road No. 20 - 28"
+      },
+      {
+        "id": "R80314560",
+        "name": "Banasree Block A"
+      },
+      {
+        "id": "R80314561",
+        "name": "Banasree Block C"
+      },
+      {
+        "id": "R80314562",
+        "name": "Banasree Block D"
+      },
+      {
+        "id": "R80314563",
+        "name": "Banasree Block E"
+      },
+      {
+        "id": "R80314564",
+        "name": "Banasree Block J"
+      },
+      {
+        "id": "R80314565",
+        "name": "Banasree Block K"
+      },
+      {
+        "id": "R80301292",
+        "name": "Baridhara"
+      },
+      {
+        "id": "R80306246",
+        "name": "Baridhara DOHS"
+      },
+      {
+        "id": "R80314566",
+        "name": "Barontek"
+      },
+      {
+        "id": "R80314567",
+        "name": "Bashtola"
+      },
+      {
+        "id": "R80301331",
+        "name": "Bashundhara"
+      },
+      {
+        "id": "R80314568",
+        "name": "Bashundhara Block A"
+      },
+      {
+        "id": "R80314569",
+        "name": "Bashundhara Block B"
+      },
+      {
+        "id": "R80314570",
+        "name": "Bashundhara Block C"
+      },
+      {
+        "id": "R80314571",
+        "name": "Bashundhara Block D"
+      },
+      {
+        "id": "R80314572",
+        "name": "Bashundhara Block F"
+      },
+      {
+        "id": "R80314573",
+        "name": "Bashundhara Block H"
+      },
+      {
+        "id": "R80314574",
+        "name": "Bashundhara Block I"
+      },
+      {
+        "id": "R80314575",
+        "name": "Bashundhara Bus Stand"
+      },
+      {
+        "id": "R80314577",
+        "name": "Baunia"
+      },
+      {
+        "id": "R80314578",
+        "name": "Bawlia Para"
+      },
+      {
+        "id": "R80314579",
+        "name": "Bawneabad Area"
+      },
+      {
+        "id": "R80314580",
+        "name": "Begunbari"
+      },
+      {
+        "id": "R80314581",
+        "name": "Bepari Bari"
+      },
+      {
+        "id": "R80314582",
+        "name": "Bhuyia Para"
+      },
+      {
+        "id": "R80314583",
+        "name": "Bishteki"
+      },
+      {
+        "id": "R80314584",
+        "name": "Bonolota"
+      },
+      {
+        "id": "R80314585",
+        "name": "Box Nagar"
+      },
+      {
+        "id": "R80314586",
+        "name": "CDH Shampan"
+      },
+      {
+        "id": "R80314587",
+        "name": "Chairman bari"
+      },
+      {
+        "id": "RBD359",
+        "name": "Chalabon"
+      },
+      {
+        "id": "RBD21",
+        "name": "Chalabon - Ark Hospital"
+      },
+      {
+        "id": "RBD212",
+        "name": "Chamurkhan"
+      },
+      {
+        "id": "R80314588",
+        "name": "Coca Cola Bus Stop"
+      },
+      {
+        "id": "R80314589",
+        "name": "Confidence Shopping Mall"
+      },
+      {
+        "id": "RBD373",
+        "name": "Dakkhinkhan Army Society"
+      },
+      {
+        "id": "RBD674",
+        "name": "Dakkhinkhan Azompur Brac Market"
+      },
+      {
+        "id": "RBD456",
+        "name": "Dakkhinkhan Chairman Para"
+      },
+      {
+        "id": "RBD251",
+        "name": "Dakkhinkhan Dewan Bari"
+      },
+      {
+        "id": "RBD658",
+        "name": "Dakkhinkhan Gono Koborshathan Road"
+      },
+      {
+        "id": "RBD721",
+        "name": "Dakkhinkhan Hatim Bag"
+      },
+      {
+        "id": "RBD273",
+        "name": "Dakkhinkhan Holan"
+      },
+      {
+        "id": "RBD656",
+        "name": "Dakkhinkhan Jamtola"
+      },
+      {
+        "id": "RBD87",
+        "name": "Dakkhinkhan Kazi Bari"
+      },
+      {
+        "id": "RBD716",
+        "name": "Dakkhinkhan Mazi Bari"
+      },
+      {
+        "id": "RBD585",
+        "name": "Dakkhinkhan Miapara Mosjid Road"
+      },
+      {
+        "id": "RBD97",
+        "name": "Dakkhinkhan Molla Para"
+      },
+      {
+        "id": "RBD353",
+        "name": "Dakkhinkhan Mollartek"
+      },
+      {
+        "id": "RBD613",
+        "name": "Dakkhinkhan Muktijoddha Road"
+      },
+      {
+        "id": "RBD663",
+        "name": "Dakkhinkhan Nagoria Bari"
+      },
+      {
+        "id": "RBD342",
+        "name": "Dakkhinkhan Nogor Bari"
+      },
+      {
+        "id": "R80314683",
+        "name": "Dakkhinkhan Prem Bagan"
+      },
+      {
+        "id": "RBD393",
+        "name": "Dakkhinkhan Shamol Bagh"
+      },
+      {
+        "id": "R80301323",
+        "name": "Darus Salam"
+      },
+      {
+        "id": "R80301297",
+        "name": "Dhaka - Cantonment"
+      },
+      {
+        "id": "R80314590",
+        "name": "Dhaka - North City Corporation Market"
+      },
+      {
+        "id": "RBD494",
+        "name": "Dhakinkhan Bazar"
+      },
+      {
+        "id": "R80301329",
+        "name": "Dhamrai"
+      },
+      {
+        "id": "RBD164",
+        "name": "Dhoronggar Tek"
+      },
+      {
+        "id": "R80314591",
+        "name": "Diabari"
+      },
+      {
+        "id": "RBD161",
+        "name": "Dobadia"
+      },
+      {
+        "id": "R80314592",
+        "name": "Doctor Goli"
+      },
+      {
+        "id": "R80314619",
+        "name": "Dokkhinkhan Kosai Bari"
+      },
+      {
+        "id": "RBD527",
+        "name": "Dokkhinkhan Kosai Bazar"
+      },
+      {
+        "id": "R80314594",
+        "name": "East Hazipara"
+      },
+      {
+        "id": "R80314595",
+        "name": "East Merul Badda"
+      },
+      {
+        "id": "R80314596",
+        "name": "East Nakhalpara"
+      },
+      {
+        "id": "R80314597",
+        "name": "East Nurerchala"
+      },
+      {
+        "id": "R80314598",
+        "name": "East Rampura"
+      },
+      {
+        "id": "RBD111",
+        "name": "East West Medical College"
+      },
+      {
+        "id": "RBD590",
+        "name": "Faidabad Prmary School"
+      },
+      {
+        "id": "R80301330",
+        "name": "Farmgate"
+      },
+      {
+        "id": "R80314599",
+        "name": "Gabtoli Bus Terminal"
+      },
+      {
+        "id": "RBD746",
+        "name": "Gawair"
+      },
+      {
+        "id": "RBD725",
+        "name": "Gawair Peyara Bagan"
+      },
+      {
+        "id": "R80314600",
+        "name": "Golartek"
+      },
+      {
+        "id": "R80314601",
+        "name": "Goran Tampoo stand"
+      },
+      {
+        "id": "R80301294",
+        "name": "Gulshan 1"
+      },
+      {
+        "id": "R80301304",
+        "name": "Gulshan 2"
+      },
+      {
+        "id": "R80314602",
+        "name": "Gulshan Badda link Road"
+      },
+      {
+        "id": "R80314603",
+        "name": "Hatirjheel"
+      },
+      {
+        "id": "R80314604",
+        "name": "Hazi Camp"
+      },
+      {
+        "id": "R80314605",
+        "name": "House Building"
+      },
+      {
+        "id": "R80314606",
+        "name": "Ibrahimpur"
+      },
+      {
+        "id": "R80314607",
+        "name": "ICDDRB Mohakhali"
+      },
+      {
+        "id": "RBD657",
+        "name": "IUBAT"
+      },
+      {
+        "id": "R80314608",
+        "name": "Jahangir Gate"
+      },
+      {
+        "id": "R80314609",
+        "name": "Jahurul Haque City"
+      },
+      {
+        "id": "R80314610",
+        "name": "Jamuna Future Park"
+      },
+      {
+        "id": "R80314611",
+        "name": "Jashimuddin Road"
+      },
+      {
+        "id": "R80314612",
+        "name": "Joar Shahara"
+      },
+      {
+        "id": "R80314613",
+        "name": "Kafrul"
+      },
+      {
+        "id": "R80314614",
+        "name": "Kalachandpur"
+      },
+      {
+        "id": "R80301324",
+        "name": "Kallyanpur"
+      },
+      {
+        "id": "RBD304",
+        "name": "Kamar Para"
+      },
+      {
+        "id": "R80301301",
+        "name": "Karwan Bazar"
+      },
+      {
+        "id": "RBD1521",
+        "name": "Kawla"
+      },
+      {
+        "id": "R80314615",
+        "name": "Kawranbazar"
+      },
+      {
+        "id": "R80314616",
+        "name": "Kazipara"
+      },
+      {
+        "id": "R80314544",
+        "name": "Khilgaon Chowdhury Para Bus Stand"
+      },
+      {
+        "id": "R80314593",
+        "name": "Khilgaon Dokkhingao"
+      },
+      {
+        "id": "R80314617",
+        "name": "Khilgoan Bus stop"
+      },
+      {
+        "id": "R80301312",
+        "name": "Khilkhet"
+      },
+      {
+        "id": "R80314618",
+        "name": "Koloni Bazar"
+      },
+      {
+        "id": "R80314620",
+        "name": "Kunipara"
+      },
+      {
+        "id": "R80301302",
+        "name": "Kuril"
+      },
+      {
+        "id": "R80314621",
+        "name": "Kuril bus stop"
+      },
+      {
+        "id": "R80314745",
+        "name": "Kurmitola"
+      },
+      {
+        "id": "R80314622",
+        "name": "Malibag bus stand"
+      },
+      {
+        "id": "R80314623",
+        "name": "Malibag railgate"
+      },
+      {
+        "id": "R80314624",
+        "name": "Manikdi"
+      },
+      {
+        "id": "R80314626",
+        "name": "Matikata"
+      },
+      {
+        "id": "RBD76",
+        "name": "Medical Road"
+      },
+      {
+        "id": "R80314627",
+        "name": "Meradia"
+      },
+      {
+        "id": "R80314628",
+        "name": "Meradia Graveyeard"
+      },
+      {
+        "id": "R80314629",
+        "name": "Meradia kacha bazar"
+      },
+      {
+        "id": "R80314630",
+        "name": "Merul"
+      },
+      {
+        "id": "R80314631",
+        "name": "Middle badda"
+      },
+      {
+        "id": "R80314632",
+        "name": "Middle Meradia"
+      },
+      {
+        "id": "R80314633",
+        "name": "Mirbag"
+      },
+      {
+        "id": "R80301293",
+        "name": "Mirpur 1"
+      },
+      {
+        "id": "R80301332",
+        "name": "Mirpur 10"
+      },
+      {
+        "id": "RBD63",
+        "name": "Mirpur 2 - Borobagh"
+      },
+      {
+        "id": "R80301320",
+        "name": "Mirpur 60 Feet"
+      },
+      {
+        "id": "R80314634",
+        "name": "Mirpur Botanical Garden"
+      },
+      {
+        "id": "R80301325",
+        "name": "Mirpur Cantonment"
+      },
+      {
+        "id": "R80314635",
+        "name": "Mirpur Ceramic"
+      },
+      {
+        "id": "R80314636",
+        "name": "Mirpur Colony"
+      },
+      {
+        "id": "R80314637",
+        "name": "Mirpur Darus Salam"
+      },
+      {
+        "id": "R80301309",
+        "name": "Mirpur DOHS"
+      },
+      {
+        "id": "R80314638",
+        "name": "Mirpur Govt Housing Estate"
+      },
+      {
+        "id": "R80301307",
+        "name": "Mirpur Kazipara"
+      },
+      {
+        "id": "R80314639",
+        "name": "Mirpur Rupnagar"
+      },
+      {
+        "id": "R80314640",
+        "name": "Mirpur Section 1"
+      },
+      {
+        "id": "R80314641",
+        "name": "Mirpur Section 11"
+      },
+      {
+        "id": "R80314642",
+        "name": "Mirpur Section 12"
+      },
+      {
+        "id": "R80314643",
+        "name": "Mirpur Section 13"
+      },
+      {
+        "id": "R80314644",
+        "name": "Mirpur Section 14"
+      },
+      {
+        "id": "R80314645",
+        "name": "Mirpur Section 15"
+      },
+      {
+        "id": "R80314646",
+        "name": "Mirpur Section 16"
+      },
+      {
+        "id": "R80314647",
+        "name": "Mirpur Section 2"
+      },
+      {
+        "id": "R80314648",
+        "name": "Mirpur Section 3"
+      },
+      {
+        "id": "R80314649",
+        "name": "Mirpur Section 4"
+      },
+      {
+        "id": "R80314650",
+        "name": "Mirpur Section 5"
+      },
+      {
+        "id": "R80314651",
+        "name": "Mirpur Section 6"
+      },
+      {
+        "id": "R80314652",
+        "name": "Mirpur Section 7"
+      },
+      {
+        "id": "R80314653",
+        "name": "Mirpur Section 8"
+      },
+      {
+        "id": "R80314654",
+        "name": "Mirpur Section 9"
+      },
+      {
+        "id": "R80301318",
+        "name": "Mirpur Shewrapara"
+      },
+      {
+        "id": "R80314655",
+        "name": "Mirpur Taltola"
+      },
+      {
+        "id": "R80314656",
+        "name": "Mirpur Zoo"
+      },
+      {
+        "id": "R80314657",
+        "name": "Modhubag"
+      },
+      {
+        "id": "R80301308",
+        "name": "Mohakhali"
+      },
+      {
+        "id": "R80314658",
+        "name": "Mohakhali Bus Stand"
+      },
+      {
+        "id": "R80306247",
+        "name": "Mohakhali DOHS"
+      },
+      {
+        "id": "R80314659",
+        "name": "Mohakhali Inter District Bus Terminal"
+      },
+      {
+        "id": "R80314660",
+        "name": "Mohakhali Kachabazar"
+      },
+      {
+        "id": "R80314661",
+        "name": "Mohakhali koraill Basti"
+      },
+      {
+        "id": "R80314662",
+        "name": "Mohakhali TB Gate Jame Mosjid"
+      },
+      {
+        "id": "R80306248",
+        "name": "Mohammadia Housing Limited"
+      },
+      {
+        "id": "R80301296",
+        "name": "Mohammadpur Chandmiya Housing"
+      },
+      {
+        "id": "R80301310",
+        "name": "Mohammadpur Mohammadia Housing Society"
+      },
+      {
+        "id": "R80301334",
+        "name": "Mohammadpur Mohammadia Non Housing Area"
+      },
+      {
+        "id": "R80301327",
+        "name": "Mohammadpur P C Culture Society"
+      },
+      {
+        "id": "R80301290",
+        "name": "Mohammadpur Residential Area"
+      },
+      {
+        "id": "RBD292",
+        "name": "Mollartek Tetul Tola"
+      },
+      {
+        "id": "R80314663",
+        "name": "Monipur"
+      },
+      {
+        "id": "R80301311",
+        "name": "Monipuri Para"
+      },
+      {
+        "id": "R80314664",
+        "name": "Mouchak Market"
+      },
+      {
+        "id": "R80314665",
+        "name": "Nabisco Bus Stand"
+      },
+      {
+        "id": "R80314666",
+        "name": "Nadda"
+      },
+      {
+        "id": "R80306250",
+        "name": "Nakhalpara"
+      },
+      {
+        "id": "R80314667",
+        "name": "Nama Para"
+      },
+      {
+        "id": "R80314668",
+        "name": "Nasir er tek"
+      },
+      {
+        "id": "R80301326",
+        "name": "Neoyazbag"
+      },
+      {
+        "id": "R80301313",
+        "name": "Niketon"
+      },
+      {
+        "id": "R80314669",
+        "name": "Niketon Bazar gate"
+      },
+      {
+        "id": "R80314670",
+        "name": "Nikunja 1"
+      },
+      {
+        "id": "R80314671",
+        "name": "Nikunja 2"
+      },
+      {
+        "id": "RBD64",
+        "name": "Nishat Nagar"
+      },
+      {
+        "id": "R80314672",
+        "name": "Nondipara"
+      },
+      {
+        "id": "R80314673",
+        "name": "Nondipara Bazar"
+      },
+      {
+        "id": "RBD52",
+        "name": "Nondoni Para"
+      },
+      {
+        "id": "R80314674",
+        "name": "Notunbag"
+      },
+      {
+        "id": "R80314675",
+        "name": "Notunbazar Bus Stand"
+      },
+      {
+        "id": "R80314676",
+        "name": "Noyatola"
+      },
+      {
+        "id": "R80314677",
+        "name": "Nurer Chala"
+      },
+      {
+        "id": "R80314678",
+        "name": "Paikpara"
+      },
+      {
+        "id": "R80314679",
+        "name": "Paschim Rampura"
+      },
+      {
+        "id": "R80314680",
+        "name": "Pink City"
+      },
+      {
+        "id": "R80314681",
+        "name": "Pirerbagh"
+      },
+      {
+        "id": "R80314682",
+        "name": "Police Plaza"
+      },
+      {
+        "id": "RBD699",
+        "name": "Rajabari Mor"
+      },
+      {
+        "id": "R80314684",
+        "name": "Rajarbag Kalibari"
+      },
+      {
+        "id": "RBD442",
+        "name": "Ramjan Market"
+      },
+      {
+        "id": "R80314685",
+        "name": "Rampura Bazar"
+      },
+      {
+        "id": "R80314686",
+        "name": "Rampura Bus Stand"
+      },
+      {
+        "id": "RBD630",
+        "name": "Rana Vola"
+      },
+      {
+        "id": "R80314687",
+        "name": "Rasulbagh"
+      },
+      {
+        "id": "R80314688",
+        "name": "Satrasta"
+      },
+      {
+        "id": "R80314689",
+        "name": "Shahinbag"
+      },
+      {
+        "id": "R80314690",
+        "name": "Shahjahadpur Bus Stand"
+      },
+      {
+        "id": "R80314691",
+        "name": "Shahjahdpur"
+      },
+      {
+        "id": "R80314692",
+        "name": "Shantiniketon"
+      },
+      {
+        "id": "R5753643",
+        "name": "Shantipur"
+      },
+      {
+        "id": "R80314693",
+        "name": "Sharnalata"
+      },
+      {
+        "id": "R80314694",
+        "name": "Shena Maloncha"
+      },
+      {
+        "id": "R80314695",
+        "name": "Shenpara Parbata"
+      },
+      {
+        "id": "R80301303",
+        "name": "Sher-e-Bangla Nagar"
+      },
+      {
+        "id": "R80314696",
+        "name": "Shewrapara"
+      },
+      {
+        "id": "R80314697",
+        "name": "Shiddheshwari"
+      },
+      {
+        "id": "R80314698",
+        "name": "Shipahibag"
+      },
+      {
+        "id": "R80301306",
+        "name": "Shyamoli"
+      },
+      {
+        "id": "R80314699",
+        "name": "Sipahi bag tampoo stand"
+      },
+      {
+        "id": "R80314700",
+        "name": "Solmaid"
+      },
+      {
+        "id": "R80314701",
+        "name": "Sona katra"
+      },
+      {
+        "id": "RBD676",
+        "name": "Sorkar Para"
+      },
+      {
+        "id": "R80314702",
+        "name": "South Badda"
+      },
+      {
+        "id": "R80314703",
+        "name": "South Banashree"
+      },
+      {
+        "id": "R80314704",
+        "name": "Subastu Nogorvally"
+      },
+      {
+        "id": "R80314705",
+        "name": "Taltola Khilgoan"
+      },
+      {
+        "id": "RBD404",
+        "name": "Taltola Mor"
+      },
+      {
+        "id": "RBD579",
+        "name": "Taltola Mosjid Road"
+      },
+      {
+        "id": "R80301321",
+        "name": "Tejgaon"
+      },
+      {
+        "id": "R80314706",
+        "name": "Tejgaon - Gulshan Link Road"
+      },
+      {
+        "id": "R80301305",
+        "name": "Tejgaon Industrial Area"
+      },
+      {
+        "id": "R80306249",
+        "name": "Tejkunipara"
+      },
+      {
+        "id": "R80314707",
+        "name": "Tek para"
+      },
+      {
+        "id": "R80314708",
+        "name": "Television Museum"
+      },
+      {
+        "id": "R80314709",
+        "name": "Tibbet Factory"
+      },
+      {
+        "id": "R80314741",
+        "name": "Tilpa Para"
+      },
+      {
+        "id": "R80314710",
+        "name": "Titas Road"
+      },
+      {
+        "id": "R80314711",
+        "name": "Trimohoni Bazar"
+      },
+      {
+        "id": "R80314712",
+        "name": "Trimohoni Bridge"
+      },
+      {
+        "id": "R80314713",
+        "name": "Truckstand"
+      },
+      {
+        "id": "R80314714",
+        "name": "Ulon"
+      },
+      {
+        "id": "RBD262",
+        "name": "Update Dental College"
+      },
+      {
+        "id": "R80314716",
+        "name": "Uttara Airport Rail Station"
+      },
+      {
+        "id": "RBD102",
+        "name": "Uttara Azompur Farid Market"
+      },
+      {
+        "id": "RBD649",
+        "name": "Uttara Azompur Kacha Bazar"
+      },
+      {
+        "id": "RBD59",
+        "name": "Uttara Dhour Turag Thana"
+      },
+      {
+        "id": "R80314717",
+        "name": "Uttara Sector 1"
+      },
+      {
+        "id": "R80314718",
+        "name": "Uttara Sector 10"
+      },
+      {
+        "id": "R80314719",
+        "name": "Uttara Sector 11"
+      },
+      {
+        "id": "R80314720",
+        "name": "Uttara Sector 12"
+      },
+      {
+        "id": "R80314721",
+        "name": "Uttara Sector 13"
+      },
+      {
+        "id": "R80314722",
+        "name": "Uttara Sector 14"
+      },
+      {
+        "id": "R80314723",
+        "name": "Uttara Sector 15"
+      },
+      {
+        "id": "RBD1531",
+        "name": "Uttara Sector 16"
+      },
+      {
+        "id": "RBD1532",
+        "name": "Uttara Sector 17"
+      },
+      {
+        "id": "RBD1529",
+        "name": "Uttara Sector 18"
+      },
+      {
+        "id": "R80314724",
+        "name": "Uttara Sector 2"
+      },
+      {
+        "id": "R80314725",
+        "name": "Uttara Sector 3"
+      },
+      {
+        "id": "R80314726",
+        "name": "Uttara Sector 4"
+      },
+      {
+        "id": "R80314547",
+        "name": "Uttara Sector - 4 Ajompur"
+      },
+      {
+        "id": "RBD547",
+        "name": "Uttara Sector 4 - Baitul Azam Mosjid"
+      },
+      {
+        "id": "RBD6",
+        "name": "Uttara Sector - 4 Munsi Market"
+      },
+      {
+        "id": "R80314727",
+        "name": "Uttara Sector 5"
+      },
+      {
+        "id": "R80314728",
+        "name": "Uttara Sector 6"
+      },
+      {
+        "id": "R80314729",
+        "name": "Uttara Sector 7"
+      },
+      {
+        "id": "R80314730",
+        "name": "Uttara Sector 8"
+      },
+      {
+        "id": "R80314731",
+        "name": "Uttara Sector 9"
+      },
+      {
+        "id": "R80314715",
+        "name": "Uttar Badda"
+      },
+      {
+        "id": "R80314732",
+        "name": "Uttargao"
+      },
+      {
+        "id": "RBD68",
+        "name": "Uttarkhan Atipara Bazar"
+      },
+      {
+        "id": "RBD327",
+        "name": "Uttarkhan Dewan City"
+      },
+      {
+        "id": "R80314733",
+        "name": "Uttarkhan Faidabad Kathal Tola"
+      },
+      {
+        "id": "RBD152",
+        "name": "Uttarkhan Faidabad Mor"
+      },
+      {
+        "id": "RBD377",
+        "name": "Uttarkhan Faidabad Police Fari"
+      },
+      {
+        "id": "RBD133",
+        "name": "Uttarkhan Faidabad Primary School"
+      },
+      {
+        "id": "RBD443",
+        "name": "Uttarkhan Faidabad Tic Colony Mor"
+      },
+      {
+        "id": "RBD154",
+        "name": "Uttarkhan Faidabad Transmitter Mor"
+      },
+      {
+        "id": "RBD397",
+        "name": "Uttarkhan Helal Market"
+      },
+      {
+        "id": "R80301299",
+        "name": "Uttarkhan Joynal Market"
+      },
+      {
+        "id": "RBD593",
+        "name": "Uttarkhan Kachkura"
+      },
+      {
+        "id": "RBD29",
+        "name": "Uttarkhan Majar Road"
+      },
+      {
+        "id": "RBD54",
+        "name": "Uttarkhan Master Para Bazar"
+      },
+      {
+        "id": "RBD27",
+        "name": "Uttarkhan Masterpara Kola Bagan"
+      },
+      {
+        "id": "RBD567",
+        "name": "Uttarkhan Master Para Munda"
+      },
+      {
+        "id": "RBD724",
+        "name": "Uttarkhan Moinar Tek"
+      },
+      {
+        "id": "RBD739",
+        "name": "Uttarkhan Mojibur Market"
+      },
+      {
+        "id": "RBD729",
+        "name": "Uttarkhan Pular Tek"
+      },
+      {
+        "id": "R80314734",
+        "name": "Vashantek"
+      },
+      {
+        "id": "R80314735",
+        "name": "Vatara"
+      },
+      {
+        "id": "R80314736",
+        "name": "Vatara Mor"
+      },
+      {
+        "id": "R80314737",
+        "name": "West Hazipara"
+      },
+      {
+        "id": "R80314738",
+        "name": "West Nakhalpara"
+      },
+      {
+        "id": "R80314739",
+        "name": "West Rampura"
+      },
+      {
+        "id": "R80314740",
+        "name": "Wireless More Bus Stop"
+      }
+    ]
+  },
+  {
+    "id": "R80300574",
+    "name": "Dhaka - South",
+    "zones": [
+      {
+        "id": "RBD629",
+        "name": "Donia New/Old Ak School"
+      },
+      {
+        "id": "R80315285",
+        "name": "Abdul Bani Road"
+      },
+      {
+        "id": "R80315286",
+        "name": "Abdul Hadi Lane"
+      },
+      {
+        "id": "R80315287",
+        "name": "Abed Dali Road"
+      },
+      {
+        "id": "R80315289",
+        "name": "Abhidas Lane"
+      },
+      {
+        "id": "R80315291",
+        "name": "Abul Hasnat Road"
+      },
+      {
+        "id": "R80315292",
+        "name": "Abul khairat Road"
+      },
+      {
+        "id": "R80315295",
+        "name": "Agamasi Lane"
+      },
+      {
+        "id": "R80315294",
+        "name": "Aga sadek road"
+      },
+      {
+        "id": "R80315296",
+        "name": "Ahmedbagh"
+      },
+      {
+        "id": "R80315297",
+        "name": "Ahsan Ullah Road"
+      },
+      {
+        "id": "R80315301",
+        "name": "Alamganj Road"
+      },
+      {
+        "id": "R80315300",
+        "name": "Al Amin Road"
+      },
+      {
+        "id": "R80315304",
+        "name": "Aminabad colony moghbaraz"
+      },
+      {
+        "id": "R80315306",
+        "name": "Aminbagh"
+      },
+      {
+        "id": "R80315307",
+        "name": "Anond mohan boshak Lane"
+      },
+      {
+        "id": "R80315309",
+        "name": "Arambagh"
+      },
+      {
+        "id": "R80315310",
+        "name": "Armenium Street"
+      },
+      {
+        "id": "R80315311",
+        "name": "Ashik lane"
+      },
+      {
+        "id": "R80315313",
+        "name": "Ayub Ali colony Rahim square"
+      },
+      {
+        "id": "R80301265",
+        "name": "Azimpur"
+      },
+      {
+        "id": "R80315314",
+        "name": "Azizullah Road"
+      },
+      {
+        "id": "R80315319",
+        "name": "Bagamganj Lane"
+      },
+      {
+        "id": "R80315320",
+        "name": "Bagdasa Lane"
+      },
+      {
+        "id": "R6839011",
+        "name": "Bahadurpur Lane"
+      },
+      {
+        "id": "R80315322",
+        "name": "Bailey Square Moghbazar"
+      },
+      {
+        "id": "R80315323",
+        "name": "Baitul Mukarram Stadium"
+      },
+      {
+        "id": "R80315325",
+        "name": "Bakshibagh"
+      },
+      {
+        "id": "R80306252",
+        "name": "Banasree"
+      },
+      {
+        "id": "RBD301",
+        "name": "Bandura Nawabganj"
+      },
+      {
+        "id": "R80315326",
+        "name": "Bangabandhu Avenue & Rest House"
+      },
+      {
+        "id": "R80301274",
+        "name": "Bangabhaban"
+      },
+      {
+        "id": "R80315328",
+        "name": "Bangladesh Bank Colony"
+      },
+      {
+        "id": "R80315329",
+        "name": "Bangladesh Railway Barracks"
+      },
+      {
+        "id": "R80301281",
+        "name": "Bangshal"
+      },
+      {
+        "id": "R80315330",
+        "name": "Bangshal Road"
+      },
+      {
+        "id": "RBD276",
+        "name": "Barnamala School"
+      },
+      {
+        "id": "R80301253",
+        "name": "Basabo"
+      },
+      {
+        "id": "R80315332",
+        "name": "Bashabo Ohaba Colony"
+      },
+      {
+        "id": "R80315333",
+        "name": "Bashir uddin road"
+      },
+      {
+        "id": "R80315335",
+        "name": "Bashundhara City"
+      },
+      {
+        "id": "R80315338",
+        "name": "Basu Bazar Lane"
+      },
+      {
+        "id": "R80315339",
+        "name": "BDR Pilkhana"
+      },
+      {
+        "id": "R80315341",
+        "name": "Begum Bazar"
+      },
+      {
+        "id": "R80315342",
+        "name": "Bhagwati Banerjee Road"
+      },
+      {
+        "id": "RBD53",
+        "name": "Bhanga Press"
+      },
+      {
+        "id": "R80315344",
+        "name": "Bhojhari Saha Street"
+      },
+      {
+        "id": "R80301249",
+        "name": "Bijoy Nagar"
+      },
+      {
+        "id": "R80315347",
+        "name": "Central prison"
+      },
+      {
+        "id": "R80315348",
+        "name": "central public library"
+      },
+      {
+        "id": "R80315350",
+        "name": "Chamelibagh"
+      },
+      {
+        "id": "R80315352",
+        "name": "Chandi Charan Bose Street"
+      },
+      {
+        "id": "R80315354",
+        "name": "Chankharpul lane"
+      },
+      {
+        "id": "RBD69",
+        "name": "Chan Para"
+      },
+      {
+        "id": "RBD636",
+        "name": "ChanPara Zia Bagh"
+      },
+      {
+        "id": "R80301251",
+        "name": "Chawk Bazar"
+      },
+      {
+        "id": "RBD1534",
+        "name": "Chittagong Road"
+      },
+      {
+        "id": "R80315355",
+        "name": "Chota Katra"
+      },
+      {
+        "id": "R80315357",
+        "name": "Circular Road"
+      },
+      {
+        "id": "R80315358",
+        "name": "Committee ganj"
+      },
+      {
+        "id": "R80315359",
+        "name": "Court House Street"
+      },
+      {
+        "id": "R80315365",
+        "name": "D.C Court"
+      },
+      {
+        "id": "R80315367",
+        "name": "Dayaganj Jelepara"
+      },
+      {
+        "id": "R80315368",
+        "name": "Dayaganj Road"
+      },
+      {
+        "id": "R80315364",
+        "name": "DC Roy Road"
+      },
+      {
+        "id": "R80315370",
+        "name": "Deen Nath Sen Road"
+      },
+      {
+        "id": "R80301261",
+        "name": "Demra"
+      },
+      {
+        "id": "R80315373",
+        "name": "Dhaka Cotton Mills"
+      },
+      {
+        "id": "R80315374",
+        "name": "Dhaka medical college"
+      },
+      {
+        "id": "R80315376",
+        "name": "Dhaka University"
+      },
+      {
+        "id": "RBD180",
+        "name": "Dhakeshwari Road"
+      },
+      {
+        "id": "R80315379",
+        "name": "Dhalpur"
+      },
+      {
+        "id": "R80315380",
+        "name": "Dhanmondi 1"
+      },
+      {
+        "id": "R80315381",
+        "name": "Dhanmondi 10"
+      },
+      {
+        "id": "R80315382",
+        "name": "Dhanmondi 10A"
+      },
+      {
+        "id": "R80315384",
+        "name": "Dhanmondi 11"
+      },
+      {
+        "id": "R80315386",
+        "name": "Dhanmondi 11A"
+      },
+      {
+        "id": "R80315387",
+        "name": "Dhanmondi 12"
+      },
+      {
+        "id": "R80315389",
+        "name": "Dhanmondi 12A"
+      },
+      {
+        "id": "R80315390",
+        "name": "Dhanmondi 13"
+      },
+      {
+        "id": "R80315391",
+        "name": "Dhanmondi 13A"
+      },
+      {
+        "id": "R80315392",
+        "name": "Dhanmondi 14"
+      },
+      {
+        "id": "R80315394",
+        "name": "Dhanmondi 15"
+      },
+      {
+        "id": "R80315395",
+        "name": "Dhanmondi 16"
+      },
+      {
+        "id": "R80315397",
+        "name": "Dhanmondi 17"
+      },
+      {
+        "id": "R80315399",
+        "name": "Dhanmondi 18"
+      },
+      {
+        "id": "R80315400",
+        "name": "Dhanmondi 19"
+      },
+      {
+        "id": "R80315402",
+        "name": "Dhanmondi 1A"
+      },
+      {
+        "id": "R80315404",
+        "name": "Dhanmondi 2"
+      },
+      {
+        "id": "R80315405",
+        "name": "Dhanmondi 20"
+      },
+      {
+        "id": "R80315407",
+        "name": "Dhanmondi 21"
+      },
+      {
+        "id": "R80315408",
+        "name": "Dhanmondi 22"
+      },
+      {
+        "id": "R80315410",
+        "name": "Dhanmondi 23"
+      },
+      {
+        "id": "R80315411",
+        "name": "Dhanmondi 24"
+      },
+      {
+        "id": "R80315413",
+        "name": "Dhanmondi 25"
+      },
+      {
+        "id": "R80315414",
+        "name": "Dhanmondi 26"
+      },
+      {
+        "id": "R80315416",
+        "name": "Dhanmondi 27"
+      },
+      {
+        "id": "R80315417",
+        "name": "Dhanmondi 28"
+      },
+      {
+        "id": "R80315419",
+        "name": "Dhanmondi 29"
+      },
+      {
+        "id": "R80315421",
+        "name": "Dhanmondi 2A"
+      },
+      {
+        "id": "R80315422",
+        "name": "Dhanmondi 3"
+      },
+      {
+        "id": "R80315424",
+        "name": "Dhanmondi 30"
+      },
+      {
+        "id": "R80315425",
+        "name": "Dhanmondi 31"
+      },
+      {
+        "id": "R80315426",
+        "name": "Dhanmondi 32"
+      },
+      {
+        "id": "R80315428",
+        "name": "Dhanmondi 3A"
+      },
+      {
+        "id": "R80315430",
+        "name": "Dhanmondi 4"
+      },
+      {
+        "id": "R80315431",
+        "name": "Dhanmondi 4A"
+      },
+      {
+        "id": "R80315433",
+        "name": "Dhanmondi 5"
+      },
+      {
+        "id": "R80315434",
+        "name": "Dhanmondi 5A"
+      },
+      {
+        "id": "R80315437",
+        "name": "Dhanmondi 6"
+      },
+      {
+        "id": "R80315439",
+        "name": "Dhanmondi 6A"
+      },
+      {
+        "id": "R80315440",
+        "name": "Dhanmondi 7"
+      },
+      {
+        "id": "R80315442",
+        "name": "Dhanmondi 7A"
+      },
+      {
+        "id": "R80315444",
+        "name": "Dhanmondi 8"
+      },
+      {
+        "id": "R80315445",
+        "name": "Dhanmondi 8A"
+      },
+      {
+        "id": "R80315448",
+        "name": "Dhanmondi 9"
+      },
+      {
+        "id": "R80315449",
+        "name": "Dhanmondi 9A"
+      },
+      {
+        "id": "R80315451",
+        "name": "Dhanmondi Staff Quarter"
+      },
+      {
+        "id": "R80315452",
+        "name": "Dholaipar"
+      },
+      {
+        "id": "R80301275",
+        "name": "Dilkusha"
+      },
+      {
+        "id": "R80315455",
+        "name": "Dilkusha Commercial Area"
+      },
+      {
+        "id": "RBD297",
+        "name": "Donia - Kadamtali"
+      },
+      {
+        "id": "R80315457",
+        "name": "Dr. M A Rashid Hall"
+      },
+      {
+        "id": "R80315459",
+        "name": "East Bashabo"
+      },
+      {
+        "id": "R80315463",
+        "name": "Eastern Housing"
+      },
+      {
+        "id": "R80315462",
+        "name": "East Raibazar"
+      },
+      {
+        "id": "R80301248",
+        "name": "Elephant Road"
+      },
+      {
+        "id": "R80315465",
+        "name": "Engineering University & Residential Area"
+      },
+      {
+        "id": "R80315466",
+        "name": "English Road"
+      },
+      {
+        "id": "R80315468",
+        "name": "Eskaton Garden Road"
+      },
+      {
+        "id": "R80315469",
+        "name": "Fakirapul"
+      },
+      {
+        "id": "R80315471",
+        "name": "Fakirapul Market Area"
+      },
+      {
+        "id": "R80315472",
+        "name": "Farashgang Lane"
+      },
+      {
+        "id": "R80315474",
+        "name": "Faridabad Lane"
+      },
+      {
+        "id": "R80315476",
+        "name": "Folder Street"
+      },
+      {
+        "id": "R80315477",
+        "name": "French Road"
+      },
+      {
+        "id": "R80315480",
+        "name": "Fulbaria Station East Area"
+      },
+      {
+        "id": "R80315481",
+        "name": "Ganguly Lane"
+      },
+      {
+        "id": "R80301276",
+        "name": "Gendaria"
+      },
+      {
+        "id": "RBD476",
+        "name": "Gendaria Rail Gate"
+      },
+      {
+        "id": "R80315482",
+        "name": "Ghaji Osman Gani Road"
+      },
+      {
+        "id": "R80315484",
+        "name": "Golakpal Lane"
+      },
+      {
+        "id": "R80315485",
+        "name": "Golam Mostafa Lane"
+      },
+      {
+        "id": "R80315486",
+        "name": "Gopibagh"
+      },
+      {
+        "id": "R80315487",
+        "name": "Gopinath Dutt Kabiraj Street"
+      },
+      {
+        "id": "R80306253",
+        "name": "Goran"
+      },
+      {
+        "id": "R80315488",
+        "name": "Govinda das lane"
+      },
+      {
+        "id": "R80315489",
+        "name": "Green corner green road"
+      },
+      {
+        "id": "R80315490",
+        "name": "Green Corner paribag"
+      },
+      {
+        "id": "R80315491",
+        "name": "Green Road East"
+      },
+      {
+        "id": "R80315492",
+        "name": "Green Road Staff Quarter"
+      },
+      {
+        "id": "R80315493",
+        "name": "Green Road West"
+      },
+      {
+        "id": "R80315494",
+        "name": "Green Square"
+      },
+      {
+        "id": "R80315496",
+        "name": "Gulbagh"
+      },
+      {
+        "id": "R80301262",
+        "name": "Gulistan"
+      },
+      {
+        "id": "R80315497",
+        "name": "Hafiz Ullah Road"
+      },
+      {
+        "id": "R80315498",
+        "name": "Haji Afsaruddin Road"
+      },
+      {
+        "id": "R80315499",
+        "name": "Haji Mohammad Moshin Hall"
+      },
+      {
+        "id": "R80315500",
+        "name": "Hakim Habibur Rahman Road"
+      },
+      {
+        "id": "R80315504",
+        "name": "Haricharan Roy Road"
+      },
+      {
+        "id": "R80315505",
+        "name": "Harish chand lane basu street"
+      },
+      {
+        "id": "R80315502",
+        "name": "Hari Street"
+      },
+      {
+        "id": "R80315506",
+        "name": "Hatembagh"
+      },
+      {
+        "id": "R80315508",
+        "name": "Hatirpool Free school Street"
+      },
+      {
+        "id": "R80315509",
+        "name": "Hatkhola Road"
+      },
+      {
+        "id": "R80301278",
+        "name": "Hazaribagh"
+      },
+      {
+        "id": "R80315511",
+        "name": "Hazi mainuddin Road"
+      },
+      {
+        "id": "R80315514",
+        "name": "High court Staff quarter"
+      },
+      {
+        "id": "R80315516",
+        "name": "Imam Gang"
+      },
+      {
+        "id": "R80315519",
+        "name": "Indrapuri"
+      },
+      {
+        "id": "R80315523",
+        "name": "Jagannath Hall"
+      },
+      {
+        "id": "R80301277",
+        "name": "Jatrabari"
+      },
+      {
+        "id": "RBD540",
+        "name": "Jatrabari Arot"
+      },
+      {
+        "id": "R80315524",
+        "name": "Jayakali Mandir Road"
+      },
+      {
+        "id": "RBD156",
+        "name": "Jhauchor"
+      },
+      {
+        "id": "R80315526",
+        "name": "Judge Court"
+      },
+      {
+        "id": "R80315534",
+        "name": "K.M Azam Lane"
+      },
+      {
+        "id": "R80315533",
+        "name": "K.Pk Ghosh Street"
+      },
+      {
+        "id": "R80315535",
+        "name": "Kadamtala"
+      },
+      {
+        "id": "RBD644",
+        "name": "Kajla"
+      },
+      {
+        "id": "R80301256",
+        "name": "Kakrail"
+      },
+      {
+        "id": "R80301247",
+        "name": "Kalabagan"
+      },
+      {
+        "id": "R80315536",
+        "name": "Kalabagan Free School Street"
+      },
+      {
+        "id": "RBD611",
+        "name": "Kalma Market"
+      },
+      {
+        "id": "R80315537",
+        "name": "Kamalapur"
+      },
+      {
+        "id": "R80301272",
+        "name": "Kamlapur"
+      },
+      {
+        "id": "RBD467",
+        "name": "Kamrangirchar"
+      },
+      {
+        "id": "RBD1491",
+        "name": "Kanchpur"
+      },
+      {
+        "id": "R80315538",
+        "name": "Karimullarbagh"
+      },
+      {
+        "id": "R80315540",
+        "name": "Kasaituly"
+      },
+      {
+        "id": "R80315541",
+        "name": "Katherpul Lane"
+      },
+      {
+        "id": "R80315544",
+        "name": "Kazirbagh"
+      },
+      {
+        "id": "R80315543",
+        "name": "Kazi Zia uddin Lane"
+      },
+      {
+        "id": "R80315545",
+        "name": "Kedar Nath"
+      },
+      {
+        "id": "R80306251",
+        "name": "Khilgaon"
+      },
+      {
+        "id": "R80315547",
+        "name": "Khilgaon Bagicha"
+      },
+      {
+        "id": "R80315548",
+        "name": "Khilgaon Colony"
+      },
+      {
+        "id": "R80315532",
+        "name": "K M Das Lane"
+      },
+      {
+        "id": "RBD243",
+        "name": "Konapara"
+      },
+      {
+        "id": "RBD414",
+        "name": "Kutubkhali"
+      },
+      {
+        "id": "R80301257",
+        "name": "Lalbagh"
+      },
+      {
+        "id": "R80306258",
+        "name": "Lalmatia"
+      },
+      {
+        "id": "R80315551",
+        "name": "Lal Mohan Poddar Lane"
+      },
+      {
+        "id": "R80315553",
+        "name": "Lalmohan Shah Street"
+      },
+      {
+        "id": "R80315555",
+        "name": "Large katra"
+      },
+      {
+        "id": "R80315557",
+        "name": "Madan Mohan Basak Road"
+      },
+      {
+        "id": "R80315559",
+        "name": "Madanshah Lane"
+      },
+      {
+        "id": "R80315562",
+        "name": "Madartek"
+      },
+      {
+        "id": "RBD599",
+        "name": "Madinabagh"
+      },
+      {
+        "id": "R80315565",
+        "name": "Malakartola Lane"
+      },
+      {
+        "id": "R80306255",
+        "name": "Malibag"
+      },
+      {
+        "id": "R80315568",
+        "name": "Malibagh Bazar Road"
+      },
+      {
+        "id": "R80315569",
+        "name": "Malitola lane"
+      },
+      {
+        "id": "R80306256",
+        "name": "Maniknagar"
+      },
+      {
+        "id": "R80315570",
+        "name": "Manik Nagar"
+      },
+      {
+        "id": "R80315571",
+        "name": "Manik Nagar Miyazan Lane"
+      },
+      {
+        "id": "R80315572",
+        "name": "Maradia"
+      },
+      {
+        "id": "R80301255",
+        "name": "Matuail"
+      },
+      {
+        "id": "R80315574",
+        "name": "Mayakanon"
+      },
+      {
+        "id": "RBD296",
+        "name": "Merajnagar"
+      },
+      {
+        "id": "R80315575",
+        "name": "Methorpotty"
+      },
+      {
+        "id": "R80315577",
+        "name": "Middle Bashabo"
+      },
+      {
+        "id": "R80315578",
+        "name": "Mill Barracks"
+      },
+      {
+        "id": "R80315580",
+        "name": "Mintu Road"
+      },
+      {
+        "id": "R80315581",
+        "name": "Mir Hazaribagh"
+      },
+      {
+        "id": "R80315582",
+        "name": "Mitali road"
+      },
+      {
+        "id": "R80315584",
+        "name": "Mitfort Road"
+      },
+      {
+        "id": "R80315585",
+        "name": "Mogbazar Circuit House Road"
+      },
+      {
+        "id": "R80301264",
+        "name": "Moghbazar"
+      },
+      {
+        "id": "R80315700",
+        "name": "Moghbazar TNT colony"
+      },
+      {
+        "id": "RBD153",
+        "name": "Mohhammadbagh"
+      },
+      {
+        "id": "R80315586",
+        "name": "Mohini Mohandas Lane"
+      },
+      {
+        "id": "R80315587",
+        "name": "Mokim Katara"
+      },
+      {
+        "id": "R80315588",
+        "name": "Momenbagh"
+      },
+      {
+        "id": "R80301267",
+        "name": "Motijheel"
+      },
+      {
+        "id": "R80315589",
+        "name": "Motijheel Colony"
+      },
+      {
+        "id": "R80315591",
+        "name": "Motijheel Commercial Area"
+      },
+      {
+        "id": "R80306254",
+        "name": "Mugda"
+      },
+      {
+        "id": "R80315592",
+        "name": "Mugdapara"
+      },
+      {
+        "id": "RBD241",
+        "name": "Mujahid Nagar"
+      },
+      {
+        "id": "R80315593",
+        "name": "Municipal Staff Quarter"
+      },
+      {
+        "id": "R80315594",
+        "name": "Munir Hossain Lane"
+      },
+      {
+        "id": "R80315595",
+        "name": "Muradpur"
+      },
+      {
+        "id": "R80315596",
+        "name": "Mymensingh lane"
+      },
+      {
+        "id": "R80315597",
+        "name": "Nabalka Mia lane"
+      },
+      {
+        "id": "R80315598",
+        "name": "Narinda Lane"
+      },
+      {
+        "id": "R80315599",
+        "name": "Narinda Road"
+      },
+      {
+        "id": "R80315600",
+        "name": "National Museum Quarter"
+      },
+      {
+        "id": "R80315601",
+        "name": "Naveen Chandra Gombasi Road"
+      },
+      {
+        "id": "R80315602",
+        "name": "Nawab Deori"
+      },
+      {
+        "id": "R80315603",
+        "name": "Nawab Katara"
+      },
+      {
+        "id": "R80315604",
+        "name": "Nawab Street"
+      },
+      {
+        "id": "R80315605",
+        "name": "Nayapalton"
+      },
+      {
+        "id": "R80315606",
+        "name": "Nazira Bazar Lane"
+      },
+      {
+        "id": "R80315607",
+        "name": "Nazrul Islam Hall"
+      },
+      {
+        "id": "R80315608",
+        "name": "Neki Deori"
+      },
+      {
+        "id": "R80315609",
+        "name": "New Eskaton Road"
+      },
+      {
+        "id": "R80315610",
+        "name": "New Jurain Alam Bagh"
+      },
+      {
+        "id": "R80301246",
+        "name": "New market"
+      },
+      {
+        "id": "R80315611",
+        "name": "Nilkhet Babupara"
+      },
+      {
+        "id": "R80315612",
+        "name": "Noor box Lane"
+      },
+      {
+        "id": "R80315613",
+        "name": "North Bashabo"
+      },
+      {
+        "id": "R80315614",
+        "name": "North Circular Road"
+      },
+      {
+        "id": "R80315619",
+        "name": "NorthEast Bashabo"
+      },
+      {
+        "id": "R80315615",
+        "name": "North Jatrabari"
+      },
+      {
+        "id": "R80315616",
+        "name": "North Mugdapara Deputy Colony"
+      },
+      {
+        "id": "R80315617",
+        "name": "North Rajarbagh"
+      },
+      {
+        "id": "R80315618",
+        "name": "North Road"
+      },
+      {
+        "id": "R80315620",
+        "name": "NorthWest Jatrabari"
+      },
+      {
+        "id": "R80315622",
+        "name": "Outer Circular Road"
+      },
+      {
+        "id": "R80315624",
+        "name": "Padmolochan Roy Lane"
+      },
+      {
+        "id": "R80301270",
+        "name": "Palamganj"
+      },
+      {
+        "id": "R80301252",
+        "name": "Pallabi"
+      },
+      {
+        "id": "R80301254",
+        "name": "Palton"
+      },
+      {
+        "id": "R80315625",
+        "name": "Paribagh Shah Sahib Road"
+      },
+      {
+        "id": "R80315626",
+        "name": "Patlakhan Lane"
+      },
+      {
+        "id": "R80315627",
+        "name": "Patuatuli Lane"
+      },
+      {
+        "id": "R80315629",
+        "name": "PG Hospital"
+      },
+      {
+        "id": "R80315630",
+        "name": "Poet Jasim Uddin Hall"
+      },
+      {
+        "id": "R80315631",
+        "name": "Police Hospital"
+      },
+      {
+        "id": "R80315633",
+        "name": "Postagola"
+      },
+      {
+        "id": "R80315634",
+        "name": "Postal Colony"
+      },
+      {
+        "id": "R80315636",
+        "name": "Purana Paltan GPO"
+      },
+      {
+        "id": "R80315637",
+        "name": "Purana Paltan Line"
+      },
+      {
+        "id": "R80315521",
+        "name": "Puran Dhaka - Islampur"
+      },
+      {
+        "id": "RBD336",
+        "name": "Puran Para"
+      },
+      {
+        "id": "R80315640",
+        "name": "Railway Hospital area"
+      },
+      {
+        "id": "R80315641",
+        "name": "Rajabagh Police Line"
+      },
+      {
+        "id": "R80315642",
+        "name": "Rajani Bose Lane"
+      },
+      {
+        "id": "R80315643",
+        "name": "Rajani Chowdhury Road"
+      },
+      {
+        "id": "R80315632",
+        "name": "Rajarbag Police Line"
+      },
+      {
+        "id": "R80315644",
+        "name": "Rakhal chandra bashak lane"
+      },
+      {
+        "id": "R80301269",
+        "name": "Ramna"
+      },
+      {
+        "id": "R80301259",
+        "name": "Rampura"
+      },
+      {
+        "id": "RBD684",
+        "name": "Rayerbagh"
+      },
+      {
+        "id": "R80315645",
+        "name": "Rishikosh Das Road"
+      },
+      {
+        "id": "R80315638",
+        "name": "R K Mission Road"
+      },
+      {
+        "id": "RBD35",
+        "name": "Roisnagar"
+      },
+      {
+        "id": "R80315646",
+        "name": "Rokaya Hall"
+      },
+      {
+        "id": "R80315650",
+        "name": "Rupa das lal lane"
+      },
+      {
+        "id": "R80315651",
+        "name": "Rupchan Lane"
+      },
+      {
+        "id": "R80301280",
+        "name": "Sabujbagh"
+      },
+      {
+        "id": "RBD444",
+        "name": "Saddam Market"
+      },
+      {
+        "id": "R80315652",
+        "name": "Saidabad"
+      },
+      {
+        "id": "R80315653",
+        "name": "Salimullah Hall"
+      },
+      {
+        "id": "R80315654",
+        "name": "Samaswada lane"
+      },
+      {
+        "id": "R80301266",
+        "name": "Sarulia"
+      },
+      {
+        "id": "R80315655",
+        "name": "Satish Sarkar Road"
+      },
+      {
+        "id": "R80315719",
+        "name": "Satmasjid Road"
+      },
+      {
+        "id": "R80315656",
+        "name": "Sayed hasan Ali Lane"
+      },
+      {
+        "id": "R80315657",
+        "name": "Secretariat Road"
+      },
+      {
+        "id": "R80315658",
+        "name": "Segun Bagicha"
+      },
+      {
+        "id": "R80301282",
+        "name": "Shahbagh"
+      },
+      {
+        "id": "R80315660",
+        "name": "Shaheed Memorial Hall"
+      },
+      {
+        "id": "R80315661",
+        "name": "Shahidbagh"
+      },
+      {
+        "id": "R80315662",
+        "name": "Shahidullah Hall"
+      },
+      {
+        "id": "R80315663",
+        "name": "Shahjahanpur"
+      },
+      {
+        "id": "R80315664",
+        "name": "Shahjahanpur Railway Colony"
+      },
+      {
+        "id": "R80315659",
+        "name": "Shah Shaheb Lane"
+      },
+      {
+        "id": "R80315665",
+        "name": "Shakhari Bazar Road"
+      },
+      {
+        "id": "R80315666",
+        "name": "Shakhari Nagar Lane"
+      },
+      {
+        "id": "RBD384",
+        "name": "Shampur"
+      },
+      {
+        "id": "R80315667",
+        "name": "Shamsun Nahar Hall"
+      },
+      {
+        "id": "R80315668",
+        "name": "Shantibagh"
+      },
+      {
+        "id": "R80301260",
+        "name": "Shantinagar"
+      },
+      {
+        "id": "R7405799",
+        "name": "Shantinagar Market Area"
+      },
+      {
+        "id": "R80315669",
+        "name": "Sharat chandra chakraborty lane"
+      },
+      {
+        "id": "R80315670",
+        "name": "Sharatgupta Road"
+      },
+      {
+        "id": "R80315671",
+        "name": "Shashibhushan Chaterjee Lane"
+      },
+      {
+        "id": "RBD727",
+        "name": "Sheikdi"
+      },
+      {
+        "id": "R80315672",
+        "name": "Sheikh Majibur Rahman Hall"
+      },
+      {
+        "id": "R80315674",
+        "name": "Sherabangla Hall"
+      },
+      {
+        "id": "R80315673",
+        "name": "Sher e Bangla Road"
+      },
+      {
+        "id": "RBD1535",
+        "name": "Shonirakhra"
+      },
+      {
+        "id": "R80315675",
+        "name": "Shukrabad"
+      },
+      {
+        "id": "R80315676",
+        "name": "Shurwardi Hall"
+      },
+      {
+        "id": "R80315677",
+        "name": "Siddheshwari Road"
+      },
+      {
+        "id": "R80315679",
+        "name": "Siddique bazar"
+      },
+      {
+        "id": "R80315678",
+        "name": "Siddique lane"
+      },
+      {
+        "id": "R80315681",
+        "name": "Simson Road"
+      },
+      {
+        "id": "R80315682",
+        "name": "Sir AF Rahman hall"
+      },
+      {
+        "id": "R80315683",
+        "name": "Sobhanbagh"
+      },
+      {
+        "id": "RBD157",
+        "name": "Sohidnagar"
+      },
+      {
+        "id": "R80315684",
+        "name": "Sonali Bank Colony"
+      },
+      {
+        "id": "R80315685",
+        "name": "South Bashabo"
+      },
+      {
+        "id": "R80315689",
+        "name": "SouthEast Jatrabari"
+      },
+      {
+        "id": "R80315686",
+        "name": "South Jatrabari"
+      },
+      {
+        "id": "R80315687",
+        "name": "South Khilgaon"
+      },
+      {
+        "id": "R80315688",
+        "name": "South Rajarbagh"
+      },
+      {
+        "id": "R80315690",
+        "name": "Surya Sen Hall"
+      },
+      {
+        "id": "R80301268",
+        "name": "Sutrapur"
+      },
+      {
+        "id": "R80315691",
+        "name": "Swamibagh Lane"
+      },
+      {
+        "id": "R80315692",
+        "name": "Swamibagh New Township"
+      },
+      {
+        "id": "R80315693",
+        "name": "Swarighat east"
+      },
+      {
+        "id": "R80315694",
+        "name": "T & T Colony"
+      },
+      {
+        "id": "R80315695",
+        "name": "Tallabag"
+      },
+      {
+        "id": "R80315696",
+        "name": "Tanuganj Lane"
+      },
+      {
+        "id": "R80315697",
+        "name": "Thakurdas Lane"
+      },
+      {
+        "id": "R80306257",
+        "name": "Tikatuli"
+      },
+      {
+        "id": "R80315698",
+        "name": "Tipu Sultan Road"
+      },
+      {
+        "id": "R80315699",
+        "name": "Titumir Hall"
+      },
+      {
+        "id": "R80315701",
+        "name": "Topkhana Road"
+      },
+      {
+        "id": "R80315702",
+        "name": "Toynbee Circular Road"
+      },
+      {
+        "id": "R80315550",
+        "name": "Uttara Sector 6 - Kuwait Friendship Hospital"
+      },
+      {
+        "id": "R80315705",
+        "name": "Walter Road"
+      },
+      {
+        "id": "R80315706",
+        "name": "Wapda Colony"
+      },
+      {
+        "id": "R80301279",
+        "name": "Wari"
+      },
+      {
+        "id": "R80315707",
+        "name": "Wari Street"
+      },
+      {
+        "id": "R80315708",
+        "name": "West Bashabo"
+      },
+      {
+        "id": "R80317700",
+        "name": "West End Street"
+      },
+      {
+        "id": "R80315709",
+        "name": "West fulbarai area"
+      },
+      {
+        "id": "R80315710",
+        "name": "West Jatrabari"
+      },
+      {
+        "id": "R80315711",
+        "name": "West Juraine"
+      },
+      {
+        "id": "R80315712",
+        "name": "West Malibag"
+      },
+      {
+        "id": "R80315714",
+        "name": "WHO Mission Road"
+      },
+      {
+        "id": "R80315715",
+        "name": "Wise Ghat Road"
+      },
+      {
+        "id": "R80315717",
+        "name": "Zahur Haque Hall"
+      },
+      {
+        "id": "R80315718",
+        "name": "Ziaur Rahman Hall"
+      }
+    ]
+  },
+  {
+    "id": "R80300575",
+    "name": "Faridpur",
+    "zones": [
+      {
+        "id": "R80301288",
+        "name": "Alfadanga"
+      },
+      {
+        "id": "R80315191",
+        "name": "Alipur"
+      },
+      {
+        "id": "R80301284",
+        "name": "Ambikapur"
+      },
+      {
+        "id": "R80315189",
+        "name": "Ambikapur Board Office"
+      },
+      {
+        "id": "RBD899",
+        "name": "Atrashi Sadarpur"
+      },
+      {
+        "id": "RBD993",
+        "name": "Bagat Bazar"
+      },
+      {
+        "id": "R80315173",
+        "name": "Baitul Aman Housing Society"
+      },
+      {
+        "id": "R80301285",
+        "name": "Baitulaman Politecni"
+      },
+      {
+        "id": "R80315184",
+        "name": "Bakhunda"
+      },
+      {
+        "id": "R80301289",
+        "name": "Bhanga"
+      },
+      {
+        "id": "RBD1031",
+        "name": "Bhashanchar"
+      },
+      {
+        "id": "RBD1039",
+        "name": "Bil Mamudpur"
+      },
+      {
+        "id": "R80301283",
+        "name": "Boalmari"
+      },
+      {
+        "id": "R80315200",
+        "name": "Bodorpur"
+      },
+      {
+        "id": "R80315179",
+        "name": "C&B Ghat"
+      },
+      {
+        "id": "RBD1122",
+        "name": "Charbhadrasan Upazila Faridpur"
+      },
+      {
+        "id": "RBD1108",
+        "name": "Char Hazigonj Bazar"
+      },
+      {
+        "id": "R80315193",
+        "name": "Chorkomlapur"
+      },
+      {
+        "id": "R80315188",
+        "name": "Chunaghata"
+      },
+      {
+        "id": "R80315177",
+        "name": "Dhuldi Bazar"
+      },
+      {
+        "id": "R80315178",
+        "name": "Dhuldi Railgate"
+      },
+      {
+        "id": "RBD1237",
+        "name": "Durgapur Faridpur"
+      },
+      {
+        "id": "R80315182",
+        "name": "Engineering College"
+      },
+      {
+        "id": "R80315175",
+        "name": "Faridpur New Bus Stand"
+      },
+      {
+        "id": "RBD957",
+        "name": "Faridpur New Market"
+      },
+      {
+        "id": "R80301286",
+        "name": "Faridpur Sadar"
+      },
+      {
+        "id": "RBD1192",
+        "name": "Gojaria Bazar"
+      },
+      {
+        "id": "RBD1231",
+        "name": "Goldangi Faridpur"
+      },
+      {
+        "id": "RBD916",
+        "name": "Hat Krishnapur"
+      },
+      {
+        "id": "R80315181",
+        "name": "Horishova"
+      },
+      {
+        "id": "RBD839",
+        "name": "Hotath Bazar"
+      },
+      {
+        "id": "RBD777",
+        "name": "Ishan Gopalpur"
+      },
+      {
+        "id": "R80315171",
+        "name": "Jhiltuli"
+      },
+      {
+        "id": "RBD875",
+        "name": "Kamarkhali"
+      },
+      {
+        "id": "R80301287",
+        "name": "Kanaipur"
+      },
+      {
+        "id": "RBD1206",
+        "name": "Kanaipur Bazar"
+      },
+      {
+        "id": "RBD890",
+        "name": "Kanaipur Tetul Tala"
+      },
+      {
+        "id": "R80315192",
+        "name": "Khabaspur"
+      },
+      {
+        "id": "RBD847",
+        "name": "Khaleque Bazar"
+      },
+      {
+        "id": "RBD921",
+        "name": "Khalilpur Bazar"
+      },
+      {
+        "id": "RBD932",
+        "name": "Khusir Bazar Faridpur"
+      },
+      {
+        "id": "R80315185",
+        "name": "Kobirpur"
+      },
+      {
+        "id": "R80315194",
+        "name": "Komlapur"
+      },
+      {
+        "id": "R80315176",
+        "name": "Komorpur"
+      },
+      {
+        "id": "R80315186",
+        "name": "Krishi College"
+      },
+      {
+        "id": "R80315195",
+        "name": "Laler Mor"
+      },
+      {
+        "id": "RBD901",
+        "name": "Maligram Bhanga"
+      },
+      {
+        "id": "RBD950",
+        "name": "Mamudpur"
+      },
+      {
+        "id": "R80315187",
+        "name": "Medical"
+      },
+      {
+        "id": "RBD1114",
+        "name": "Modhukhali Upozila Faridpur"
+      },
+      {
+        "id": "RBD842",
+        "name": "Mohammadpur Bazar"
+      },
+      {
+        "id": "R80315190",
+        "name": "Mohila Road"
+      },
+      {
+        "id": "RBD1036",
+        "name": "Momin Khar Hat"
+      },
+      {
+        "id": "R80315183",
+        "name": "Munshibazar"
+      },
+      {
+        "id": "RBD1210",
+        "name": "Nagarkanda Upazila Faridpur"
+      },
+      {
+        "id": "R80315172",
+        "name": "Niltuli"
+      },
+      {
+        "id": "R80315174",
+        "name": "Old Bus Stand"
+      },
+      {
+        "id": "R80315196",
+        "name": "Onather Mor"
+      },
+      {
+        "id": "RBD783",
+        "name": "Peyarpur Bazar"
+      },
+      {
+        "id": "RBD907",
+        "name": "Pirerchor Bhanga"
+      },
+      {
+        "id": "RBD1135",
+        "name": "Poranpur Bazar Faridpur"
+      },
+      {
+        "id": "R80315199",
+        "name": "Puran Gazi Bari"
+      },
+      {
+        "id": "RBD1117",
+        "name": "Sadarpur Upazila Faridpur"
+      },
+      {
+        "id": "RBD1063",
+        "name": "Sadipur Bazar"
+      },
+      {
+        "id": "RBD1183",
+        "name": "Saltha Upazila Faridpur"
+      },
+      {
+        "id": "R80315198",
+        "name": "Sovarampur"
+      },
+      {
+        "id": "R80315197",
+        "name": "Station Bazar"
+      },
+      {
+        "id": "RBD771",
+        "name": "Talma Bazar"
+      },
+      {
+        "id": "R80315180",
+        "name": "Tepakhola"
+      },
+      {
+        "id": "RBD1194",
+        "name": "Vai Vai Bazar"
+      },
+      {
+        "id": "RBD886",
+        "name": "West Khabaspur Faridpur"
+      }
+    ]
+  },
+  {
+    "id": "R80300579",
+    "name": "Gazipur",
+    "zones": [
+      {
+        "id": "RBD422",
+        "name": "Ahmed Nagor Chowrasta - Shafipur"
+      },
+      {
+        "id": "RBD565",
+        "name": "Ansar Academy - Shafipur"
+      },
+      {
+        "id": "RBD5",
+        "name": "Apex Footwear Factory"
+      },
+      {
+        "id": "RBD561",
+        "name": "Apex Palli Bidyut"
+      },
+      {
+        "id": "RBD1410",
+        "name": "Bagher Bazar"
+      },
+      {
+        "id": "RBD314",
+        "name": "Bahadurpur - Mowna Gazipur"
+      },
+      {
+        "id": "R80315125",
+        "name": "Bahawal College Chowrasta"
+      },
+      {
+        "id": "R80301347",
+        "name": "Barmi"
+      },
+      {
+        "id": "R80315133",
+        "name": "Bashon Thana Chowrasta"
+      },
+      {
+        "id": "RBD268",
+        "name": "Bason Sorok"
+      },
+      {
+        "id": "RBD115",
+        "name": "Bhawal Mirzapur"
+      },
+      {
+        "id": "RBD662",
+        "name": "Board Bazar"
+      },
+      {
+        "id": "RBD163",
+        "name": "Boardmill"
+      },
+      {
+        "id": "R80315123",
+        "name": "BRRI"
+      },
+      {
+        "id": "R80315128",
+        "name": "Brtc Chowrasta"
+      },
+      {
+        "id": "RBD1362",
+        "name": "Chandra Baroipara"
+      },
+      {
+        "id": "RBD197",
+        "name": "Chandra Bus Stand"
+      },
+      {
+        "id": "RBD1271",
+        "name": "Chandra Kobirpur"
+      },
+      {
+        "id": "RBD1319",
+        "name": "Chatar Bazar"
+      },
+      {
+        "id": "R80315115",
+        "name": "Chowrasta Baypass"
+      },
+      {
+        "id": "R80315120",
+        "name": "Chowrasta Telipara"
+      },
+      {
+        "id": "R80315117",
+        "name": "Chowrasta Warelessgate"
+      },
+      {
+        "id": "RBD378",
+        "name": "Colombia Garments"
+      },
+      {
+        "id": "RBD162",
+        "name": "Deger Chala Road - Hariken"
+      },
+      {
+        "id": "R80315131",
+        "name": "Dhakkinan Joydebpur"
+      },
+      {
+        "id": "R80315132",
+        "name": "Dhakkin Chaybithi"
+      },
+      {
+        "id": "RBD409",
+        "name": "Dhaladia Bazar - Mowana Gazipur"
+      },
+      {
+        "id": "R80315119",
+        "name": "Dhirashom Joydebpur"
+      },
+      {
+        "id": "RBD461",
+        "name": "Dird Composit - Rajendrapur"
+      },
+      {
+        "id": "RBD374",
+        "name": "Dukan Par - Shafipur"
+      },
+      {
+        "id": "RBD441",
+        "name": "Epsha Gate"
+      },
+      {
+        "id": "RBD737",
+        "name": "Gazipur Bot Tola Auto Stand"
+      },
+      {
+        "id": "RBD106",
+        "name": "Gazipur Bscic"
+      },
+      {
+        "id": "R80315124",
+        "name": "Gazipur Caller Bazar"
+      },
+      {
+        "id": "RBD105",
+        "name": "Gazipur Palli Biddyut"
+      },
+      {
+        "id": "R80301345",
+        "name": "Gazipur Sadar"
+      },
+      {
+        "id": "RBD103",
+        "name": "Gorgoria Masterbari"
+      },
+      {
+        "id": "R80315129",
+        "name": "Great Wall City"
+      },
+      {
+        "id": "RBD248",
+        "name": "Harikan Road"
+      },
+      {
+        "id": "RBD184",
+        "name": "Hazir Pukur"
+      },
+      {
+        "id": "RBD249",
+        "name": "Horinhati"
+      },
+      {
+        "id": "RBD1300",
+        "name": "Hotapara"
+      },
+      {
+        "id": "RBD70",
+        "name": "Islam Garments - Jarun"
+      },
+      {
+        "id": "RBD177",
+        "name": "Islamic University"
+      },
+      {
+        "id": "R80315109",
+        "name": "Jorun"
+      },
+      {
+        "id": "R80315118",
+        "name": "Joydebpur Police Line"
+      },
+      {
+        "id": "R80315127",
+        "name": "Joydebpur Rail Gate"
+      },
+      {
+        "id": "RBD1259",
+        "name": "Kadda Bazar"
+      },
+      {
+        "id": "R80301349",
+        "name": "Kaliakaar"
+      },
+      {
+        "id": "RBD1273",
+        "name": "Kaliakoir Board Ghar Bazar"
+      },
+      {
+        "id": "RBD1264",
+        "name": "Kaliakoir Chandra Bus Stand"
+      },
+      {
+        "id": "RBD1379",
+        "name": "Kaliakoir Fulbaria"
+      },
+      {
+        "id": "R80301350",
+        "name": "Kaliganj"
+      },
+      {
+        "id": "RBD617",
+        "name": "Kamar Juri"
+      },
+      {
+        "id": "RBD1396",
+        "name": "Kapashia Barishab"
+      },
+      {
+        "id": "RBD1458",
+        "name": "Kapashia Bus Stand"
+      },
+      {
+        "id": "RBD1476",
+        "name": "Kapashia Chandpur"
+      },
+      {
+        "id": "RBD1351",
+        "name": "Kapashia Durgapur"
+      },
+      {
+        "id": "RBD1348",
+        "name": "Kapashia Ghagotia"
+      },
+      {
+        "id": "RBD1465",
+        "name": "Kapashia Karihata"
+      },
+      {
+        "id": "RBD1426",
+        "name": "Kapashia Rayed"
+      },
+      {
+        "id": "RBD1434",
+        "name": "Kapashia Sonmania"
+      },
+      {
+        "id": "RBD1285",
+        "name": "Kapashia Tokh"
+      },
+      {
+        "id": "RBD1427",
+        "name": "Kapasia Bazar"
+      },
+      {
+        "id": "RBD1359",
+        "name": "Kapasia Chala Bazar"
+      },
+      {
+        "id": "R80315121",
+        "name": "Kashimpur"
+      },
+      {
+        "id": "R80315116",
+        "name": "Kashimpur Hatimara"
+      },
+      {
+        "id": "R80315114",
+        "name": "Kashimpur - Jel Khana"
+      },
+      {
+        "id": "R80301353",
+        "name": "Konabari - Ambag"
+      },
+      {
+        "id": "RBD270",
+        "name": "Konabari Bashtola"
+      },
+      {
+        "id": "RBD1435",
+        "name": "Konabari Palli Biddyut"
+      },
+      {
+        "id": "RBD338",
+        "name": "Konabri College Gate"
+      },
+      {
+        "id": "RBD743",
+        "name": "Kudusnagor - Nill Nagor"
+      },
+      {
+        "id": "RBD1446",
+        "name": "Laxmipura"
+      },
+      {
+        "id": "RBD731",
+        "name": "LIDA Textile"
+      },
+      {
+        "id": "R80315126",
+        "name": "Mahona Bhabanipur"
+      },
+      {
+        "id": "RBD664",
+        "name": "Maleker Bari"
+      },
+      {
+        "id": "RBD1298",
+        "name": "Maona Baro Topa"
+      },
+      {
+        "id": "RBD1331",
+        "name": "Maona C and B Bazar"
+      },
+      {
+        "id": "RBD1428",
+        "name": "Maona Chowrasta"
+      },
+      {
+        "id": "RBD1436",
+        "name": "Maona Mc Bazar"
+      },
+      {
+        "id": "RBD1368",
+        "name": "Maona Noyonpur Bazar"
+      },
+      {
+        "id": "RBD1421",
+        "name": "Maona Soling Mor"
+      },
+      {
+        "id": "RBD745",
+        "name": "Member Bari"
+      },
+      {
+        "id": "RBD538",
+        "name": "Mogorkal - Doshtola"
+      },
+      {
+        "id": "RBD1419",
+        "name": "Monipur Bazar"
+      },
+      {
+        "id": "R80301346",
+        "name": "Monnunagar"
+      },
+      {
+        "id": "R80315112",
+        "name": "Mouchak"
+      },
+      {
+        "id": "RBD1470",
+        "name": "Mouchak Cha Bagan"
+      },
+      {
+        "id": "RBD166",
+        "name": "Mouchak Mazar Road"
+      },
+      {
+        "id": "RBD1438",
+        "name": "Mouchak Vannara"
+      },
+      {
+        "id": "R80315134",
+        "name": "National University"
+      },
+      {
+        "id": "R80315122",
+        "name": "Nawjor - Kadda"
+      },
+      {
+        "id": "RBD474",
+        "name": "Noyapara - Mowna Gazipur"
+      },
+      {
+        "id": "RBD234",
+        "name": "Open University"
+      },
+      {
+        "id": "R80315110",
+        "name": "Parijat"
+      },
+      {
+        "id": "RBD311",
+        "name": "Polagach Road"
+      },
+      {
+        "id": "RBD723",
+        "name": "Porabari"
+      },
+      {
+        "id": "R80315108",
+        "name": "Rajbari Math Joydebpur"
+      },
+      {
+        "id": "R80301344",
+        "name": "Rajendrapur"
+      },
+      {
+        "id": "R80301348",
+        "name": "Rajendrapur Cantonment"
+      },
+      {
+        "id": "RBD574",
+        "name": "Rotonpur Railway"
+      },
+      {
+        "id": "R80315111",
+        "name": "Shafipur Bazar"
+      },
+      {
+        "id": "RBD1449",
+        "name": "Shafipur Boroibari"
+      },
+      {
+        "id": "RBD1297",
+        "name": "Shafipur Shinabaha Bazar"
+      },
+      {
+        "id": "RBD280",
+        "name": "Shalna"
+      },
+      {
+        "id": "RBD44",
+        "name": "Sharifpur Road"
+      },
+      {
+        "id": "R80315107",
+        "name": "Shimultoli Joydebpur"
+      },
+      {
+        "id": "RBD618",
+        "name": "Sign Board"
+      },
+      {
+        "id": "R80301351",
+        "name": "Sreepur"
+      },
+      {
+        "id": "RBD1265",
+        "name": "Sreepur Amraid"
+      },
+      {
+        "id": "RBD1258",
+        "name": "Sreepur Gosinga"
+      },
+      {
+        "id": "RBD1310",
+        "name": "Sreepur Joinabazar"
+      },
+      {
+        "id": "RBD1369",
+        "name": "Sreepur Kawraid"
+      },
+      {
+        "id": "RBD235",
+        "name": "Sreepur Rajabari"
+      },
+      {
+        "id": "RBD1452",
+        "name": "Sreepur Telihati"
+      },
+      {
+        "id": "R80315130",
+        "name": "Uttor Chayabithi"
+      },
+      {
+        "id": "RBD633",
+        "name": "Vushir Mill"
+      },
+      {
+        "id": "RBD1387",
+        "name": "Zirani"
+      },
+      {
+        "id": "RBD2",
+        "name": "Zora Pump - Apex Palli Bidyut"
+      }
+    ]
+  },
+  {
+    "id": "R80300558",
+    "name": "Gopalganj",
+    "zones": [
+      {
+        "id": "R80314964",
+        "name": "Arpara"
+      },
+      {
+        "id": "RBD83",
+        "name": "Gopalganj Dhaka Dakkhin"
+      },
+      {
+        "id": "R80301145",
+        "name": "Gopalganj Sadar"
+      },
+      {
+        "id": "R80301146",
+        "name": "Gopalganj Sadar Ulpur"
+      },
+      {
+        "id": "R80314965",
+        "name": "Gopinathpur"
+      },
+      {
+        "id": "R80301147",
+        "name": "Kashiani"
+      },
+      {
+        "id": "R80301148",
+        "name": "Kashiani Ramdia College"
+      },
+      {
+        "id": "R80301142",
+        "name": "Kotalipara"
+      },
+      {
+        "id": "R80301143",
+        "name": "Maksudpur"
+      },
+      {
+        "id": "R80314963",
+        "name": "Malenga"
+      },
+      {
+        "id": "R80314966",
+        "name": "Manikher"
+      },
+      {
+        "id": "R80301149",
+        "name": "Ratoil"
+      },
+      {
+        "id": "R80301144",
+        "name": "Tungipara"
+      },
+      {
+        "id": "R80314967",
+        "name": "Vatiapara"
+      }
+    ]
+  },
+  {
+    "id": "R4734867",
+    "name": "Keraniganj - Dhaka",
+    "zones": [
+      {
+        "id": "R80317735",
+        "name": "Abdullahpur Bazar"
+      },
+      {
+        "id": "R80317729",
+        "name": "Ati bazar"
+      },
+      {
+        "id": "R80317733",
+        "name": "Basundhara"
+      },
+      {
+        "id": "RBD711",
+        "name": "Dohar"
+      },
+      {
+        "id": "R80317734",
+        "name": "Ekuriya"
+      },
+      {
+        "id": "R80317736",
+        "name": "Hasnabad"
+      },
+      {
+        "id": "R80317728",
+        "name": "Kaligonj"
+      },
+      {
+        "id": "RBD1526",
+        "name": "Keraniganj - Aganagar"
+      },
+      {
+        "id": "RBD1530",
+        "name": "Keraniganj - Basta"
+      },
+      {
+        "id": "RBD1528",
+        "name": "Keraniganj - Kalindi"
+      },
+      {
+        "id": "RBD1525",
+        "name": "Keraniganj - Kholamora"
+      },
+      {
+        "id": "R80317636",
+        "name": "Keraniganj Sadar"
+      },
+      {
+        "id": "RBD1527",
+        "name": "Keraniganj - Sakta"
+      },
+      {
+        "id": "RBD1522",
+        "name": "Keraniganj - Suvadda"
+      },
+      {
+        "id": "R80317726",
+        "name": "Kodomtoly"
+      },
+      {
+        "id": "R80317732",
+        "name": "Konakhola"
+      },
+      {
+        "id": "R80317737",
+        "name": "Konda"
+      },
+      {
+        "id": "R80317731",
+        "name": "Ramerkanda"
+      },
+      {
+        "id": "R80317730",
+        "name": "Rohitpur"
+      },
+      {
+        "id": "R80317738",
+        "name": "Stand Bazar"
+      },
+      {
+        "id": "R80317727",
+        "name": "Zinzira"
+      }
+    ]
+  },
+  {
+    "id": "R80300573",
+    "name": "Kishoreganj",
+    "zones": [
+      {
+        "id": "R80301229",
+        "name": "Abdullahpur"
+      },
+      {
+        "id": "RBD849",
+        "name": "Ashutia Bazar"
+      },
+      {
+        "id": "RBD838",
+        "name": "Austagram Adampur"
+      },
+      {
+        "id": "RBD1002",
+        "name": "Austagram Bangal Para"
+      },
+      {
+        "id": "RBD826",
+        "name": "Austagram Deoghar"
+      },
+      {
+        "id": "RBD1027",
+        "name": "Austagram Kalma"
+      },
+      {
+        "id": "RBD790",
+        "name": "Austagram Kastul"
+      },
+      {
+        "id": "RBD1217",
+        "name": "Austagram Khayerpur Abdullahpur"
+      },
+      {
+        "id": "RBD1081",
+        "name": "Austagram Purba Austagram"
+      },
+      {
+        "id": "R80301232",
+        "name": "Bajitpur"
+      },
+      {
+        "id": "RBD806",
+        "name": "Bajitpur Baliadi"
+      },
+      {
+        "id": "RBD770",
+        "name": "Bajitpur Dighirpar"
+      },
+      {
+        "id": "RBD956",
+        "name": "Bajitpur Dilalpur"
+      },
+      {
+        "id": "RBD1097",
+        "name": "Bajitpur Gazir Char"
+      },
+      {
+        "id": "RBD1073",
+        "name": "Bajitpur Halimpur"
+      },
+      {
+        "id": "RBD1008",
+        "name": "Bajitpur Hilachia"
+      },
+      {
+        "id": "RBD997",
+        "name": "Bajitpur Humaipur"
+      },
+      {
+        "id": "RBD1118",
+        "name": "Bajitpur Kailag"
+      },
+      {
+        "id": "RBD1071",
+        "name": "Bajitpur Maij Char"
+      },
+      {
+        "id": "RBD788",
+        "name": "Bajitpur Pirijpur"
+      },
+      {
+        "id": "RBD908",
+        "name": "Bajitpur Sarar Char"
+      },
+      {
+        "id": "RBD1115",
+        "name": "Banagram Bazar"
+      },
+      {
+        "id": "RBD1018",
+        "name": "Bawlai"
+      },
+      {
+        "id": "RBD1209",
+        "name": "Beltoly Bazar"
+      },
+      {
+        "id": "R80301239",
+        "name": "Bhairab"
+      },
+      {
+        "id": "RBD819",
+        "name": "Bhairab Aganagar"
+      },
+      {
+        "id": "RBD1132",
+        "name": "Bhairab Gazaria"
+      },
+      {
+        "id": "RBD1091",
+        "name": "Bhairab Kalikaprashad"
+      },
+      {
+        "id": "RBD996",
+        "name": "Bhairab Sadekpur"
+      },
+      {
+        "id": "RBD1232",
+        "name": "Bhairab Shibpur"
+      },
+      {
+        "id": "RBD1112",
+        "name": "Bhairab Shimulkandi"
+      },
+      {
+        "id": "RBD965",
+        "name": "Bhairab Sreenagar"
+      },
+      {
+        "id": "R80315239",
+        "name": "Binnadi Bazar"
+      },
+      {
+        "id": "RBD1196",
+        "name": "Binnati"
+      },
+      {
+        "id": "RBD1009",
+        "name": "Borpul ar mor"
+      },
+      {
+        "id": "RBD786",
+        "name": "Boulai Bazar"
+      },
+      {
+        "id": "RBD1146",
+        "name": "Chadurar Pool Putimari"
+      },
+      {
+        "id": "RBD1238",
+        "name": "Chamraghat Bazar"
+      },
+      {
+        "id": "RBD1104",
+        "name": "Chauddasata"
+      },
+      {
+        "id": "RBD851",
+        "name": "Dana Patuli"
+      },
+      {
+        "id": "RBD1223",
+        "name": "Haruya"
+      },
+      {
+        "id": "RBD1224",
+        "name": "Hossaindi Bazar"
+      },
+      {
+        "id": "RBD873",
+        "name": "Hossainpur Araibari"
+      },
+      {
+        "id": "RBD930",
+        "name": "Hossainpur Bazar"
+      },
+      {
+        "id": "RBD1033",
+        "name": "Hossainpur Gobindapur"
+      },
+      {
+        "id": "RBD780",
+        "name": "Hossainpur Jirani"
+      },
+      {
+        "id": "RBD825",
+        "name": "Hossainpur Pumdi"
+      },
+      {
+        "id": "RBD1149",
+        "name": "Hossainpur Sahedal"
+      },
+      {
+        "id": "RBD1067",
+        "name": "Hossainpur Sidhla"
+      },
+      {
+        "id": "R80301230",
+        "name": "Hossenpur"
+      },
+      {
+        "id": "RBD775",
+        "name": "Itna Badla"
+      },
+      {
+        "id": "RBD829",
+        "name": "Itna Baribari"
+      },
+      {
+        "id": "RBD843",
+        "name": "Itna Chowganga"
+      },
+      {
+        "id": "RBD1216",
+        "name": "Itna Dhanpur"
+      },
+      {
+        "id": "RBD975",
+        "name": "Itna Elongjuri"
+      },
+      {
+        "id": "RBD864",
+        "name": "Itna Gazipur"
+      },
+      {
+        "id": "RBD893",
+        "name": "Itna Joysiddi"
+      },
+      {
+        "id": "RBD1243",
+        "name": "Itna Mrigha"
+      },
+      {
+        "id": "RBD1103",
+        "name": "Itna Raituti"
+      },
+      {
+        "id": "RBD1040",
+        "name": "Jalalpur Bazar"
+      },
+      {
+        "id": "RBD1181",
+        "name": "Jamtola Bazar"
+      },
+      {
+        "id": "RBD835",
+        "name": "Jangalia Bazar"
+      },
+      {
+        "id": "RBD926",
+        "name": "Jasodal"
+      },
+      {
+        "id": "R80315235",
+        "name": "Josudal Syed Nazrul Islam Medical"
+      },
+      {
+        "id": "RBD805",
+        "name": "Joybangla Bazar"
+      },
+      {
+        "id": "R80301241",
+        "name": "Karimganj"
+      },
+      {
+        "id": "RBD1158",
+        "name": "Karimganj Baragharia"
+      },
+      {
+        "id": "RBD781",
+        "name": "Karimganj Bazar"
+      },
+      {
+        "id": "RBD940",
+        "name": "Karimganj Dehunda"
+      },
+      {
+        "id": "RBD1034",
+        "name": "Karimganj Gujadia"
+      },
+      {
+        "id": "RBD881",
+        "name": "Karimganj Gundhar"
+      },
+      {
+        "id": "RBD984",
+        "name": "Karimganj Jafarabad"
+      },
+      {
+        "id": "RBD856",
+        "name": "Karimganj Joyka"
+      },
+      {
+        "id": "RBD969",
+        "name": "Karimganj Kadir Jungle"
+      },
+      {
+        "id": "RBD807",
+        "name": "Karimganj Niamatpur"
+      },
+      {
+        "id": "RBD1184",
+        "name": "Karimganj Noabad"
+      },
+      {
+        "id": "RBD823",
+        "name": "Karimganj Sutar Para"
+      },
+      {
+        "id": "R80301233",
+        "name": "Katiadi"
+      },
+      {
+        "id": "RBD1220",
+        "name": "Katiadi Achmita"
+      },
+      {
+        "id": "RBD1095",
+        "name": "Katiadi Banagram"
+      },
+      {
+        "id": "RBD968",
+        "name": "Katiadi Bazar"
+      },
+      {
+        "id": "RBD789",
+        "name": "Katiadi Chandpur"
+      },
+      {
+        "id": "R80301244",
+        "name": "Katiadi Gochhihata"
+      },
+      {
+        "id": "RBD1053",
+        "name": "Katiadi Jalalpur"
+      },
+      {
+        "id": "RBD1061",
+        "name": "Katiadi Kargaon"
+      },
+      {
+        "id": "RBD1159",
+        "name": "Katiadi Luhajuri"
+      },
+      {
+        "id": "RBD776",
+        "name": "Katiadi Masua"
+      },
+      {
+        "id": "RBD1030",
+        "name": "Katiadi Mumurdia"
+      },
+      {
+        "id": "RBD1221",
+        "name": "Katiadi Shaha Dhulia"
+      },
+      {
+        "id": "RBD1166",
+        "name": "Kawna Bazar"
+      },
+      {
+        "id": "RBD1170",
+        "name": "Khilpara"
+      },
+      {
+        "id": "RBD894",
+        "name": "Kishoreganj Bottrish"
+      },
+      {
+        "id": "R80315242",
+        "name": "Kishoreganj Chamra Bandar"
+      },
+      {
+        "id": "R80301235",
+        "name": "Kishoreganj Sadar"
+      },
+      {
+        "id": "R80301231",
+        "name": "Kishoreganj Sadar S.Mills"
+      },
+      {
+        "id": "RBD945",
+        "name": "Kishorgonj Bazar"
+      },
+      {
+        "id": "RBD1228",
+        "name": "Korsha Kariail"
+      },
+      {
+        "id": "R80301242",
+        "name": "Kuliarchar"
+      },
+      {
+        "id": "RBD876",
+        "name": "Kuliarchar Chhaysuti"
+      },
+      {
+        "id": "RBD959",
+        "name": "Kuliarchar Faridpur"
+      },
+      {
+        "id": "RBD1190",
+        "name": "Kuliarchar Gubaria Abdullahpur"
+      },
+      {
+        "id": "RBD834",
+        "name": "Kuliarchar Osmanpur"
+      },
+      {
+        "id": "RBD857",
+        "name": "Kuliarchar Ramdi"
+      },
+      {
+        "id": "RBD883",
+        "name": "Kuliarchar Salua"
+      },
+      {
+        "id": "RBD782",
+        "name": "Latibabad"
+      },
+      {
+        "id": "RBD1133",
+        "name": "Latibpur Bazar"
+      },
+      {
+        "id": "RBD1004",
+        "name": "Mahinanda"
+      },
+      {
+        "id": "RBD1119",
+        "name": "Maij Khapan"
+      },
+      {
+        "id": "R80315240",
+        "name": "Maria Industrial City"
+      },
+      {
+        "id": "RBD1208",
+        "name": "Maria Union Parishad"
+      },
+      {
+        "id": "RBD800",
+        "name": "Mirzapur Bazar"
+      },
+      {
+        "id": "R80301245",
+        "name": "MIthamoin"
+      },
+      {
+        "id": "RBD1043",
+        "name": "Mithamoin Boirati"
+      },
+      {
+        "id": "RBD983",
+        "name": "Mithamoin Dhaki"
+      },
+      {
+        "id": "RBD1057",
+        "name": "Mithamoin Ghagra"
+      },
+      {
+        "id": "RBD828",
+        "name": "Mithamoin Katkhal"
+      },
+      {
+        "id": "RBD1242",
+        "name": "Mithamoin Kewarjore"
+      },
+      {
+        "id": "R80315243",
+        "name": "Nandail Chourasta"
+      },
+      {
+        "id": "RBD1000",
+        "name": "Nanuur Bazar"
+      },
+      {
+        "id": "RBD1127",
+        "name": "Nikli Chhatirchar"
+      },
+      {
+        "id": "RBD1022",
+        "name": "Nikli Dampara"
+      },
+      {
+        "id": "RBD1017",
+        "name": "Nikli Gurue"
+      },
+      {
+        "id": "RBD1062",
+        "name": "Nikli Jaraitala"
+      },
+      {
+        "id": "RBD1121",
+        "name": "Nikli Karpasha"
+      },
+      {
+        "id": "RBD967",
+        "name": "Nikli Singpur"
+      },
+      {
+        "id": "R80315237",
+        "name": "Nilganj Bazar"
+      },
+      {
+        "id": "RBD1028",
+        "name": "Nogua"
+      },
+      {
+        "id": "R80301240",
+        "name": "Ostagram"
+      },
+      {
+        "id": "R80301243",
+        "name": "Pakundia"
+      },
+      {
+        "id": "R80315236",
+        "name": "Pakundia Bazar"
+      },
+      {
+        "id": "RBD1096",
+        "name": "Pakundia Burdia"
+      },
+      {
+        "id": "RBD951",
+        "name": "Pakundia Chandipasha"
+      },
+      {
+        "id": "RBD1083",
+        "name": "Pakundia Char Faradi"
+      },
+      {
+        "id": "RBD1229",
+        "name": "Pakundia Egarasindur"
+      },
+      {
+        "id": "RBD1026",
+        "name": "Pakundia Hosendi"
+      },
+      {
+        "id": "RBD912",
+        "name": "Pakundia Jangalia"
+      },
+      {
+        "id": "RBD952",
+        "name": "Pakundia Narandi"
+      },
+      {
+        "id": "RBD977",
+        "name": "Pakundia Patuabhanga"
+      },
+      {
+        "id": "RBD1116",
+        "name": "Pakundia Sukhia"
+      },
+      {
+        "id": "RBD1188",
+        "name": "Patuabhanga Bazar"
+      },
+      {
+        "id": "RBD1046",
+        "name": "Pulergaat Bazar"
+      },
+      {
+        "id": "RBD877",
+        "name": "Puran Thana Bazar"
+      },
+      {
+        "id": "RBD1068",
+        "name": "Purbo Shoti Bari"
+      },
+      {
+        "id": "RBD818",
+        "name": "Sadulla Bazar"
+      },
+      {
+        "id": "R80301234",
+        "name": "Sararchar"
+      },
+      {
+        "id": "RBD981",
+        "name": "Sholakia"
+      },
+      {
+        "id": "R80315238",
+        "name": "Sholakia Area"
+      },
+      {
+        "id": "RBD918",
+        "name": "Tarail Damiha"
+      },
+      {
+        "id": "RBD1109",
+        "name": "Tarail Dhala"
+      },
+      {
+        "id": "RBD778",
+        "name": "Tarail Digdair"
+      },
+      {
+        "id": "RBD1070",
+        "name": "Tarail Jawar"
+      },
+      {
+        "id": "RBD927",
+        "name": "Tarail Rauti"
+      },
+      {
+        "id": "RBD990",
+        "name": "Tarail Sachail"
+      },
+      {
+        "id": "RBD1142",
+        "name": "Tarail Talganga"
+      },
+      {
+        "id": "R80301236",
+        "name": "Tarial"
+      }
+    ]
+  },
+  {
+    "id": "R80300566",
+    "name": "Madaripur",
+    "zones": [
+      {
+        "id": "RBD691",
+        "name": "Adampur"
+      },
+      {
+        "id": "RBD159",
+        "name": "Arial Khan Ferry Ghat"
+      },
+      {
+        "id": "RBD11",
+        "name": "Balairkandi"
+      },
+      {
+        "id": "RBD651",
+        "name": "Charmuguria"
+      },
+      {
+        "id": "RBD480",
+        "name": "Durgabordi"
+      },
+      {
+        "id": "R80301196",
+        "name": "Kalkini"
+      },
+      {
+        "id": "RBD559",
+        "name": "Kazibari"
+      },
+      {
+        "id": "RBD227",
+        "name": "Khakdi Bus Stand"
+      },
+      {
+        "id": "RBD239",
+        "name": "Kulpoddi Post Office"
+      },
+      {
+        "id": "RBD543",
+        "name": "Madaripur Bus Terminal"
+      },
+      {
+        "id": "RBD696",
+        "name": "Madaripur Police Station"
+      },
+      {
+        "id": "R80301198",
+        "name": "Madaripur Sadar"
+      },
+      {
+        "id": "RBD17",
+        "name": "Mostafapur"
+      },
+      {
+        "id": "RBD73",
+        "name": "Mostafapur Bus Stand"
+      },
+      {
+        "id": "RBD171",
+        "name": "Panchar"
+      },
+      {
+        "id": "RBD363",
+        "name": "Puran Bazar"
+      },
+      {
+        "id": "R80301195",
+        "name": "Rajoir"
+      },
+      {
+        "id": "R80301194",
+        "name": "Rajoir Khalia"
+      },
+      {
+        "id": "R80301197",
+        "name": "Sahabrampur"
+      },
+      {
+        "id": "RBD524",
+        "name": "Shibchar"
+      }
+    ]
+  },
+  {
+    "id": "R80300564",
+    "name": "Manikganj - Shibloya",
+    "zones": [
+      {
+        "id": "R80301185",
+        "name": "Shibloya Aricha"
+      },
+      {
+        "id": "R80301186",
+        "name": "Shibloya Shibaloy"
+      },
+      {
+        "id": "R80301187",
+        "name": "Shibloya Tewta"
+      },
+      {
+        "id": "R80301184",
+        "name": "Shibloya Uthli"
+      }
+    ]
+  },
+  {
+    "id": "R80300582",
+    "name": "Manikganj - Singair",
+    "zones": [
+      {
+        "id": "R80301362",
+        "name": "Singair Baira"
+      },
+      {
+        "id": "RBD537",
+        "name": "Singair Basta Stand"
+      },
+      {
+        "id": "R80301363",
+        "name": "Singair Joymantop"
+      },
+      {
+        "id": "R80301364",
+        "name": "Singair Sadar"
+      }
+    ]
+  },
+  {
+    "id": "R80300584",
+    "name": "Manikganj - Town",
+    "zones": [
+      {
+        "id": "R80301373",
+        "name": "Baliati"
+      },
+      {
+        "id": "R80301378",
+        "name": "Barangail"
+      },
+      {
+        "id": "R80315135",
+        "name": "Betila"
+      },
+      {
+        "id": "R80315145",
+        "name": "Beutha"
+      },
+      {
+        "id": "R80315143",
+        "name": "Dashora"
+      },
+      {
+        "id": "R80315139",
+        "name": "Dautiya"
+      },
+      {
+        "id": "R80301381",
+        "name": "Gheor"
+      },
+      {
+        "id": "R80315141",
+        "name": "Gilondo"
+      },
+      {
+        "id": "R80301376",
+        "name": "Gorpara"
+      },
+      {
+        "id": "R80315136",
+        "name": "Horirampur"
+      },
+      {
+        "id": "R80315144",
+        "name": "Joyra"
+      },
+      {
+        "id": "R80315146",
+        "name": "Kachari"
+      },
+      {
+        "id": "R80301380",
+        "name": "Mahadebpur"
+      },
+      {
+        "id": "R80301377",
+        "name": "Manikganj Bazar"
+      },
+      {
+        "id": "R80301375",
+        "name": "Manikganj Doulatpur"
+      },
+      {
+        "id": "R80301379",
+        "name": "Manikganj Sadar"
+      },
+      {
+        "id": "R80315137",
+        "name": "Noyadingi"
+      },
+      {
+        "id": "R80315147",
+        "name": "Purra"
+      },
+      {
+        "id": "R80315138",
+        "name": "Rajibpur"
+      },
+      {
+        "id": "R80301374",
+        "name": "Saturia"
+      },
+      {
+        "id": "R80315142",
+        "name": "Seutha"
+      },
+      {
+        "id": "R80315140",
+        "name": "Uchutia"
+      }
+    ]
+  },
+  {
+    "id": "R80300572",
+    "name": "Munshiganj - Gajaria",
+    "zones": [
+      {
+        "id": "R80301227",
+        "name": "Gajaria Hossendi"
+      },
+      {
+        "id": "R80301228",
+        "name": "Gajaria Rasulpur"
+      },
+      {
+        "id": "R80301226",
+        "name": "Gajaria Sadar"
+      },
+      {
+        "id": "RBD1123",
+        "name": "Gazaria Anarpur"
+      },
+      {
+        "id": "RBD1161",
+        "name": "Gazaria Char Decree"
+      },
+      {
+        "id": "RBD1154",
+        "name": "Gazaria Jamaldi"
+      },
+      {
+        "id": "RBD1094",
+        "name": "Gazaria Mirergaon"
+      }
+    ]
+  },
+  {
+    "id": "R80300583",
+    "name": "Munshiganj - Lohajong",
+    "zones": [
+      {
+        "id": "R80301367",
+        "name": "Lohajong"
+      },
+      {
+        "id": "R80301370",
+        "name": "Lohajong Gouragonj"
+      },
+      {
+        "id": "R80301371",
+        "name": "Lohajong Haldia SO"
+      },
+      {
+        "id": "R80301372",
+        "name": "Lohajong Haridia"
+      },
+      {
+        "id": "R80301365",
+        "name": "Lohajong Haridia DESO"
+      },
+      {
+        "id": "R80301366",
+        "name": "Lohajong Korhati"
+      },
+      {
+        "id": "R80301368",
+        "name": "Lohajong Madini Mandal"
+      },
+      {
+        "id": "R80301369",
+        "name": "Lohajong Medini Mandal EDSO"
+      },
+      {
+        "id": "RBD1218",
+        "name": "Louhajang Atigaon"
+      },
+      {
+        "id": "RBD1075",
+        "name": "Louhajang Bankhira"
+      },
+      {
+        "id": "RBD1055",
+        "name": "Louhajang Dohori"
+      },
+      {
+        "id": "RBD1207",
+        "name": "Louhajang Ghurduwr"
+      },
+      {
+        "id": "RBD934",
+        "name": "Louhajang Jhaputia"
+      },
+      {
+        "id": "RBD1234",
+        "name": "Louhajang Kahetara"
+      },
+      {
+        "id": "RBD858",
+        "name": "Louhajang Kalma"
+      },
+      {
+        "id": "RBD1090",
+        "name": "Louhajang Nagerhat Bazar"
+      },
+      {
+        "id": "RBD798",
+        "name": "Louhajang Pachaldia"
+      },
+      {
+        "id": "RBD1047",
+        "name": "Louhajang Satgharia"
+      },
+      {
+        "id": "RBD1085",
+        "name": "Louhajang Surpara"
+      },
+      {
+        "id": "RBD1060",
+        "name": "Louhajang Vorakor"
+      }
+    ]
+  },
+  {
+    "id": "R80300585",
+    "name": "Munshiganj - Sirajdikhan",
+    "zones": [
+      {
+        "id": "R80301385",
+        "name": "Sirajdikhan"
+      },
+      {
+        "id": "R80301386",
+        "name": "Sirajdikhan Ichapur"
+      },
+      {
+        "id": "R80301382",
+        "name": "Sirajdikhan Kola"
+      },
+      {
+        "id": "R80301383",
+        "name": "Sirajdikhan Malkha Nagar"
+      },
+      {
+        "id": "R80301384",
+        "name": "Sirajdikhan Shekher Nagar"
+      }
+    ]
+  },
+  {
+    "id": "R80300557",
+    "name": "Munshiganj - Town",
+    "zones": [
+      {
+        "id": "RBD1006",
+        "name": "Adhara"
+      },
+      {
+        "id": "RBD1226",
+        "name": "Aparkati"
+      },
+      {
+        "id": "RBD1173",
+        "name": "Autshahi"
+      },
+      {
+        "id": "RBD1072",
+        "name": "Bagahia Kandi"
+      },
+      {
+        "id": "RBD830",
+        "name": "Baghia"
+      },
+      {
+        "id": "R80301137",
+        "name": "Baghra"
+      },
+      {
+        "id": "R80301140",
+        "name": "Bajrajugini"
+      },
+      {
+        "id": "RBD972",
+        "name": "Bajrozogini"
+      },
+      {
+        "id": "R80301125",
+        "name": "Baligao"
+      },
+      {
+        "id": "R80301130",
+        "name": "Betkahat"
+      },
+      {
+        "id": "R80301127",
+        "name": "Bhaggyakul"
+      },
+      {
+        "id": "RBD937",
+        "name": "Chahida Bazar"
+      },
+      {
+        "id": "RBD854",
+        "name": "Char Masura"
+      },
+      {
+        "id": "RBD1162",
+        "name": "Dewbhog Bazar"
+      },
+      {
+        "id": "R80301129",
+        "name": "Dighirpar"
+      },
+      {
+        "id": "RBD887",
+        "name": "Dogachi"
+      },
+      {
+        "id": "RBD1044",
+        "name": "Dulihatta"
+      },
+      {
+        "id": "RBD1082",
+        "name": "East Shillmandi"
+      },
+      {
+        "id": "RBD902",
+        "name": "Fultola"
+      },
+      {
+        "id": "RBD942",
+        "name": "Gonokpara"
+      },
+      {
+        "id": "R80301131",
+        "name": "Hasail"
+      },
+      {
+        "id": "RBD880",
+        "name": "Hashail Bazar"
+      },
+      {
+        "id": "R80301126",
+        "name": "Hashara"
+      },
+      {
+        "id": "RBD836",
+        "name": "Hatimara"
+      },
+      {
+        "id": "RBD904",
+        "name": "Idrakpur"
+      },
+      {
+        "id": "RBD1145",
+        "name": "Jorpukur Par"
+      },
+      {
+        "id": "RBD1155",
+        "name": "Kata Khali Bazar"
+      },
+      {
+        "id": "RBD784",
+        "name": "Khanka Dalalpara"
+      },
+      {
+        "id": "R80301132",
+        "name": "Kolapara"
+      },
+      {
+        "id": "R80301124",
+        "name": "Kumarbhog"
+      },
+      {
+        "id": "RBD955",
+        "name": "Kurmira"
+      },
+      {
+        "id": "RBD1219",
+        "name": "Lalmiah Bazar"
+      },
+      {
+        "id": "RBD768",
+        "name": "Loharpool"
+      },
+      {
+        "id": "R80301122",
+        "name": "Maijpara"
+      },
+      {
+        "id": "RBD1236",
+        "name": "Makahati"
+      },
+      {
+        "id": "RBD989",
+        "name": "Mirkadim"
+      },
+      {
+        "id": "RBD1163",
+        "name": "Moddho Courtgoan"
+      },
+      {
+        "id": "RBD794",
+        "name": "Motukpur"
+      },
+      {
+        "id": "RBD1045",
+        "name": "Munshiganj Bazar"
+      },
+      {
+        "id": "RBD1153",
+        "name": "Munshiganj Notungaon"
+      },
+      {
+        "id": "R80301133",
+        "name": "Munshiganj Sadar Kathakhali"
+      },
+      {
+        "id": "R80301121",
+        "name": "Munshiganj Sadar Mirkadim"
+      },
+      {
+        "id": "RBD421",
+        "name": "Munshiganj Sadar Mukterpur"
+      },
+      {
+        "id": "R80301123",
+        "name": "Munshiganj Sadar Munshiganj Sadar"
+      },
+      {
+        "id": "R80301139",
+        "name": "Munshiganj Sadar Rikabibazar"
+      },
+      {
+        "id": "RBD948",
+        "name": "Nalbunya Kandi"
+      },
+      {
+        "id": "RBD812",
+        "name": "North Islampur"
+      },
+      {
+        "id": "RBD815",
+        "name": "Nuraitoli"
+      },
+      {
+        "id": "RBD995",
+        "name": "Panchgaon Bazar"
+      },
+      {
+        "id": "RBD1038",
+        "name": "Panchgharia Kandi"
+      },
+      {
+        "id": "RBD803",
+        "name": "Parulpara"
+      },
+      {
+        "id": "RBD1136",
+        "name": "Ponchosar"
+      },
+      {
+        "id": "RBD924",
+        "name": "Poschim Manikpur"
+      },
+      {
+        "id": "R80301138",
+        "name": "Pura"
+      },
+      {
+        "id": "R80301141",
+        "name": "Pura EDSO"
+      },
+      {
+        "id": "R80301128",
+        "name": "Rarikhal"
+      },
+      {
+        "id": "RBD929",
+        "name": "Rikabi Bazar"
+      },
+      {
+        "id": "RBD891",
+        "name": "Ronch Moddhopara"
+      },
+      {
+        "id": "RBD832",
+        "name": "Shilimpur"
+      },
+      {
+        "id": "RBD1051",
+        "name": "Shipahipara"
+      },
+      {
+        "id": "RBD1200",
+        "name": "Sirajdikhan Nimtola"
+      },
+      {
+        "id": "RBD1049",
+        "name": "South Islampur"
+      },
+      {
+        "id": "R80301134",
+        "name": "Sreenagar"
+      },
+      {
+        "id": "RBD1152",
+        "name": "Sreenagar Damla"
+      },
+      {
+        "id": "RBD1124",
+        "name": "Sreenagar Dogachi Bazar"
+      },
+      {
+        "id": "RBD925",
+        "name": "Sreenagar Kolapara Bazar"
+      },
+      {
+        "id": "RBD1125",
+        "name": "Sreenagar Pania"
+      },
+      {
+        "id": "RBD1054",
+        "name": "Sreenagar Tontor"
+      },
+      {
+        "id": "RBD820",
+        "name": "Svarnagram"
+      },
+      {
+        "id": "R80301136",
+        "name": "Tangibari"
+      },
+      {
+        "id": "RBD1164",
+        "name": "Tongibari"
+      },
+      {
+        "id": "R80301135",
+        "name": "Vaggyakul SO"
+      },
+      {
+        "id": "RBD767",
+        "name": "Zapta"
+      }
+    ]
+  },
+  {
+    "id": "R80300559",
+    "name": "Narayanganj",
+    "zones": [
+      {
+        "id": "R80301155",
+        "name": "Araihazar"
+      },
+      {
+        "id": "R80301156",
+        "name": "Araihazar Gopaldi"
+      },
+      {
+        "id": "R80301162",
+        "name": "Baidder Bazar"
+      },
+      {
+        "id": "R80301153",
+        "name": "Baidder Bazar Bara Nagar"
+      },
+      {
+        "id": "R80301150",
+        "name": "Baidder Bazar Barodi"
+      },
+      {
+        "id": "R80301170",
+        "name": "Bandar"
+      },
+      {
+        "id": "R80301159",
+        "name": "Bandar BIDS"
+      },
+      {
+        "id": "R80301163",
+        "name": "Bandar D.C Mills"
+      },
+      {
+        "id": "R80301169",
+        "name": "Fatullah"
+      },
+      {
+        "id": "R80301151",
+        "name": "Fatullah Bazar"
+      },
+      {
+        "id": "R80301165",
+        "name": "Madanganj"
+      },
+      {
+        "id": "R80301167",
+        "name": "Narayanganj Sadar"
+      },
+      {
+        "id": "R80301158",
+        "name": "Nobiganj"
+      },
+      {
+        "id": "R80301157",
+        "name": "Rupganj"
+      },
+      {
+        "id": "R80301168",
+        "name": "Rupganj Bhulta"
+      },
+      {
+        "id": "R80301161",
+        "name": "Rupganj Kanchan"
+      },
+      {
+        "id": "R80301152",
+        "name": "Rupganj Murapara"
+      },
+      {
+        "id": "R80301154",
+        "name": "Rupganj Nagri"
+      },
+      {
+        "id": "R80301164",
+        "name": "Siddirganj Adamjeenagar"
+      },
+      {
+        "id": "R80301166",
+        "name": "Siddirganj LN Mills"
+      },
+      {
+        "id": "R80301160",
+        "name": "Siddirganj Siddirganj"
+      }
+    ]
+  },
+  {
+    "id": "R80300553",
+    "name": "Narsingdi",
+    "zones": [
+      {
+        "id": "R80315156",
+        "name": "Basail"
+      },
+      {
+        "id": "R80301105",
+        "name": "Belabo"
+      },
+      {
+        "id": "R80315165",
+        "name": "Bilasdi"
+      },
+      {
+        "id": "R80315164",
+        "name": "Bot-Tola"
+      },
+      {
+        "id": "R80315150",
+        "name": "Brahmondi"
+      },
+      {
+        "id": "RBD1479",
+        "name": "Charnagardi"
+      },
+      {
+        "id": "R80301111",
+        "name": "Char Sindhur"
+      },
+      {
+        "id": "R80315149",
+        "name": "Chinishpur"
+      },
+      {
+        "id": "R80315151",
+        "name": "Daspara"
+      },
+      {
+        "id": "R80315162",
+        "name": "Dogoria"
+      },
+      {
+        "id": "R80301106",
+        "name": "Ghorashal"
+      },
+      {
+        "id": "R80315170",
+        "name": "Ghorashal Bazar"
+      },
+      {
+        "id": "R80315152",
+        "name": "Goradia"
+      },
+      {
+        "id": "R80315169",
+        "name": "Grorashal Pran Factory"
+      },
+      {
+        "id": "R80315167",
+        "name": "Grorashal Sarkar Khana"
+      },
+      {
+        "id": "R80315154",
+        "name": "Hazupur"
+      },
+      {
+        "id": "R80315168",
+        "name": "Janata Jute Mile"
+      },
+      {
+        "id": "R80315161",
+        "name": "Kandapara"
+      },
+      {
+        "id": "R80301097",
+        "name": "Karimpur"
+      },
+      {
+        "id": "R80315163",
+        "name": "Kawriapara"
+      },
+      {
+        "id": "R80301103",
+        "name": "Madhabdi"
+      },
+      {
+        "id": "R80301095",
+        "name": "Monohordi"
+      },
+      {
+        "id": "R80301102",
+        "name": "Monohordi Hatirdia"
+      },
+      {
+        "id": "R80301094",
+        "name": "Monohordi Katabaria"
+      },
+      {
+        "id": "R80315159",
+        "name": "Narsingdi Bazar"
+      },
+      {
+        "id": "R80301101",
+        "name": "Narsingdi College"
+      },
+      {
+        "id": "R80301099",
+        "name": "Narsingdi Sadar"
+      },
+      {
+        "id": "R80301098",
+        "name": "Palash"
+      },
+      {
+        "id": "R80301100",
+        "name": "Panchdona"
+      },
+      {
+        "id": "R80301096",
+        "name": "Raypura"
+      },
+      {
+        "id": "R80301108",
+        "name": "Raypura Bazar Hasnabad"
+      },
+      {
+        "id": "R80301109",
+        "name": "Raypura Radhaganj bazar"
+      },
+      {
+        "id": "R80315157",
+        "name": "Saheprotab"
+      },
+      {
+        "id": "R80315160",
+        "name": "Salidha"
+      },
+      {
+        "id": "R80301107",
+        "name": "Sarkarkhana"
+      },
+      {
+        "id": "R80315158",
+        "name": "Satirpara"
+      },
+      {
+        "id": "R80301104",
+        "name": "Shibpur"
+      },
+      {
+        "id": "R80315166",
+        "name": "Shilmandi"
+      },
+      {
+        "id": "R80315153",
+        "name": "Songita"
+      },
+      {
+        "id": "R80315155",
+        "name": "Torowa"
+      },
+      {
+        "id": "R80301110",
+        "name": "UMC Jute Mills"
+      },
+      {
+        "id": "R80315148",
+        "name": "Velanagar"
+      }
+    ]
+  },
+  {
+    "id": "R80300561",
+    "name": "Nawabganj",
+    "zones": [
+      {
+        "id": "R80314774",
+        "name": "Bandura"
+      },
+      {
+        "id": "R80301173",
+        "name": "Joypara"
+      },
+      {
+        "id": "R80314775",
+        "name": "Khanepur"
+      },
+      {
+        "id": "R80314773",
+        "name": "Sujapur"
+      }
+    ]
+  },
+  {
+    "id": "R80300560",
+    "name": "Rajbari - Baliakandi",
+    "zones": [
+      {
+        "id": "R80301171",
+        "name": "Baliakandi"
+      },
+      {
+        "id": "R80301172",
+        "name": "Baliakandi Nalia"
+      }
+    ]
+  },
+  {
+    "id": "R80300562",
+    "name": "Rajbari - Pangsha",
+    "zones": [
+      {
+        "id": "R80301176",
+        "name": "Pangsha Mrigibazar"
+      },
+      {
+        "id": "R80301174",
+        "name": "Pangsha Ramkol"
+      },
+      {
+        "id": "R80301175",
+        "name": "Pangsha Ratandia"
+      },
+      {
+        "id": "R80301177",
+        "name": "Pangsha Sadar"
+      }
+    ]
+  },
+  {
+    "id": "R80300571",
+    "name": "Rajbari - Town",
+    "zones": [
+      {
+        "id": "RBD302",
+        "name": "Aladipur"
+      },
+      {
+        "id": "RBD632",
+        "name": "Banibaha"
+      },
+      {
+        "id": "RBD191",
+        "name": "Bank Para"
+      },
+      {
+        "id": "RBD548",
+        "name": "Bash Hata"
+      },
+      {
+        "id": "RBD104",
+        "name": "Beradanga"
+      },
+      {
+        "id": "RBD698",
+        "name": "Bhabanipur"
+      },
+      {
+        "id": "RBD412",
+        "name": "Boro Laxmipur"
+      },
+      {
+        "id": "RBD399",
+        "name": "Choto Bridge Khankhanapur"
+      },
+      {
+        "id": "RBD185",
+        "name": "Dewan Para"
+      },
+      {
+        "id": "RBD388",
+        "name": "Doulodia Ghat"
+      },
+      {
+        "id": "RBD675",
+        "name": "Doulodia Rail Station"
+      },
+      {
+        "id": "RBD490",
+        "name": "Doulodia Sign Board"
+      },
+      {
+        "id": "RBD609",
+        "name": "Doulodia Union Boad"
+      },
+      {
+        "id": "RBD207",
+        "name": "Fire Service Goalanda"
+      },
+      {
+        "id": "RBD100",
+        "name": "Goalanda Hospital"
+      },
+      {
+        "id": "RBD380",
+        "name": "Goalanda Mor"
+      },
+      {
+        "id": "RBD89",
+        "name": "Goalanda Railgate"
+      },
+      {
+        "id": "RBD23",
+        "name": "Jomider Bridge"
+      },
+      {
+        "id": "RBD750",
+        "name": "Kazibadha"
+      },
+      {
+        "id": "RBD507",
+        "name": "Kazikanda"
+      },
+      {
+        "id": "RBD580",
+        "name": "Kenala Ghat"
+      },
+      {
+        "id": "RBD254",
+        "name": "Khanapur Notun Bazar"
+      },
+      {
+        "id": "RBD151",
+        "name": "Khankhanapur"
+      },
+      {
+        "id": "RBD668",
+        "name": "Kollanpur"
+      },
+      {
+        "id": "RBD352",
+        "name": "Lokkhikul"
+      },
+      {
+        "id": "RBD608",
+        "name": "Mallaguti Bridge Goalanda"
+      },
+      {
+        "id": "RBD498",
+        "name": "Matir Para"
+      },
+      {
+        "id": "RBD65",
+        "name": "Mondalpara"
+      },
+      {
+        "id": "RBD299",
+        "name": "Panna Chottor"
+      },
+      {
+        "id": "RBD146",
+        "name": "Puran Honisova"
+      },
+      {
+        "id": "RBD236",
+        "name": "Rajbari Bag Mara"
+      },
+      {
+        "id": "RBD139",
+        "name": "Rajbari Bazar"
+      },
+      {
+        "id": "RBD760",
+        "name": "Rajbari Binodpur"
+      },
+      {
+        "id": "RBD361",
+        "name": "Rajbari Boropul"
+      },
+      {
+        "id": "RBD466",
+        "name": "Rajbari Bscic"
+      },
+      {
+        "id": "RBD427",
+        "name": "Rajbari College Para"
+      },
+      {
+        "id": "RBD288",
+        "name": "Rajbari Gudar Bazar"
+      },
+      {
+        "id": "RBD57",
+        "name": "Rajbari Jailkhana"
+      },
+      {
+        "id": "RBD526",
+        "name": "Rajbari Jamtola"
+      },
+      {
+        "id": "RBD519",
+        "name": "Rajbari Jutemil"
+      },
+      {
+        "id": "RBD72",
+        "name": "Rajbari Notun Para"
+      },
+      {
+        "id": "RBD379",
+        "name": "Rajbari Police Line"
+      },
+      {
+        "id": "RBD328",
+        "name": "Rajbari Public Health"
+      },
+      {
+        "id": "RBD246",
+        "name": "Rajbari Railgate"
+      },
+      {
+        "id": "R80301225",
+        "name": "Rajbari Sadar"
+      },
+      {
+        "id": "R80301223",
+        "name": "Rajbari Sadar Goalanda"
+      },
+      {
+        "id": "RBD272",
+        "name": "Rajbari Sadar Hospital Road"
+      },
+      {
+        "id": "R80301224",
+        "name": "Rajbari Sadar Khankhanapur"
+      },
+      {
+        "id": "RBD1",
+        "name": "Rajbari Sreepur"
+      },
+      {
+        "id": "RBD752",
+        "name": "Rajbari Terminal"
+      },
+      {
+        "id": "RBD603",
+        "name": "Sajankanda"
+      },
+      {
+        "id": "RBD14",
+        "name": "Surjo Nagar"
+      },
+      {
+        "id": "RBD685",
+        "name": "Vagolpur"
+      }
+    ]
+  },
+  {
+    "id": "R4730836",
+    "name": "Savar",
+    "zones": [
+      {
+        "id": "RBD539",
+        "name": "Ashulia Paragram"
+      },
+      {
+        "id": "RBD172",
+        "name": "Ashulia Tongabari"
+      },
+      {
+        "id": "RBD42",
+        "name": "Hemayetpur Jainabari"
+      },
+      {
+        "id": "RBD10",
+        "name": "Hemayetpur Shampur"
+      },
+      {
+        "id": "RBD475",
+        "name": "Hemayetpur Tatulzhora Mor"
+      },
+      {
+        "id": "R80301204",
+        "name": "Jahangirnagar University"
+      },
+      {
+        "id": "R80301205",
+        "name": "Kashem Cotton Mills"
+      },
+      {
+        "id": "R80301199",
+        "name": "Rajphulbaria"
+      },
+      {
+        "id": "RBD179",
+        "name": "Savar Akran Bazaar"
+      },
+      {
+        "id": "R80301207",
+        "name": "Savar Amin Bazar"
+      },
+      {
+        "id": "RBD400",
+        "name": "Savar Aralia Bazar Jame Mosjid"
+      },
+      {
+        "id": "R80315101",
+        "name": "Savar Ashulia Stand"
+      },
+      {
+        "id": "R80315091",
+        "name": "Savar Baipayl"
+      },
+      {
+        "id": "R80315084",
+        "name": "Savar Bank Colony"
+      },
+      {
+        "id": "R80315080",
+        "name": "Savar Bank Town"
+      },
+      {
+        "id": "RBD173",
+        "name": "Savar Baroipara"
+      },
+      {
+        "id": "R80315095",
+        "name": "Savar Basp"
+      },
+      {
+        "id": "RBD470",
+        "name": "Savar Boliarpur"
+      },
+      {
+        "id": "R80315085",
+        "name": "Savar Bus Stand"
+      },
+      {
+        "id": "R80315088",
+        "name": "Savar Cantonment"
+      },
+      {
+        "id": "R80301200",
+        "name": "Savar Canttonment"
+      },
+      {
+        "id": "R80315096",
+        "name": "Savar Chakrobarti Stand"
+      },
+      {
+        "id": "RBD217",
+        "name": "Savar Chandra Stand"
+      },
+      {
+        "id": "RBD372",
+        "name": "Savar Chapain Road"
+      },
+      {
+        "id": "R80315102",
+        "name": "Savar Charabag More"
+      },
+      {
+        "id": "RBD623",
+        "name": "Savar CRP"
+      },
+      {
+        "id": "R80301203",
+        "name": "Savar Dairy Farm"
+      },
+      {
+        "id": "RBD428",
+        "name": "Savar Dhamrai Thana"
+      },
+      {
+        "id": "RBD600",
+        "name": "Savar Dhulivita Stand"
+      },
+      {
+        "id": "R80315083",
+        "name": "Savar Enam Medical College"
+      },
+      {
+        "id": "R80301201",
+        "name": "Savar EPZ"
+      },
+      {
+        "id": "R80315081",
+        "name": "Savar Genda"
+      },
+      {
+        "id": "RBD659",
+        "name": "Savar Gonoshastaya Kendra"
+      },
+      {
+        "id": "R80315079",
+        "name": "Savar Hemayetpur"
+      },
+      {
+        "id": "R80315097",
+        "name": "Savar Jamgara"
+      },
+      {
+        "id": "R80315086",
+        "name": "Savar Kacha Bazar"
+      },
+      {
+        "id": "RBD458",
+        "name": "Savar Kalampur Bazar"
+      },
+      {
+        "id": "RBD136",
+        "name": "Savar Kalampur Bus Stand"
+      },
+      {
+        "id": "R80315103",
+        "name": "Savar Khagan Bazar"
+      },
+      {
+        "id": "RBD4",
+        "name": "Savar Nama Bazar"
+      },
+      {
+        "id": "R80315099",
+        "name": "Savar Narshinghapur"
+      },
+      {
+        "id": "R80315105",
+        "name": "Savar Nayarhat Stand"
+      },
+      {
+        "id": "R80315093",
+        "name": "Savar New Depz"
+      },
+      {
+        "id": "R80315106",
+        "name": "Savar Nishchintapur Stand"
+      },
+      {
+        "id": "R80315089",
+        "name": "Savar Nobinagar"
+      },
+      {
+        "id": "R80315092",
+        "name": "Savar Old Depz"
+      },
+      {
+        "id": "R80315090",
+        "name": "Savar Polli Biddyut"
+      },
+      {
+        "id": "R80315087",
+        "name": "Savar Radio Colony"
+      },
+      {
+        "id": "R80315104",
+        "name": "Savar Rajashon"
+      },
+      {
+        "id": "R80301206",
+        "name": "Savar Sadar"
+      },
+      {
+        "id": "R80315098",
+        "name": "Savar Sorkar Market"
+      },
+      {
+        "id": "R80315094",
+        "name": "Savar Sreepur Stand"
+      },
+      {
+        "id": "R80315082",
+        "name": "Savar Thana Stand"
+      },
+      {
+        "id": "R80315100",
+        "name": "Savar Zirabo"
+      },
+      {
+        "id": "R80301202",
+        "name": "Saver P.A.T.C"
+      }
+    ]
+  },
+  {
+    "id": "R80300578",
+    "name": "Shariatpur - Naria",
+    "zones": [
+      {
+        "id": "R80301341",
+        "name": "Naria Bhozeshwar"
+      },
+      {
+        "id": "R80301342",
+        "name": "Naria Gharisar"
+      },
+      {
+        "id": "R80301343",
+        "name": "Naria Kartikpur"
+      },
+      {
+        "id": "R80301339",
+        "name": "Naria Sadar"
+      },
+      {
+        "id": "R80301340",
+        "name": "Naria Upshi"
+      }
+    ]
+  },
+  {
+    "id": "R80300580",
+    "name": "Shariatpur - Town",
+    "zones": [
+      {
+        "id": "R80301356",
+        "name": "Bhedorganj"
+      },
+      {
+        "id": "R80301357",
+        "name": "Damudhya"
+      },
+      {
+        "id": "RBD462",
+        "name": "Dashatta"
+      },
+      {
+        "id": "RBD420",
+        "name": "Dhanuka Police Line"
+      },
+      {
+        "id": "R80301358",
+        "name": "Gosairhat"
+      },
+      {
+        "id": "R80301359",
+        "name": "Jajira"
+      },
+      {
+        "id": "RBD214",
+        "name": "Kagdi Bazar"
+      },
+      {
+        "id": "RBD726",
+        "name": "Palong Bazar"
+      },
+      {
+        "id": "RBD1508",
+        "name": "Sakhipur"
+      },
+      {
+        "id": "R80301355",
+        "name": "Shariatpur Sadar"
+      },
+      {
+        "id": "R80301360",
+        "name": "Shariatpur Sadar Angaria"
+      },
+      {
+        "id": "R80301354",
+        "name": "Shariatpur Sadar Chikandi"
+      },
+      {
+        "id": "RBD575",
+        "name": "Tulasar"
+      }
+    ]
+  },
+  {
+    "id": "R80300567",
+    "name": "Tangail - Basail",
+    "zones": [
+      {
+        "id": "R80314786",
+        "name": "Bagil"
+      },
+      {
+        "id": "R80314785",
+        "name": "Basail Bazar"
+      },
+      {
+        "id": "R80301208",
+        "name": "Basail Sadar"
+      }
+    ]
+  },
+  {
+    "id": "R80300581",
+    "name": "Tangail - Bhuapur",
+    "zones": [
+      {
+        "id": "RBD1496",
+        "name": "Arjuna"
+      },
+      {
+        "id": "R80301361",
+        "name": "Bhuapur Sadar"
+      },
+      {
+        "id": "RBD1504",
+        "name": "Nikrail"
+      }
+    ]
+  },
+  {
+    "id": "R80300563",
+    "name": "Tangail - Deldur",
+    "zones": [
+      {
+        "id": "R80301180",
+        "name": "Delduar Elasin"
+      },
+      {
+        "id": "R80301181",
+        "name": "Delduar Hinga Nagar"
+      },
+      {
+        "id": "R80301182",
+        "name": "Delduar Jangalia"
+      },
+      {
+        "id": "R80301183",
+        "name": "Delduar Lowhati"
+      },
+      {
+        "id": "R80301178",
+        "name": "Delduar Patharail"
+      },
+      {
+        "id": "R80301179",
+        "name": "Delduar Saddar"
+      }
+    ]
+  },
+  {
+    "id": "RBD1478",
+    "name": "Tangail - Dhanbari",
+    "zones": [
+      {
+        "id": "RBD1509",
+        "name": "Baniajan"
+      },
+      {
+        "id": "RBD1497",
+        "name": "Dhanbari Sadar"
+      },
+      {
+        "id": "RBD1485",
+        "name": "Dhopakhali"
+      }
+    ]
+  },
+  {
+    "id": "R80300568",
+    "name": "Tangail - Ghatail",
+    "zones": [
+      {
+        "id": "R80301211",
+        "name": "Ghatail D. Pakutia"
+      },
+      {
+        "id": "R80301212",
+        "name": "Ghatail Dhalapara"
+      },
+      {
+        "id": "R80301213",
+        "name": "Ghatail Lohani"
+      },
+      {
+        "id": "R80301209",
+        "name": "Ghatail Saddar"
+      },
+      {
+        "id": "R80301210",
+        "name": "Ghatail Zahidganj"
+      }
+    ]
+  },
+  {
+    "id": "R80300577",
+    "name": "Tangail - Gopalpur",
+    "zones": [
+      {
+        "id": "R80301337",
+        "name": "Gopalpur Chatutia"
+      },
+      {
+        "id": "R80301338",
+        "name": "Gopalpur Hemnagar"
+      },
+      {
+        "id": "R80301335",
+        "name": "Gopalpur Jhowail"
+      },
+      {
+        "id": "R80301336",
+        "name": "Gopalpur Saddar"
+      }
+    ]
+  },
+  {
+    "id": "R80300569",
+    "name": "Tangail - Kalihati",
+    "zones": [
+      {
+        "id": "R80301216",
+        "name": "Kalihati Ballabazar"
+      },
+      {
+        "id": "R80301217",
+        "name": "Kalihati Elinga"
+      },
+      {
+        "id": "R80301218",
+        "name": "Kalihati Kalihati"
+      },
+      {
+        "id": "R80301219",
+        "name": "Kalihati Nagarbari"
+      },
+      {
+        "id": "R80301220",
+        "name": "Kalihati Nagarbari SO"
+      },
+      {
+        "id": "R80301221",
+        "name": "Kalihati Nagbari"
+      },
+      {
+        "id": "R80301214",
+        "name": "Kalihati Palisha"
+      },
+      {
+        "id": "R80301215",
+        "name": "Kalihati Rajafair"
+      }
+    ]
+  },
+  {
+    "id": "R80300556",
+    "name": "Tangail - Madhupur",
+    "zones": [
+      {
+        "id": "RBD1489",
+        "name": "Ausnara"
+      },
+      {
+        "id": "R80301119",
+        "name": "Madhupur"
+      },
+      {
+        "id": "R80301120",
+        "name": "Madhupur Dhobari"
+      },
+      {
+        "id": "RBD1502",
+        "name": "Sholakuri"
+      }
+    ]
+  },
+  {
+    "id": "R80300565",
+    "name": "Tangail - Mirzapur",
+    "zones": [
+      {
+        "id": "R80301191",
+        "name": "Mirzapur Gorai"
+      },
+      {
+        "id": "R80301192",
+        "name": "Mirzapur Jarmuki"
+      },
+      {
+        "id": "R80301193",
+        "name": "Mirzapur M.C. College"
+      },
+      {
+        "id": "R80301188",
+        "name": "Mirzapur Mohera"
+      },
+      {
+        "id": "R80301189",
+        "name": "Mirzapur Saddar"
+      },
+      {
+        "id": "R80301190",
+        "name": "Mirzapur Warri paikpara"
+      }
+    ]
+  },
+  {
+    "id": "R80300586",
+    "name": "Tangail - Nagarpur",
+    "zones": [
+      {
+        "id": "R80301387",
+        "name": "Nagarpur Dhuburia"
+      },
+      {
+        "id": "R80301388",
+        "name": "Nagarpur Sadar"
+      },
+      {
+        "id": "R80301389",
+        "name": "Nagarpur Salimabad"
+      }
+    ]
+  },
+  {
+    "id": "R80300554",
+    "name": "Tangail - Sakhipur",
+    "zones": [
+      {
+        "id": "RBD1498",
+        "name": "Dariapur"
+      },
+      {
+        "id": "RBD1493",
+        "name": "Kalmegha"
+      },
+      {
+        "id": "R80301112",
+        "name": "Sakhipur Kochua"
+      },
+      {
+        "id": "R80301113",
+        "name": "Sakhipur Sadar"
+      }
+    ]
+  },
+  {
+    "id": "R80300555",
+    "name": "Tangail - Town",
+    "zones": [
+      {
+        "id": "R80315213",
+        "name": "Charabari"
+      },
+      {
+        "id": "R80315215",
+        "name": "Elanga"
+      },
+      {
+        "id": "R80315218",
+        "name": "Gala"
+      },
+      {
+        "id": "R80315223",
+        "name": "Jugni Bazar"
+      },
+      {
+        "id": "R80315224",
+        "name": "Kasil"
+      },
+      {
+        "id": "R80315217",
+        "name": "Potol Bazar"
+      },
+      {
+        "id": "R80315222",
+        "name": "Pugli"
+      },
+      {
+        "id": "R80315214",
+        "name": "Rosulpur"
+      },
+      {
+        "id": "R80315219",
+        "name": "Salimpur"
+      },
+      {
+        "id": "R80315216",
+        "name": "Soto Basail"
+      },
+      {
+        "id": "R80301114",
+        "name": "Tangail Sadar"
+      },
+      {
+        "id": "R80301115",
+        "name": "Tangail Sadar Kagmari"
+      },
+      {
+        "id": "R80301116",
+        "name": "Tangail Sadar Karatia"
+      },
+      {
+        "id": "R80301117",
+        "name": "Tangail Sadar Porabari"
+      },
+      {
+        "id": "R80301118",
+        "name": "Tangail Sadar Santosh"
+      },
+      {
+        "id": "R80315221",
+        "name": "Tarotiya"
+      },
+      {
+        "id": "R80315225",
+        "name": "Vaita"
+      },
+      {
+        "id": "R80315220",
+        "name": "Vatkora"
+      }
+    ]
+  },
+  {
+    "id": "R80314542",
+    "name": "Tongi",
+    "zones": [
+      {
+        "id": "R80317725",
+        "name": "27 Bus Stand"
+      },
+      {
+        "id": "R80317717",
+        "name": "Arichpur"
+      },
+      {
+        "id": "R80317709",
+        "name": "Badham"
+      },
+      {
+        "id": "R80317718",
+        "name": "Besic-fokir market"
+      },
+      {
+        "id": "R80317703",
+        "name": "Besic industrial area"
+      },
+      {
+        "id": "R80317708",
+        "name": "Beximco"
+      },
+      {
+        "id": "R80317712",
+        "name": "Bonomala"
+      },
+      {
+        "id": "R80317724",
+        "name": "Boro bari"
+      },
+      {
+        "id": "R80317707",
+        "name": "Cherag Ali"
+      },
+      {
+        "id": "R80317710",
+        "name": "Dewra"
+      },
+      {
+        "id": "R80317705",
+        "name": "Gazipura"
+      },
+      {
+        "id": "R80317713",
+        "name": "International madical"
+      },
+      {
+        "id": "R80317720",
+        "name": "Jhinu market"
+      },
+      {
+        "id": "R80317715",
+        "name": "Mail gate"
+      },
+      {
+        "id": "R80317722",
+        "name": "Mirarbazar"
+      },
+      {
+        "id": "R80317716",
+        "name": "Mirash para"
+      },
+      {
+        "id": "R80317719",
+        "name": "Pagar"
+      },
+      {
+        "id": "R80317721",
+        "name": "Shilmoon"
+      },
+      {
+        "id": "R80317711",
+        "name": "Shinbari"
+      },
+      {
+        "id": "R80317723",
+        "name": "Targach"
+      },
+      {
+        "id": "R80317704",
+        "name": "Tongi bazar"
+      },
+      {
+        "id": "RBD1403",
+        "name": "Tongi Bscic"
+      },
+      {
+        "id": "R80317702",
+        "name": "Tongi college gate"
+      },
+      {
+        "id": "R80317701",
+        "name": "Tongi Sadar"
+      },
+      {
+        "id": "R80317714",
+        "name": "Tongi Station Road"
+      }
+    ]
+  }
+]
