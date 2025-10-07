@@ -14,13 +14,22 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { createCustomer, customerFormSchema } from "../actions";
+import { createCustomer } from "../actions";
+
+export const customerFormSchema = z.object({
+	name: z.string().min(1, "Name is required"),
+	primaryPhone: z.string().min(1, "Phone is required"),
+	secondaryPhone: z.string().optional(),
+	email: z.string().email().optional().or(z.literal("")),
+});
+
+export type CustomerFormSchema = z.infer<typeof customerFormSchema>;
 
 export default function CustomerForm({
 	initialData,
 	pageTitle,
 }: {
-	initialData: any | null;
+	initialData: CustomerFormSchema | null;
 	pageTitle: string;
 }) {
 	const defaultValues = {
@@ -30,12 +39,12 @@ export default function CustomerForm({
 		email: initialData?.email || "",
 	};
 
-	const form = useForm<z.infer<typeof customerFormSchema>>({
+	const form = useForm<CustomerFormSchema>({
 		resolver: zodResolver(customerFormSchema),
 		values: defaultValues,
 	});
 
-	async function onSubmit(values: z.infer<typeof customerFormSchema>) {
+	async function onSubmit(values: CustomerFormSchema) {
 		const result = await createCustomer(values);
 		if (result.success) {
 			// Handle success (redirect, toast, etc.)

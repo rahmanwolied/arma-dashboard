@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import CustomerForm from "./customer-form";
 import { getCustomerById } from "../actions";
+import type { CustomerFormSchema } from "./customer-form";
 
 type TCustomerViewPageProps = {
 	customerId: string;
@@ -20,8 +21,13 @@ export default async function CustomerViewPage({
 		}
 
 		customer = result.customer;
-		pageTitle = `Edit Customer`;
+		pageTitle = "Edit Customer";
 	}
 
-	return <CustomerForm initialData={customer} pageTitle={pageTitle} />;
+	return (
+		<CustomerForm
+			initialData={customer as CustomerFormSchema}
+			pageTitle={pageTitle}
+		/>
+	);
 }

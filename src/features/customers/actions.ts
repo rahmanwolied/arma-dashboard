@@ -1,20 +1,12 @@
 "use server";
 
 import { db } from "@/db";
-import { addresses, customers } from "@/db/schema";
+import { customers } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
-
-// Customer form schema (if needed for client components)
-export const customerFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  primaryPhone: z.string().min(1, "Phone is required"),
-  secondaryPhone: z.string().optional(),
-  email: z.string().email().optional().or(z.literal("")),
-});
+import type { CustomerFormSchema } from "./components/customer-form";
 
 export async function createCustomer(
-  formData: z.infer<typeof customerFormSchema>,
+  formData: CustomerFormSchema,
 ) {
   try {
     const [customer] = await db
