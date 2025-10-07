@@ -1,56 +1,64 @@
-import PageContainer from '@/components/layout/page-container';
-import { buttonVariants } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Separator } from '@/components/ui/separator';
-import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
-import CustomerListingPage from '@/features/customers/components/customer-listing';
-import { searchParamsCache, serialize } from '@/lib/searchparams';
-import { cn } from '@/lib/utils';
-import { IconPlus } from '@tabler/icons-react';
-import Link from 'next/link';
-import { SearchParams } from 'nuqs/server';
-import { Suspense } from 'react';
-import prisma from '@/prisma/index';
+import { getCustomersData } from "@/app/_lib/queries/customers";
+import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton";
+import { getValidFilters } from "@/lib/data-table";
+import { customersSearchParamsCache } from "@/app/_lib/validations";
+import { serialize } from "@/lib/searchparams";
+import type { SearchParams } from "@/types";
+import { Suspense } from "react";
+import { Shell } from "@/components/shell";
+import { FeatureFlagsProvider } from "@/app/_components/feature-flags-provider";
+import { CustomersTable } from "@/features/customers/components/customers-table";
+import { Heading } from "@/components/ui/heading";
+import { Separator } from "@/components/ui/separator";
 
 export const metadata = {
-  title: 'Dashboard: Products'
+	title: "Dashboard: Customers",
 };
 
 type pageProps = {
-  searchParams: Promise<SearchParams>;
+	searchParams: Promise<SearchParams>;
 };
 
 export default async function Page(props: pageProps) {
-  const searchParams = await props.searchParams;
-  const customers = await prisma.customer.findMany();
-  // Allow nested RSCs to access the search params (in a type-safe way)
-  searchParamsCache.parse(searchParams);
+	const searchParams = await props.searchParams;
+	const search = customersSearchParamsCache.parse(searchParams);
 
-  // This key is used for invoke suspense if any of the search params changed (used for filters).
-  const key = serialize({ ...searchParams });
+	const validFilters = getValidFilters(search.filters);
 
-  return (
-    <PageContainer scrollable={false}>
-      <div className='flex flex-1 flex-col space-y-4'>
-        <div className='flex items-start justify-between'>
-          <Heading title='Customers' description='Manage customers' />
-          {/* <Link
-            href='/dashboard/customers/new'
-            className={cn(buttonVariants(), 'text-xs md:text-sm')}
-          >
-            <IconPlus className='mr-2 h-4 w-4' /> Add New
-          </Link> */}
-        </div>
-        <Separator />
-        <Suspense
-          key={key}
-          fallback={
-            <DataTableSkeleton columnCount={5} rowCount={8} filterCount={2} />
-          }
-        >
-          <CustomerListingPage customers={customers} />
-        </Suspense>
-      </div>
-    </PageContainer>
-  );
+	// Allow nested RSCs to access the search params (in a type-safe way)
+	customersSearchParamsCache.parse(searchParams);
+
+	// This key is used for invoke suspense if any of the search params changed (used for filters).
+	const key = serialize({ ...searchParams });
+
+	const promises = Promise.all([
+		getCustomersData({
+			...search,
+			filters: validFilters,
+		}),
+	]);
+
+	return (
+		<Shell className="gap-2 px-6">
+			<div className="flex items-start justify-between">
+				<Heading title="Customers" description="Manage customers" />
+			</div>
+			<Separator />
+			<FeatureFlagsProvider>
+				<Suspense
+					key={key}
+					fallback={
+						<DataTableSkeleton
+							columnCount={6}
+							filterCount={2}
+							cellWidths={["12rem", "12rem", "25rem", "10rem", "8rem", "6rem"]}
+							shrinkZero
+						/>
+					}
+				>
+					<CustomersTable promises={promises} />
+				</Suspense>
+			</FeatureFlagsProvider>
+		</Shell>
+	);
 }

@@ -37,7 +37,11 @@ export const addressTypeEnum = pgEnum("address_type_enum", [
 ]);
 
 // Financial-related enums
-export const discountTypeEnum = pgEnum("discount_type", ["FLAT", "PERCENT"]);
+export const discountTypeEnum = pgEnum("discount_type", [
+    "FLAT",
+    "PERCENT",
+    "WEIGHT_BASED",
+]);
 export const paymentMethodEnum = pgEnum("payment_method", [
     "CASH",
     "CREDIT_CARD",

@@ -1,31 +1,27 @@
-import { fakeProducts, Product } from '@/constants/mock-api';
-import { notFound } from 'next/navigation';
-import TransactionForm from './transaction-form';
-import prisma from '@/prisma';
-import { Transaction } from '@/prisma/generated/prisma';
+import { notFound } from "next/navigation";
+import SaleForm from "./sale-form";
+import { getSaleById } from "../actions";
 
-type TProductViewPageProps = {
-  transactionId: string;
+type TSaleViewPageProps = {
+	transactionId: string;
 };
 
 export default async function TransactionViewPage({
-  transactionId
-}: TProductViewPageProps) {
-  let transaction = null;
-  let pageTitle = 'Add New Transaction';
+	transactionId,
+}: TSaleViewPageProps) {
+	let sale = null;
+	let pageTitle = "Add New Sale";
 
-  if (transactionId !== 'new') {
-    const data = await prisma.transaction.findUnique({
-      where: {
-        id: transactionId
-      }
-    });
-    transaction = data as Transaction;
-    if (!transaction) {
-      notFound();
-    }
-    pageTitle = `Edit Transaction`;
-  }
+	if (transactionId !== "new") {
+		const result = await getSaleById(transactionId);
 
-  return <TransactionForm pageTitle={pageTitle} />;
+		if (!result.success || !result.sale) {
+			notFound();
+		}
+
+		sale = result.sale;
+		pageTitle = `Edit Sale`;
+	}
+
+	return <SaleForm initialData={sale} pageTitle={pageTitle} />;
 }

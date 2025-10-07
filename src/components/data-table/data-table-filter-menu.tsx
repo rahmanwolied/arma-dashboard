@@ -547,26 +547,55 @@ function FilterValueSelector<TData>({
 			);
 
 		case "select":
-		case "multiSelect":
+		case "multiSelect": {
+			const options = column.columnDef.meta?.options ?? [];
+
+			const optionGroups = options
+				.filter((option) => option.groupLabel)
+				.reduce(
+					(acc, option) => {
+						acc[option.groupLabel as string] = [
+							...(acc[option.groupLabel as string] || []),
+							option,
+						];
+						return acc;
+					},
+					{} as Record<string, Option[]>,
+				);
+
 			return (
-				<CommandGroup>
-					{column.columnDef.meta?.options?.map((option) => (
-						<CommandItem
-							key={option.value}
-							value={option.value}
-							onSelect={() => onSelect(option.value)}
-						>
-							{option.icon && <option.icon />}
-							<span className="truncate">{option.label}</span>
-							{option.count && (
-								<span className="ml-auto font-mono text-xs">
-									{option.count}
-								</span>
-							)}
-						</CommandItem>
+				<>
+					{(Object.keys(optionGroups).length > 0
+						? Object.keys(optionGroups)
+						: [""]
+					).map((groupLabel, index) => (
+						<React.Fragment key={index.toString()}>
+							<CommandGroup
+								key={groupLabel ?? "default"}
+								heading={groupLabel !== "_" ? groupLabel : undefined}
+							>
+								{(optionGroups[groupLabel] || options).map((option, index) => (
+									<CommandItem
+										key={option.value + index.toString()}
+										value={option.value}
+										onSelect={() => onSelect(option.value)}
+									>
+										{option.icon && <option.icon />}
+										<span className="truncate">{option.label}</span>
+										{option.count && (
+											<span className="ml-auto font-mono text-xs">
+												{option.count}
+											</span>
+										)}
+									</CommandItem>
+								))}
+							</CommandGroup>
+							<CommandSeparator key={index.toString()} />
+						</React.Fragment>
 					))}
-				</CommandGroup>
+				</>
 			);
+		}
 
 		case "date":
 		case "dateRange":
@@ -707,16 +736,20 @@ function onFilterInputRender<TData>({
 		case "multiSelect": {
 			const inputListboxId = `${inputId}-listbox`;
 
-			const optionGroups = ((column.columnDef.meta?.options ?? []) as Option[])
-				.filter((option) => option.groupLabel)
-				.map((option) => ({
-					groupLabel: option.groupLabel,
-					options: (column.columnDef.meta?.options ?? []).filter(
-						(o) => o.groupLabel === option.groupLabel,
-					),
-				}));
+			const options = (column.columnDef.meta?.options ?? []) as Option[];
 
-			const options = optionGroups?.flatMap((group) => group.options) ?? [];
+			const optionGroups = options
+				.filter((option) => option.groupLabel)
+				.reduce(
+					(acc, option) => {
+						acc[option.groupLabel as string] = [
+							...(acc[option.groupLabel as string] || []),
+							option,
+						];
+						return acc;
+					},
+					{} as Record<string, Option[]>,
+				);
 
 			const selectedValues = Array.isArray(filter.value)
 				? filter.value
@@ -774,45 +807,50 @@ function onFilterInputRender<TData>({
 							<CommandInput placeholder="Search options..." />
 							<CommandList>
 								<CommandEmpty>No options found.</CommandEmpty>
-								{optionGroups.map((group) => (
-									<>
+								{(Object.keys(optionGroups).length > 0
+									? Object.keys(optionGroups)
+									: [""]
+								).map((groupLabel, index) => (
+									<React.Fragment key={index.toString()}>
 										<CommandGroup
-											key={group.groupLabel}
-											heading={group.groupLabel}
+											key={groupLabel ?? "default"}
+											heading={groupLabel !== "_" ? groupLabel : undefined}
 										>
-											{group.options.map((option) => (
-												<CommandItem
-													key={option.value}
-													value={option.value}
-													onSelect={() => {
-														const value =
-															filter.variant === "multiSelect"
-																? selectedValues.includes(option.value)
-																	? selectedValues.filter(
-																			(v) => v !== option.value,
-																		)
-																	: [...selectedValues, option.value]
-																: option.value;
-														onFilterUpdate(filter.filterId, { value });
-													}}
-												>
-													{option.icon && <option.icon />}
-													<span className="truncate">{option.label}</span>
-													{filter.variant === "multiSelect" && (
-														<Check
-															className={cn(
-																"ml-auto",
-																selectedValues.includes(option.value)
-																	? "opacity-100"
-																	: "opacity-0",
-															)}
-														/>
-													)}
-												</CommandItem>
-											))}
+											{(optionGroups[groupLabel] || options).map(
+												(option, optionIndex) => (
+													<CommandItem
+														key={option.value + optionIndex.toString()}
+														value={option.value}
+														onSelect={() => {
+															const value =
+																filter.variant === "multiSelect"
+																	? selectedValues.includes(option.value)
+																		? selectedValues.filter(
+																				(v) => v !== option.value,
+																			)
+																		: [...selectedValues, option.value]
+																	: option.value;
+															onFilterUpdate(filter.filterId, { value });
+														}}
+													>
+														{option.icon && <option.icon />}
+														<span className="truncate">{option.label}</span>
+														{filter.variant === "multiSelect" && (
+															<Check
+																className={cn(
+																	"ml-auto",
+																	selectedValues.includes(option.value)
+																		? "opacity-100"
+																		: "opacity-0",
+																)}
+															/>
+														)}
+													</CommandItem>
+												),
+											)}
 										</CommandGroup>
-										<CommandSeparator key={group.groupLabel} />
-									</>
+										<CommandSeparator key={index.toString()} />
+									</React.Fragment>
 								))}
 							</CommandList>
 						</Command>

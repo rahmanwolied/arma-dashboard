@@ -1,6 +1,61 @@
 # ARMA Data Import Scripts
 
-This directory contains scripts for importing and managing cattle data in the ARMA dashboard system.
+This directory contains scripts for importing and managing cattle, customer, and sales data in the ARMA dashboard system using Drizzle ORM.
+
+## Available Scripts
+
+### 1. Import Cattle Data (`import-cattle-data.ts`)
+
+Imports cattle and purchase data from a JSON export file into the ARMA database using Drizzle ORM. It creates proper relationships between animals, cattle, purchases, and weight records.
+
+### 2. Seed Customers (`seed-customers-from-export.ts`)
+
+Imports customers from the JSON export file with intelligent address normalization. Supports both LLM-powered normalization (from `extracted-addresses.json`) and heuristic-based fallback parsing.
+
+**Usage:**
+```bash
+pnpm db:seed-customers
+# or with custom file paths
+tsx scripts/seed-customers-from-export.ts path/to/export.json path/to/normalized-addresses.json
+```
+
+**Features:**
+- ✅ **LLM-Powered Normalization**: Uses pre-processed LLM-normalized addresses for high accuracy
+- ✅ **Automatic Fallback**: Falls back to heuristic parsing if LLM data is unavailable
+- ✅ **Confidence Tracking**: Logs low-confidence normalizations (<0.7) for review
+- ✅ **Smart Address Parsing**: Extracts division, district, and zone/upazila from addresses
+- ✅ **Duplicate Detection**: Skips customers with existing phone numbers
+- ✅ **Metadata Preservation**: Stores original addresses and LLM confidence scores in JSONB
+- ✅ **Progress Logging**: Real-time statistics and error reporting
+
+**LLM Normalization Workflow:**
+1. Extract addresses: `tsx scripts/extract-addresses-for-llm.ts` → creates `extracted-addresses.json`
+2. Process with LLM (e.g., Groq, OpenAI) using the provided prompt to normalize addresses
+3. Save LLM output to `extracted-addresses.json` (overwrites extraction output)
+4. Run seeding: `tsx scripts/seed-customers-from-export.ts` (automatically picks up `extracted-addresses.json`)
+
+**Expected Normalized Address Format:**
+```json
+[
+  {
+    "phone": "01715-547334",
+    "normalized": {
+      "division": "Dhaka",
+      "district": "Dhaka - South",
+      "zone": "Kalabagan",
+      "addressLine": "108, Dhupchhaya, Lakes Circus",
+      "confidence": 0.9,
+      "notes": "Corrected spelling from 'Kolabagan' to 'Kalabagan'."
+    }
+  }
+]
+```
+
+**Output Metadata:**
+- Low-confidence normalizations are stored in `addresses.details` JSONB field with:
+  - `original`: Original address string
+  - `llm_confidence`: Confidence score (0-1)
+  - `llm_notes`: LLM's normalization notes
 
 ## Import Cattle Data Script
 

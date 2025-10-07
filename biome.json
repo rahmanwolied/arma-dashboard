@@ -29,7 +29,8 @@
 			},
 			"suspicious": {
 				"noAssignInExpressions": "off",
-				"noArrayIndexKey": "off"
+				"noArrayIndexKey": "off",
+				"noConsoleLog": "off"
 			},
 			"nursery": {
 				"useSortedClasses": {

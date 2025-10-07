@@ -2,6 +2,7 @@ import { getCattleData } from "@/app/_lib/queries/cattle";
 import { DataTableSkeleton } from "@/components/ui/table/data-table-skeleton";
 import { getValidFilters } from "@/lib/data-table";
 import { cattleSearchParamsCache } from "@/app/_lib/validations";
+import { serialize } from "@/lib/searchparams";
 import type { SearchParams } from "@/types";
 import { Suspense } from "react";
 import { Shell } from "@/components/shell";
@@ -26,7 +27,7 @@ export default async function Page(props: pageProps) {
 	cattleSearchParamsCache.parse(searchParams);
 
 	// This key is used for invoke suspense if any of the search params changed (used for filters).
-	// const key = serialize({ ...searchParams });
+	const key = serialize({ ...searchParams });
 
 	const promises = Promise.all([
 		getCattleData({
@@ -39,6 +40,7 @@ export default async function Page(props: pageProps) {
 		<Shell className="gap-2 px-6">
 			<FeatureFlagsProvider>
 				<Suspense
+					key={key}
 					fallback={
 						<DataTableSkeleton
 							columnCount={7}

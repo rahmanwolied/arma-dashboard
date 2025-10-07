@@ -1,0 +1,123 @@
+[
+	{
+		"phone": "01715-547334",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Kalabagan",
+			"addressLine": "108, Dhupchhaya, Lakes Circus",
+			"confidence": 0.9,
+			"notes": "Corrected spelling from 'Kolabagan' to 'Kalabagan'."
+		}
+	},
+	{
+		"phone": "01711-533488",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - North",
+			"zone": "Banasree Block C",
+			"addressLine": "Block-C, Road No.-11",
+			"confidence": 0.9,
+			"notes": "Corrected 'Bonosree' to 'Banasree' and matched to the specific block mentioned."
+		}
+	},
+	{
+		"phone": "01712-067447",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - North",
+			"zone": "East Hazipara",
+			"addressLine": "House-52/2",
+			"confidence": 1.0,
+			"notes": ""
+		}
+	},
+	{
+		"phone": "01707-330875",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Dhanmondi 3",
+			"addressLine": "House No.-26/A, Road-3",
+			"confidence": 1.0,
+			"notes": "Matched 'Road-3, Dhanmondi' to the specific zone 'Dhanmondi 3'."
+		}
+	},
+	{
+		"phone": "01307-439760",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Saddam Market",
+			"addressLine": "Tusar Dhara Residential Area",
+			"confidence": 0.9,
+			"notes": "Zone identified based on the 'Saddam Market' landmark."
+		}
+	},
+	{
+		"phone": "01711-149329",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Goran",
+			"addressLine": "Basic Cherry Blossom 111 & 112",
+			"confidence": 0.8,
+			"notes": "Mapped 'South Goran' to the broader 'Goran' zone as it was the closest available match."
+		}
+	},
+	{
+		"phone": "01711-128312",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Dhanmondi 9A",
+			"addressLine": "House No.-18, Flat No. C-4, Road No. 9/A",
+			"confidence": 1.0,
+			"notes": "Matched 'Road No. 9/A, Dhanmondi' to the specific zone 'Dhanmondi 9A'."
+		}
+	},
+	{
+		"phone": "01715-019561",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - North",
+			"zone": "Banasree Block C",
+			"addressLine": "Block-C, Road No.-11",
+			"confidence": 0.9,
+			"notes": "Corrected 'Bonosree' to 'Banasree' and matched to the specific block mentioned."
+		}
+	},
+	{
+		"phone": "01713-443042",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - North",
+			"zone": "Khilkhet",
+			"addressLine": "DGM (Admin), DESCO; House K-206/B, Namapara",
+			"confidence": 1.0,
+			"notes": "Identified zone based on 'Khilkhet'."
+		}
+	},
+	{
+		"phone": "01819-223260",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - South",
+			"zone": "Kalabagan",
+			"addressLine": "16 Lakes Circus, Hasnahena Tri A (3)",
+			"confidence": 0.9,
+			"notes": "Corrected spelling from 'Kolabagan' to 'Kalabagan'."
+		}
+	},
+	{
+		"phone": "01777-792648",
+		"normalized": {
+			"division": "Dhaka",
+			"district": "Dhaka - North",
+			"zone": "Bhuyia Para",
+			"addressLine": "Silicon Valley",
+			"confidence": 0.85,
+			"notes": "Zone identified as 'Bhuyia Para' from the address; corrected 'Bonosree' to 'Banasree' which is a nearby area."
+		}
+	}
+]

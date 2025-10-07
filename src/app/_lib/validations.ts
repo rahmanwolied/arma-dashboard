@@ -83,3 +83,42 @@ export const cattleSearchParamsCache = createSearchParamsCache({
 export type GetCattleSchema = Awaited<
   ReturnType<typeof cattleSearchParamsCache.parse>
 >;
+
+// Customers search params cache
+export const customersSearchParamsCache = createSearchParamsCache({
+  filterFlag: parseAsStringEnum(
+    flagConfig.featureFlags.map((flag) => flag.value),
+  ),
+  page: parseAsInteger.withDefault(1),
+  perPage: parseAsInteger.withDefault(10),
+  sort: getSortingStateParser().withDefault([]),
+  search: parseAsString.withDefault(""),
+  // advanced filter
+  filters: getFiltersStateParser().withDefault([]),
+  joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and"),
+});
+
+export type GetCustomersSchema = Awaited<
+  ReturnType<typeof customersSearchParamsCache.parse>
+>;
+
+// Sales search params cache
+export const salesSearchParamsCache = createSearchParamsCache({
+  filterFlag: parseAsStringEnum(
+    flagConfig.featureFlags.map((flag) => flag.value),
+  ),
+  page: parseAsInteger.withDefault(1),
+  perPage: parseAsInteger.withDefault(10),
+  sort: getSortingStateParser().withDefault([]),
+  search: parseAsString.withDefault(""),
+  discountType: parseAsArrayOf(z.enum(["FLAT", "PERCENT", "WEIGHT_BASED"]))
+    .withDefault([]),
+  saleDate: parseAsArrayOf(z.coerce.number()).withDefault([]),
+  // advanced filter
+  filters: getFiltersStateParser().withDefault([]),
+  joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and"),
+});
+
+export type GetSalesSchema = Awaited<
+  ReturnType<typeof salesSearchParamsCache.parse>
+>;

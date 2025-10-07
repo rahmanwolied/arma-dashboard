@@ -25,6 +25,7 @@
 		"db:up": "drizzle-kit up",
 		"db:seed-transactions": "tsx scripts/seed-transaction-data.ts",
 		"db:seed-cattle-from-csv": "tsx scripts/seed-from-csv.ts",
+		"db:seed-customers": "tsx scripts/seed-customers-from-export.ts",
 		"db:export": "tsx scripts/export-data.ts",
 		"db:import-cattle": "tsx scripts/import-cattle-data.ts",
 		"db:get-locations": "tsx scripts/get-locations.ts",

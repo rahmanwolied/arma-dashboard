@@ -30,3 +30,11 @@ export const cattleSearchParams = {
 export const cattleSearchParamsCache = createSearchParamsCache(
   cattleSearchParams,
 );
+
+/**
+ * Serialize search params object into a deterministic string key
+ * Used for React Suspense keys to trigger refetch when params change
+ */
+export function serialize(searchParams: Record<string, unknown>): string {
+  return JSON.stringify(searchParams);
+}
