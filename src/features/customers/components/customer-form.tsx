@@ -15,9 +15,11 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { createCustomer } from "../actions";
+import { createCustomer, updateCustomer } from "../actions";
 import { User, Phone, Mail, Smartphone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useEffect, useState } from "react";
+import {toast} from 'sonner'
 
 export const customerFormSchema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -31,10 +33,18 @@ export type CustomerFormSchema = z.infer<typeof customerFormSchema>;
 export default function CustomerForm({
 	initialData,
 	pageTitle,
+	id
 }: {
 	initialData: CustomerFormSchema | null;
 	pageTitle: string;
+	id:string
 }) {
+	const [existing, setExisting] = useState(false)
+
+	useEffect(() => {
+		if (initialData || id !== 'new') setExisting(true)
+	},[])
+
 	const defaultValues = {
 		name: initialData?.name || "",
 		primaryPhone: initialData?.primaryPhone || "",
@@ -48,12 +58,15 @@ export default function CustomerForm({
 	});
 
 	async function onSubmit(values: CustomerFormSchema) {
-		const result = await createCustomer(values);
+		const result = !existing ? await createCustomer(values) : await updateCustomer(values, id)
+
 		if (result.success) {
 			// Handle success (redirect, toast, etc.)
+			toast.success(`${existing ? 'Updated' : 'Added'} Customer Successfully`)
 			console.log("Customer created successfully");
 		} else {
 			// Handle error
+			toast.error("An error occured")
 			console.error(result.message);
 		}
 	}
@@ -200,7 +213,7 @@ export default function CustomerForm({
 								) : (
 									<>
 										<User className="mr-2 h-4 w-4" />
-										Add Customer
+										{existing ? 'Update' : "Add"} Customer
 									</>
 								)}
 							</Button>

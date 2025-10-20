@@ -11,18 +11,36 @@ import {
 import type { TransactionWithCustomer } from './columns';
 import { IconEdit, IconDotsVertical, IconTrash } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
+import { deleteSale } from '../../actions';
+import { toast } from 'sonner';
 
 interface CellActionProps {
   data: TransactionWithCustomer;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
-  const [loading] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  const onConfirm = async () => {};
+  const onConfirm = async () => {
+    startTransition(async () => {
+      try {
+        const result = await deleteSale(data.id);
+        if (result.success) {
+          toast.success(result.message);
+          setOpen(false);
+          router.refresh();
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error('Failed to delete sale');
+        console.error(error);
+      }
+    });
+  };
 
   return (
     <>
@@ -30,7 +48,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onConfirm}
-        loading={loading}
+        loading={isPending}
       />
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>

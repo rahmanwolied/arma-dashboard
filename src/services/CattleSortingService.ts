@@ -44,14 +44,6 @@ export class CattleSortingService implements ICattleSortingService {
                         ? desc(cattle.tagNumber)
                         : asc(cattle.tagNumber);
 
-                case "gender":
-                    return sort.desc ? desc(cattle.gender) : asc(cattle.gender);
-
-                case "healthStatus":
-                    return sort.desc
-                        ? desc(cattle.healthStatus)
-                        : asc(cattle.healthStatus);
-
                 case "createdAt":
                     return sort.desc
                         ? desc(cattle.createdAt)

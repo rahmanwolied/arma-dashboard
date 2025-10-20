@@ -5,8 +5,31 @@ import { formatDate } from "@/lib/format";
 import type { ColumnDef } from "@tanstack/react-table";
 import type { CustomerWithAddress } from "@/app/_lib/queries/customers";
 import { Phone, Mail, MapPin, Calendar } from "lucide-react";
+import { getAllDistricts, getAllDivisions } from "@/app/_lib/queries/divisions";
+import { CustomerCellAction } from "./customer-cell-action";
 
-export function getCustomersTableColumns(): ColumnDef<CustomerWithAddress>[] {
+type GetCustomerTableColumnsProps = {
+	districts: Awaited<ReturnType<typeof getAllDistricts>>
+	divisions	: Awaited<ReturnType<typeof getAllDivisions>>
+}
+/**
+ * Helper function to extract unique values and create filter options
+ */
+function getUniqueOptions(
+	data: GetCustomerTableColumnsProps["districts"] | GetCustomerTableColumnsProps["divisions"]
+): Array<{ value: string; label: string }> {
+	return data.map((item) => ({
+		value: item.id,
+		label: item.name,
+	}));
+}
+
+export function getCustomersTableColumns(
+	data: GetCustomerTableColumnsProps,
+): ColumnDef<CustomerWithAddress>[] {
+	const divisionOptions = getUniqueOptions(data.divisions);
+	const districtOptions = getUniqueOptions(data.districts);
+
 	return [
 		{
 			id: "name",
@@ -92,7 +115,7 @@ export function getCustomersTableColumns(): ColumnDef<CustomerWithAddress>[] {
 			meta: {
 				label: "Division",
 				variant: "multiSelect",
-				options: [], // Will be populated from data
+				options: divisionOptions,
 			},
 		},
 		{
@@ -108,7 +131,7 @@ export function getCustomersTableColumns(): ColumnDef<CustomerWithAddress>[] {
 			meta: {
 				label: "District",
 				variant: "multiSelect",
-				options: [], // Will be populated from data
+				options: districtOptions,
 			},
 		},
 		{
@@ -144,6 +167,11 @@ export function getCustomersTableColumns(): ColumnDef<CustomerWithAddress>[] {
 				);
 			},
 			enableSorting: true,
+		},
+		{
+			id: "actions",
+			cell: ({ row }) => <CustomerCellAction data={row.original} />,
+			enableHiding: false,
 		},
 	];
 }

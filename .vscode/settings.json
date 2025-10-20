@@ -2,5 +2,8 @@
     "editor.defaultFormatter": "biomejs.biome",
     "notebook.defaultFormatter": "biomejs.biome",
     "files.autoSave": "onFocusChange",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }

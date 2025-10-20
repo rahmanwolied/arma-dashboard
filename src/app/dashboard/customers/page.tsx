@@ -10,6 +10,7 @@ import { FeatureFlagsProvider } from "@/app/_components/feature-flags-provider";
 import { CustomersTable } from "@/features/customers/components/customers-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
+import { getAllDistricts, getAllDivisions } from "@/app/_lib/queries/divisions";
 
 export const metadata = {
 	title: "Dashboard: Customers",
@@ -36,6 +37,8 @@ export default async function Page(props: pageProps) {
 			...search,
 			filters: validFilters,
 		}),
+		getAllDistricts(),
+		getAllDivisions()
 	]);
 
 	return (

@@ -1,9 +1,10 @@
 "use server";
 
 import { db } from "@/db";
-import { customers, payments, saleAnimalLinks, sales } from "@/db/schema";
+import { addresses, customers, payments, saleAnimalLinks, sales } from "@/db/schema";
 import type { SaleFormData } from "./schemas/sale-schema";
 import { eq } from "drizzle-orm";
+import { revalidateTag } from "next/cache";
 
 /**
  * Calculate discount amount based on discount type
@@ -63,6 +64,20 @@ export async function createSale(formData: SaleFormData) {
           })
           .returning();
         customerId = newCustomer.id;
+
+        // Create address for new customer if provided
+        if (formData.customer.address &&
+          formData.customer.address.divisionId &&
+          formData.customer.address.districtId &&
+          formData.customer.address.zoneId) {
+          await tx.insert(addresses).values({
+            customerId: newCustomer.id,
+            divisionId: formData.customer.address.divisionId,
+            districtId: formData.customer.address.districtId,
+            zoneId: formData.customer.address.zoneId,
+            addressLine: formData.customer.address.addressLine,
+          });
+        }
       }
 
       // 2. Calculate totals
@@ -84,9 +99,8 @@ export async function createSale(formData: SaleFormData) {
       const amountDue = finalAmount - formData.amountPaid;
 
       // 4. Generate invoice number
-      const invoiceNumber = `INV-${Date.now()}-${
-        Math.random().toString(36).substr(2, 9).toUpperCase()
-      }`;
+      const invoiceNumber = `INV-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()
+        }`;
 
       // 5. Create sale
       const [sale] = await tx
@@ -158,6 +172,10 @@ export async function getSaleById(id: string) {
             animal: {
               with: {
                 cattle: true,
+                weightRecords: {
+                  orderBy: (weightRecords, { desc }) => [desc(weightRecords.recordedAt)],
+                  limit: 1,
+                },
               },
             },
           },
@@ -173,16 +191,81 @@ export async function getSaleById(id: string) {
       };
     }
 
+    // Transform to SaleFormData format
+    const formData: SaleFormData = {
+      customer: {
+        id: sale.customer?.id || "",
+        name: sale.customer?.name || "",
+        phone: sale.customer?.primaryPhone || "",
+        email: sale.customer?.email || undefined,
+      },
+      animals: sale.saleAnimalLinks.map((link) => ({
+        id: link.animal.id,
+        tagNumber: link.animal.cattle?.tagNumber || "",
+        liveWeight: Number(link.animal.weightRecords[0]?.weightKg || 0),
+      })),
+      pricePerKg: 0, // Need to calculate from totalAmount and weights
+      amountPaid: Number(sale.amountPaid),
+      saleDate: sale.saleDate,
+      paymentMethod: sale.payments[0]?.paymentMethod || "CASH",
+      discountType: sale.discountType || undefined,
+      discountInput: sale.discountAmount ? Number(sale.discountAmount) : undefined,
+      paymentTerms: sale.paymentTerms || undefined,
+      remarks: undefined,
+    };
+
     return {
       success: true,
       message: `Sale with ID ${id} found`,
-      sale,
+      sale: formData,
     };
   } catch (error) {
     console.error("Error fetching sale:", error);
     return {
       success: false,
       message: error instanceof Error ? error.message : "Failed to fetch sale",
+    };
+  }
+}
+
+export async function deleteSale(id: string) {
+  try {
+    const result = await db.transaction(async (tx) => {
+      // Delete related sale-animal links first
+      await tx.delete(saleAnimalLinks).where(eq(saleAnimalLinks.saleId, id));
+
+      // Delete related payments
+      await tx.delete(payments).where(eq(payments.saleId, id));
+
+      // Delete the sale
+      const [sale] = await tx
+        .delete(sales)
+        .where(eq(sales.id, id))
+        .returning();
+
+      return sale;
+    });
+
+    if (!result) {
+      return {
+        success: false,
+        message: `Sale with ID ${id} not found`,
+      };
+    }
+
+    // Revalidate cache
+    revalidateTag("sales");
+
+    return {
+      success: true,
+      message: "Sale deleted successfully",
+      sale: result,
+    };
+  } catch (error) {
+    console.error("Error deleting sale:", error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Failed to delete sale",
     };
   }
 }

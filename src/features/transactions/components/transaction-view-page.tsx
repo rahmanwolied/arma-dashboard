@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import SaleForm from "./sale-form";
 import { getSaleById } from "../actions";
+import type { SaleFormData } from "../schemas/sale-schema";
 
 type TSaleViewPageProps = {
 	transactionId: string;

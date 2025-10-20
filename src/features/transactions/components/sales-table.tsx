@@ -7,10 +7,12 @@ import { DataTableFilterList } from "@/components/data-table/data-table-filter-l
 import { DataTableFilterMenu } from "@/components/data-table/data-table-filter-menu";
 import { DataTableSortList } from "@/components/data-table/data-table-sort-list";
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
+import { DataTableRefreshButton } from "@/components/data-table/data-table-refresh-button";
 import { useDataTable } from "@/hooks/use-data-table";
 import { useFeatureFlags } from "@/app/_components/feature-flags-provider";
 import { getSalesTableColumns } from "./sales-table-columns";
 import type { getSalesData } from "@/app/_lib/queries/sales";
+import { revalidateSalesCache } from "@/app/_lib/actions/cache";
 
 interface SalesTableProps {
 	promises: Promise<[Awaited<ReturnType<typeof getSalesData>>]>;
@@ -57,10 +59,12 @@ export function SalesTable({ promises }: SalesTableProps) {
 								throttleMs={throttleMs}
 							/>
 						)}
+						<DataTableRefreshButton onRefresh={revalidateSalesCache} />
 					</DataTableAdvancedToolbar>
 				) : (
 					<DataTableToolbar table={table}>
 						<DataTableSortList table={table} align="end" />
+						<DataTableRefreshButton onRefresh={revalidateSalesCache} />
 					</DataTableToolbar>
 				)}
 			</DataTable>

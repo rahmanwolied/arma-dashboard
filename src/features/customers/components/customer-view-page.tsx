@@ -28,6 +28,7 @@ export default async function CustomerViewPage({
 		<CustomerForm
 			initialData={customer as CustomerFormSchema}
 			pageTitle={pageTitle}
+			id={customerId}
 		/>
 	);
 }

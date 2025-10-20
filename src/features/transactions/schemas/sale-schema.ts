@@ -6,6 +6,16 @@ export const saleSchema = z.object({
         phone: z.string().min(1, "Customer phone is required"),
         id: z.string().optional(),
         email: z.string().email().optional().or(z.literal("")),
+        address: z.object({
+            addressLine: z.string(),
+            divisionId: z.string().optional(),
+            districtId: z.string().optional(),
+            zoneId: z.string().optional(),
+            divisionName: z.string().optional(),
+            districtName: z.string().optional(),
+            zoneName: z.string().optional(),
+        }).optional(),
+        isNew: z.boolean().optional(),
     }),
     animals: z.array(z.object({
         id: z.string(),

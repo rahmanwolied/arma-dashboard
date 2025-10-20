@@ -33,6 +33,15 @@ export function DataTableToolbar<TData>({
     table.resetColumnFilters();
   }, [table]);
 
+  // Split children into main content and refresh button
+  const childrenArray = React.Children.toArray(children);
+  const refreshButton = childrenArray.find(
+    (child) => React.isValidElement(child) && child.type?.name === "DataTableRefreshButton"
+  );
+  const otherChildren = childrenArray.filter(
+    (child) => !(React.isValidElement(child) && child.type?.name === "DataTableRefreshButton")
+  );
+
   return (
     <div
       role="toolbar"
@@ -61,7 +70,8 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <div className="flex items-center gap-2">
-        {children}
+        {refreshButton}
+        {otherChildren}
         <DataTableViewOptions table={table} />
       </div>
     </div>

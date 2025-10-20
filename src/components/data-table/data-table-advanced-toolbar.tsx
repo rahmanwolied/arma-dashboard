@@ -17,6 +17,15 @@ export function DataTableAdvancedToolbar<TData>({
   className,
   ...props
 }: DataTableAdvancedToolbarProps<TData>) {
+  // Split children into main content and refresh button
+  const childrenArray = React.Children.toArray(children);
+  const refreshButton = childrenArray.find(
+    (child) => React.isValidElement(child) && child.type?.name === "DataTableRefreshButton"
+  );
+  const otherChildren = childrenArray.filter(
+    (child) => !(React.isValidElement(child) && child.type?.name === "DataTableRefreshButton")
+  );
+
   return (
     <div
       role="toolbar"
@@ -27,8 +36,9 @@ export function DataTableAdvancedToolbar<TData>({
       )}
       {...props}
     >
-      <div className="flex flex-1 flex-wrap items-center gap-2">{children}</div>
+      <div className="flex flex-1 flex-wrap items-center gap-2">{otherChildren}</div>
       <div className="flex items-center gap-2">
+        {refreshButton}
         <DataTableViewOptions table={table} />
       </div>
     </div>

@@ -50,6 +50,8 @@ export default function SaleForm({
 			phone: initialData?.customer?.phone || "",
 			email: initialData?.customer?.email || "",
 			id: initialData?.customer?.id,
+			address: initialData?.customer?.address,
+			isNew: initialData?.customer?.isNew,
 		},
 		animals: initialData?.animals || [],
 		pricePerKg: initialData?.pricePerKg || 0,
@@ -128,7 +130,6 @@ export default function SaleForm({
 								name="customer"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Customer</FormLabel>
 										<FormControl>
 											<CustomerSearchField
 												value={field.value}

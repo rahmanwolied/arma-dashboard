@@ -20,6 +20,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SalesCellAction } from "./sales-cell-action";
 
 export function getSalesTableColumns(): ColumnDef<SaleWithCustomer>[] {
 	return [
@@ -55,7 +56,7 @@ export function getSalesTableColumns(): ColumnDef<SaleWithCustomer>[] {
 									<TooltipContent>
 										<p className="text-xs">
 											Discount:{" "}
-											{formatCurrency(parseFloat(row.original.discountAmount))}(
+											{formatCurrency(parseFloat(row.original.discountAmount || ''))}(
 											{row.original.discountType})
 										</p>
 									</TooltipContent>
@@ -241,6 +242,11 @@ export function getSalesTableColumns(): ColumnDef<SaleWithCustomer>[] {
 				);
 			},
 			enableSorting: true,
+		},
+		{
+			id: "actions",
+			cell: ({ row }) => <SalesCellAction data={row.original} />,
+			enableHiding: false,
 		},
 	];
 }

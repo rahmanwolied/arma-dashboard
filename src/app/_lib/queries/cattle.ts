@@ -39,6 +39,7 @@ export type { CattleWithDetails };
  * Main cattle data query function - now uses CattleQueryService
  */
 export async function getCattleData(input: GetCattleSchema) {
+    if (input.sort.length === 0) input.sort.push({ id: "purchaseDate", desc: true } as any);
     const queryService = new CattleQueryService();
     return await queryService.getCattleData(input);
 }
