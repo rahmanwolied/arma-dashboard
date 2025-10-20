@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	Form,
 	FormControl,
+	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -15,6 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { createCustomer } from "../actions";
+import { User, Phone, Mail, Smartphone } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export const customerFormSchema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -56,76 +59,152 @@ export default function CustomerForm({
 	}
 
 	return (
-		<Card className="mx-auto w-full">
+		<Card className="mx-auto w-full max-w-2xl">
 			<CardHeader>
-				<CardTitle className="text-left text-2xl font-bold">
+				<CardTitle className="flex items-center gap-2 text-left text-2xl font-bold">
+					<User className="h-6 w-6" />
 					{pageTitle}
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-						<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-							<FormField
-								control={form.control}
-								name="name"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Customer Name</FormLabel>
-										<FormControl>
-											<Input placeholder="Enter customer name" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="primaryPhone"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Primary Phone</FormLabel>
-										<FormControl>
-											<Input placeholder="Enter primary phone" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="secondaryPhone"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Secondary Phone (Optional)</FormLabel>
-										<FormControl>
-											<Input placeholder="Enter secondary phone" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="email"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Email (Optional)</FormLabel>
-										<FormControl>
-											<Input
-												type="email"
-												placeholder="Enter email"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+						{/* Required Fields Section */}
+						<div className="space-y-4">
+							<div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+								<div className="h-px flex-1 bg-border" />
+								<span>Required Information</span>
+								<div className="h-px flex-1 bg-border" />
+							</div>
+
+							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="flex items-center gap-2">
+												<User className="h-4 w-4" />
+												Customer Name
+											</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter customer name" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="primaryPhone"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="flex items-center gap-2">
+												<Phone className="h-4 w-4" />
+												Primary Phone
+											</FormLabel>
+											<FormControl>
+												<Input
+													type="tel"
+													placeholder="e.g., 01712-345678"
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
 						</div>
-						<Button type="submit" disabled={form.formState.isSubmitting}>
-							{form.formState.isSubmitting ? "Submitting..." : "Add Customer"}
-						</Button>
+
+						<Separator />
+
+						{/* Optional Fields Section */}
+						<div className="space-y-4">
+							<div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+								<div className="h-px flex-1 bg-border" />
+								<span>Optional Information</span>
+								<div className="h-px flex-1 bg-border" />
+							</div>
+
+							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+								<FormField
+									control={form.control}
+									name="secondaryPhone"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="flex items-center gap-2">
+												<Smartphone className="h-4 w-4" />
+												Secondary Phone
+											</FormLabel>
+											<FormControl>
+												<Input
+													type="tel"
+													placeholder="Alternative contact number"
+													{...field}
+												/>
+											</FormControl>
+											<FormDescription>
+												Alternative contact number (optional)
+											</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="flex items-center gap-2">
+												<Mail className="h-4 w-4" />
+												Email
+											</FormLabel>
+											<FormControl>
+												<Input
+													type="email"
+													placeholder="customer@example.com"
+													{...field}
+												/>
+											</FormControl>
+											<FormDescription>
+												Email address for communication (optional)
+											</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+						</div>
+
+						<Separator />
+
+						<div className="flex items-center justify-end gap-4">
+							<Button
+								type="button"
+								variant="outline"
+								onClick={() => form.reset()}
+							>
+								Reset
+							</Button>
+							<Button
+								type="submit"
+								disabled={form.formState.isSubmitting}
+								className="min-w-[150px]"
+							>
+								{form.formState.isSubmitting ? (
+									<>
+										<div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+										Submitting...
+									</>
+								) : (
+									<>
+										<User className="mr-2 h-4 w-4" />
+										Add Customer
+									</>
+								)}
+							</Button>
+						</div>
 					</form>
 				</Form>
 			</CardContent>

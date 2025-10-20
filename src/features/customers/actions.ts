@@ -66,3 +66,26 @@ export async function getCustomerById(id: string) {
     };
   }
 }
+
+export async function getCustomers() {
+  try {
+    const customers = await db.query.customers.findMany({
+      with: {
+        addresses: true,
+      },
+    });
+    return {
+      success: true,
+      message: "Customers fetched successfully",
+      customers,
+    };
+  } catch (error) {
+    console.error("Error fetching customers:", error);
+    return {
+      success: false,
+      message: error instanceof Error
+        ? error.message
+        : "Failed to fetch customers",
+    };
+  }
+}

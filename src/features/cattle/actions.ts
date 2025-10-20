@@ -50,13 +50,6 @@ interface CattleFilters {
   animalStatus?: string;
 }
 
-interface PaginatedCattleFilters extends CattleFilters {
-  page?: number;
-  limit?: number;
-  sort?: string;
-  forDownload?: boolean;
-}
-
 // const cattleActions = {
 //   records: [] as CattleWithPurchase[],
 
@@ -818,5 +811,64 @@ export async function bulkUpdateCattleStatus(
       console.error("Error bulk updating cattle status:", error);
     }
     throw new Error("Failed to bulk update cattle status");
+  }
+}
+
+export async function getAvailableCattle(searchTag?: string) {
+  try {
+    // Query available cattle (ON_FARM status only)
+    let query = db
+      .select({
+        id: animals.id,
+        tagNumber: cattle.tagNumber,
+        gender: cattle.gender,
+        healthStatus: cattle.healthStatus,
+        status: animals.status,
+        // Get latest weight from weight_records
+        liveWeight: sql<string>`(
+          SELECT weight_kg 
+          FROM ${weightRecords} 
+          WHERE ${weightRecords.animalId} = ${animals.id}
+          ORDER BY recorded_at DESC 
+          LIMIT 1
+        )`,
+      })
+      .from(animals)
+      .innerJoin(cattle, eq(animals.id, cattle.animalId))
+      .where(eq(animals.status, "ON_FARM"));
+
+    // Apply tag number filter if provided
+    if (searchTag && searchTag.trim() !== "") {
+      query = query.where(
+        and(
+          eq(animals.status, "ON_FARM"),
+          sql`${cattle.tagNumber} ILIKE ${`%${searchTag.trim()}%`}`,
+        ),
+      );
+    }
+
+    const results = await query.limit(20);
+
+    return {
+      success: true,
+      cattle: results.map((item) => ({
+        id: item.id,
+        tagNumber: item.tagNumber,
+        liveWeight: item.liveWeight ? Number.parseFloat(item.liveWeight) : 0,
+        gender: item.gender,
+        healthStatus: item.healthStatus,
+        status: item.status,
+      })),
+    };
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error fetching available cattle:", error);
+    }
+    return {
+      success: false,
+      cattle: [],
+      error: "Failed to fetch available cattle",
+    };
   }
 }

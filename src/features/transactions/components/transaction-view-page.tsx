@@ -20,7 +20,7 @@ export default async function TransactionViewPage({
 		}
 
 		sale = result.sale;
-		pageTitle = `Edit Sale`;
+		pageTitle = "Edit Sale";
 	}
 
 	return <SaleForm initialData={sale} pageTitle={pageTitle} />;
