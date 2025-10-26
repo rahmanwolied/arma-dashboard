@@ -5,18 +5,32 @@ import { formatDate } from "@/lib/format";
 import type { ColumnDef } from "@tanstack/react-table";
 import type { CustomerWithAddress } from "@/app/_lib/queries/customers";
 import { Phone, Mail, MapPin, Calendar } from "lucide-react";
-import { getAllDistricts, getAllDivisions } from "@/app/_lib/queries/divisions";
+import type {
+	getAllDistricts,
+	getAllDivisions,
+	getAllZones,
+} from "@/app/_lib/queries/divisions";
 import { CustomerCellAction } from "./customer-cell-action";
+import {
+	Tooltip,
+	TooltipProvider,
+	TooltipTrigger,
+	TooltipContent,
+} from "@/components/ui/tooltip";
 
 type GetCustomerTableColumnsProps = {
-	districts: Awaited<ReturnType<typeof getAllDistricts>>
-	divisions	: Awaited<ReturnType<typeof getAllDivisions>>
-}
+	districts: Awaited<ReturnType<typeof getAllDistricts>>;
+	divisions: Awaited<ReturnType<typeof getAllDivisions>>;
+	zones: Awaited<ReturnType<typeof getAllZones>>;
+};
 /**
  * Helper function to extract unique values and create filter options
  */
 function getUniqueOptions(
-	data: GetCustomerTableColumnsProps["districts"] | GetCustomerTableColumnsProps["divisions"]
+	data:
+		| GetCustomerTableColumnsProps["districts"]
+		| GetCustomerTableColumnsProps["divisions"]
+		| GetCustomerTableColumnsProps["zones"],
 ): Array<{ value: string; label: string }> {
 	return data.map((item) => ({
 		value: item.id,
@@ -29,7 +43,7 @@ export function getCustomersTableColumns(
 ): ColumnDef<CustomerWithAddress>[] {
 	const divisionOptions = getUniqueOptions(data.divisions);
 	const districtOptions = getUniqueOptions(data.districts);
-
+	const zoneOptions = getUniqueOptions(data.zones);
 	return [
 		{
 			id: "name",
@@ -90,10 +104,21 @@ export function getCustomersTableColumns(
 				const address = parts.join(", ") || "No address";
 
 				return (
-					<div className="flex items-start gap-2 max-w-[300px]">
-						<MapPin className="h-3 w-3 text-muted-foreground mt-1 shrink-0" />
-						<span className="text-sm truncate">{address}</span>
-					</div>
+					<TooltipProvider>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<div className="flex items-start gap-2 max-w-[300px]">
+									<MapPin className="h-3 w-3 text-muted-foreground mt-1 shrink-0" />
+									<span className="text-sm truncate">{address}</span>
+								</div>
+							</TooltipTrigger>
+							{address.length > 40 && (
+								<TooltipContent side="bottom" align="start" sideOffset={6}>
+									<p>{address}</p>
+								</TooltipContent>
+							)}
+						</Tooltip>
+					</TooltipProvider>
 				);
 			},
 			enableSorting: false,
@@ -112,6 +137,7 @@ export function getCustomersTableColumns(
 				return <div>{row.original.divisionName || "—"}</div>;
 			},
 			enableColumnFilter: true,
+			enableHiding: true,
 			meta: {
 				label: "Division",
 				variant: "multiSelect",
@@ -132,6 +158,22 @@ export function getCustomersTableColumns(
 				label: "District",
 				variant: "multiSelect",
 				options: districtOptions,
+			},
+		},
+		{
+			id: "zone",
+			accessorKey: "zoneName",
+			header: ({ column }) => (
+				<DataTableColumnHeader column={column} title="Zone" />
+			),
+			cell: ({ row }) => {
+				return <div>{row.original.zoneName || "—"}</div>;
+			},
+			enableColumnFilter: true,
+			meta: {
+				label: "Zone",
+				variant: "multiSelect",
+				options: zoneOptions,
 			},
 		},
 		{

@@ -12,17 +12,32 @@ import { useDataTable } from "@/hooks/use-data-table";
 import { useFeatureFlags } from "@/app/_components/feature-flags-provider";
 import { getCustomersTableColumns } from "./customers-table-columns";
 import type { getCustomersData } from "@/app/_lib/queries/customers";
-import { getAllDistricts, getAllDivisions } from "@/app/_lib/queries/divisions";
+import type {
+	getAllDistricts,
+	getAllDivisions,
+	getAllZones,
+} from "@/app/_lib/queries/divisions";
 import { revalidateCustomersCache } from "@/app/_lib/actions/cache";
 
 interface CustomersTableProps {
-	promises: Promise<[Awaited<ReturnType<typeof getCustomersData>>, Awaited<ReturnType<typeof getAllDistricts>>, Awaited<ReturnType<typeof getAllDivisions>>]>;
+	promises: Promise<
+		[
+			Awaited<ReturnType<typeof getCustomersData>>,
+			Awaited<ReturnType<typeof getAllDistricts>>,
+			Awaited<ReturnType<typeof getAllDivisions>>,
+			Awaited<ReturnType<typeof getAllZones>>,
+		]
+	>;
 }
 
 export function CustomersTable({ promises }: CustomersTableProps) {
-	const [{ data, pageCount }, districts, divisions] = React.use(promises);
+	const [{ data, pageCount }, districts, divisions, zones] =
+		React.use(promises);
 	const { enableAdvancedFilter, filterFlag } = useFeatureFlags();
-	const columns = React.useMemo(() => getCustomersTableColumns({ districts, divisions }), [districts, divisions]);
+	const columns = React.useMemo(
+		() => getCustomersTableColumns({ districts, divisions, zones }),
+		[districts, divisions, zones],
+	);
 
 	const { table, shallow, debounceMs, throttleMs } = useDataTable({
 		data,
@@ -37,11 +52,9 @@ export function CustomersTable({ promises }: CustomersTableProps) {
 		clearOnDefault: true,
 	});
 
-
-
 	return (
 		<>
-			<DataTable table={table} >
+			<DataTable table={table}>
 				{enableAdvancedFilter ? (
 					<DataTableAdvancedToolbar table={table}>
 						<DataTableSortList table={table} align="start" />

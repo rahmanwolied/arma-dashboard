@@ -1,9 +1,9 @@
 import "server-only";
 
 import { db } from "@/db";
-import { divisions, districts } from "@/db/schema";
+import { divisions, districts, zones } from "@/db/schema";
 import { unstable_cache } from "@/lib/unstable-cache";
-import { asc } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 
 /**
  * Get all divisions for filter options
@@ -34,6 +34,26 @@ export async function getAllDivisions() {
             tags: ["divisions"],
         },
     )();
+}
+
+export async function getAllZones() {
+    return await unstable_cache(
+        async () => {
+            try {
+                const data = await db.select({
+                    id: zones.id,
+                    name: zones.name,
+                    nameBengali: zones.nameBengali
+                }).from(zones).orderBy(asc(zones.name))
+                return data;
+            } catch (err) {
+                console.error("Error fetching zones:", err);
+                return [];
+            }
+        }, ["zones-all"], {
+        revalidate: 3600, // 1 hour - zones rarely change
+        tags: ["zones"],
+    })();
 }
 
 /**

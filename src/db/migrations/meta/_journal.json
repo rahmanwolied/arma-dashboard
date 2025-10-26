@@ -15,6 +15,13 @@
       "when": 1758485195941,
       "tag": "0001_whole_amazoness",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1761030569076,
+      "tag": "0002_sweet_joseph",
+      "breakpoints": true
     }
   ]
 }

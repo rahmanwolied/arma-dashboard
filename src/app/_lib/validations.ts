@@ -96,6 +96,7 @@ export const customersSearchParamsCache = createSearchParamsCache({
   // Basic filters
   division: parseAsArrayOf(z.string()).withDefault([]),
   district: parseAsArrayOf(z.string()).withDefault([]),
+  zone: parseAsArrayOf(z.string()).withDefault([]),
   // advanced filter
   filters: getFiltersStateParser().withDefault([]),
   joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and"),

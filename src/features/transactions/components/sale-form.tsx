@@ -32,10 +32,24 @@ import {
 	CreditCard,
 	Calendar,
 	Receipt,
+	AlertTriangle,
+	Loader2,
 } from "lucide-react";
+import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useMemo } from "react";
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function SaleForm({
 	initialData,
@@ -69,14 +83,22 @@ export default function SaleForm({
 		defaultValues,
 	});
 
+	// State for warning modal and loading
+	const [showDueWarning, setShowDueWarning] = useState(false);
+	const [pendingSubmitData, setPendingSubmitData] =
+		useState<SaleFormData | null>(null);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
 	// Watch form values for discount calculation
-	const animals = form.watch("animals") || [];
+	const animalsWatch = form.watch("animals");
 	const pricePerKg = form.watch("pricePerKg") || 0;
 	const discountType = form.watch("discountType");
 	const discountInput = form.watch("discountInput") || 0;
+	const amountPaid = form.watch("amountPaid") || 0;
 
 	// Calculate discount preview in real-time
 	const discountPreview = useMemo(() => {
+		const animals = animalsWatch || [];
 		const totalWeight = animals.reduce((sum, a) => sum + a.liveWeight, 0);
 		const totalAmount = totalWeight * pricePerKg;
 		let discountAmount = 0;
@@ -89,22 +111,62 @@ export default function SaleForm({
 			discountAmount = Math.round(pricePerKg * discountInput);
 		}
 
+		const finalAmount = totalAmount - discountAmount;
+		const dueAmount = Math.max(0, finalAmount - amountPaid);
+		const hasDue = dueAmount > 0 && amountPaid > 0;
+
 		return {
 			totalWeight,
 			totalAmount,
 			discountAmount,
-			finalAmount: totalAmount - discountAmount,
+			finalAmount,
+			dueAmount,
+			hasDue,
 		};
-	}, [animals, pricePerKg, discountType, discountInput]);
+	}, [animalsWatch, pricePerKg, discountType, discountInput, amountPaid]);
 
 	async function onSubmit(values: SaleFormData) {
-		const result = await createSale(values);
-		if (result.success) {
-			console.log("Sale created successfully", result.data);
-			// TODO: Redirect to sales list or show success toast
-		} else {
-			console.error("Failed to create sale:", result.message);
-			// TODO: Show error toast
+		// Check if there's a due amount
+		if (
+			discountPreview.dueAmount > 0 &&
+			values.amountPaid < discountPreview.finalAmount
+		) {
+			setPendingSubmitData(values);
+			setShowDueWarning(true);
+			return;
+		}
+
+		// Proceed with submission
+		await handleSubmit(values);
+	}
+
+	async function handleSubmit(values: SaleFormData) {
+		setIsSubmitting(true);
+		try {
+			const result = await createSale(values);
+			if (result.success) {
+				toast.success("Sale created successfully!");
+				// Close modal and reset state
+				setShowDueWarning(false);
+				setPendingSubmitData(null);
+				// Reset form
+				form.reset();
+				// TODO: Redirect to sales list
+			} else {
+				console.error("Failed to create sale:", result.message);
+				toast.error(result.message || "Failed to create sale");
+			}
+		} catch (error) {
+			console.error("Unexpected error:", error);
+			toast.error("An unexpected error occurred");
+		} finally {
+			setIsSubmitting(false);
+		}
+	}
+
+	async function handleConfirmWithDue() {
+		if (pendingSubmitData) {
+			await handleSubmit(pendingSubmitData);
 		}
 	}
 
@@ -385,12 +447,41 @@ export default function SaleForm({
 													type="number"
 													step="0.01"
 													placeholder="Enter amount paid"
+													max={discountPreview.finalAmount}
+													className={cn(
+														discountPreview.hasDue &&
+															"border-amber-500 focus-visible:ring-amber-500",
+													)}
 													{...field}
+													onChange={(e) => {
+														const value =
+															Number.parseFloat(e.target.value) || 0;
+														// Prevent entering more than final amount
+														if (value > discountPreview.finalAmount) {
+															field.onChange(discountPreview.finalAmount);
+														} else {
+															field.onChange(value);
+														}
+													}}
 												/>
 											</FormControl>
-											<FormDescription>
-												Amount received from customer
-											</FormDescription>
+											{discountPreview.totalWeight > 0 && (
+												<>
+													<FormDescription>
+														Amount received from customer (Max: ৳
+														{discountPreview.finalAmount.toLocaleString()})
+													</FormDescription>
+													{discountPreview.hasDue && (
+														<div className="mt-1 flex items-center gap-1 text-amber-600 text-xs">
+															<AlertTriangle className="h-3 w-3" />
+															<span className="font-medium">
+																Due: ৳
+																{discountPreview.dueAmount.toLocaleString()}
+															</span>
+														</div>
+													)}
+												</>
+											)}
 											<FormMessage />
 										</FormItem>
 									)}
@@ -434,22 +525,95 @@ export default function SaleForm({
 								type="button"
 								variant="outline"
 								onClick={() => form.reset()}
+								disabled={isSubmitting}
 							>
 								Reset
 							</Button>
 							<Button
 								type="submit"
-								disabled={form.formState.isSubmitting}
+								disabled={isSubmitting}
 								className="min-w-[150px]"
 							>
-								{form.formState.isSubmitting
-									? "Creating Sale..."
-									: "Create Sale"}
+								{isSubmitting ? (
+									<>
+										<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+										Creating Sale...
+									</>
+								) : (
+									"Create Sale"
+								)}
 							</Button>
 						</div>
 					</form>
 				</Form>
 			</CardContent>
+
+			{/* Due Warning Modal */}
+			<AlertDialog
+				open={showDueWarning}
+				onOpenChange={(open) => {
+					// Prevent closing the modal while submitting
+					if (!isSubmitting) {
+						setShowDueWarning(open);
+					}
+				}}
+			>
+				<AlertDialogContent>
+					<AlertDialogHeader>
+						<AlertDialogTitle className="flex items-center gap-2">
+							<AlertTriangle className="h-5 w-5 text-amber-500" />
+							Partial Payment Detected
+						</AlertDialogTitle>
+						<AlertDialogDescription className="space-y-3">
+							<p>
+								The customer has not paid the full amount. There is an
+								outstanding due:
+							</p>
+							<div className="rounded-lg border bg-amber-50 p-4 dark:bg-amber-950">
+								<div className="grid grid-cols-2 gap-2 text-sm">
+									<div className="text-muted-foreground">Final Amount:</div>
+									<div className="font-semibold text-right">
+										৳{discountPreview.finalAmount.toLocaleString()}
+									</div>
+									<div className="text-muted-foreground">Amount Paid:</div>
+									<div className="font-semibold text-right">
+										৳{amountPaid.toLocaleString()}
+									</div>
+									<Separator className="col-span-2 my-1" />
+									<div className="font-semibold text-amber-700 dark:text-amber-400">
+										Outstanding Due:
+									</div>
+									<div className="font-bold text-amber-700 text-right dark:text-amber-400">
+										৳{discountPreview.dueAmount.toLocaleString()}
+									</div>
+								</div>
+							</div>
+							<p className="text-sm">
+								Are you sure you want to proceed with this partial payment?
+							</p>
+						</AlertDialogDescription>
+					</AlertDialogHeader>
+					<AlertDialogFooter>
+						<AlertDialogCancel disabled={isSubmitting}>
+							Cancel
+						</AlertDialogCancel>
+						<AlertDialogAction
+							onClick={handleConfirmWithDue}
+							disabled={isSubmitting}
+							className="bg-amber-600 hover:bg-amber-700"
+						>
+							{isSubmitting ? (
+								<>
+									<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+									Processing...
+								</>
+							) : (
+								"Proceed with Partial Payment"
+							)}
+						</AlertDialogAction>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 		</Card>
 	);
 }

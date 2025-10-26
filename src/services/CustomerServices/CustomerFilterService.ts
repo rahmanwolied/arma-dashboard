@@ -5,7 +5,6 @@
 
 import {
     and,
-    eq,
     ilike,
     inArray,
     type SQL,
@@ -81,8 +80,6 @@ export class CustomerFilterService implements ICustomerFilterService {
     private buildBasicFilters(input: GetCustomersSchema): SQL | undefined {
         const conditions: SQL[] = [];
 
-        console.log('\n\ninput', input)
-
         // Search filter (customer name)
         const search = this.buildSearchFilter(input.search);
         if (search) conditions.push(search);
@@ -94,6 +91,10 @@ export class CustomerFilterService implements ICustomerFilterService {
         // District filter
         const district = this.buildDistrictFilter(input.district);
         if (district) conditions.push(district);
+
+        // Zone filter
+        const zone = this.buildZoneFilter(input.zone);
+        if (zone) conditions.push(zone);
 
         // Exclude soft-deleted records
         conditions.push(sql`${customers.deletedAt} IS NULL`);
@@ -111,18 +112,29 @@ export class CustomerFilterService implements ICustomerFilterService {
 
     /**
      * Builds division filter
+     * Note: Filters by name since the query returns names, not IDs
      */
-    private buildDivisionFilter(divisionIds: string[]): SQL | undefined {
-        if (divisionIds.length === 0) return undefined;
-        return inArray(addresses.divisionId, divisionIds);
+    private buildDivisionFilter(divisionNames: string[]): SQL | undefined {
+        if (divisionNames.length === 0) return undefined;
+        return inArray(divisions.name, divisionNames);
     }
 
     /**
      * Builds district filter
+     * Note: Filters by name since the query returns names, not IDs
      */
-    private buildDistrictFilter(districtIds: string[]): SQL | undefined {
-        if (districtIds.length === 0) return undefined;
-        return inArray(addresses.districtId, districtIds);
+    private buildDistrictFilter(districtNames: string[]): SQL | undefined {
+        if (districtNames.length === 0) return undefined;
+        return inArray(districts.name, districtNames);
+    }
+
+    /**
+     * Builds zone filter
+     * Note: Filters by name since the query returns names, not IDs
+     */
+    private buildZoneFilter(zoneNames: string[]): SQL | undefined {
+        if (zoneNames.length === 0) return undefined;
+        return inArray(zones.name, zoneNames);
     }
 
     /**

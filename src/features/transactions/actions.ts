@@ -5,6 +5,7 @@ import { addresses, customers, payments, saleAnimalLinks, sales } from "@/db/sch
 import type { SaleFormData } from "./schemas/sale-schema";
 import { eq } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
+import { randomUUID } from "node:crypto";
 
 /**
  * Calculate discount amount based on discount type
@@ -63,19 +64,20 @@ export async function createSale(formData: SaleFormData) {
             email: formData.customer.email || null,
           })
           .returning();
+
         customerId = newCustomer.id;
 
         // Create address for new customer if provided
-        if (formData.customer.address &&
-          formData.customer.address.divisionId &&
-          formData.customer.address.districtId &&
-          formData.customer.address.zoneId) {
+        if (formData.customer.address?.divisionId &&
+          formData.customer.address?.districtId &&
+          formData.customer.address?.zoneId &&
+          formData.customer.address?.addressLine) {
           await tx.insert(addresses).values({
             customerId: newCustomer.id,
-            divisionId: formData.customer.address.divisionId,
-            districtId: formData.customer.address.districtId,
-            zoneId: formData.customer.address.zoneId,
-            addressLine: formData.customer.address.addressLine,
+            divisionId: formData.customer.address?.divisionId,
+            districtId: formData.customer.address?.districtId,
+            zoneId: formData.customer.address?.zoneId,
+            addressLine: formData.customer.address?.addressLine,
           });
         }
       }
@@ -106,7 +108,7 @@ export async function createSale(formData: SaleFormData) {
       const [sale] = await tx
         .insert(sales)
         .values({
-          farmId: "default-farm-id", // TODO: Get from auth context
+          farmId: randomUUID(), // TODO: Get from auth context when multi-farm support is added
           customerId,
           invoiceNumber,
           totalAmount: totalAmount.toFixed(2),
@@ -115,7 +117,7 @@ export async function createSale(formData: SaleFormData) {
           amountPaid: formData.amountPaid.toFixed(2),
           amountDue: amountDue.toFixed(2),
           isCredit: amountDue > 0,
-          paymentTerms: formData.paymentTerms || null,
+          paymentTerms: formData.paymentTerms?.trim() || null,
           saleDate: new Date(formData.saleDate),
         })
         .returning();
@@ -146,6 +148,9 @@ export async function createSale(formData: SaleFormData) {
       };
     });
 
+    // Revalidate cache
+    revalidateTag("sales");
+
     return {
       success: true,
       message: "Sale created successfully",
@@ -153,9 +158,23 @@ export async function createSale(formData: SaleFormData) {
     };
   } catch (error) {
     console.error("Error creating sale:", error);
+
+    // Extract detailed error message
+    let errorMessage = "Failed to create sale";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+      // If it's a database error, try to extract more details
+      if (error.message.includes("Failed query")) {
+        const match = error.message.match(/Failed query: (.+)/);
+        if (match) {
+          errorMessage = `Database error: ${match[1]}`;
+        }
+      }
+    }
+
     return {
       success: false,
-      message: error instanceof Error ? error.message : "Failed to create sale",
+      message: errorMessage,
       error: error,
     };
   }
