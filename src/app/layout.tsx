@@ -7,7 +7,6 @@ import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import "./theme.css";
 
@@ -39,18 +38,18 @@ export default async function RootLayout({
 			<head>
 				<script
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-					dangerouslySetInnerHTML={{
-						__html: `
-              try {
-                if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
-                }
-              } catch (_) {}
-            `,
-					}}
+			// 		dangerouslySetInnerHTML={{
+			// 			__html: `
+            //   try {
+            //     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            //       document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+            //     }
+            //   } catch (_) {}
+            // `,
+			// 		}}
 				/>
 			</head>
-			<ClerkProvider>
+			
 				<body
 					className={cn(
 						"bg-background font-sans antialiased",
@@ -75,7 +74,7 @@ export default async function RootLayout({
 						</ThemeProvider>
 					</NuqsAdapter>
 				</body>
-			</ClerkProvider>
+			
 		</html>
 	);
 }
