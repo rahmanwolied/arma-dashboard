@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 import "./theme.css";
 
@@ -37,44 +36,41 @@ export default async function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<script
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-			// 		dangerouslySetInnerHTML={{
-			// 			__html: `
-            //   try {
-            //     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            //       document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
-            //     }
-            //   } catch (_) {}
-            // `,
-			// 		}}
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+				// 		dangerouslySetInnerHTML={{
+				// 			__html: `
+				//   try {
+				//     if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				//       document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+				//     }
+				//   } catch (_) {}
+				// `,
+				// 		}}
 				/>
 			</head>
-			
-				<body
-					className={cn(
-						"bg-background font-sans antialiased",
-						activeThemeValue ? `theme-${activeThemeValue}` : "",
-						isScaled ? "theme-scaled" : "",
-						fontVariables,
-					)}
+
+			<body
+				className={cn(
+					"bg-background font-sans antialiased",
+					activeThemeValue ? `theme-${activeThemeValue}` : "",
+					isScaled ? "theme-scaled" : "",
+					fontVariables,
+				)}
+			>
+				<NextTopLoader showSpinner={false} />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+					enableColorScheme
 				>
-					<NextTopLoader showSpinner={false} />
-					<NuqsAdapter>
-						<ThemeProvider
-							attribute="class"
-							defaultTheme="system"
-							enableSystem
-							disableTransitionOnChange
-							enableColorScheme
-						>
-							<Providers activeThemeValue={activeThemeValue as string}>
-								<Toaster />
-								{children}
-							</Providers>
-						</ThemeProvider>
-					</NuqsAdapter>
-				</body>
-			
+					<Providers activeThemeValue={activeThemeValue as string}>
+						{children}
+					</Providers>
+				</ThemeProvider>
+				<Toaster />
+			</body>
 		</html>
 	);
 }
