@@ -33,7 +33,6 @@ import {
   slaughterRecords,
   vaccinationRecords,
   vaccines,
-  vendors,
   veterinarians,
   weightRecords,
   zones,
@@ -137,10 +136,6 @@ export const veterinariansRelations = relations(veterinarians, ({ many }) => ({
 
 // Purchase Relations
 export const purchasesRelations = relations(purchases, ({ one, many }) => ({
-  vendor: one(vendors, {
-    fields: [purchases.vendorId],
-    references: [vendors.id],
-  }),
   market: one(markets, {
     fields: [purchases.marketId],
     references: [markets.id],
@@ -162,9 +157,6 @@ export const animalPurchasesRelations = relations(
   }),
 );
 
-export const vendorsRelations = relations(vendors, ({ many }) => ({
-  purchases: many(purchases),
-}));
 
 export const marketsRelations = relations(markets, ({ many }) => ({
   purchases: many(purchases),

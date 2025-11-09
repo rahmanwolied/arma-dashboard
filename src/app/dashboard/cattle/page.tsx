@@ -8,6 +8,13 @@ import { Suspense } from "react";
 import { Shell } from "@/components/shell";
 import { FeatureFlagsProvider } from "@/app/_components/feature-flags-provider";
 import { CattleTable } from "@/features/cattle/components/cattle-table";
+import { Button } from "@/components/ui/button";
+import { IconPlus } from "@tabler/icons-react";
+import Link from "next/link";
+import { Heading } from "@/components/ui/heading";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata = {
 	title: "Dashboard: Cattle",
@@ -38,6 +45,16 @@ export default async function Page(props: pageProps) {
 
 	return (
 		<Shell className="gap-2 px-6">
+			<div className="flex items-start justify-between">
+				<Heading title="Cattle" description="Manage cattle" />
+				<Link
+					href="/dashboard/cattle/new"
+					className={cn(buttonVariants(), "text-xs md:text-sm")}
+				>
+					<IconPlus className="mr-2 h-4 w-4" /> Add Cattle
+				</Link>
+			</div>
+			<Separator />
 			<FeatureFlagsProvider>
 				<Suspense
 					key={key}

@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { env } from "../env";
 import * as schema from "./schema";
-
+console.log(`env.NEON_DB_URL: ${env.NEON_DB_URL}`)
 // Create the connection
 const client = postgres(env.NEON_DB_URL, {
   max: 20,

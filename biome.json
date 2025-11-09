@@ -33,15 +33,12 @@
 				"noConsoleLog": "off"
 			},
 			"nursery": {
-				"useSortedClasses": {
-					"level": "warn",
-					"options": {
-						"attributes": ["classList"],
-						"functions": ["clsx", "cva", "tw"]
-					}
-				}
+				"useSortedClasses": "off"
 			}
 		}
+	},
+	"formatter": {
+		"enabled": true
 	},
 	"vcs": {
 		"enabled": true,
