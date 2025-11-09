@@ -9,83 +9,59 @@ import { asc, eq } from "drizzle-orm";
  * Get all divisions for filter options
  */
 export async function getAllDivisions() {
-    return await unstable_cache(
-        async () => {
-            try {
-                const data = await db
-                    .select({
-                        id: divisions.id,
-                        code: divisions.code,
-                        name: divisions.name,
-                        nameBengali: divisions.nameBengali,
-                    })
-                    .from(divisions)
-                    .orderBy(asc(divisions.name));
+    try {
+        const data = await db
+            .select({
+                id: divisions.id,
+                code: divisions.code,
+                name: divisions.name,
+                nameBengali: divisions.nameBengali,
+            })
+            .from(divisions)
+            .orderBy(asc(divisions.name));
 
-                return data;
-            } catch (err) {
-                console.error("Error fetching divisions:", err);
-                return [];
-            }
-        },
-        ["divisions-all"],
-        {
-            revalidate: 3600, // 1 hour - divisions rarely change
-            tags: ["divisions"],
-        },
-    )();
+        return data;
+    } catch (err) {
+        console.error("Error fetching divisions:", err);
+        return [];
+    }
 }
 
 export async function getAllZones() {
-    return await unstable_cache(
-        async () => {
-            try {
-                const data = await db.select({
-                    id: zones.id,
-                    name: zones.name,
-                    nameBengali: zones.nameBengali
-                }).from(zones).orderBy(asc(zones.name))
-                return data;
-            } catch (err) {
-                console.error("Error fetching zones:", err);
-                return [];
-            }
-        }, ["zones-all"], {
-        revalidate: 3600, // 1 hour - zones rarely change
-        tags: ["zones"],
-    })();
+    try {
+        const data = await db.select({
+            id: zones.id,
+            name: zones.name,
+            nameBengali: zones.nameBengali
+        }).from(zones).orderBy(asc(zones.name))
+        return data;
+    } catch (err) {
+        console.error("Error fetching zones:", err);
+        return [];
+    }
 }
 
 /**
  * Get all districts for filter options
  */
 export async function getAllDistricts() {
-    return await unstable_cache(
-        async () => {
-            try {
-                const data = await db
-                    .select({
-                        id: districts.id,
-                        code: districts.code,
-                        name: districts.name,
-                        nameBengali: districts.nameBengali,
-                        divisionId: districts.divisionId,
-                    })
-                    .from(districts)
-                    .orderBy(asc(districts.name));
+    try {
+        const data = await db
+            .select({
+                id: districts.id,
+                code: districts.code,
+                name: districts.name,
+                nameBengali: districts.nameBengali,
+                divisionId: districts.divisionId,
+            })
+            .from(districts)
+            .orderBy(asc(districts.name));
 
-                return data;
-            } catch (err) {
-                console.error("Error fetching districts:", err);
-                return [];
-            }
-        },
-        ["districts-all"],
-        {
-            revalidate: 3600, // 1 hour - districts rarely change
-            tags: ["districts"],
-        },
-    )();
+        return data;
+    } catch (err) {
+        console.error("Error fetching districts:", err);
+        return [];
+    }
 }
 
 /**

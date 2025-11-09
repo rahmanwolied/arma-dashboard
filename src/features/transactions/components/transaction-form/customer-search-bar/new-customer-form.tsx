@@ -1,20 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Plus, Phone, MapPin, Home } from "lucide-react";
+import { Plus, Phone, Home } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
 import { useDivisions, useDistricts, useZones } from "./use-location-data";
 import { DivisionCombobox } from "./division-combobox";
 import { DistrictCombobox } from "./district-combobox";
+import { ZoneCombobox } from "./zone-combobox";
 import type { CustomerValue, CustomerAddress } from "./types";
 
 // ============================================================================
@@ -143,29 +137,13 @@ export function NewCustomerForm({ customer, onChange }: NewCustomerFormProps) {
 					disabled={!customer.address?.divisionId}
 				/>
 
-				{/* Zone/Upazila - Keeping Select for consistency */}
-				<div className="space-y-1.5">
-					<Label htmlFor="zone" className="text-xs">
-						<MapPin className="h-3 w-3" />
-						Zone/Upazila *
-					</Label>
-					<Select
-						value={customer.address?.zoneId}
-						onValueChange={(value) => updateAddress("zoneId", value)}
-						disabled={!customer.address?.districtId}
-					>
-						<SelectTrigger id="zone" className="w-full">
-							<SelectValue placeholder="Select zone/upazila" />
-						</SelectTrigger>
-						<SelectContent>
-							{filteredZones.map((zone) => (
-								<SelectItem key={zone.id} value={zone.id}>
-									{zone.name}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
-				</div>
+				{/* Zone/Upazila - Using Combobox */}
+				<ZoneCombobox
+					value={customer.address?.zoneId}
+					onChange={(value) => updateAddress("zoneId", value)}
+					zones={filteredZones}
+					disabled={!customer.address?.districtId}
+				/>
 
 				{/* Address Line */}
 				<div className="space-y-1.5">
@@ -184,4 +162,3 @@ export function NewCustomerForm({ customer, onChange }: NewCustomerFormProps) {
 		</div>
 	);
 }
-

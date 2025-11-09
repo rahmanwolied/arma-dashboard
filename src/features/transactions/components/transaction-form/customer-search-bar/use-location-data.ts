@@ -67,7 +67,7 @@ export function useDivisions() {
     return useQuery({
         queryKey: ["divisions"],
         queryFn: fetchDivisions,
-        staleTime: 1000 * 60 * 60, // 1 hour - divisions rarely change
+        staleTime: 1000 * 60 * 60 * 10, // 10 hours - divisions rarely change
     });
 }
 
@@ -75,7 +75,7 @@ export function useDistricts() {
     return useQuery({
         queryKey: ["districts"],
         queryFn: fetchDistricts,
-        staleTime: 1000 * 60 * 60, // 1 hour
+        staleTime: 1000 * 60 * 60 * 10, // 10 hours - districts rarely change
     });
 }
 
@@ -83,7 +83,7 @@ export function useZones() {
     return useQuery({
         queryKey: ["zones"],
         queryFn: fetchZones,
-        staleTime: 1000 * 60 * 60, // 1 hour
+        staleTime: 1000 * 60 * 60 * 10, // 10 hours - zones rarely change
     });
 }
 

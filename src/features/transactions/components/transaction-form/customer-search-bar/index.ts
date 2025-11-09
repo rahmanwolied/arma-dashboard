@@ -7,6 +7,7 @@ export { default as CustomerSearchField } from "./customer-search-bar";
 // Export sub-components
 export { DivisionCombobox } from "./division-combobox";
 export { DistrictCombobox } from "./district-combobox";
+export { ZoneCombobox } from "./zone-combobox";
 export { ExistingCustomerDetails } from "./existing-customer-details";
 export { NewCustomerForm } from "./new-customer-form";
 
