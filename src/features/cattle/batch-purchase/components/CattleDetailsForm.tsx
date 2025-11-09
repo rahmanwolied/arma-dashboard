@@ -42,11 +42,8 @@ export function CattleDetailsForm({
 }: CattleDetailsFormProps) {
 	const [error, setError] = useState("");
 	const { inputRefs, handleKeyDown } = useHandleInput(form);
-	const { nextTagNumber, isTagNumberLoading } = useGetTags();
-	const { handleAddRow } = useCattleInitialization({
-		form,
-		nextTagNumber: nextTagNumber ?? null,
-	});
+	const { isTagNumberLoading } = useGetTags();
+	const { handleAddRow } = useCattleInitialization(form);
 
 	const isPriceOutOfRange = (priceStr: string): boolean => {
 		if (!priceStr) return false;
@@ -93,13 +90,13 @@ export function CattleDetailsForm({
 									<thead>
 										<tr className="border-b-2 bg-accent">
 											<th className="w-[120px] px-3 py-3 text-left text-sm font-semibold">
-												🏷️ Tag No.
+												Tag No.
 											</th>
 											<th className="w-[160px] px-3 py-3 text-left text-sm font-semibold">
-												⚖️ Weight (kg)
+												Weight (kg)
 											</th>
 											<th className="w-[200px] px-3 py-3 text-left text-sm font-semibold">
-												💰 Purchase Price (৳)
+												Purchase Price (৳)
 											</th>
 										</tr>
 									</thead>

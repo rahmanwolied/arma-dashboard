@@ -7,7 +7,7 @@
 
 import { db } from '@/db'
 import { animals, cattle, animalPurchases, purchases } from '@/db/schema'
-import { desc, and, gte, lt, eq } from 'drizzle-orm'
+import { and, gte, lt, eq } from 'drizzle-orm'
 
 /**
  * Calculates the current business cycle dates (July to July)
@@ -48,7 +48,6 @@ export async function getLargestTagNumber(): Promise<string | null> {
         const result = await db
             .select({
                 tagNumber: cattle.tagNumber,
-                purchaseDate: purchases.purchaseDate,
             })
             .from(cattle)
             .innerJoin(animals, eq(cattle.animalId, animals.id))
@@ -63,15 +62,38 @@ export async function getLargestTagNumber(): Promise<string | null> {
         // .orderBy(desc(cattle.tagNumber))
         // .limit(1)
 
-        console.log(`Result: ${JSON.stringify(result)}`)
-
         if (result.length === 0) {
             console.log('No cattle found in current business cycle')
             return null
         }
 
-        console.log(`Largest tag number found: ${result[0].tagNumber}`)
-        return result[0].tagNumber
+        // Extract numeric part from each tag number and find the largest
+        const largestTag = result.reduce((maxTag, current) => {
+            // Extract numeric part by splitting on '-' or '/'
+            const parts = current.tagNumber.split(/[-/]/)
+            const numericPart = parts[parts.length - 1] // Get last part (the number)
+            const currentNum = Number.parseInt(numericPart, 10)
+
+            if (!maxTag) {
+                return { tag: current.tagNumber, num: currentNum }
+            }
+
+            // Extract numeric part from max tag
+            const maxParts = maxTag.tag.split(/[-/]/)
+            const maxNumericPart = maxParts[maxParts.length - 1]
+            const maxNum = Number.parseInt(maxNumericPart, 10)
+
+            // Return the tag with the larger number
+            return currentNum > maxNum
+                ? { tag: current.tagNumber, num: currentNum }
+                : maxTag
+        }, null as { tag: string; num: number } | null)
+
+        const largestTagNumber = largestTag?.tag || null
+
+        console.log("Result:", result)
+        console.log(`Largest tag number found: ${largestTagNumber}`)
+        return largestTagNumber
     } catch (error) {
         console.error('Failed to get largest tag number:', error)
         throw new Error('Failed to retrieve tag number from database')
@@ -80,7 +102,7 @@ export async function getLargestTagNumber(): Promise<string | null> {
 
 /**
  * Gets the next available tag number by incrementing the largest current tag number
- * @returns The next available tag number (e.g., "001" if no cattle exist, or "123" if largest is "122")
+ * @returns The next available tag number (e.g., "001" if no cattle exist, or "ABC-124" if largest is "ABC-123")
  */
 export async function getNextTagNumber(): Promise<string> {
     try {
@@ -91,21 +113,30 @@ export async function getNextTagNumber(): Promise<string> {
             return "001"
         }
 
-        // Parse the tag number (assuming it's numeric or has numeric part)
-        // Handle cases like "001", "123", or potentially "ARMA-001"
-        const numericMatch = largestTag.match(/\d+/)
+        // Split by '-' or '/' to handle prefixes (e.g., "ABC-002", "ABC/002", or just "002")
+        const parts = largestTag.split(/[-/]/)
+        const numericPart = parts[parts.length - 1]
+        const prefix = parts.length > 1 ? parts.slice(0, -1).join('-') : null
+        const separator = largestTag.includes('/') ? '/' : '-'
 
-        if (!numericMatch) {
-            console.warn(`Tag number "${largestTag}" doesn't contain numeric part, starting from 001`)
+        // Parse the numeric part
+        const currentNumber = Number.parseInt(numericPart, 10)
+
+        if (Number.isNaN(currentNumber)) {
+            console.warn(`Tag number "${largestTag}" doesn't contain valid numeric part, starting from 001`)
             return "001"
         }
 
-        const currentNumber = Number.parseInt(numericMatch[0], 10)
         const nextNumber = currentNumber + 1
 
         // Pad with leading zeros to match the original format
-        const paddingLength = numericMatch[0].length
-        const nextTag = nextNumber.toString().padStart(paddingLength, '0')
+        const paddingLength = numericPart.length
+        const nextNumericPart = nextNumber.toString().padStart(paddingLength, '0')
+
+        // Reconstruct with prefix if it exists
+        const nextTag = prefix
+            ? `${prefix}${separator}${nextNumericPart}`
+            : nextNumericPart
 
         return nextTag
     } catch (error) {
