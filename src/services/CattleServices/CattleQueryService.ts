@@ -47,109 +47,51 @@ export class CattleQueryService implements ICattleQueryService {
      * Main method to get cattle data with all processing
      */
     async getCattleData(input: GetCattleSchema): Promise<CattleQueryResult> {
-        const cacheKey = CattleCacheService.generateCacheKey(input);
-        const ttl = CattleCacheService.getCacheTTL(input);
+        console.log("input", input);
+        try {
+            // Validate input
+            const filterValidation = this.filterService
+                .validateFilterInput(input);
+            if (!filterValidation.isValid) {
+                throw new Error(
+                    `Invalid filter input: ${filterValidation.errors.join(", ")
+                    }`,
+                );
+            }
 
-        return await CattleCacheService.getCachedBaseQuery(
-            cacheKey,
-            async () => {
-                try {
-                    // Validate input
-                    const filterValidation = this.filterService
-                        .validateFilterInput(input);
-                    if (!filterValidation.isValid) {
-                        throw new Error(
-                            `Invalid filter input: ${
-                                filterValidation.errors.join(", ")
-                            }`,
-                        );
-                    }
+            const sortValidation = this.sortingService
+                .validateSortConfig(input.sort);
+            if (!sortValidation.isValid) {
+                throw new Error(
+                    `Invalid sort configuration: ${sortValidation.errors.join(", ")
+                    }`,
+                );
+            }
 
-                    const sortValidation = this.sortingService
-                        .validateSortConfig(input.sort);
-                    if (!sortValidation.isValid) {
-                        throw new Error(
-                            `Invalid sort configuration: ${
-                                sortValidation.errors.join(", ")
-                            }`,
-                        );
-                    }
+            const offset = (input.page - 1) * input.perPage;
+            const needsComputedSort = this.sortingService
+                .needsComputedSort(input.sort);
 
-                    const offset = (input.page - 1) * input.perPage;
-                    const needsComputedSort = this.sortingService
-                        .needsComputedSort(input.sort);
+            return await db.transaction(async (tx) => {
+                // Get thresholds for cattle class filtering
+                const thresholds = await this.getThresholds(tx);
 
-                    return await db.transaction(async (tx) => {
-                        // Get thresholds for cattle class filtering
-                        const thresholds = await this.getThresholds(tx);
+                // Build where clause
+                const whereClause = this.buildWhereClause(
+                    input,
+                    thresholds,
+                );
 
-                        // Build where clause
-                        const whereClause = this.buildWhereClause(
-                            input,
-                            thresholds,
-                        );
+                // Get base cattle data
+                const rawData = await this.getBaseCattleData(
+                    tx,
+                    whereClause,
+                    input,
+                    needsComputedSort,
+                    offset,
+                );
 
-                        // Get base cattle data
-                        const rawData = await this.getBaseCattleData(
-                            tx,
-                            whereClause,
-                            input,
-                            needsComputedSort,
-                            offset,
-                        );
-
-                        if (rawData.length === 0) {
-                            return {
-                                data: [],
-                                total: 0,
-                                pageCount: 0,
-                                hasNextPage: false,
-                                hasPreviousPage: false,
-                            };
-                        }
-
-                        // Get related data
-                        const animalIds = rawData.map((item) => item.animal.id);
-                        const relatedData = await this.getRelatedData(
-                            tx,
-                            animalIds,
-                            thresholds,
-                        );
-
-                        // Process and map data
-                        let processedData = this.dataProcessor
-                            .mapRawDataToCattleWithDetails(
-                                rawData,
-                                relatedData,
-                            );
-
-                        // Apply computed sorting if needed
-                        if (needsComputedSort) {
-                            processedData = this.sortingService.applySorting(
-                                processedData,
-                                input.sort,
-                            );
-                            // Apply pagination after sorting for computed fields
-                            processedData = processedData.slice(
-                                offset,
-                                offset + input.perPage,
-                            );
-                        }
-
-                        // Get total count
-                        const total = await this.getTotalCount(tx, whereClause);
-
-                        const pageCount = Math.ceil(total / input.perPage);
-
-                        return {
-                            data: processedData,
-                            total,
-                            pageCount,
-                            hasNextPage: input.page < pageCount,
-                            hasPreviousPage: input.page > 1,
-                        };
-                    });
-                } catch (_error) {
+                if (rawData.length === 0) {
                     return {
                         data: [],
                         total: 0,
@@ -158,9 +100,58 @@ export class CattleQueryService implements ICattleQueryService {
                         hasPreviousPage: false,
                     };
                 }
-            },
-            ttl,
-        );
+
+                // Get related data
+                const animalIds = rawData.map((item) => item.animal.id);
+                const relatedData = await this.getRelatedData(
+                    tx,
+                    animalIds,
+                    thresholds,
+                );
+
+                // Process and map data
+                let processedData = this.dataProcessor
+                    .mapRawDataToCattleWithDetails(
+                        rawData,
+                        relatedData,
+                    );
+
+                // Apply computed sorting if needed
+                if (needsComputedSort) {
+                    processedData = this.sortingService.applySorting(
+                        processedData,
+                        input.sort,
+                    );
+                    // Apply pagination after sorting for computed fields
+                    processedData = processedData.slice(
+                        offset,
+                        offset + input.perPage,
+                    );
+                }
+
+                // Get total count
+                const total = await this.getTotalCount(tx, whereClause);
+
+                const pageCount = Math.ceil(total / input.perPage);
+
+                return {
+                    data: processedData,
+                    total,
+                    pageCount,
+                    hasNextPage: input.page < pageCount,
+                    hasPreviousPage: input.page > 1,
+                };
+            });
+        } catch (_error) {
+            return {
+                data: [],
+                total: 0,
+                pageCount: 0,
+                hasNextPage: false,
+                hasPreviousPage: false,
+            };
+        }
+
     }
 
     /**

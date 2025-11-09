@@ -31,7 +31,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"src/env.js"
+		"src/env.js",
+		"src/services/CattleServices"
 	],
 	"exclude": ["node_modules"],
 	"moduleResolution": ["node_modules", ".next", "node"]

@@ -50,6 +50,7 @@ export const cattleSearchParamsCache = createSearchParamsCache({
   perPage: parseAsInteger.withDefault(10),
   sort: getSortingStateParser().withDefault([]),
   search: parseAsString.withDefault(""),
+  tagNumber: parseAsString.withDefault(""),
   gender: parseAsArrayOf(z.enum(genderEnum.enumValues)).withDefault([]),
   healthStatus: parseAsArrayOf(
     z.enum([
@@ -77,7 +78,7 @@ export const cattleSearchParamsCache = createSearchParamsCache({
   cattleClass: parseAsArrayOf(z.enum(cattleClassEnum.enumValues)).withDefault(
     [],
   ),
-  joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and"),
+  joinOperator: parseAsStringEnum(["and", "or"]).withDefault("and")
 });
 
 export type GetCattleSchema = Awaited<

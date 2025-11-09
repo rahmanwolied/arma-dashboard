@@ -12,11 +12,10 @@ import { useDataTable } from "@/hooks/use-data-table";
 import { useFeatureFlags } from "@/app/_components/feature-flags-provider";
 import { CattleTableActionBar } from "./cattle-table-action-bar";
 import { getCattleTableColumns } from "./cattle-table-columns";
-import type { getCattleData } from "@/app/_lib/queries/cattle";
 import { revalidateCattleCache } from "@/app/_lib/actions/cache";
-
+import type { CattleQueryResult } from "@/types/cattle-query";
 interface CattleTableProps {
-	promises: Promise<[Awaited<ReturnType<typeof getCattleData>>]>;
+	promises: Promise<[CattleQueryResult]>;
 }
 
 export function CattleTable({ promises }: CattleTableProps) {
@@ -41,39 +40,34 @@ export function CattleTable({ promises }: CattleTableProps) {
 	});
 
 	return (
-		
-			<DataTable
-				table={table}
-				actionBar={<CattleTableActionBar table={table} />}
-			>
-				{enableAdvancedFilter ? (
-					<DataTableAdvancedToolbar table={table}>
-						<DataTableSortList table={table} align="start" />
-						{filterFlag === "advancedFilters" ? (
-							<DataTableFilterList
-								table={table}
-								shallow={shallow}
-								debounceMs={debounceMs}
-								throttleMs={throttleMs}
-								align="start"
-							/>
-						) : (
-							<DataTableFilterMenu
-								table={table}
-								shallow={shallow}
-								debounceMs={debounceMs}
-								throttleMs={throttleMs}
-							/>
-						)}
-						<DataTableRefreshButton onRefresh={revalidateCattleCache} />
-					</DataTableAdvancedToolbar>
-				) : (
-					<DataTableToolbar table={table}>
-						<DataTableSortList table={table} align="end" />
-						<DataTableRefreshButton onRefresh={revalidateCattleCache} />
-					</DataTableToolbar>
-				)}
-			</DataTable>
-
+		<DataTable table={table} actionBar={<CattleTableActionBar table={table} />}>
+			{enableAdvancedFilter ? (
+				<DataTableAdvancedToolbar table={table}>
+					<DataTableSortList table={table} align="start" />
+					{filterFlag === "advancedFilters" ? (
+						<DataTableFilterList
+							table={table}
+							shallow={shallow}
+							debounceMs={debounceMs}
+							throttleMs={throttleMs}
+							align="start"
+						/>
+					) : (
+						<DataTableFilterMenu
+							table={table}
+							shallow={shallow}
+							debounceMs={debounceMs}
+							throttleMs={throttleMs}
+						/>
+					)}
+					<DataTableRefreshButton onRefresh={revalidateCattleCache} />
+				</DataTableAdvancedToolbar>
+			) : (
+				<DataTableToolbar table={table}>
+					<DataTableSortList table={table} align="end" />
+					<DataTableRefreshButton onRefresh={revalidateCattleCache} />
+				</DataTableToolbar>
+			)}
+		</DataTable>
 	);
 }

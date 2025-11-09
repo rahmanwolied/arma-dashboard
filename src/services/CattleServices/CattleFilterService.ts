@@ -110,6 +110,9 @@ export class CattleFilterService implements ICattleFilterService {
         const priceRange = this.buildPriceRangeFilters(input.purchasePrice);
         if (priceRange) conditions.push(priceRange);
 
+        const tagNumber = this.buildTagNumberFilter(input.tagNumber);
+        if (tagNumber) conditions.push(tagNumber);
+
         // Only show cattle (not other animal types)
         conditions.push(eq(animals.animalType, "CATTLE"));
         // Exclude soft-deleted records
@@ -136,7 +139,7 @@ export class CattleFilterService implements ICattleFilterService {
         return inArray(
             cattle.gender,
             genders as unknown as readonly typeof cattle.gender._.enumValues[
-                number
+            number
             ][],
         );
     }
@@ -149,7 +152,7 @@ export class CattleFilterService implements ICattleFilterService {
         return inArray(
             animals.status,
             statuses as unknown as readonly typeof animals.status._.enumValues[
-                number
+            number
             ][],
         );
     }
@@ -207,7 +210,7 @@ export class CattleFilterService implements ICattleFilterService {
             ? inArray(
                 cattle.healthStatus,
                 healthStatusEnumValues as unknown as readonly typeof cattle.healthStatus._.enumValues[
-                    number
+                number
                 ][],
             )
             : undefined;
@@ -265,6 +268,14 @@ export class CattleFilterService implements ICattleFilterService {
         }
 
         return conditions.length > 0 ? and(...conditions) : undefined;
+    }
+
+    /**
+     * Builds tag number filter
+     */
+    private buildTagNumberFilter(tagNumber?: string): SQL | undefined {
+        if (!tagNumber) return undefined;
+        return ilike(cattle.tagNumber, `%${tagNumber}%`);
     }
 
     /**
