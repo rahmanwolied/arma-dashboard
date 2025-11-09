@@ -832,6 +832,13 @@ export async function getAvailableCattle(searchTag?: string) {
           ORDER BY recorded_at DESC 
           LIMIT 1
         )`,
+        // Get adjusted price from animal_purchases
+        adjustedPrice: sql<string>`(
+          SELECT adjusted_price 
+          FROM ${animalPurchases} 
+          WHERE ${animalPurchases.animalId} = ${animals.id}
+          LIMIT 1
+        )`,
       })
       .from(animals)
       .innerJoin(cattle, eq(animals.id, cattle.animalId))
@@ -855,6 +862,7 @@ export async function getAvailableCattle(searchTag?: string) {
         id: item.id,
         tagNumber: item.tagNumber,
         liveWeight: item.liveWeight ? Number.parseFloat(item.liveWeight) : 0,
+        adjustedPrice: item.adjustedPrice ? Number.parseFloat(item.adjustedPrice) : 0,
         gender: item.gender,
         healthStatus: item.healthStatus,
         status: item.status,

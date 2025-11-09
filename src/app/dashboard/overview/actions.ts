@@ -6,6 +6,7 @@ import {
   cattle,
   markets,
   purchases,
+  sales,
   weightRecords,
 } from "@/db/schema";
 import { and, avg, count, desc, eq, gte, lte, sql, sum } from "drizzle-orm";
@@ -19,6 +20,7 @@ export interface CattleStats {
   };
   averageWeight: number;
   cowsBoughtThisMonth: number;
+  totalRevenue: number;
 }
 
 export async function getCattleStatistics(): Promise<CattleStats> {
@@ -96,12 +98,20 @@ export async function getCattleStatistics(): Promise<CattleStats> {
       Number(averageWeightResult[0]?.averageWeight || 0),
     );
 
+    // Calculate total revenue from sales
+    const totalRevenueResult = await db
+      .select({ totalRevenue: sum(sales.totalAmount) })
+      .from(sales);
+
+    const totalRevenue = Math.round(Number(totalRevenueResult[0]?.totalRevenue || 0));
+
     return {
       totalCows,
       totalCost: Math.round(totalCost),
       locationWithHighestCount,
       averageWeight,
       cowsBoughtThisMonth,
+      totalRevenue,
     };
   } catch (error) {
     // Log error for debugging
@@ -123,6 +133,7 @@ export async function getCattleStatisticsFormatted(): Promise<{
   };
   averageWeight: string;
   cowsBoughtThisMonth: string;
+  totalRevenue: string;
 }> {
   try {
     const stats = await getCattleStatistics();
@@ -136,6 +147,7 @@ export async function getCattleStatisticsFormatted(): Promise<{
       },
       averageWeight: `${stats.averageWeight} kg`,
       cowsBoughtThisMonth: `${stats.cowsBoughtThisMonth}`,
+      totalRevenue: `৳${stats.totalRevenue.toLocaleString()}`,
     };
   } catch (error) {
     // Log error for debugging

@@ -34,6 +34,8 @@ import {
 	Receipt,
 	AlertTriangle,
 	Loader2,
+	TrendingUp,
+	TrendingDown,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
@@ -101,6 +103,10 @@ export default function SaleForm({
 		const animals = animalsWatch || [];
 		const totalWeight = animals.reduce((sum, a) => sum + a.liveWeight, 0);
 		const totalAmount = totalWeight * pricePerKg;
+		const totalCost = animals.reduce(
+			(sum, a) => sum + (a.adjustedPrice || 0),
+			0,
+		);
 		let discountAmount = 0;
 
 		if (discountType === "FLAT") {
@@ -112,14 +118,19 @@ export default function SaleForm({
 		}
 
 		const finalAmount = totalAmount - discountAmount;
+		const profitLoss = finalAmount - totalCost;
+		const profitMargin = totalCost > 0 ? (profitLoss / totalCost) * 100 : 0;
 		const dueAmount = Math.max(0, finalAmount - amountPaid);
 		const hasDue = dueAmount > 0 && amountPaid > 0;
 
 		return {
 			totalWeight,
 			totalAmount,
+			totalCost,
 			discountAmount,
 			finalAmount,
+			profitLoss,
+			profitMargin,
 			dueAmount,
 			hasDue,
 		};
@@ -354,37 +365,120 @@ export default function SaleForm({
 								/>
 							</div>
 
-							{/* Dynamic Discount Display */}
+							{/* Dynamic Sale Summary with Profit/Loss */}
 							{discountPreview.totalWeight > 0 && (
-								<div className="rounded-lg border bg-background p-4 shadow-sm">
-									<h4 className="mb-3 font-medium text-sm">Sale Summary</h4>
-									<div className="grid grid-cols-2 gap-3 text-sm">
-										<div className="text-muted-foreground">Total Weight:</div>
-										<div className="font-medium text-right">
-											{discountPreview.totalWeight.toFixed(2)} kg
-										</div>
-										<div className="text-muted-foreground">Price per KG:</div>
-										<div className="font-medium text-right">
-											৳{form.watch("pricePerKg")?.toLocaleString() || 0}
-										</div>
-										<div className="text-muted-foreground">Subtotal:</div>
-										<div className="font-medium text-right">
-											৳{discountPreview.totalAmount.toLocaleString()}
-										</div>
-										{discountPreview.discountAmount > 0 && (
-											<>
-												<div className="text-muted-foreground">Discount:</div>
-												<div className="font-medium text-red-600 text-right">
-													-৳{discountPreview.discountAmount.toLocaleString()}
-												</div>
-											</>
-										)}
-										<Separator className="col-span-2" />
-										<div className="font-semibold">Final Amount:</div>
-										<div className="font-bold text-green-600 text-right text-lg">
-											৳{discountPreview.finalAmount.toLocaleString()}
+								<div className="space-y-3">
+									{/* Cost Breakdown */}
+									<div className="rounded-lg border bg-background p-4 shadow-sm">
+										<h4 className="mb-3 flex items-center gap-2 font-medium text-sm">
+											<Receipt className="h-4 w-4" />
+											Cost & Revenue Breakdown
+										</h4>
+										<div className="grid grid-cols-2 gap-3 text-sm">
+											<div className="text-muted-foreground">Total Weight:</div>
+											<div className="font-medium text-right">
+												{discountPreview.totalWeight.toFixed(2)} kg
+											</div>
+											<div className="text-muted-foreground">Price per KG:</div>
+											<div className="font-medium text-right">
+												৳{form.watch("pricePerKg")?.toLocaleString() || 0}
+											</div>
+											<div className="text-muted-foreground">
+												Subtotal (Revenue):
+											</div>
+											<div className="font-medium text-right">
+												৳{discountPreview.totalAmount.toLocaleString()}
+											</div>
+											{discountPreview.discountAmount > 0 && (
+												<>
+													<div className="text-muted-foreground">Discount:</div>
+													<div className="font-medium text-red-600 text-right">
+														-৳{discountPreview.discountAmount.toLocaleString()}
+													</div>
+												</>
+											)}
+											<Separator className="col-span-2" />
+											<div className="font-semibold">Final Amount:</div>
+											<div className="font-bold text-right text-lg">
+												৳{discountPreview.finalAmount.toLocaleString()}
+											</div>
+											{discountPreview.totalCost > 0 && (
+												<>
+													<div className="text-muted-foreground">
+														Total Cost (Adjusted):
+													</div>
+													<div className="font-medium text-amber-600 text-right">
+														৳{discountPreview.totalCost.toLocaleString()}
+													</div>
+												</>
+											)}
 										</div>
 									</div>
+
+									{/* Profit/Loss Display */}
+									{discountPreview.totalCost > 0 && (
+										<div
+											className={cn(
+												"rounded-lg border p-4 shadow-sm",
+												discountPreview.profitLoss >= 0
+													? "border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950"
+													: "border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950",
+											)}
+										>
+											<div className="flex items-center justify-between">
+												<div className="flex items-center gap-2">
+													{discountPreview.profitLoss >= 0 ? (
+														<TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
+													) : (
+														<TrendingDown className="h-5 w-5 text-red-600 dark:text-red-400" />
+													)}
+													<div>
+														<h4
+															className={cn(
+																"font-semibold text-sm",
+																discountPreview.profitLoss >= 0
+																	? "text-green-700 dark:text-green-300"
+																	: "text-red-700 dark:text-red-300",
+															)}
+														>
+															{discountPreview.profitLoss >= 0
+																? "Estimated Profit"
+																: "Estimated Loss"}
+														</h4>
+														<p className="text-muted-foreground text-xs">
+															Based on adjusted cattle costs
+														</p>
+													</div>
+												</div>
+												<div className="text-right">
+													<div
+														className={cn(
+															"font-bold text-2xl",
+															discountPreview.profitLoss >= 0
+																? "text-green-600 dark:text-green-400"
+																: "text-red-600 dark:text-red-400",
+														)}
+													>
+														{discountPreview.profitLoss >= 0 ? "+" : ""}৳
+														{Math.abs(
+															discountPreview.profitLoss,
+														).toLocaleString()}
+													</div>
+													<div
+														className={cn(
+															"font-medium text-sm",
+															discountPreview.profitLoss >= 0
+																? "text-green-600 dark:text-green-400"
+																: "text-red-600 dark:text-red-400",
+														)}
+													>
+														{discountPreview.profitMargin >= 0 ? "+" : ""}
+														{discountPreview.profitMargin.toFixed(2)}% margin
+													</div>
+												</div>
+											</div>
+										</div>
+									)}
 								</div>
 							)}
 

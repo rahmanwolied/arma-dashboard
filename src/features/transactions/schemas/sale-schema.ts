@@ -21,6 +21,7 @@ export const saleSchema = z.object({
         id: z.string(),
         tagNumber: z.string(),
         liveWeight: z.number(),
+        adjustedPrice: z.number().optional(),
     })).min(1, "At least one animal must be selected"),
     pricePerKg: z.coerce.number().positive("Price per kg must be positive"),
     saleDate: z.date().or(z.string()),
