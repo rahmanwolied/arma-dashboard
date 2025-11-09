@@ -18,7 +18,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
-import useCattleQuery from "./use-cattle-query";
+import { useCattleQuery } from "../../hooks/use-cattle-query";
 
 interface AnimalValue {
 	id: string;

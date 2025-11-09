@@ -13,7 +13,7 @@ import type { SaleWithCustomer } from "@/app/_lib/queries/sales";
 import { IconEdit, IconDotsVertical, IconTrash } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { deleteSale } from "../actions";
+import { deleteSaleAction } from "../actions/delete-sale";
 import { toast } from "sonner";
 
 interface SalesCellActionProps {
@@ -28,7 +28,7 @@ export const SalesCellAction: React.FC<SalesCellActionProps> = ({ data }) => {
 	const onConfirm = async () => {
 		startTransition(async () => {
 			try {
-				const result = await deleteSale(data.id);
+				const result = await deleteSaleAction(data.id);
 				if (result.success) {
 					toast.success(result.message);
 					setOpen(false);

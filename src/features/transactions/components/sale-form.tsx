@@ -14,8 +14,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { saleSchema, type SaleFormData } from "../schemas/sale-schema";
-import { createSale } from "../actions";
+import { saleSchema, type SaleFormData } from "../validations/sale-schema";
+import { createSaleAction } from "../actions/create-sale";
+import { calculateSalePreview } from "../helpers/calculations";
 import {
 	Select,
 	SelectContent,
@@ -23,8 +24,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import CustomerSearchField from "./transaction-form/customer-search-bar";
-import CattleSearchField from "./transaction-form/cattle-search-field";
+import CustomerSearchField from "./customer-search/customer-search-bar";
+import CattleSearchField from "./cattle-search/cattle-search-field";
 import {
 	ShoppingCart,
 	DollarSign,
@@ -98,43 +99,18 @@ export default function SaleForm({
 	const discountInput = form.watch("discountInput") || 0;
 	const amountPaid = form.watch("amountPaid") || 0;
 
-	// Calculate discount preview in real-time
-	const discountPreview = useMemo(() => {
-		const animals = animalsWatch || [];
-		const totalWeight = animals.reduce((sum, a) => sum + a.liveWeight, 0);
-		const totalAmount = totalWeight * pricePerKg;
-		const totalCost = animals.reduce(
-			(sum, a) => sum + (a.adjustedPrice || 0),
-			0,
-		);
-		let discountAmount = 0;
-
-		if (discountType === "FLAT") {
-			discountAmount = discountInput;
-		} else if (discountType === "PERCENT") {
-			discountAmount = Math.round((totalAmount * discountInput) / 100);
-		} else if (discountType === "WEIGHT_BASED") {
-			discountAmount = Math.round(pricePerKg * discountInput);
-		}
-
-		const finalAmount = totalAmount - discountAmount;
-		const profitLoss = finalAmount - totalCost;
-		const profitMargin = totalCost > 0 ? (profitLoss / totalCost) * 100 : 0;
-		const dueAmount = Math.max(0, finalAmount - amountPaid);
-		const hasDue = dueAmount > 0 && amountPaid > 0;
-
-		return {
-			totalWeight,
-			totalAmount,
-			totalCost,
-			discountAmount,
-			finalAmount,
-			profitLoss,
-			profitMargin,
-			dueAmount,
-			hasDue,
-		};
-	}, [animalsWatch, pricePerKg, discountType, discountInput, amountPaid]);
+	// Calculate discount preview in real-time using helper
+	const discountPreview = useMemo(
+		() =>
+			calculateSalePreview(
+				animalsWatch,
+				pricePerKg,
+				discountType,
+				discountInput,
+				amountPaid,
+			),
+		[animalsWatch, pricePerKg, discountType, discountInput, amountPaid],
+	);
 
 	async function onSubmit(values: SaleFormData) {
 		// Check if there's a due amount
@@ -154,7 +130,7 @@ export default function SaleForm({
 	async function handleSubmit(values: SaleFormData) {
 		setIsSubmitting(true);
 		try {
-			const result = await createSale(values);
+			const result = await createSaleAction(values);
 			if (result.success) {
 				toast.success("Sale created successfully!");
 				// Close modal and reset state
