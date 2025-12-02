@@ -27,13 +27,15 @@ export const saleSchema = z.object({
     saleDate: z.date().or(z.string()),
     discountType: z.enum(["FLAT", "PERCENT", "WEIGHT_BASED"]).optional(),
     discountInput: z.coerce.number().optional(), // Depends on discount type
-    paymentMethod: z.enum([
-        "CASH",
-        "CREDIT_CARD",
-        "BANK_TRANSFER",
-        "MOBILE_MONEY",
-    ]),
-    amountPaid: z.coerce.number().min(0, "Amount paid must be non-negative"),
+    payments: z.array(z.object({
+        paymentMethod: z.enum([
+            "CASH",
+            "CREDIT_CARD",
+            "BANK_TRANSFER",
+            "MOBILE_MONEY",
+        ]),
+        paidAmount: z.coerce.number().positive("Amount must be positive"),
+    })).optional().default([]),
     paymentTerms: z.string().optional(),
     remarks: z.string().optional(),
 });

@@ -2,65 +2,30 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { saleSchema, type SaleFormData } from "../validations/sale-schema";
 import { createSaleAction } from "../actions/create-sale";
 import { calculateSalePreview } from "../helpers/calculations";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import CustomerSearchField from "./customer-search/customer-search-bar";
-import CattleSearchField from "./cattle-search/cattle-search-field";
-import {
-	ShoppingCart,
-	DollarSign,
-	Percent,
-	CreditCard,
-	Calendar,
-	Receipt,
-	AlertTriangle,
-	Loader2,
-	TrendingUp,
-	TrendingDown,
-} from "lucide-react";
+import { ShoppingCart, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { useMemo, useState } from "react";
-import { cn } from "@/lib/utils";
+import {
+	CustomerInfoSection,
+	AnimalsSelectionSection,
+	SaleDetailsSection,
+	DiscountSection,
+	PaymentSection,
+} from "./sale-form-sections";
 
-export default function SaleForm({
-	initialData,
-	pageTitle,
-}: {
+interface SaleFormProps {
 	initialData: SaleFormData | null;
 	pageTitle: string;
-}) {
+}
+
+export default function SaleForm({ initialData, pageTitle }: SaleFormProps) {
 	const defaultValues: Partial<SaleFormData> = {
 		customer: {
 			name: initialData?.customer?.name || "",
@@ -75,8 +40,7 @@ export default function SaleForm({
 		saleDate: initialData?.saleDate || new Date(),
 		discountType: initialData?.discountType,
 		discountInput: initialData?.discountInput,
-		paymentMethod: initialData?.paymentMethod || "CASH",
-		amountPaid: initialData?.amountPaid || 0,
+		payments: initialData?.payments || [],
 		paymentTerms: initialData?.paymentTerms || "",
 		remarks: initialData?.remarks || "",
 	};
@@ -86,20 +50,31 @@ export default function SaleForm({
 		defaultValues,
 	});
 
-	// State for warning modal and loading
-	const [showDueWarning, setShowDueWarning] = useState(false);
-	const [pendingSubmitData, setPendingSubmitData] =
-		useState<SaleFormData | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	// Watch form values for discount calculation
+	// Watch form values for real-time calculations
 	const animalsWatch = form.watch("animals");
 	const pricePerKg = form.watch("pricePerKg") || 0;
 	const discountType = form.watch("discountType");
 	const discountInput = form.watch("discountInput") || 0;
-	const amountPaid = form.watch("amountPaid") || 0;
 
-	// Calculate discount preview in real-time using helper
+	// Use useWatch for payments to ensure real-time updates when typing
+	const paymentsWatch = useWatch({
+		control: form.control,
+		name: "payments",
+		defaultValue: [],
+	});
+
+	// Calculate total amount paid from all payments
+	const amountPaid = useMemo(() => {
+		const payments = paymentsWatch || [];
+		return payments.reduce(
+			(sum, payment) => sum + (Number(payment.paidAmount) || 0),
+			0,
+		);
+	}, [paymentsWatch]);
+
+	// Calculate discount preview in real-time
 	const discountPreview = useMemo(
 		() =>
 			calculateSalePreview(
@@ -113,30 +88,11 @@ export default function SaleForm({
 	);
 
 	async function onSubmit(values: SaleFormData) {
-		// Check if there's a due amount
-		if (
-			discountPreview.dueAmount > 0 &&
-			values.amountPaid < discountPreview.finalAmount
-		) {
-			setPendingSubmitData(values);
-			setShowDueWarning(true);
-			return;
-		}
-
-		// Proceed with submission
-		await handleSubmit(values);
-	}
-
-	async function handleSubmit(values: SaleFormData) {
 		setIsSubmitting(true);
 		try {
 			const result = await createSaleAction(values);
 			if (result.success) {
 				toast.success("Sale created successfully!");
-				// Close modal and reset state
-				setShowDueWarning(false);
-				setPendingSubmitData(null);
-				// Reset form
 				form.reset();
 				// TODO: Redirect to sales list
 			} else {
@@ -151,12 +107,6 @@ export default function SaleForm({
 		}
 	}
 
-	async function handleConfirmWithDue() {
-		if (pendingSubmitData) {
-			await handleSubmit(pendingSubmitData);
-		}
-	}
-
 	return (
 		<Card className="mx-auto w-full max-w-4xl">
 			<CardHeader>
@@ -168,425 +118,15 @@ export default function SaleForm({
 			<CardContent>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-						{/* Customer Info Section */}
-						<div className="space-y-4 rounded-lg border bg-accent p-4">
-							<h3 className="flex items-center gap-2 font-semibold text-lg">
-								<Receipt className="h-5 w-5" />
-								Customer Information
-							</h3>
-							<FormField
-								control={form.control}
-								name="customer"
-								render={({ field }) => (
-									<FormItem>
-										<FormControl>
-											<CustomerSearchField
-												value={field.value}
-												onChange={field.onChange}
-												placeholder="Search or create customer..."
-											/>
-										</FormControl>
-										<FormDescription>
-											Search for an existing customer or create a new one
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-
-						{/* Animals Selection Section */}
-						<div className="space-y-4 rounded-lg border bg-accent p-4">
-							<h3 className="flex items-center gap-2 font-semibold text-lg">
-								<ShoppingCart className="h-5 w-5" />
-								Select Animals
-							</h3>
-							<FormField
-								control={form.control}
-								name="animals"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Animals for Sale</FormLabel>
-										<FormControl>
-											<CattleSearchField
-												value={field.value}
-												onChange={field.onChange}
-												placeholder="Search cattle by tag number..."
-											/>
-										</FormControl>
-										<FormDescription>
-											Search and select one or more animals to include in this
-											sale
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-
-						{/* Sale Details Section */}
-						<div className="space-y-4 rounded-lg border bg-accent p-4">
-							<h3 className="flex items-center gap-2 text-lg font-semibold">
-								<DollarSign className="h-5 w-5" />
-								Sale Details
-							</h3>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2">
-								<FormField
-									control={form.control}
-									name="pricePerKg"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Price per KG (৳)</FormLabel>
-											<FormControl>
-												<Input
-													type="number"
-													step="0.01"
-													placeholder="Enter price per kg"
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="saleDate"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel className="flex items-center gap-2">
-												<Calendar className="h-4 w-4" />
-												Sale Date
-											</FormLabel>
-											<FormControl>
-												<Input
-													type="date"
-													{...field}
-													value={
-														field.value instanceof Date
-															? field.value.toISOString().split("T")[0]
-															: field.value
-													}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-						</div>
-
-						{/* Discount Section */}
-						<div className="space-y-4 rounded-lg border bg-accent p-4">
-							<h3 className="flex items-center gap-2 text-lg font-semibold">
-								<Percent className="h-5 w-5" />
-								Discount (Optional)
-							</h3>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2">
-								<FormField
-									control={form.control}
-									name="discountType"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Discount Type</FormLabel>
-											<Select
-												onValueChange={field.onChange}
-												defaultValue={field.value}
-											>
-												<FormControl>
-													<SelectTrigger>
-														<SelectValue placeholder="Select discount type" />
-													</SelectTrigger>
-												</FormControl>
-												<SelectContent>
-													<SelectItem value="FLAT">Flat Amount (৳)</SelectItem>
-													<SelectItem value="PERCENT">
-														Percentage (%)
-													</SelectItem>
-													<SelectItem value="WEIGHT_BASED">
-														Weight Based (kg)
-													</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormDescription>
-												Choose how you want to apply the discount
-											</FormDescription>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="discountInput"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Discount Value</FormLabel>
-											<FormControl>
-												<Input
-													type="number"
-													step="0.01"
-													placeholder={
-														form.watch("discountType") === "FLAT"
-															? "Enter amount in ৳"
-															: form.watch("discountType") === "PERCENT"
-																? "Enter percentage"
-																: "Enter weight reduction in kg"
-													}
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-
-							{/* Dynamic Sale Summary with Profit/Loss */}
-							{discountPreview.totalWeight > 0 && (
-								<div className="space-y-3">
-									{/* Cost Breakdown */}
-									<div className="rounded-lg border bg-background p-4 shadow-sm">
-										<h4 className="mb-3 flex items-center gap-2 font-medium text-sm">
-											<Receipt className="h-4 w-4" />
-											Cost & Revenue Breakdown
-										</h4>
-										<div className="grid grid-cols-2 gap-3 text-sm">
-											<div className="text-muted-foreground">Total Weight:</div>
-											<div className="font-medium text-right">
-												{discountPreview.totalWeight.toFixed(2)} kg
-											</div>
-											<div className="text-muted-foreground">Price per KG:</div>
-											<div className="font-medium text-right">
-												৳{form.watch("pricePerKg")?.toLocaleString() || 0}
-											</div>
-											<div className="text-muted-foreground">
-												Subtotal (Revenue):
-											</div>
-											<div className="font-medium text-right">
-												৳{discountPreview.totalAmount.toLocaleString()}
-											</div>
-											{discountPreview.discountAmount > 0 && (
-												<>
-													<div className="text-muted-foreground">Discount:</div>
-													<div className="font-medium text-red-600 text-right">
-														-৳{discountPreview.discountAmount.toLocaleString()}
-													</div>
-												</>
-											)}
-											<Separator className="col-span-2" />
-											<div className="font-semibold">Final Amount:</div>
-											<div className="font-bold text-right text-lg">
-												৳{discountPreview.finalAmount.toLocaleString()}
-											</div>
-											{discountPreview.totalCost > 0 && (
-												<>
-													<div className="text-muted-foreground">
-														Total Cost (Adjusted):
-													</div>
-													<div className="font-medium text-amber-600 text-right">
-														৳{discountPreview.totalCost.toLocaleString()}
-													</div>
-												</>
-											)}
-										</div>
-									</div>
-
-									{/* Profit/Loss Display */}
-									{discountPreview.totalCost > 0 && (
-										<div
-											className={cn(
-												"rounded-lg border p-4 shadow-sm",
-												discountPreview.profitLoss >= 0
-													? "border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950"
-													: "border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950",
-											)}
-										>
-											<div className="flex items-center justify-between">
-												<div className="flex items-center gap-2">
-													{discountPreview.profitLoss >= 0 ? (
-														<TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
-													) : (
-														<TrendingDown className="h-5 w-5 text-red-600 dark:text-red-400" />
-													)}
-													<div>
-														<h4
-															className={cn(
-																"font-semibold text-sm",
-																discountPreview.profitLoss >= 0
-																	? "text-green-700 dark:text-green-300"
-																	: "text-red-700 dark:text-red-300",
-															)}
-														>
-															{discountPreview.profitLoss >= 0
-																? "Estimated Profit"
-																: "Estimated Loss"}
-														</h4>
-														<p className="text-muted-foreground text-xs">
-															Based on adjusted cattle costs
-														</p>
-													</div>
-												</div>
-												<div className="text-right">
-													<div
-														className={cn(
-															"font-bold text-2xl",
-															discountPreview.profitLoss >= 0
-																? "text-green-600 dark:text-green-400"
-																: "text-red-600 dark:text-red-400",
-														)}
-													>
-														{discountPreview.profitLoss >= 0 ? "+" : ""}৳
-														{Math.abs(
-															discountPreview.profitLoss,
-														).toLocaleString()}
-													</div>
-													<div
-														className={cn(
-															"font-medium text-sm",
-															discountPreview.profitLoss >= 0
-																? "text-green-600 dark:text-green-400"
-																: "text-red-600 dark:text-red-400",
-														)}
-													>
-														{discountPreview.profitMargin >= 0 ? "+" : ""}
-														{discountPreview.profitMargin.toFixed(2)}% margin
-													</div>
-												</div>
-											</div>
-										</div>
-									)}
-								</div>
-							)}
-
-							{discountPreview.totalWeight === 0 && (
-								<Alert>
-									<AlertDescription>
-										Select animals to see the sale summary
-									</AlertDescription>
-								</Alert>
-							)}
-						</div>
-
-						{/* Payment Section */}
-						<div className="space-y-4 rounded-lg border bg-accent p-4">
-							<h3 className="flex items-center gap-2 text-lg font-semibold">
-								<CreditCard className="h-5 w-5" />
-								Payment
-							</h3>
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2">
-								<FormField
-									control={form.control}
-									name="paymentMethod"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Payment Method</FormLabel>
-											<Select
-												onValueChange={field.onChange}
-												defaultValue={field.value}
-											>
-												<FormControl>
-													<SelectTrigger>
-														<SelectValue placeholder="Select payment method" />
-													</SelectTrigger>
-												</FormControl>
-												<SelectContent>
-													<SelectItem value="CASH">Cash</SelectItem>
-													<SelectItem value="CREDIT_CARD">
-														Credit Card
-													</SelectItem>
-													<SelectItem value="BANK_TRANSFER">
-														Bank Transfer
-													</SelectItem>
-													<SelectItem value="MOBILE_MONEY">
-														Mobile Money
-													</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="amountPaid"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Amount Paid (৳)</FormLabel>
-											<FormControl>
-												<Input
-													type="number"
-													step="0.01"
-													placeholder="Enter amount paid"
-													max={discountPreview.finalAmount}
-													className={cn(
-														discountPreview.hasDue &&
-															"border-amber-500 focus-visible:ring-amber-500",
-													)}
-													{...field}
-													onChange={(e) => {
-														const value =
-															Number.parseFloat(e.target.value) || 0;
-														// Prevent entering more than final amount
-														if (value > discountPreview.finalAmount) {
-															field.onChange(discountPreview.finalAmount);
-														} else {
-															field.onChange(value);
-														}
-													}}
-												/>
-											</FormControl>
-											{discountPreview.totalWeight > 0 && (
-												<>
-													<FormDescription>
-														Amount received from customer (Max: ৳
-														{discountPreview.finalAmount.toLocaleString()})
-													</FormDescription>
-													{discountPreview.hasDue && (
-														<div className="mt-1 flex items-center gap-1 text-amber-600 text-xs">
-															<AlertTriangle className="h-3 w-3" />
-															<span className="font-medium">
-																Due: ৳
-																{discountPreview.dueAmount.toLocaleString()}
-															</span>
-														</div>
-													)}
-												</>
-											)}
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-							<FormField
-								control={form.control}
-								name="paymentTerms"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Payment Terms (Optional)</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="e.g., Net 30, Due on delivery"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="remarks"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Remarks (Optional)</FormLabel>
-										<FormControl>
-											<Input placeholder="Any additional notes" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
+						<CustomerInfoSection form={form} />
+						<AnimalsSelectionSection form={form} />
+						<SaleDetailsSection form={form} />
+						<DiscountSection form={form} discountPreview={discountPreview} />
+						<PaymentSection
+							form={form}
+							discountPreview={discountPreview}
+							amountPaid={amountPaid}
+						/>
 
 						<Separator />
 
@@ -617,73 +157,6 @@ export default function SaleForm({
 					</form>
 				</Form>
 			</CardContent>
-
-			{/* Due Warning Modal */}
-			<AlertDialog
-				open={showDueWarning}
-				onOpenChange={(open) => {
-					// Prevent closing the modal while submitting
-					if (!isSubmitting) {
-						setShowDueWarning(open);
-					}
-				}}
-			>
-				<AlertDialogContent>
-					<AlertDialogHeader>
-						<AlertDialogTitle className="flex items-center gap-2">
-							<AlertTriangle className="h-5 w-5 text-amber-500" />
-							Partial Payment Detected
-						</AlertDialogTitle>
-						<AlertDialogDescription className="space-y-3">
-							<p>
-								The customer has not paid the full amount. There is an
-								outstanding due:
-							</p>
-							<div className="rounded-lg border bg-amber-50 p-4 dark:bg-amber-950">
-								<div className="grid grid-cols-2 gap-2 text-sm">
-									<div className="text-muted-foreground">Final Amount:</div>
-									<div className="font-semibold text-right">
-										৳{discountPreview.finalAmount.toLocaleString()}
-									</div>
-									<div className="text-muted-foreground">Amount Paid:</div>
-									<div className="font-semibold text-right">
-										৳{amountPaid.toLocaleString()}
-									</div>
-									<Separator className="col-span-2 my-1" />
-									<div className="font-semibold text-amber-700 dark:text-amber-400">
-										Outstanding Due:
-									</div>
-									<div className="font-bold text-amber-700 text-right dark:text-amber-400">
-										৳{discountPreview.dueAmount.toLocaleString()}
-									</div>
-								</div>
-							</div>
-							<p className="text-sm">
-								Are you sure you want to proceed with this partial payment?
-							</p>
-						</AlertDialogDescription>
-					</AlertDialogHeader>
-					<AlertDialogFooter>
-						<AlertDialogCancel disabled={isSubmitting}>
-							Cancel
-						</AlertDialogCancel>
-						<AlertDialogAction
-							onClick={handleConfirmWithDue}
-							disabled={isSubmitting}
-							className="bg-amber-600 hover:bg-amber-700"
-						>
-							{isSubmitting ? (
-								<>
-									<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-									Processing...
-								</>
-							) : (
-								"Proceed with Partial Payment"
-							)}
-						</AlertDialogAction>
-					</AlertDialogFooter>
-				</AlertDialogContent>
-			</AlertDialog>
 		</Card>
 	);
 }

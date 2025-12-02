@@ -26,6 +26,11 @@ export type PaymentMethod =
 	| "BANK_TRANSFER"
 	| "MOBILE_MONEY";
 
+export interface PaymentEntry {
+	paymentMethod: PaymentMethod;
+	paidAmount: number;
+}
+
 // Sale preview/summary types
 export interface SalePreview {
 	totalWeight: number;
@@ -100,6 +105,18 @@ export interface ActionError {
 }
 
 export type ActionResult<T = unknown> = ActionSuccess<T> | ActionError;
+
+// Sale detail view type (includes stored amounts from database)
+export interface SaleDetailData extends SaleFormData {
+	// Stored amounts from database (for display purposes)
+	storedAmounts?: {
+		totalAmount: number;
+		discountAmount: number;
+		amountPaid: number;
+		amountDue: number;
+		invoiceNumber: string;
+	};
+}
 
 // Query hooks options
 export interface UseCreateSaleOptions {

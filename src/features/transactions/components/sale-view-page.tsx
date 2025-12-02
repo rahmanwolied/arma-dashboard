@@ -1,28 +1,26 @@
 import { notFound } from "next/navigation";
 import SaleForm from "./sale-form";
+import SaleDetailView from "./sale-detail-view";
 import { getSaleByIdAction } from "../actions/get-sale";
-import type { SaleFormData } from "../validations/sale-schema";
 
 type TSaleViewPageProps = {
 	transactionId: string;
 };
 
-export default async function TransactionViewPage({
+export default async function SaleViewPage({
 	transactionId,
 }: TSaleViewPageProps) {
-	let sale = null;
-	let pageTitle = "Add New Sale";
-
-	if (transactionId !== "new") {
-		const result = await getSaleByIdAction(transactionId);
-
-		if (!result.success || !result.data) {
-			notFound();
-		}
-
-		sale = result.data;
-		pageTitle = "Edit Sale";
+	// Show form for new sale
+	if (transactionId === "new") {
+		return <SaleForm initialData={null} pageTitle="Add New Sale" />;
 	}
 
-	return <SaleForm initialData={sale} pageTitle={pageTitle} />;
+	// Fetch and display existing sale details
+	const result = await getSaleByIdAction(transactionId);
+
+	if (!result.success || !result.data) {
+		notFound();
+	}
+
+	return <SaleDetailView sale={result.data} transactionId={transactionId} />;
 }

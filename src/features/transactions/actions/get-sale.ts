@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { SaleService } from "@/services/SaleService";
 import { getErrorMessage } from "@/lib/handle-error";
-import type { ActionResult, SaleFormData } from "../types";
+import type { ActionResult, SaleDetailData } from "../types";
 
 /**
  * Server action to get a sale by ID
@@ -13,7 +13,7 @@ import type { ActionResult, SaleFormData } from "../types";
  */
 export async function getSaleByIdAction(
 	id: string,
-): Promise<ActionResult<SaleFormData>> {
+): Promise<ActionResult<SaleDetailData>> {
 	try {
 		// 1. Authentication
 		const { userId } = await auth();

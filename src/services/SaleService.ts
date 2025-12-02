@@ -13,6 +13,7 @@ import {
 } from "@/db/schema";
 import type {
 	SaleFormData,
+	SaleDetailData,
 	CreateSaleInput,
 	SaleServiceResult,
 	DiscountCalculationResult,
@@ -49,9 +50,9 @@ export class SaleService {
 			// 5. Link animals to sale
 			await this.linkAnimalsToSale(tx, sale.id, data.animals);
 
-			// 6. Create payment record if amount paid > 0
-			if (data.amountPaid > 0) {
-				await this.createPaymentRecord(tx, sale.id, data);
+			// 6. Create payment records if any payments exist
+			if (data.payments && data.payments.length > 0) {
+				await this.createPaymentRecords(tx, sale.id, data.payments);
 			}
 
 			return {
@@ -66,7 +67,7 @@ export class SaleService {
 	/**
 	 * Retrieves a sale by ID with all related data
 	 */
-	async getSaleById(id: string): Promise<SaleFormData | null> {
+	async getSaleById(id: string): Promise<SaleDetailData | null> {
 		const sale = await db.query.sales.findFirst({
 			where: eq(sales.id, id),
 			with: {
@@ -94,7 +95,17 @@ export class SaleService {
 			return null;
 		}
 
-		// Transform to SaleFormData format
+		// Calculate total weight from animals
+		const totalWeight = sale.saleAnimalLinks.reduce(
+			(sum, link) => sum + Number(link.animal.weightRecords[0]?.weightKg || 0),
+			0
+		);
+
+		// Calculate pricePerKg from stored totalAmount and totalWeight
+		const totalAmount = Number(sale.totalAmount || 0);
+		const pricePerKg = totalWeight > 0 ? totalAmount / totalWeight : 0;
+
+		// Transform to SaleDetailData format
 		return {
 			customer: {
 				id: sale.customer?.id || "",
@@ -107,16 +118,26 @@ export class SaleService {
 				tagNumber: link.animal.cattle?.tagNumber || "",
 				liveWeight: Number(link.animal.weightRecords[0]?.weightKg || 0),
 			})),
-			pricePerKg: 0, // TODO: Calculate from totalAmount and weights
-			amountPaid: Number(sale.amountPaid),
+			pricePerKg,
 			saleDate: sale.saleDate,
-			paymentMethod: sale.payments[0]?.paymentMethod || "CASH",
+			payments: sale.payments.map((payment) => ({
+				paymentMethod: payment.paymentMethod,
+				paidAmount: Number(payment.paidAmount),
+			})),
 			discountType: sale.discountType || undefined,
 			discountInput: sale.discountAmount
 				? Number(sale.discountAmount)
 				: undefined,
 			paymentTerms: sale.paymentTerms || undefined,
 			remarks: undefined,
+			// Include stored amounts from database for accurate display
+			storedAmounts: {
+				totalAmount: Number(sale.totalAmount || 0),
+				discountAmount: Number(sale.discountAmount || 0),
+				amountPaid: Number(sale.amountPaid || 0),
+				amountDue: Number(sale.amountDue || 0),
+				invoiceNumber: sale.invoiceNumber,
+			},
 		};
 	}
 
@@ -138,6 +159,64 @@ export class SaleService {
 				.returning();
 
 			return !!sale;
+		});
+	}
+
+	/**
+	 * Records a payment against a sale and updates the sale's amounts
+	 */
+	async recordPayment(input: {
+		saleId: string;
+		amount: number;
+		paymentMethod: "CASH" | "CREDIT_CARD" | "BANK_TRANSFER" | "MOBILE_MONEY";
+		transactionReference?: string;
+	}): Promise<{ paymentId: string; newAmountPaid: number; newAmountDue: number } | null> {
+		return await db.transaction(async (tx) => {
+			// 1. Get the current sale
+			const [sale] = await tx
+				.select()
+				.from(sales)
+				.where(eq(sales.id, input.saleId))
+				.limit(1);
+
+			if (!sale) {
+				return null;
+			}
+
+			// 2. Calculate new amounts
+			const currentAmountPaid = Number(sale.amountPaid || 0);
+			const currentAmountDue = Number(sale.amountDue || 0);
+			const newAmountPaid = currentAmountPaid + input.amount;
+			const newAmountDue = Math.max(0, currentAmountDue - input.amount);
+
+			// 3. Create the payment record
+			const [payment] = await tx
+				.insert(payments)
+				.values({
+					saleId: input.saleId,
+					paidAmount: input.amount.toFixed(2),
+					paidAt: new Date(),
+					paymentMethod: input.paymentMethod,
+					transactionReference: input.transactionReference || null,
+					// Note: createdBy expects UUID but Clerk provides string IDs, so we skip it
+				})
+				.returning();
+
+			// 4. Update the sale's amounts
+			await tx
+				.update(sales)
+				.set({
+					amountPaid: newAmountPaid.toFixed(2),
+					amountDue: newAmountDue.toFixed(2),
+					isCredit: newAmountDue > 0,
+				})
+				.where(eq(sales.id, input.saleId));
+
+			return {
+				paymentId: payment.id,
+				newAmountPaid,
+				newAmountDue,
+			};
 		});
 	}
 
@@ -203,7 +282,14 @@ export class SaleService {
 		);
 
 		const finalAmount = totalAmount - discountAmount;
-		const amountDue = finalAmount - data.amountPaid;
+
+		// Calculate total paid from all payments
+		const amountPaid = (data.payments || []).reduce(
+			(sum, payment) => sum + Number(payment.paidAmount),
+			0,
+		);
+
+		const amountDue = finalAmount - amountPaid;
 
 		return {
 			totalWeight,
@@ -211,6 +297,7 @@ export class SaleService {
 			discountAmount,
 			actualDiscountedWeight,
 			finalAmount,
+			amountPaid,
 			amountDue,
 		};
 	}
@@ -258,7 +345,7 @@ export class SaleService {
 	 * Generates a unique invoice number
 	 */
 	private generateInvoiceNumber(): string {
-		return `INV-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+		return `INV-${Date.now()}-${Math.random().toString(36).substring(2, 11).toUpperCase()}`;
 	}
 
 	/**
@@ -269,7 +356,7 @@ export class SaleService {
 		params: {
 			customerId: string;
 			invoiceNumber: string;
-			calculations: ReturnType<typeof this.calculateSaleTotals>;
+			calculations: ReturnType<SaleService["calculateSaleTotals"]>;
 			data: SaleFormData;
 		},
 	) {
@@ -288,7 +375,7 @@ export class SaleService {
 						? calculations.discountAmount.toFixed(2)
 						: null,
 				discountType: data.discountType || null,
-				amountPaid: data.amountPaid.toFixed(2),
+				amountPaid: calculations.amountPaid.toFixed(2),
 				amountDue: calculations.amountDue.toFixed(2),
 				isCredit: calculations.amountDue > 0,
 				paymentTerms: data.paymentTerms?.trim() || null,
@@ -318,20 +405,26 @@ export class SaleService {
 	}
 
 	/**
-	 * Creates a payment record
+	 * Creates multiple payment records
 	 */
-	private async createPaymentRecord(
+	private async createPaymentRecords(
 		tx: unknown,
 		saleId: string,
-		data: SaleFormData,
+		paymentEntries: SaleFormData["payments"],
 	) {
 		const t = tx as typeof db;
 
-		await t.insert(payments).values({
-			saleId,
-			paidAmount: data.amountPaid.toFixed(2),
-			paidAt: new Date(),
-			paymentMethod: data.paymentMethod,
-		});
+		if (!paymentEntries || paymentEntries.length === 0) {
+			return;
+		}
+
+		for (const payment of paymentEntries) {
+			await t.insert(payments).values({
+				saleId,
+				paidAmount: Number(payment.paidAmount).toFixed(2),
+				paidAt: new Date(),
+				paymentMethod: payment.paymentMethod,
+			});
+		}
 	}
 }
