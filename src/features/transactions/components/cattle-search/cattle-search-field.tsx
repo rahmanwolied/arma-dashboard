@@ -25,6 +25,8 @@ interface AnimalValue {
 	tagNumber: string;
 	liveWeight: number;
 	adjustedPrice?: number;
+	fixedSalePrice?: number;
+	individualPricePerKg?: number;
 }
 
 interface CattleSearchFieldProps {
@@ -68,6 +70,8 @@ export default function CattleSearchField({
 					tagNumber: cattle.tagNumber,
 					liveWeight: cattle.liveWeight,
 					adjustedPrice: cattle.adjustedPrice,
+					fixedSalePrice: undefined,
+					individualPricePerKg: undefined,
 				},
 			];
 			onChange?.(newValue);
@@ -126,7 +130,10 @@ export default function CattleSearchField({
 												<span className="text-muted-foreground text-sm">
 													Weight: {cattle.liveWeight} kg • {cattle.gender}
 													{cattle.adjustedPrice && cattle.adjustedPrice > 0 && (
-														<> • Cost: ৳{cattle.adjustedPrice.toLocaleString()}</>
+														<>
+															{" "}
+															• Cost: ৳{cattle.adjustedPrice.toLocaleString()}
+														</>
 													)}
 												</span>
 											</div>
@@ -166,7 +173,8 @@ export default function CattleSearchField({
 								({animal.liveWeight} kg
 								{animal.adjustedPrice && animal.adjustedPrice > 0 && (
 									<> • ৳{animal.adjustedPrice.toLocaleString()}</>
-								)})
+								)}
+								)
 							</span>
 							<button
 								type="button"
@@ -194,11 +202,14 @@ export default function CattleSearchField({
 							{value.reduce((sum, animal) => sum + animal.liveWeight, 0)} kg
 						</span>
 					</div>
-					{value.some(a => a.adjustedPrice && a.adjustedPrice > 0) && (
+					{value.some((a) => a.adjustedPrice && a.adjustedPrice > 0) && (
 						<div className="flex items-center justify-between text-sm">
 							<span className="text-muted-foreground">Total Cost:</span>
 							<span className="font-medium">
-								৳{value.reduce((sum, animal) => sum + (animal.adjustedPrice || 0), 0).toLocaleString()}
+								৳
+								{value
+									.reduce((sum, animal) => sum + (animal.adjustedPrice || 0), 0)
+									.toLocaleString()}
 							</span>
 						</div>
 					)}
@@ -207,4 +218,3 @@ export default function CattleSearchField({
 		</div>
 	);
 }
-

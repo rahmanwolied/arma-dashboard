@@ -84,9 +84,11 @@ export default function SaleDetailView({
 		0,
 	);
 
+	// Get price per kg with fallback to 0 for fixed pricing modes
+	const pricePerKg = sale.pricePerKg || 0;
+
 	// Use stored values if available, otherwise calculate
-	const totalAmount =
-		storedAmounts?.totalAmount ?? totalWeight * sale.pricePerKg;
+	const totalAmount = storedAmounts?.totalAmount ?? totalWeight * pricePerKg;
 	const discountAmount = storedAmounts?.discountAmount ?? 0;
 	const finalAmount = totalAmount - discountAmount;
 	const amountPaid =
@@ -236,12 +238,14 @@ export default function SaleDetailView({
 					</CardHeader>
 					<CardContent>
 						<div className="space-y-3">
-							<div className="flex justify-between text-sm">
-								<span className="text-muted-foreground">Price per kg</span>
-								<span className="font-medium">
-									{formatCurrency(sale.pricePerKg)}/kg
-								</span>
-							</div>
+							{pricePerKg > 0 && (
+								<div className="flex justify-between text-sm">
+									<span className="text-muted-foreground">Price per kg</span>
+									<span className="font-medium">
+										{formatCurrency(pricePerKg)}/kg
+									</span>
+								</div>
+							)}
 							<div className="flex justify-between text-sm">
 								<span className="text-muted-foreground">
 									Total Weight ({sale.animals.length} animals)
@@ -331,7 +335,9 @@ export default function SaleDetailView({
 											{animal.liveWeight.toFixed(2)}
 										</TableCell>
 										<TableCell className="text-right font-medium">
-											{formatCurrency(animal.liveWeight * sale.pricePerKg)}
+											{formatCurrency(
+												animal.fixedSalePrice || animal.liveWeight * pricePerKg,
+											)}
 										</TableCell>
 									</TableRow>
 								))}

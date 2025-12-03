@@ -36,7 +36,13 @@ export default function SaleForm({ initialData, pageTitle }: SaleFormProps) {
 			isNew: initialData?.customer?.isNew,
 		},
 		animals: initialData?.animals || [],
-		pricePerKg: initialData?.pricePerKg || 0,
+		// Pricing mode fields
+		pricingMode: initialData?.pricingMode || "PER_KG",
+		perKgMode: initialData?.perKgMode || "SAME_RATE",
+		pricePerKg: initialData?.pricePerKg,
+		fixedPriceMode: initialData?.fixedPriceMode,
+		totalFixedPrice: initialData?.totalFixedPrice,
+		// Other fields
 		saleDate: initialData?.saleDate || new Date(),
 		discountType: initialData?.discountType,
 		discountInput: initialData?.discountInput,
@@ -54,9 +60,15 @@ export default function SaleForm({ initialData, pageTitle }: SaleFormProps) {
 
 	// Watch form values for real-time calculations
 	const animalsWatch = form.watch("animals");
-	const pricePerKg = form.watch("pricePerKg") || 0;
 	const discountType = form.watch("discountType");
 	const discountInput = form.watch("discountInput") || 0;
+
+	// Watch pricing mode fields
+	const pricingMode = form.watch("pricingMode");
+	const perKgMode = form.watch("perKgMode");
+	const pricePerKg = form.watch("pricePerKg");
+	const fixedPriceMode = form.watch("fixedPriceMode");
+	const totalFixedPrice = form.watch("totalFixedPrice");
 
 	// Use useWatch for payments to ensure real-time updates when typing
 	const paymentsWatch = useWatch({
@@ -74,17 +86,33 @@ export default function SaleForm({ initialData, pageTitle }: SaleFormProps) {
 		);
 	}, [paymentsWatch]);
 
-	// Calculate discount preview in real-time
+	// Calculate sale preview in real-time with the new pricing system
 	const discountPreview = useMemo(
 		() =>
 			calculateSalePreview(
 				animalsWatch,
-				pricePerKg,
+				{
+					pricingMode: pricingMode || "PER_KG",
+					perKgMode: perKgMode || "SAME_RATE",
+					pricePerKg,
+					fixedPriceMode,
+					totalFixedPrice,
+				},
 				discountType,
 				discountInput,
 				amountPaid,
 			),
-		[animalsWatch, pricePerKg, discountType, discountInput, amountPaid],
+		[
+			animalsWatch,
+			pricingMode,
+			perKgMode,
+			pricePerKg,
+			fixedPriceMode,
+			totalFixedPrice,
+			discountType,
+			discountInput,
+			amountPaid,
+		],
 	);
 
 	async function onSubmit(values: SaleFormData) {

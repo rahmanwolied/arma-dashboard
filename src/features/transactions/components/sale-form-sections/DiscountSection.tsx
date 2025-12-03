@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Discount Section
  * Handles discount type selection and value input, with sale summary
@@ -24,10 +26,15 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { SaleSummary } from "./SaleSummary";
 import { ProfitLossDisplay } from "./ProfitLossDisplay";
 import type { DiscountSectionProps } from "./types";
+import { usePathname } from "next/navigation";
 
-export function DiscountSection({ form, discountPreview }: DiscountSectionProps) {
+export function DiscountSection({
+	form,
+	discountPreview,
+}: DiscountSectionProps) {
 	const pricePerKg = form.watch("pricePerKg") || 0;
 	const discountType = form.watch("discountType");
+	const isEditPage = usePathname().includes("edit");
 
 	return (
 		<div className="space-y-4 rounded-lg border bg-accent p-4">
@@ -39,10 +46,15 @@ export function DiscountSection({ form, discountPreview }: DiscountSectionProps)
 				<FormField
 					control={form.control}
 					name="discountType"
+					disabled={isEditPage}
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Discount Type</FormLabel>
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
+							<Select
+								onValueChange={field.onChange}
+								defaultValue={"FLAT"}
+								disabled={isEditPage}
+							>
 								<FormControl>
 									<SelectTrigger>
 										<SelectValue placeholder="Select discount type" />
@@ -50,10 +62,14 @@ export function DiscountSection({ form, discountPreview }: DiscountSectionProps)
 								</FormControl>
 								<SelectContent>
 									<SelectItem value="FLAT">Flat Amount (৳)</SelectItem>
-									<SelectItem value="PERCENT">Percentage (%)</SelectItem>
-									<SelectItem value="WEIGHT_BASED">
-										Weight Based (kg)
-									</SelectItem>
+									{!isEditPage && (
+										<>
+											<SelectItem value="PERCENT">Percentage (%)</SelectItem>
+											<SelectItem value="WEIGHT_BASED">
+												Weight Based (kg)
+											</SelectItem>
+										</>
+									)}
 								</SelectContent>
 							</Select>
 							<FormDescription>
@@ -92,7 +108,10 @@ export function DiscountSection({ form, discountPreview }: DiscountSectionProps)
 			{/* Sale Summary and Profit/Loss Display */}
 			{discountPreview.totalWeight > 0 ? (
 				<div className="space-y-3">
-					<SaleSummary discountPreview={discountPreview} pricePerKg={pricePerKg} />
+					<SaleSummary
+						discountPreview={discountPreview}
+						pricePerKg={pricePerKg}
+					/>
 					{discountPreview.totalCost > 0 && (
 						<ProfitLossDisplay
 							profitLoss={discountPreview.profitLoss}

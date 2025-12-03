@@ -5,6 +5,7 @@
  */
 
 export { createSaleAction } from "./create-sale";
+export { updateSaleAction } from "./update-sale";
 export { getSaleByIdAction } from "./get-sale";
 export { deleteSaleAction } from "./delete-sale";
 export { recordPaymentAction } from "./record-payment";

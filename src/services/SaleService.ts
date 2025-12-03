@@ -118,6 +118,8 @@ export class SaleService {
 				tagNumber: link.animal.cattle?.tagNumber || "",
 				liveWeight: Number(link.animal.weightRecords[0]?.weightKg || 0),
 			})),
+			// Default to PER_KG mode for backward compatibility
+			pricingMode: "PER_KG",
 			pricePerKg,
 			saleDate: sale.saleDate,
 			payments: sale.payments.map((payment) => ({
@@ -139,6 +141,74 @@ export class SaleService {
 				invoiceNumber: sale.invoiceNumber,
 			},
 		};
+	}
+
+	/**
+	 * Updates an existing sale with new data
+	 * Note: Customer cannot be changed, only sale details, animals, discount, and payments
+	 */
+	async updateSale(
+		id: string,
+		data: Omit<SaleFormData, "customer">,
+	): Promise<SaleServiceResult | null> {
+		return await db.transaction(async (tx) => {
+			// 1. Verify sale exists and get current data
+			const [existingSale] = await tx
+				.select()
+				.from(sales)
+				.where(eq(sales.id, id))
+				.limit(1);
+
+			if (!existingSale) {
+				return null;
+			}
+
+			// 2. Calculate new totals
+			const calculations = this.calculateSaleTotals({
+				...data,
+				customer: { name: "", phone: "" }, // Dummy customer for calculation
+			});
+
+			// 3. Delete existing animal links
+			await tx.delete(saleAnimalLinks).where(eq(saleAnimalLinks.saleId, id));
+
+			// 4. Delete existing payments (we'll recreate them)
+			await tx.delete(payments).where(eq(payments.saleId, id));
+
+			// 5. Update sale record
+			const [updatedSale] = await tx
+				.update(sales)
+				.set({
+					totalAmount: calculations.totalAmount.toFixed(2),
+					discountAmount:
+						calculations.discountAmount > 0
+							? calculations.discountAmount.toFixed(2)
+							: null,
+					discountType: data.discountType || null,
+					amountPaid: calculations.amountPaid.toFixed(2),
+					amountDue: calculations.amountDue.toFixed(2),
+					isCredit: calculations.amountDue > 0,
+					paymentTerms: data.paymentTerms?.trim() || null,
+					saleDate: new Date(data.saleDate),
+				})
+				.where(eq(sales.id, id))
+				.returning();
+
+			// 6. Link new animals to sale
+			await this.linkAnimalsToSale(tx, id, data.animals);
+
+			// 7. Create new payment records if any payments exist
+			if (data.payments && data.payments.length > 0) {
+				await this.createPaymentRecords(tx, id, data.payments);
+			}
+
+			return {
+				sale: updatedSale,
+				totalWeight: calculations.totalWeight,
+				actualDiscountedWeight: calculations.actualDiscountedWeight,
+				discountAmount: calculations.discountAmount,
+			};
+		});
 	}
 
 	/**
@@ -264,24 +334,80 @@ export class SaleService {
 	}
 
 	/**
+	 * Calculates total amount based on pricing mode
+	 * Supports:
+	 * - PER_KG with SAME_RATE: totalWeight * pricePerKg
+	 * - PER_KG with PER_ANIMAL: sum of (animal.liveWeight * animal.individualPricePerKg)
+	 * - FIXED with TOTAL: totalFixedPrice
+	 * - FIXED with PER_ANIMAL: sum of animal.fixedSalePrice
+	 */
+	private calculateTotalAmount(data: SaleFormData): number {
+		const totalWeight = data.animals.reduce(
+			(sum, animal) => sum + animal.liveWeight,
+			0,
+		);
+
+		const pricingMode = data.pricingMode || "PER_KG";
+
+		switch (pricingMode) {
+			case "PER_KG": {
+				const perKgMode = data.perKgMode || "SAME_RATE";
+
+				if (perKgMode === "SAME_RATE") {
+					return totalWeight * (data.pricePerKg || 0);
+				}
+
+				if (perKgMode === "PER_ANIMAL") {
+					// Sum of individual price per kg * weight for each animal
+					return data.animals.reduce(
+						(sum, animal) => sum + (animal.individualPricePerKg || 0) * animal.liveWeight,
+						0,
+					);
+				}
+
+				return 0;
+			}
+
+			case "FIXED":
+				if (data.fixedPriceMode === "TOTAL") {
+					return data.totalFixedPrice || 0;
+				}
+				if (data.fixedPriceMode === "PER_ANIMAL") {
+					return data.animals.reduce(
+						(sum, animal) => sum + (animal.fixedSalePrice || 0),
+						0,
+					);
+				}
+				return 0;
+
+			default:
+				return totalWeight * (data.pricePerKg || 0);
+		}
+	}
+
+	/**
 	 * Calculates all sale totals including discount
+	 * Supports all pricing modes: PER_KG, FIXED (TOTAL or PER_ANIMAL)
 	 */
 	private calculateSaleTotals(data: SaleFormData) {
 		const totalWeight = data.animals.reduce(
 			(sum, animal) => sum + animal.liveWeight,
 			0,
 		);
-		const totalAmount = totalWeight * data.pricePerKg;
+
+		// Calculate total amount based on pricing mode
+		const totalAmount = this.calculateTotalAmount(data);
 
 		// Calculate discount
 		const { discountAmount, actualDiscountedWeight } = this.calculateDiscount(
+			totalAmount,
 			totalWeight,
 			data.pricePerKg,
 			data.discountType,
 			data.discountInput,
 		);
 
-		const finalAmount = totalAmount - discountAmount;
+		const finalAmount = Math.max(0, totalAmount - discountAmount);
 
 		// Calculate total paid from all payments
 		const amountPaid = (data.payments || []).reduce(
@@ -304,18 +430,18 @@ export class SaleService {
 
 	/**
 	 * Calculate discount amount based on discount type
+	 * Updated to work with all pricing modes
 	 */
 	private calculateDiscount(
+		totalAmount: number,
 		totalWeight: number,
-		pricePerKg: number,
+		pricePerKg: number | undefined,
 		discountType: DiscountType | undefined,
 		discountInput: number | undefined,
 	): DiscountCalculationResult {
 		if (!discountType || discountInput === undefined || discountInput === 0) {
 			return { discountAmount: 0 };
 		}
-
-		const totalAmount = totalWeight * pricePerKg;
 
 		switch (discountType) {
 			case "FLAT":
@@ -330,7 +456,8 @@ export class SaleService {
 
 			case "WEIGHT_BASED":
 				// Discount input is weight reduction in kg
-				// discountAmount = pricePerKg * reduction
+				// Only works properly with PER_KG pricing mode
+				if (!pricePerKg) return { discountAmount: 0 };
 				return {
 					discountAmount: Math.round(pricePerKg * discountInput),
 					actualDiscountedWeight: totalWeight - discountInput,

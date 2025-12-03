@@ -11,6 +11,9 @@ import type { z } from "zod";
 // Re-export schema types
 export type SaleFormData = z.infer<typeof saleSchema>;
 
+// Re-export pricing mode types from schema
+export type { PricingMode, PerKgMode, FixedPriceMode } from "./validations/sale-schema";
+
 // Discount calculation types
 export type DiscountType = "FLAT" | "PERCENT" | "WEIGHT_BASED";
 
@@ -49,7 +52,9 @@ export interface SaleAnimal {
 	id: string;
 	tagNumber: string;
 	liveWeight: number;
-	adjustedPrice?: number;
+	adjustedPrice?: number; // Cost price
+	fixedSalePrice?: number; // Individual fixed sale price (when fixedPriceMode is PER_ANIMAL)
+	individualPricePerKg?: number; // Individual price per kg (when perKgMode is PER_ANIMAL)
 }
 
 // Customer types
@@ -127,4 +132,13 @@ export interface UseCreateSaleOptions {
 export interface UseSaleQueryOptions {
 	saleId: string;
 	enabled?: boolean;
+}
+
+// Pricing calculation input types
+export interface PricingInput {
+	pricingMode: "PER_KG" | "FIXED";
+	perKgMode?: "SAME_RATE" | "PER_ANIMAL";
+	pricePerKg?: number;
+	fixedPriceMode?: "TOTAL" | "PER_ANIMAL";
+	totalFixedPrice?: number;
 }
