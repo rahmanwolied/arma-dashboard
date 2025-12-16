@@ -43,8 +43,9 @@ export interface SalePreview {
 	finalAmount: number;
 	profitLoss: number;
 	profitMargin: number;
-	dueAmount: number;
+	dueAmount: number; // Can be negative for overpayments
 	hasDue: boolean;
+	hasOverpayment: boolean;
 }
 
 // Animal in sale types

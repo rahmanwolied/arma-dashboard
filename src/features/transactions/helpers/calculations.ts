@@ -160,6 +160,7 @@ export function calculateSalePreview(
 			profitMargin: 0,
 			dueAmount: 0,
 			hasDue: false,
+			hasOverpayment: false,
 		};
 	}
 
@@ -186,9 +187,10 @@ export function calculateSalePreview(
 		totalCost,
 	);
 
-	// Calculate due amount
-	const dueAmount = Math.max(0, finalAmount - amountPaid);
+	// Calculate due amount (can be negative for overpayments)
+	const dueAmount = finalAmount - amountPaid;
 	const hasDue = dueAmount > 0 && amountPaid > 0;
+	const hasOverpayment = dueAmount < 0;
 
 	return {
 		totalWeight,
@@ -200,6 +202,7 @@ export function calculateSalePreview(
 		profitMargin,
 		dueAmount,
 		hasDue,
+		hasOverpayment,
 	};
 }
 

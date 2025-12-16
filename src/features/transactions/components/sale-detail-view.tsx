@@ -20,6 +20,7 @@ import {
 	CheckCircle2,
 	Clock,
 	AlertCircle,
+	Info,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -96,8 +97,10 @@ export default function SaleDetailView({
 		sale.payments?.reduce((sum, p) => sum + (Number(p.paidAmount) || 0), 0) ??
 		0;
 	const amountDue =
-		storedAmounts?.amountDue ?? Math.max(0, finalAmount - amountPaid);
+		storedAmounts?.amountDue ?? finalAmount - amountPaid;
 	const invoiceNumber = storedAmounts?.invoiceNumber;
+	const hasOverpayment = amountDue < 0;
+	const overpaymentAmount = hasOverpayment ? Math.abs(amountDue) : 0;
 
 	const paymentStatus = getPaymentStatus(amountPaid, finalAmount);
 	const StatusIcon = paymentStatus.icon;
@@ -423,7 +426,11 @@ export default function SaleDetailView({
 				<Card
 					className={cn(
 						"border-2",
-						amountDue > 0 ? "border-amber-500/20" : "border-green-500/20",
+						hasOverpayment
+							? "border-blue-500/20"
+							: amountDue > 0
+								? "border-amber-500/20"
+								: "border-green-500/20",
 					)}
 				>
 					<CardHeader className="pb-3">
@@ -457,22 +464,36 @@ export default function SaleDetailView({
 									</span>
 								</div>
 								<Separator />
-								<div className="flex justify-between">
-									<span className="font-semibold">Amount Due</span>
-									<span
-										className={cn(
-											"text-lg font-bold",
-											amountDue > 0 ? "text-amber-600" : "text-green-600",
-										)}
-									>
-										{formatCurrency(amountDue)}
-										{amountDue === 0 && (
-											<CheckCircle2 className="ml-1 inline h-4 w-4" />
-										)}
-									</span>
-								</div>
+
+								{/* Show either Amount Due or Overpayment */}
+								{hasOverpayment ? (
+									<div className="flex justify-between">
+										<span className="font-semibold text-blue-600">
+											Overpayment
+										</span>
+										<span className="text-lg font-bold text-blue-600">
+											{formatCurrency(overpaymentAmount)}
+										</span>
+									</div>
+								) : (
+									<div className="flex justify-between">
+										<span className="font-semibold">Amount Due</span>
+										<span
+											className={cn(
+												"text-lg font-bold",
+												amountDue > 0 ? "text-amber-600" : "text-green-600",
+											)}
+										>
+											{formatCurrency(amountDue)}
+											{amountDue === 0 && (
+												<CheckCircle2 className="ml-1 inline h-4 w-4" />
+											)}
+										</span>
+									</div>
+								)}
 							</div>
 
+							{/* Outstanding Balance */}
 							{amountDue > 0 && (
 								<div className="space-y-3">
 									<div className="rounded-lg bg-amber-50 p-3 dark:bg-amber-950/50">
@@ -498,7 +519,8 @@ export default function SaleDetailView({
 								</div>
 							)}
 
-							{amountDue === 0 && (
+							{/* Fully Paid */}
+							{amountDue === 0 && !hasOverpayment && (
 								<div className="rounded-lg bg-green-50 p-3 dark:bg-green-950/50">
 									<div className="flex items-start gap-2">
 										<CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
@@ -506,6 +528,21 @@ export default function SaleDetailView({
 											<p className="font-medium">Fully Paid</p>
 											<p className="mt-0.5 opacity-80">
 												This sale has been completely paid
+											</p>
+										</div>
+									</div>
+								</div>
+							)}
+
+							{/* Overpayment Notice */}
+							{hasOverpayment && (
+								<div className="rounded-lg bg-blue-50 p-3 dark:bg-blue-950/50">
+									<div className="flex items-start gap-2">
+										<Info className="h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" />
+										<div className="text-xs text-blue-700 dark:text-blue-300">
+											<p className="font-medium">Customer Overpayment</p>
+											<p className="mt-0.5 opacity-80">
+												Customer has overpaid by {formatCurrency(overpaymentAmount)}. This has been recorded as credit.
 											</p>
 										</div>
 									</div>

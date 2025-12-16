@@ -84,6 +84,7 @@ export function PaymentSection({
 					amountPaid={amountPaid}
 					dueAmount={discountPreview.dueAmount}
 					hasDue={discountPreview.hasDue}
+					hasOverpayment={discountPreview.hasOverpayment}
 				/>
 			)}
 

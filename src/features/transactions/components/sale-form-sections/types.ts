@@ -60,4 +60,5 @@ export interface PaymentSummaryProps {
 	amountPaid: number;
 	dueAmount: number;
 	hasDue: boolean;
+	hasOverpayment: boolean;
 }

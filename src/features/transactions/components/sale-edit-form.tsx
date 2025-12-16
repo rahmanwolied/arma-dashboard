@@ -86,7 +86,7 @@ export default function SaleEditForm({
 	const paymentsWatch = useWatch({
 		control: form.control,
 		name: "payments",
-		defaultValue: [],
+		defaultValue: defaultValues.payments || [],
 	});
 
 	// Calculate total amount paid from all payments
