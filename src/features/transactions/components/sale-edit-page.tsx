@@ -19,3 +19,4 @@ export default async function SaleEditPage({
 	return <SaleEditForm saleId={transactionId} initialData={result.data} />;
 }
 
+
